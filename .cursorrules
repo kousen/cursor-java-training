@@ -1,0 +1,239 @@
+# Cursor Training Project Rules
+
+## Slidev Presentation Guidelines
+
+### Maximum Content Limits
+**To prevent slides from extending below the viewport:**
+
+- **Code blocks:** Maximum **12 lines** (strict limit)
+- **Bullet points:** Maximum **5 items** (ideally 4)
+- **v-clicks with bullets:** Maximum **4 items** (they expand vertically)
+- **Combined content:** Title + 3-4 bullets + 8-10 line code block MAX
+
+### Code Block Best Practices
+
+**When code exceeds 12 lines, use one of these strategies:**
+
+1. **Abbreviate with `// ...`** to show only key parts:
+   ```kotlin
+   class Example {
+       fun important() {
+           // Key logic here
+       }
+       
+       // ... other methods
+   }
+   ```
+
+2. **Split into 2 slides** when teaching multiple concepts:
+   - Slide 1: Setup/configuration (12 lines max)
+   - Slide 2: Usage/implementation (12 lines max)
+
+3. **Use `layout: two-cols`** for code + explanation side-by-side
+
+4. **Focus on concepts** over complete implementation
+
+### Examples
+
+**❌ BAD - Too long (26 lines):**
+```kotlin
+@Database(entities = [Task::class], version = 1, exportSchema = false)
+abstract class AppDatabase : RoomDatabase() {
+    abstract fun taskDao(): TaskDao
+    
+    companion object {
+        @Volatile
+        private var INSTANCE: AppDatabase? = null
+        
+        fun getInstance(context: Context): AppDatabase {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    AppDatabase::class.java,
+                    "task_database"
+                )
+                .fallbackToDestructiveMigration()
+                .build()
+                INSTANCE = instance
+                instance
+            }
+        }
+    }
+}
+```
+
+**✅ GOOD - Abbreviated (12 lines):**
+```kotlin
+@Database(entities = [Task::class], version = 1)
+abstract class AppDatabase : RoomDatabase() {
+    abstract fun taskDao(): TaskDao
+    
+    companion object {
+        @Volatile
+        private var INSTANCE: AppDatabase? = null
+        
+        fun getInstance(context: Context): AppDatabase {
+            return INSTANCE ?: synchronized(this) {
+                Room.databaseBuilder(/* ... */).build()
+            }
+        }
+    }
+}
+```
+
+**✅ GOOD - Split into 2 slides:**
+```
+Slide 1: "Database Definition" (8 lines)
+Slide 2: "Database Singleton Pattern" (10 lines)
+```
+
+### Bullet Point Guidelines
+
+**❌ BAD - Too many items (7 items):**
+```markdown
+<v-clicks>
+
+- Item 1
+- Item 2
+- Item 3
+- Item 4
+- Item 5
+- Item 6
+- Item 7
+
+</v-clicks>
+```
+
+**✅ GOOD - Focused (4 items):**
+```markdown
+<v-clicks>
+
+- Key concept 1
+- Key concept 2
+- Key concept 3
+- Key concept 4
+
+</v-clicks>
+```
+
+### Combined Content Example
+
+**✅ GOOD - Balanced slide:**
+```markdown
+# Title
+
+**Brief explanation**
+
+<v-clicks>
+
+- Key point 1
+- Key point 2
+- Key point 3
+
+```kotlin
+// 8-10 lines of focused code
+class Example {
+    fun method() {
+        // implementation
+    }
+}
+```
+
+</v-clicks>
+```
+
+## Lab Exercise Guidelines
+
+### Lab Structure
+- Clear goal and time estimate at top
+- Step-by-step numbered instructions
+- Expected code output for verification
+- Success criteria checklist
+- Troubleshooting section
+
+### Code Examples in Labs
+- Show complete, working examples (not abbreviated)
+- Include all imports and annotations
+- Provide context comments
+- Verify code compiles and runs
+
+### Prompts for Cursor Composer
+- Always start with `@codebase` tag
+- Be specific and detailed
+- Include architectural requirements
+- Mention dependencies if needed
+- Example format:
+  ```
+  @codebase Create a TaskCard composable that displays a task
+  with title, description, and completed checkbox using
+  Material 3 components. Use proper spacing and modern
+  Compose patterns.
+  ```
+
+## Session 2 Specific: Android Development
+
+### Hybrid Workflow
+- Always show switching between Cursor and Android Studio
+- Cursor Composer for code generation
+- Android Studio for running/testing
+- Clear "In Cursor Composer:" and "In Android Studio:" labels
+
+### Code Generation
+- Use `@codebase` tag in all Composer prompts
+- Include architecture patterns (MVVM, Repository, etc.)
+- Specify Modern Android patterns (Flow, StateFlow, etc.)
+- Request proper annotations (@Composable, @HiltViewModel, etc.)
+
+### Testing
+- Include both unit tests and UI tests
+- Show proper test setup (rules, mocking, etc.)
+- Use appropriate testing libraries (JUnit 5, MockK, Compose Test)
+
+## General Writing Style
+
+### Tone
+- Professional but approachable
+- Instructional and clear
+- Assumes intelligent audience
+- Avoids over-explaining basics
+
+### Technical Accuracy
+- Verify all code compiles
+- Use latest stable library versions
+- Follow official best practices
+- Include proper error handling
+
+### Documentation
+- KDoc comments for public APIs
+- Inline comments for complex logic
+- README files for projects
+- Clear success criteria
+
+## File Naming Conventions
+
+- Slides: `[topic]_slides.md` (e.g., `android_slides.md`)
+- Labs: `[topic]_labs.md` (e.g., `android_labs.md`)
+- Outlines: `session[N]-outline.md`
+- Proposals: `COURSE_PROPOSAL_SESSION[N].md`
+
+## When Creating New Materials
+
+1. **Check existing materials** for consistency
+2. **Follow the same structure** as Session 1 or Session 2
+3. **Apply Slidev limits** (12 lines code, 5 bullets)
+4. **Test all code examples** before including
+5. **Provide troubleshooting** for common issues
+6. **Include success criteria** for every exercise
+
+## Quality Checklist
+
+Before finalizing materials:
+- [ ] All slides fit in viewport (no overflow)
+- [ ] Code examples compile and run
+- [ ] Prompts are specific and detailed
+- [ ] Success criteria are clear
+- [ ] Troubleshooting covers common issues
+- [ ] Timing estimates are realistic
+- [ ] Materials follow project structure
+- [ ] Tone is consistent with other sessions
+

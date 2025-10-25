@@ -1,0 +1,44 @@
+# Examples folders (for reference only, not part of course materials)
+examples-*/
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+.gradle/
+build/
+target/
+*.log
+
+# IDE
+.idea/
+*.iml
+*.iws
+.vscode/
+.cursor/
+!.cursor/CURSOR_TRAINING_CONTEXT.md
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Node (for Slidev)
+node_modules/
+dist/
+.slidev/
+
+# Temporary files
+*.tmp
+*.swp
+*~
+
+# Build artifacts
+*.zip
+*.tar.gz
+
+# Environment
+.env
+.env.local
+
