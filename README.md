@@ -25,6 +25,7 @@ This training program is designed for approximately 100 experienced Java develop
 **Focus:** Cursor fundamentals, Spring Boot development, AI modes
 
 **Materials:**
+- 📄 [Session 1 Outline](session1-outline.md)
 - 📄 [Cursor Quick Start for IntelliJ Users](cursor-quickstart-for-intellij-users.md)
 - 📊 [Session 1 Slides](slides.md)
 - 🧪 [Lab Exercises](labs.md)

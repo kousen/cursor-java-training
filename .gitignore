@@ -18,6 +18,7 @@ target/
 .vscode/
 .cursor/
 !.cursor/CURSOR_TRAINING_CONTEXT.md
+!.cursor/PROJECT_CONTEXT.md
 
 # macOS
 .DS_Store
