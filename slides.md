@@ -379,11 +379,13 @@ Type: `Spring Initializr: Create a Gradle Project`
 
 **Configure:**
 - **Spring Boot:** 3.5.6
-- **Java:** 17 or 21
+- **Java:** 17 or 21 (21 recommended)
 - **Group:** `com.example`
 - **Artifact:** `hello-spring`
 
 **Dependencies:** Spring Web, Spring Data JPA, H2 Database, Validation, DevTools
+
+**Note:** Java 25+ may require Gradle wrapper update (8.10.2+)
 
 **Select folder** → Project opens in Cursor
 
@@ -2037,6 +2039,7 @@ graph LR
 
 **Common Topics:**
 - Setup issues or extension problems
+- Java version compatibility (Java 25+ and Gradle)
 - AI not working as expected
 - Java Language Server troubleshooting
 - Best practices for specific scenarios
@@ -2123,6 +2126,15 @@ Cmd/Ctrl+Shift+P → "Java: Clean Java Language Server Workspace"
 ```bash
 ./gradlew tasks --all
 # Or: Cmd/Ctrl+Shift+P → "Gradle: Refresh Gradle Project"
+```
+
+**Gradle compatibility with Java 25+**
+```bash
+# Option 1: Use Java 21 (recommended)
+export JAVA_HOME=$(/usr/libexec/java_home -v 21)
+
+# Option 2: Update Gradle wrapper to 8.10.2+
+# Edit gradle/wrapper/gradle-wrapper.properties
 ```
 
 **AI seems confused or wrong**

@@ -88,7 +88,8 @@ By the end of this session, participants will be able to:
   ```
 - Review generated code
 - Run application (`./gradlew bootRun`)
-- Test endpoint: http://localhost:8080/greet?name=World
+  - **Note:** If using Java 25+, set `JAVA_HOME` to Java 21 first
+- Test endpoint: http://localhost:8080/api/greetings?name=World
 
 **Step 3: Add Service Layer (15 min)**
 - **AI-Assisted:**
@@ -348,6 +349,7 @@ Need to run/test? → Use Terminal (Ctrl+`)
 - Cursor installation guide
 - Extension recommendations
 - System requirements check
+- Java version verification (Java 17 or 21 recommended; Java 25+ may require Gradle wrapper update)
 
 ### During Session
 - These slides (slides.md)
@@ -388,6 +390,9 @@ Students should leave able to:
 ### Common Issues & Solutions
 - **Java Language Server not loading:** Restart window
 - **Gradle not recognized:** Verify gradlew exists
+- **Gradle compatibility with Java 25+:** Use Java 21 (recommended) or update Gradle wrapper to 8.10.2+
+  - Set `JAVA_HOME` to Java 21 before running Gradle commands
+  - Or update `gradle/wrapper/gradle-wrapper.properties` if using Java 25+
 - **AI seems slow:** Check internet connection
 - **Extensions missing:** Install from Extensions panel
 

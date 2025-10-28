@@ -45,54 +45,90 @@ This training program is designed for approximately 100 experienced Java develop
 
 ---
 
-### Session 2: Mobile Development with Cursor (Android/Kotlin)
+### Session 2: Mobile Development with Cursor (Android/Kotlin) ✅
 **Duration:** 3 hours  
-**Status:** 🚧 Coming Soon
+**Focus:** Android development with Cursor Composer, Jetpack Compose, ViewModels, Room
 
-**Planned Topics:**
-- Cursor for Android development
-- Kotlin with AI assistance
-- Jetpack Compose
-- Mobile-specific AI workflows
+**Materials:**
+- 📄 [Session 2 Outline](session2-outline.md)
+- 📊 [Session 2 Slides](android_slides.md)
+- 🧪 [Lab Exercises](android_labs.md)
+- 📖 [Session 2 README](session2-android/README.md)
+
+**Projects:**
+- **Task Manager App** - Complete solution in `session2-android/TaskManagerApp/`
+- **Now in Android** - Exploration project (clone from GitHub)
+
+**Key Topics:**
+- Hybrid workflow: Cursor + Android Studio
+- Cursor Composer for multi-file code generation
+- Jetpack Compose UI with Material 3
+- State management with ViewModels and StateFlow
+- Navigation with Compose Navigation
+- Room database for persistence
+- Hilt dependency injection
+- Testing Android apps with AI assistance
 
 ---
 
-### Session 3: Advanced AI Features & Custom Workflows
+### Session 3: Agentic Coding with Cursor ✅
 **Duration:** 3 hours  
-**Status:** 🚧 Coming Soon
+**Focus:** Extended Thinking, Plan Mode, modular architecture refactoring
 
-**Planned Topics:**
-- Extended Thinking mode
-- Plan Mode
-- Model Context Protocol (MCP)
+**Materials:**
+- 📄 [Session 3 Outline](session3-outline.md)
+- 📊 [Session 3 Slides](agentic_slides.md)
+- 🧪 [Lab Exercises](agentic_labs.md)
+
+**Key Topics:**
+- Agentic coding principles
+- Extended Thinking mode for complex problems
+- Plan Mode for multi-phase refactoring
+- Modular architecture extraction
 - Custom slash commands
-- Team collaboration
+- Model Context Protocol (MCP) basics
+
+**Note:** Requires Plan Mode features in Cursor. Instructions validated, full implementation pending.
 
 ---
 
-### Session 4: Integrating AI into Development Workflow
+### Session 4: Reviewing and Testing Code with AI ✅
 **Duration:** 3 hours  
-**Status:** 🚧 Coming Soon
+**Focus:** AI-assisted testing, code review, quality assurance
 
-**Planned Topics:**
-- Git integration
-- Code reviews with AI
-- Documentation generation
-- API integration
-- CI/CD considerations
+**Materials:**
+- 📄 [Session 4 Outline](session4-outline.md)
+- 📊 [Session 4 Slides](testing_slides.md)
+- 🧪 [Lab Exercises](testing_labs.md)
+
+**Key Topics:**
+- AI test generation strategies
+- Unit, integration, and E2E testing
+- Code review with AI assistance
+- Performance and security testing
+- CI/CD integration with quality gates
+
+**Note:** Extends Session 3 project. Instructions validated, full implementation pending.
 
 ---
 
-### Session 5: Best Practices & Real-World Applications
+### Session 5: Exploring Agents and MCP ✅
 **Duration:** 3 hours  
-**Status:** 🚧 Coming Soon
+**Focus:** Advanced AI agents, Model Context Protocol, multi-agent systems
 
-**Planned Topics:**
-- Cost management
-- Context optimization
-- Security considerations
-- Team best practices
-- Case studies
+**Materials:**
+- 📄 [Session 5 Outline](session5-outline.md)
+- 📊 [Session 5 Slides](agents_slides.md)
+- 🧪 [Lab Exercises](agents_labs.md)
+
+**Key Topics:**
+- Custom AI agent development
+- Model Context Protocol (MCP) integration
+- Multi-agent collaboration patterns
+- Enterprise tool integration
+- Production agent deployment
+
+**Note:** Requires MCP setup. Instructions validated, full implementation pending.
 
 ---
 
@@ -104,18 +140,29 @@ cursor-java-training/
 ├── .cursor/
 │   └── CURSOR_TRAINING_CONTEXT.md              # AI context document
 │
-├── Session 1 - Using Cursor for Java Development
-│   ├── cursor-quickstart-for-intellij-users.md # Quick start guide
-│   ├── session1-outline.md                     # Session outline
-│   ├── slides.md                               # Slidev presentation
-│   ├── labs.md                                 # Lab exercises
-│   ├── hello-spring-setup.md                   # Hello Spring Boot setup
-│   └── petclinic-guide.md                      # PetClinic exploration guide
+├── session1-spring-boot/                       # Session 1 solutions
+│   ├── README.md                               # Session 1 guide
+│   └── hello-spring/                           # Complete solution project
 │
-├── Session 2 - TBD/
-├── Session 3 - TBD/
-├── Session 4 - TBD/
-└── Session 5 - TBD/
+├── session2-android/                           # Session 2 solutions
+│   ├── README.md                               # Session 2 guide
+│   └── TaskManagerApp/                         # Complete solution project
+│
+├── session3-agentic/                           # Session 3 (coming soon)
+├── session4-testing/                           # Session 4 (coming soon)
+├── session5-agents/                            # Session 5 (coming soon)
+│
+├── docs/
+│   └── SETUP.md                                # General setup instructions
+│
+└── [Course Materials - root level]
+    ├── cursor-quickstart-for-intellij-users.md
+    ├── session1-outline.md                     # Session outline
+    ├── slides.md                               # Slidev presentation
+    ├── labs.md                                 # Session 1 lab exercises
+    ├── android_labs.md                         # Session 2 lab exercises
+    ├── hello-spring-setup.md
+    └── petclinic-guide.md
 
 Note: examples-*/ folders are for reference only (not part of course materials)
 ```

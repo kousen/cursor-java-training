@@ -69,6 +69,17 @@ These exercises are designed to be completed during the session with instructor 
    gradle -version  # or: mvn -version
    ```
 
+### Troubleshooting
+
+**If you have Java 25 or newer:**
+- The Gradle wrapper in projects may not support Java 25+
+- **Solution 1:** Use Java 21 (recommended):
+  ```bash
+  export JAVA_HOME=$(/usr/libexec/java_home -v 21)  # macOS
+  # or set JAVA_HOME to your Java 21 installation
+  ```
+- **Solution 2:** Update Gradle wrapper to 8.10.2+ (if using Java 25+)
+
 ### Success Criteria
 
 - ✅ All extensions installed
@@ -143,6 +154,12 @@ These exercises are designed to be completed during the session with instructor 
 
    Open Terminal (``Ctrl+` ``):
    ```bash
+   ./gradlew bootRun
+   ```
+   
+   **Note:** If you encounter Gradle compatibility issues with Java 25+, set JAVA_HOME to Java 21:
+   ```bash
+   export JAVA_HOME=$(/usr/libexec/java_home -v 21)
    ./gradlew bootRun
    ```
 
