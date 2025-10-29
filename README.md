@@ -533,19 +533,23 @@ By the end of Session 1, students will be able to:
 
 ---
 
-## 📄 License & Usage
+## 📄 License
 
-These materials are provided for educational purposes.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+These materials are provided for educational purposes under the MIT License, which allows:
 
 **You may:**
 - Use these materials for teaching
 - Adapt them to your needs
 - Share with students and colleagues
+- Use in commercial projects
+- Modify as needed
 
 **Please:**
-- Give credit when sharing
-- Report issues or improvements
-- Respect intellectual property
+- Include the original copyright notice
+- Include the license text
+- Report issues or improvements (appreciated but not required)
 
 ---
 
