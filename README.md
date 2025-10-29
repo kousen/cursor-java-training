@@ -164,8 +164,6 @@ cursor-java-training/
     ├── android_labs.md                         # Session 2 lab exercises
     ├── hello-spring-setup.md
     └── petclinic-guide.md
-
-Note: examples-*/ folders are for reference only (not part of course materials)
 ```
 
 ---
