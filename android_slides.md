@@ -259,11 +259,11 @@ Use proper spacing and modern Compose patterns.
 
 <v-clicks>
 
-✅ Android Studio installed and running
-✅ At least one emulator configured (or physical device)
-✅ Cursor installed
-✅ Same Android project open in both tools
-✅ Composer mode tested (`Cmd/Ctrl+Shift+I`)
+- ✅ Android Studio installed and running
+- ✅ At least one emulator configured (or physical device)
+- ✅ Cursor installed
+- ✅ Same Android project open in both tools
+- ✅ Composer mode tested (`Cmd/Ctrl+Shift+I`)
 
 **Not working?** Ask for help now!
 
@@ -866,18 +866,29 @@ configuration.
 @Database(entities = [Task::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun taskDao(): TaskDao
-    
+}
+```
+
+</v-clicks>
+
+---
+
+# Demo: Creating Database (Singleton Pattern)
+
+<v-clicks>
+
+```kotlin
+abstract class AppDatabase : RoomDatabase() {
     companion object {
-        @Volatile
-        private var INSTANCE: AppDatabase? = null
-        
-        fun getInstance(context: Context): AppDatabase {
-            return INSTANCE ?: synchronized(this) {
-                Room.databaseBuilder(/* ... */)
-                    .fallbackToDestructiveMigration()
-                    .build()
+        @Volatile private var INSTANCE: AppDatabase? = null
+        fun getInstance(context: Context): AppDatabase =
+            INSTANCE ?: synchronized(this) {
+                Room.databaseBuilder(
+                    context,
+                    AppDatabase::class.java,
+                    "app-db"
+                ).fallbackToDestructiveMigration().build()
             }
-        }
     }
 }
 ```
@@ -1102,13 +1113,6 @@ fun TaskCard(task: Task, onToggleComplete: () -> Unit) {
                 text = task.title,
                 modifier = Modifier.semantics { testTag = "task-title" }
             )
-            Checkbox(
-                checked = task.completed,
-                onCheckedChange = { onToggleComplete() },
-                modifier = Modifier.semantics { 
-                    contentDescription = "Task completion"
-                }
-            )
         }
     }
 }
@@ -1122,6 +1126,25 @@ fun TaskCard(task: Task, onToggleComplete: () -> Unit) {
 - UI automation
 
 </v-clicks>
+
+---
+
+# Semantic Properties (Checkbox)
+
+```kotlin
+@Composable
+fun TaskCheckbox(completed: Boolean, onToggle: () -> Unit) {
+    Checkbox(
+        checked = completed,
+        onCheckedChange = { onToggle() },
+        modifier = Modifier.semantics {
+            contentDescription = "Task completion"
+        }
+    )
+}
+```
+
+**Focus:** Semantic description for assistive tech
 
 ---
 
@@ -1173,7 +1196,14 @@ dependencies to build.gradle.
 - ViewModel integration
 - All annotations
 
-**Why Hilt?**
+</v-clicks>
+
+---
+
+# Why Hilt?
+
+<v-clicks>
+
 - Compile-time DI
 - Less boilerplate
 - Android-specific
@@ -1182,12 +1212,27 @@ dependencies to build.gradle.
 
 ---
 
-# Hilt Application & Module
+# Hilt Application Class
 
 ```kotlin
 @HiltAndroidApp
 class TaskApplication : Application()
+```
 
+<v-clicks>
+
+**Required setup:**
+- Register in `AndroidManifest.xml`
+- Extend `Application()` class
+- Single annotation: `@HiltAndroidApp`
+
+</v-clicks>
+
+---
+
+# Hilt Database Module
+
+```kotlin
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
@@ -1196,7 +1241,17 @@ object DatabaseModule {
     fun provideDatabase(@ApplicationContext context: Context): AppDatabase {
         return AppDatabase.getInstance(context)
     }
-    
+}
+```
+
+---
+
+# Hilt Repository Provider
+
+```kotlin
+@Module
+@InstallIn(SingletonComponent::class)
+object RepositoryModule {
     @Provides
     @Singleton
     fun provideTaskRepository(taskDao: TaskDao): TaskRepository {
@@ -1533,32 +1588,9 @@ Need multi-file changes?
 
 ---
 
-# Comparing Session 1 vs Session 2
+ 
 
-| Session 1 (Java/Spring) | Session 2 (Android/Compose) |
-|-------------------------|----------------------------|
-| REST Controllers | Composable functions |
-| Service Layer | ViewModels |
-| JPA Repositories | Room DAOs |
-| Spring DI | Hilt DI |
-| Spring Boot Tests | Compose Tests |
-| Backend API | Mobile UI |
-
-<v-clicks>
-
-**Same principles:**
-- AI for code generation
-- Iterative development
-- Testing with AI
-- Architecture patterns
-
-**Different platforms, same power!**
-
-</v-clicks>
-
----
-
-# Common Pitfalls to Avoid
+# Common Pitfalls to Avoid — Don't
 
 <v-clicks>
 
@@ -1569,6 +1601,14 @@ Need multi-file changes?
 - Skip testing
 - Ignore accessibility
 - Over-rely on AI for debugging
+
+</v-clicks>
+
+---
+
+# Common Pitfalls to Avoid — Do
+
+<v-clicks>
 
 ✅ **Do:**
 - Use hybrid workflow
@@ -1582,47 +1622,7 @@ Need multi-file changes?
 
 ---
 
-# Preview: Session 3
-
-## Agentic Coding with Cursor
-
-<v-clicks>
-
-**Coming up:**
-- Extended Thinking mode
-- Plan Mode for complex changes
-- Custom slash commands
-- Team collaboration workflows
-- Code review with AI
-- Advanced automation
-
-**Get ready to level up even more!**
-
-</v-clicks>
-
----
-
-# Homework / Lab Exercises
-
-<v-clicks>
-
-**Part A: Reinforce Today's Learning**
-- Complete Task Manager features (if not done)
-- Add categories or tags to tasks
-- Implement due dates
-- Add search/filter functionality
-
-**Part B: Explore Now in Android**
-- Deep dive into architecture
-- Analyze testing strategies
-- Compare patterns with your app
-- Extract learnings
-
-**See `android_labs.md` for details**
-
-</v-clicks>
-
----
+ 
 
 # Resources
 
@@ -1659,8 +1659,6 @@ Need multi-file changes?
 </div>
 
 ---
-layout: end
----
 
 # Thank You!
 
@@ -1669,13 +1667,10 @@ layout: end
 - http://kousenit.com
 - [@kenkousen](https://twitter.com/kenkousen)
 
-**Continue Learning:**
-- Complete homework labs
-- Explore Now in Android
-- Apply to your projects
-- Join us for Session 3!
+**Thanks for joining!**
 
-<div class="text-center mt-8">
-  <p class="text-2xl">Happy Coding with AI! 🚀</p>
-</div>
+- Slides and code are in the GitHub repo
+- Reach out with questions anytime
+
+**Happy Coding with AI! 🚀**
 

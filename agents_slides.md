@@ -75,6 +75,15 @@ layout: default
 - **Model Context Protocol (MCP)** - External tool integration
 - **Custom Agent Development** - Domain-specific AI assistants
 - **Multi-Agent Collaboration** - Orchestrated workflows
+
+</v-clicks>
+
+---
+
+# What We'll Cover (Continued)
+
+<v-clicks>
+
 - **Enterprise Integration** - JIRA, Slack, Confluence
 - **Advanced Agent Patterns** - Learning and adaptation
 - **Future AI Development** - Emerging patterns and trends
@@ -226,6 +235,15 @@ layout: default
 - **Database schema analysis**
 - **API documentation generation**
 - **Performance monitoring**
+
+</v-clicks>
+
+---
+
+# Common MCP Integrations (Continued)
+
+<v-clicks>
+
 - **Security scanning**
 - **Documentation generation**
 
@@ -265,8 +283,6 @@ layout: default
 - **Capabilities and responsibilities**
 - **Knowledge base and expertise areas**
 - **Interaction patterns and communication**
-- **Decision-making processes**
-- **Learning and adaptation mechanisms**
 
 </v-clicks>
 
@@ -281,6 +297,26 @@ layout: default
 - **Code Review Agent:** Quality, security, performance
 - **Testing Agent:** Test generation and execution
 - **Deployment Agent:** Build and deployment automation
+
+</v-clicks>
+
+---
+
+# Agent Architecture Patterns (Continued)
+
+## Agent Design Components (Continued)
+
+<v-clicks>
+
+- **Decision-making processes**
+- **Learning and adaptation mechanisms**
+
+</v-clicks>
+
+## Specialized Agent Types (Continued)
+
+<v-clicks>
+
 - **Documentation Agent:** API and code documentation
 - **Integration Agent:** External service integration
 
@@ -323,8 +359,6 @@ layout: default
 - **Analyze database performance**
 - **Suggest optimizations**
 - **Implement improvements**
-- **Monitor performance metrics**
-- **Adapt to changing workloads**
 
 </v-clicks>
 
@@ -339,6 +373,26 @@ layout: default
 - **Agent specialization and expertise**
 - **Tool integration and data access**
 - **Decision-making algorithms**
+
+</v-clicks>
+
+---
+
+# Student Exercise: Domain-Specific Agents (Continued)
+
+## Your Turn: Database Optimization Agent (Continued)
+
+<v-clicks>
+
+- **Monitor performance metrics**
+- **Adapt to changing workloads**
+
+</v-clicks>
+
+## Agent Implementation Pattern (Continued)
+
+<v-clicks>
+
 - **Communication protocols**
 - **Performance monitoring**
 
@@ -391,8 +445,6 @@ layout: default
 - **Agent roles and responsibilities**
 - **Communication protocols**
 - **Task distribution and coordination**
-- **Conflict resolution mechanisms**
-- **Performance monitoring and optimization**
 
 </v-clicks>
 
@@ -407,6 +459,26 @@ layout: default
 - **Requirements Analysis Agent**
 - **Code Generation Agent**
 - **Testing Agent**
+
+</v-clicks>
+
+---
+
+# Agent Communication Patterns (Continued)
+
+## Orchestration Design (Continued)
+
+<v-clicks>
+
+- **Conflict resolution mechanisms**
+- **Performance monitoring and optimization**
+
+</v-clicks>
+
+## Multi-Agent System Example (Continued)
+
+<v-clicks>
+
 - **Deployment Agent**
 - **Monitoring Agent**
 
@@ -452,8 +524,6 @@ layout: default
 - **Design workflow management system**
 - **Coordinate multiple agents**
 - **Track task progress**
-- **Handle errors and recovery**
-- **Optimize performance**
 
 </v-clicks>
 
@@ -468,6 +538,26 @@ layout: default
 - **Workflow definition and execution**
 - **Agent coordination and communication**
 - **Task tracking and monitoring**
+
+</v-clicks>
+
+---
+
+# Student Exercise: Workflow Management (Continued)
+
+## Your Turn: Feature Development Workflow (Continued)
+
+<v-clicks>
+
+- **Handle errors and recovery**
+- **Optimize performance**
+
+</v-clicks>
+
+## Workflow Components (Continued)
+
+<v-clicks>
+
 - **Error handling and recovery**
 - **Performance optimization**
 
@@ -535,8 +625,6 @@ layout: default
 - **Read tickets and requirements**
 - **Update status and progress**
 - **Create new issues based on code analysis**
-- **Generate reports and metrics**
-- **Automate workflow management**
 
 </v-clicks>
 
@@ -551,6 +639,26 @@ layout: default
 - **MCP protocol implementation**
 - **JIRA API integration**
 - **Data mapping and transformation**
+
+</v-clicks>
+
+---
+
+# MCP Enterprise Integrations (Continued)
+
+## JIRA Integration (Continued)
+
+<v-clicks>
+
+- **Generate reports and metrics**
+- **Automate workflow management**
+
+</v-clicks>
+
+## Integration Components (Continued)
+
+<v-clicks>
+
 - **Error handling and recovery**
 - **Security and authentication**
 
@@ -574,7 +682,16 @@ class JIRAAgent {
   async updateStatus(ticketId: string, status: string): Promise<void> {
     await this.mcpClient.post(`/jira/tickets/${ticketId}/status`, { status });
   }
-  
+}
+```
+
+---
+
+# JIRA Agent Integration (Continued)
+
+```typescript
+// JIRA MCP integration - Issue Creation
+class JIRAAgent {
   async createIssue(analysis: CodeAnalysis): Promise<Ticket> {
     return await this.mcpClient.post('/jira/issues', {
       summary: analysis.summary,
@@ -845,7 +962,16 @@ class AgentMonitor {
       uptime: agent.getUptime()
     };
   }
-  
+}
+```
+
+---
+
+# Agent Monitoring System (Scaling)
+
+```typescript
+// Agent scaling functionality
+class AgentMonitor {
   async scaleAgents(workload: Workload): Promise<void> {
     const requiredAgents = this.calculateRequiredAgents(workload);
     await this.orchestrator.scaleTo(requiredAgents);

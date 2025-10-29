@@ -10,10 +10,13 @@
 - **v-clicks with bullets:** Maximum **4 items** (they expand vertically)
 - **Combined content:** Title + 3-4 bullets + 8-10 line code block MAX
 
+**General preference:** Favor more, shorter slides over fewer, longer ones. If content is valuable, split into additional slides rather than removing lines.
+
 ### Code Block Best Practices
 
 **When code exceeds 12 lines, use one of these strategies:**
 
+0. **Preferred:** Split the slide to preserve valuable content (e.g., definition vs. usage)
 1. **Abbreviate with `// ...`** to show only key parts:
    ```kotlin
    class Example {

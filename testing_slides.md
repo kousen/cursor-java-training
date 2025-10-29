@@ -213,6 +213,10 @@ AI generates realistic test scenarios
 - Integration point testing
 - Performance scenario testing
 
+---
+
+# AI Testing Philosophy (Continued)
+
 ## 3. Maintenance-Aware
 AI helps keep tests up-to-date
 - Test refactoring
@@ -252,6 +256,10 @@ AI ensures tests actually test something
 - User journey validation
 - API contract testing
 - Cross-system integration
+
+---
+
+# Test Generation Strategies (Continued)
 
 ## Performance Test Generation
 - Load testing scenarios
@@ -320,6 +328,10 @@ boundary value testing. Use JUnit 5, Mockito, and AssertJ."
 - Verify custom queries
 - Test transaction handling
 
+---
+
+# Unit Testing Strategies (Continued)
+
 ## Controller Testing
 - Use @WebMvcTest
 - Test endpoint mapping
@@ -376,6 +388,16 @@ class UserServiceTest {
     }
 }
 ```
+
+---
+
+# Demo: Service Layer Testing (Continued)
+
+**Test Structure Benefits:**
+- Comprehensive mocking strategy
+- Clear test organization
+- Proper assertion patterns
+- Verification of interactions
 
 </v-clicks>
 
@@ -476,6 +498,10 @@ class UserRepositoryTest {
 - Test error propagation
 - Validate business logic
 
+---
+
+# Integration Testing Approaches (Continued)
+
 ## External Service Mocking
 - Use WireMock for HTTP services
 - Mock payment gateways
@@ -521,12 +547,18 @@ class UserIntegrationTest {
         registry.add("spring.datasource.username", postgres::getUsername);
         registry.add("spring.datasource.password", postgres::getPassword);
     }
-    
-    @Test
-    @DisplayName("Should create and retrieve user from database")
-    void shouldCreateAndRetrieveUser() {
-        // Test implementation
-    }
+}
+```
+
+---
+
+# Demo: TestContainers Integration (Continued)
+
+```java
+@Test
+@DisplayName("Should create and retrieve user from database")
+void shouldCreateAndRetrieveUser() {
+    // Test implementation
 }
 ```
 
@@ -623,6 +655,10 @@ We're halfway through - stretch, grab coffee, be back on time!
 - State management testing
 - Integration point verification
 
+---
+
+# End-to-End Testing Strategies (Continued)
+
 ## Cross-System Testing
 - Multi-service integration
 - Data consistency validation
@@ -676,6 +712,16 @@ class EcommerceApiIntegrationTest {
 }
 ```
 
+---
+
+# Demo: Complete API Testing (Continued)
+
+**Test Features:**
+- Random port configuration
+- In-memory database setup
+- REST template integration
+- Comprehensive workflow testing
+
 </v-clicks>
 
 ---
@@ -699,6 +745,10 @@ class EcommerceApiIntegrationTest {
    - Checkout process
    - Order confirmation
    - Email notifications
+
+---
+
+# Student Exercise: Workflow Testing (Continued)
 
 3. **Implement and Validate:**
    - Test data setup
@@ -734,6 +784,10 @@ class EcommerceApiIntegrationTest {
 - Breaking point identification
 - Recovery testing
 - Resource exhaustion testing
+
+---
+
+# Performance Testing Strategies (Continued)
 
 ## Volume Testing
 - Large data set testing
@@ -835,6 +889,10 @@ security tests using OWASP ZAP."
 - Code quality metrics
 - Documentation requirements
 
+---
+
+# CI/CD Testing Pipeline (Continued)
+
 ## Reporting and Notifications
 - Test result reporting
 - Coverage reporting
@@ -884,7 +942,13 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-    
+```
+
+---
+
+# Demo: GitHub Actions Pipeline (Continued)
+
+```yaml
     - name: Run unit tests
       run: ./mvnw test
       
@@ -921,6 +985,10 @@ jobs:
    - Security vulnerability limits
    - Code quality metrics
 
+---
+
+# Student Exercise: Quality Gates (Continued)
+
 3. **Test Quality Gates:**
    - Trigger pipeline with failing tests
    - Verify deployment prevention
@@ -954,6 +1022,10 @@ jobs:
 - Environment issue identification
 - Data problem detection
 - Configuration error finding
+
+---
+
+# AI Debugging Strategies (Continued)
 
 ## Performance Debugging
 - Bottleneck identification
@@ -1017,6 +1089,10 @@ guidance. Identify the root cause and suggest fixes."
    - Validate solution
    - Prevent future issues
 
+---
+
+# Student Exercise: Test Failure Analysis (Continued)
+
 3. **Learn from Failure:**
    - Understand error patterns
    - Improve test design
@@ -1052,6 +1128,10 @@ guidance. Identify the root cause and suggest fixes."
 - Refactoring for testability
 - Legacy code modernization
 - Risk-based testing
+
+---
+
+# Legacy Code Testing Challenges (Continued)
 
 ## Risk Assessment
 - Business impact analysis

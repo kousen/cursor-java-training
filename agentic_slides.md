@@ -207,6 +207,10 @@ Plan → Execute → Review → Refine
 - Continuous improvement cycle
 - AI learns from feedback
 
+---
+
+# Agentic Coding Principles (Continued)
+
 ## 3. Collaborative
 AI as thinking partner, not just code generator
 - Architectural discussions
@@ -460,6 +464,16 @@ SQL injection, XSS, authentication bypass, and data exposure risks."
 this class using JUnit 5, Mockito, and TestContainers."
 ```
 
+</v-clicks>
+
+---
+
+# Creating Team Commands (Continued)
+
+**More Example Commands:**
+
+<v-clicks>
+
 ```
 /refactor-legacy: "Modernize this legacy code using current best practices: 
 replace deprecated APIs, improve error handling, add proper logging."
@@ -551,6 +565,10 @@ and structured error responses with proper HTTP status codes"
 2. **Review and identify improvements**
 3. **Use refinement prompts** to enhance
 4. **Iterate until satisfied**
+
+---
+
+# Student Exercise: Refinement Practice (Continued)
 
 **Refinement Examples:**
 - "Add input validation to all endpoints"
@@ -738,6 +756,10 @@ Modules should be loosely coupled and highly cohesive.
 3. **Review:** AI-assisted code review
 4. **Integration:** Automated testing and deployment
 
+---
+
+# Collaborative Development Patterns (Continued)
+
 **Demo: Team Feature Development**
 ```
 Plan Mode: "Design and implement an Order module that integrates 
@@ -869,7 +891,14 @@ services:
     image: redis:7
     ports:
       - "6379:6379"
-  
+```
+
+---
+
+# Local Services (Docker Compose - Continued)
+
+```yaml
+services:
   mock-payment-service:
     image: mockserver/mockserver
     ports:
@@ -895,6 +924,11 @@ services:
 **Phase 1:** Extract User module
 **Phase 2:** Create shared library
 **Phase 3:** Extract Product module
+
+---
+
+# Refactoring Phases (Continued)
+
 **Phase 4:** Extract Order module
 **Phase 5:** Extract Payment module
 **Phase 6:** Integration and testing
