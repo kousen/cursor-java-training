@@ -86,14 +86,9 @@ This solution implements all exercises from [Lab Exercises (labs.md)](../labs.md
 
 **Important:** This project requires Java 21. If you're using Java 25 (as was the case during validation), you may encounter Gradle wrapper compatibility issues.
 
-**To fix:**
-1. Set JAVA_HOME to Java 21:
+Update the Gradle wrapper to a version compatible with Java 25:
    ```bash
-   export JAVA_HOME=$(/usr/libexec/java_home -v 21)
-   ```
-2. Or update the Gradle wrapper to a version compatible with Java 25:
-   ```bash
-   ./gradlew wrapper --gradle-version=8.10.2
+   ./gradlew wrapper --gradle-version=9.1.0
    ```
 
 ## Validation Results
