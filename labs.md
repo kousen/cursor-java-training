@@ -78,7 +78,7 @@ These exercises are designed to be completed during the session with instructor 
   export JAVA_HOME=$(/usr/libexec/java_home -v 21)  # macOS
   # or set JAVA_HOME to your Java 21 installation
   ```
-- **Solution 2:** Update Gradle wrapper to 8.10.2+ (if using Java 25+)
+- **Solution 2:** Update Gradle wrapper to 9.1.0+ (if using Java 25+)
 
 ### Success Criteria
 
