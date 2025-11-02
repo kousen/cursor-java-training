@@ -487,6 +487,8 @@ These exercises are designed to be completed during the session with instructor 
 ### Step 1: Understand MVVM (5 min)
 
 1. **In Cursor, use Chat Mode** (Cmd/Ctrl+L):
+   
+   Type:
    ```
    Explain the MVVM pattern for Android and how it applies 
    to Jetpack Compose. Include details about StateFlow and 
@@ -504,6 +506,8 @@ These exercises are designed to be completed during the session with instructor 
 ### Step 2: Generate UI State Classes (5 min)
 
 1. **In Cursor Composer** (Cmd/Ctrl+Shift+I):
+   
+   Type:
    ```
 Create a TaskListUiState.kt file in the ui/state package
    
@@ -760,6 +764,8 @@ Update TaskList composable to accept a TaskViewModel
    ```
 
 3. **Update MainActivity:**
+   
+   Type:
    ```
 Update MainActivity to use TaskList with ViewModel
    ```
@@ -815,6 +821,8 @@ Update MainActivity to use TaskList with ViewModel
 ### Step 1: Set Up Navigation (10 min)
 
 1. **In Cursor Composer** (Cmd/Ctrl+Shift+I):
+   
+   Type:
    ```
 Set up Jetpack Compose Navigation:
    
@@ -845,6 +853,8 @@ Set up Jetpack Compose Navigation:
    ```
 
 3. **Create NavHost:**
+   
+   Type:
    ```
 Create TaskNavHost.kt in navigation package:
    
@@ -957,6 +967,8 @@ Create TaskListScreen.kt in ui/screen package:
    ```
 
 3. **Update TaskList to support onTaskClick:**
+   
+   Type:
    ```
 Update TaskList composable to take an onTaskClick callback
    and call it when a TaskCard is clicked
@@ -1178,6 +1190,8 @@ Update MainActivity to use rememberNavController
 ### Step 1: Add Room Dependencies (3 min)
 
 1. **In Cursor Composer** (Cmd/Ctrl+Shift+I):
+   
+   Type:
    ```
 Add Room database dependencies using version catalog:
    
@@ -1643,6 +1657,8 @@ Update TaskViewModel to use TaskRepository:
 ### Step 1: Add Test Dependencies (3 min)
 
 1. **In Cursor Composer** (Cmd/Ctrl+Shift+I):
+   
+   Type:
    ```
 Add testing dependencies using version catalog:
    
@@ -2095,6 +2111,8 @@ Create TaskCardTest.kt in androidTest directory
 ### Step 1: Add Hilt Dependencies (3 min)
 
 1. **In Cursor Composer** (Cmd/Ctrl+Shift+I):
+   
+   Type:
    ```
 Add Hilt dependency injection using version catalog:
    
@@ -2173,6 +2191,8 @@ Create TaskApplication.kt in the root package:
    ```
 
 3. **Update AndroidManifest.xml:**
+   
+   Type:
    ```
 Add android:name=".TaskApplication" to the
    <application> tag in AndroidManifest.xml
@@ -2267,6 +2287,8 @@ Update TaskViewModel to use Hilt:
    ```
 
 3. **Update MainActivity:**
+   
+   Type:
    ```
 Add @AndroidEntryPoint annotation to MainActivity
    ```
@@ -2322,6 +2344,8 @@ Update the theme in ui/theme/Theme.kt:
 ### Step 7: Test Everything (2 min)
 
 1. **Clean and rebuild in Android Studio:**
+   
+   Type:
    ```
    Build → Clean Project
    Build → Rebuild Project
@@ -2635,6 +2659,8 @@ Answer these questions in your notes:
 **Objective:** Add categories/tags to tasks
 
 1. **Use Cursor Composer to:**
+   
+   Type:
    ```
 Add categories feature:
    
@@ -2662,6 +2688,8 @@ Add categories feature:
 **Objective:** Add due dates and reminders
 
 1. **Use Cursor Composer:**
+   
+   Type:
    ```
 Add due date feature:
    
@@ -2688,6 +2716,8 @@ Add due date feature:
 **Objective:** Search tasks by title/description
 
 1. **Use Cursor Composer:**
+   
+   Type:
    ```
 Add search feature:
    
@@ -2714,6 +2744,8 @@ Add search feature:
 **Objective:** Add priority levels
 
 1. **Use Cursor Composer:**
+   
+   Type:
    ```
 Add priority feature:
    
@@ -2735,6 +2767,8 @@ Add priority feature:
 **Objective:** Swipe gesture to delete tasks
 
 1. **Use Cursor Composer:**
+   
+   Type:
    ```
 Add swipe to delete:
    
@@ -2789,6 +2823,8 @@ Add swipe to delete:
    ```
 
 2. **Apply improvements using Composer:**
+   
+   Type:
    ```
 Add accessibility improvements:
    
@@ -2827,6 +2863,8 @@ Improve error handling:
 ### Part 3: Loading States (5 min)
 
 1. **Improve loading UX:**
+   
+   Type:
    ```
 Add loading indicators:
    
