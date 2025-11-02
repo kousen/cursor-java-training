@@ -131,14 +131,43 @@ These exercises are designed to be completed during the session with instructor 
 
 4. **After Project Creation, Update `app/build.gradle.kts`:**
    
-   Add these configurations (or use Cursor Composer):
+   Add these configurations at the top level:
+   
+   ```kotlin
+   // Configure Java Toolchain to use Java 21
+   kotlin {
+       jvmToolchain(21)
+   }
    ```
-Update app/build.gradle.kts with:
-   - Java 21 toolchain configuration using kotlin { jvmToolchain(21) }
-   - compileSdk = 36
-   - targetSdk = 36
-   - kotlinOptions { jvmTarget = "21" }
-   - testOptions for JUnit Platform
+   
+   Then in the `android` block:
+   
+   ```kotlin
+   android {
+       compileSdk = 36
+       
+       defaultConfig {
+           targetSdk = 36
+           // ... other config
+       }
+       
+       compileOptions {
+           sourceCompatibility = JavaVersion.VERSION_21
+           targetCompatibility = JavaVersion.VERSION_21
+       }
+       
+       kotlinOptions {
+           jvmTarget = "21"
+       }
+       
+       testOptions {
+           unitTests {
+               all {
+                   it.useJUnitPlatform()
+               }
+           }
+       }
+   }
    ```
    
    This ensures compatibility with the latest Android Gradle Plugin and Kotlin versions.
@@ -213,7 +242,7 @@ Create a simple data class Task with properties:
 
 ---
 
-## Lab 2: Building Task UI Components {#lab-2-building-task-ui-components}
+## Lab 2: Building Task UI Components
 
 **Goal:** Create Jetpack Compose UI components with AI assistance  
 **Time:** 20 minutes  
@@ -434,7 +463,7 @@ Update MainActivity to display TaskList in the content
 
 ---
 
-## Lab 3: State Management with ViewModels {#lab-3-state-management-with-viewmodels}
+## Lab 3: State Management with ViewModels
 
 **Goal:** Implement MVVM architecture with StateFlow  
 **Time:** 25 minutes  
@@ -758,7 +787,7 @@ Update MainActivity to use TaskList with ViewModel
 
 ---
 
-## Lab 4: Multi-Screen Navigation {#lab-4-multi-screen-navigation}
+## Lab 4: Multi-Screen Navigation
 
 **Goal:** Implement navigation between Home and Detail screens  
 **Time:** 20 minutes  
@@ -1570,7 +1599,7 @@ Update TaskListScreen and TaskDetailScreen to use
 
 ---
 
-## Lab 6: Testing ViewModels and UIs {#lab-6-testing-viewmodels-and-uis}
+## Lab 6: Testing ViewModels and UIs
 
 **Goal:** Generate and run tests for Android components  
 **Time:** 20 minutes  
@@ -2307,7 +2336,7 @@ These exercises are designed for independent exploration after the session. They
 
 ---
 
-## Lab 8: Now in Android Analysis {#lab-8-now-in-android-analysis}
+## Lab 8: Now in Android Analysis
 
 **Goal:** Analyze Google's production sample app architecture  
 **Time:** 30-45 minutes  
@@ -2696,7 +2725,7 @@ Add swipe to delete:
 
 ---
 
-## Lab 10: Production Polish {#lab-10-production-polish}
+## Lab 10: Production Polish
 
 **Goal:** Add production-ready features and polish  
 **Time:** 30-45 minutes  
