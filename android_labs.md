@@ -73,16 +73,22 @@ These exercises are designed to be completed during the session with instructor 
 3. **Test AI Modes**
 
    **Chat Mode (Cmd/Ctrl+L):**
+   
+   Type: 
    ```
-   Type: "What is Jetpack Compose?"
+   What is Jetpack Compose?
+   ```
+   
    Expected: Detailed explanation about declarative UI
-   ```
 
    **Composer Mode (Cmd/Ctrl+Shift+I):**
+   
+   Type:
    ```
-   Type: "Create a simple Kotlin data class for a User"
+   Create a simple Kotlin data class for a User
+   ```
+   
    Expected: Multi-line editor with code generation offer
-   ```
 
 4. **Test Terminal** (``Ctrl+` ``)
    ```bash
@@ -197,18 +203,18 @@ These exercises are designed to be completed during the session with instructor 
 
 4. **Test Composer Mode:**
    
-   Open Composer (Cmd/Ctrl+Shift+I):
+   Open Composer (Cmd/Ctrl+Shift+I) and type:
    ```
-Explain the structure of this Android project
+   Explain the structure of this Android project
    ```
    
    Expected: AI describes MainActivity, Gradle files, manifest, etc.
 
 5. **Test Simple Generation:**
    
-   In Composer:
+   In Composer, type:
    ```
-Create a simple data class Task with properties:
+   Create a simple data class Task with properties:
    id (String), title (String), description (String), 
    completed (Boolean). Add default values.
    ```
