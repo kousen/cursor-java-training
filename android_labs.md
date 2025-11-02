@@ -962,7 +962,62 @@ These exercises are designed to be completed during the session with instructor 
            )
        }
        
-       // Add task dialog implementation...
+       if (showAddTaskDialog) {
+           AlertDialog(
+               onDismissRequest = {
+                   showAddTaskDialog = false
+                   taskTitle = ""
+                   taskDescription = ""
+               },
+               title = { Text("Add New Task") },
+               text = {
+                   Column(
+                       modifier = Modifier.fillMaxWidth(),
+                       verticalArrangement = Arrangement.spacedBy(16.dp)
+                   ) {
+                       OutlinedTextField(
+                           value = taskTitle,
+                           onValueChange = { taskTitle = it },
+                           label = { Text("Title") },
+                           modifier = Modifier.fillMaxWidth(),
+                           singleLine = true
+                       )
+                       OutlinedTextField(
+                           value = taskDescription,
+                           onValueChange = { taskDescription = it },
+                           label = { Text("Description") },
+                           modifier = Modifier.fillMaxWidth().height(120.dp),
+                           maxLines = 4
+                       )
+                   }
+               },
+               confirmButton = {
+                   Button(
+                       onClick = {
+                           if (taskTitle.isNotBlank()) {
+                               viewModel.addTask(taskTitle, taskDescription)
+                               showAddTaskDialog = false
+                               taskTitle = ""
+                               taskDescription = ""
+                           }
+                       }
+                   ) {
+                       Text("Add")
+                   }
+               },
+               dismissButton = {
+                   TextButton(
+                       onClick = {
+                           showAddTaskDialog = false
+                           taskTitle = ""
+                           taskDescription = ""
+                       }
+                   ) {
+                       Text("Cancel")
+                   }
+               }
+           )
+       }
    }
    ```
 
