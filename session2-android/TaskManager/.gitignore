@@ -1,0 +1,31 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# Additional IDE files
+/.idea/deploymentTargetSelector.xml
+/.idea/migrations.xml
+
+# OS files
+**/.DS_Store
+**/Thumbs.db
+
+# Build outputs
+*.apk
+*.aab
+*.dex
+*.ap_
+
+# KSP generated files are gitignored by default via /build

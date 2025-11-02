@@ -80,7 +80,7 @@ These exercises are designed to be completed during the session with instructor 
 
    **Composer Mode (Cmd/Ctrl+Shift+I):**
    ```
-   Type: "@codebase Create a simple Kotlin data class for a User"
+   Type: "Create a simple Kotlin data class for a User"
    Expected: Multi-line editor with code generation offer
    ```
 
@@ -97,7 +97,7 @@ These exercises are designed to be completed during the session with instructor 
 - ✅ At least one emulator/device available
 - ✅ Cursor opens and all extensions installed
 - ✅ Chat mode responds to questions
-- ✅ Composer mode opens with `@codebase` support
+- ✅ Composer mode opens and automatically checks codebase
 - ✅ Terminal works and shows adb devices
 
 ---
@@ -123,14 +123,31 @@ These exercises are designed to be completed during the session with instructor 
    - **Save location:** Choose your preferred location
    - **Language:** Kotlin
    - **Minimum SDK:** API 24 (Android 7.0)
+   - **Target SDK:** API 36 (Android 15+)
+   - **Compile SDK:** API 36
    - **Build configuration language:** Kotlin DSL (build.gradle.kts)
+   - **Java version:** Java 21 (will be configured in build.gradle.kts)
    - Click Finish
 
-4. **Wait for Gradle Sync**
+4. **After Project Creation, Update `app/build.gradle.kts`:**
+   
+   Add these configurations (or use Cursor Composer):
+   ```
+Update app/build.gradle.kts with:
+   - Java 21 toolchain configuration using kotlin { jvmToolchain(21) }
+   - compileSdk = 36
+   - targetSdk = 36
+   - kotlinOptions { jvmTarget = "21" }
+   - testOptions for JUnit Platform
+   ```
+   
+   This ensures compatibility with the latest Android Gradle Plugin and Kotlin versions.
+
+5. **Wait for Gradle Sync**
    - This may take 2-5 minutes
    - Watch for "Gradle build finished" message
 
-5. **Run the Default App:**
+6. **Run the Default App:**
    - Select your emulator/device from dropdown
    - Click Run button (green triangle) or press Shift+F10
    - Verify "Hello Android!" appears on screen
@@ -153,7 +170,7 @@ These exercises are designed to be completed during the session with instructor 
    
    Open Composer (Cmd/Ctrl+Shift+I):
    ```
-   @codebase Explain the structure of this Android project
+Explain the structure of this Android project
    ```
    
    Expected: AI describes MainActivity, Gradle files, manifest, etc.
@@ -162,7 +179,7 @@ These exercises are designed to be completed during the session with instructor 
    
    In Composer:
    ```
-   @codebase Create a simple data class Task with properties:
+Create a simple data class Task with properties:
    id (String), title (String), description (String), 
    completed (Boolean). Add default values.
    ```
@@ -175,7 +192,7 @@ These exercises are designed to be completed during the session with instructor 
 
 - ✅ Android project created and runs in Android Studio
 - ✅ Same project opens successfully in Cursor
-- ✅ Composer mode generates code with `@codebase`
+- ✅ Composer mode generates code using codebase context
 - ✅ Can switch between Android Studio and Cursor
 - ✅ Changes in Cursor appear in Android Studio (and vice versa)
 
@@ -184,7 +201,7 @@ These exercises are designed to be completed during the session with instructor 
 **Gradle Sync Fails:**
 - Check internet connection
 - File → Invalidate Caches / Restart
-- Verify Java 17+ is installed
+- Verify Java 21 is installed (required for latest Android Gradle Plugin)
 
 **Emulator Won't Start:**
 - Use physical device instead
@@ -208,7 +225,7 @@ These exercises are designed to be completed during the session with instructor 
 
 2. **Prompt for TaskCard:**
    ```
-   @codebase Create a TaskCard composable in a new file ui/TaskCard.kt
+Create a TaskCard composable in a new file ui/TaskCard.kt
    
    Requirements:
    - Display a task with title, description, and completion checkbox
@@ -269,7 +286,7 @@ These exercises are designed to be completed during the session with instructor 
 
 1. **In Cursor Composer:**
    ```
-   @codebase Add preview functions to TaskCard.kt showing:
+Add preview functions to TaskCard.kt showing:
    1. An uncompleted task with short text
    2. A completed task
    3. A task with long text that might overflow
@@ -322,7 +339,7 @@ These exercises are designed to be completed during the session with instructor 
 
 1. **In Cursor Composer:**
    ```
-   @codebase Create a TaskList composable in ui/TaskList.kt
+Create a TaskList composable in ui/TaskList.kt
    
    Requirements:
    - Use LazyColumn to display a list of tasks
@@ -374,7 +391,7 @@ These exercises are designed to be completed during the session with instructor 
 
 3. **Add Preview with Sample Data:**
    ```
-   @codebase Add a preview for TaskList with 3-5 sample tasks
+Add a preview for TaskList with 3-5 sample tasks
    ```
 
 ### Step 4: Test in Android Studio (2 min)
@@ -384,7 +401,7 @@ These exercises are designed to be completed during the session with instructor 
 2. **Update MainActivity.kt to show TaskList:**
    - You can do this manually or use Cursor Composer:
    ```
-   @codebase Update MainActivity to display TaskList in the content
+Update MainActivity to display TaskList in the content
    area with sample tasks
    ```
 
@@ -444,7 +461,7 @@ These exercises are designed to be completed during the session with instructor 
 
 1. **In Cursor Composer** (Cmd/Ctrl+Shift+I):
    ```
-   @codebase Create a TaskListUiState.kt file in the ui/state package
+Create a TaskListUiState.kt file in the ui/state package
    
    Requirements:
    - Create a sealed interface TaskListUiState
@@ -486,7 +503,7 @@ These exercises are designed to be completed during the session with instructor 
 
 1. **In Cursor Composer:**
    ```
-   @codebase Create TaskViewModel.kt in the ui/viewmodel package
+Create TaskViewModel.kt in the ui/viewmodel package
    
    Requirements:
    - Extend ViewModel from androidx.lifecycle
@@ -588,18 +605,27 @@ These exercises are designed to be completed during the session with instructor 
            }
        }
        
-       /**
-        * Updates an existing task.
-        */
-       fun updateTask(task: Task) {
-           viewModelScope.launch {
-               val index = _tasks.indexOfFirst { it.id == task.id }
-               if (index != -1) {
-                   _tasks[index] = task
-                   _uiState.value = TaskListUiState.Success(_tasks.toList())
-               }
-           }
-       }
+    /**
+     * Updates an existing task's properties.
+     */
+    fun updateTask(
+        taskId: String,
+        title: String? = null,
+        description: String? = null,
+        completed: Boolean? = null
+    ) {
+        viewModelScope.launch {
+            val task = repository.getTaskById(taskId)
+            if (task != null) {
+                val updatedTask = task.copy(
+                    title = title ?: task.title,
+                    description = description ?: task.description,
+                    completed = completed ?: task.completed
+                )
+                repository.updateTask(updatedTask)
+            }
+        }
+    }
    }
    ```
 
@@ -607,7 +633,7 @@ These exercises are designed to be completed during the session with instructor 
    
    In Cursor Composer:
    ```
-   @codebase Add the required ViewModel and lifecycle dependencies
+Add the required ViewModel and lifecycle dependencies
    to app/build.gradle.kts if they're not already present
    ```
 
@@ -615,7 +641,7 @@ These exercises are designed to be completed during the session with instructor 
 
 1. **In Cursor Composer:**
    ```
-   @codebase Update TaskList composable to accept a TaskViewModel
+Update TaskList composable to accept a TaskViewModel
    and observe its uiState using collectAsStateWithLifecycle.
    Handle all three states: Loading (show CircularProgressIndicator),
    Success (show task list), Error (show error message).
@@ -687,7 +713,7 @@ These exercises are designed to be completed during the session with instructor 
 
 3. **Update MainActivity:**
    ```
-   @codebase Update MainActivity to use TaskList with ViewModel
+Update MainActivity to use TaskList with ViewModel
    ```
 
 ### Step 5: Test State Management (2 min)
@@ -742,12 +768,12 @@ These exercises are designed to be completed during the session with instructor 
 
 1. **In Cursor Composer** (Cmd/Ctrl+Shift+I):
    ```
-   @codebase Set up Jetpack Compose Navigation:
+Set up Jetpack Compose Navigation:
    
    1. Add navigation-compose dependency to build.gradle.kts if not present
    2. Create a sealed class Route in navigation/Route.kt with:
-      - HomeRoute (no arguments)
-      - TaskDetailRoute (takes taskId: String as argument)
+      - HomeRoute object (no arguments)
+      - TaskDetailRoute data class (takes taskId: String as argument)
    3. Include companion objects for route patterns
    ```
 
@@ -756,12 +782,13 @@ These exercises are designed to be completed during the session with instructor 
    package com.example.taskmanager.navigation
    
    sealed class Route(val route: String) {
-       data object Home : Route("home")
+       object HomeRoute : Route(route = "home") {
+           const val routePattern = "home"
+       }
        
-       data class TaskDetail(val taskId: String) : Route("task_detail/{taskId}") {
+       data class TaskDetailRoute(val taskId: String) : Route(route = "task_detail/$taskId") {
            companion object {
-               const val ROUTE_PATTERN = "task_detail/{taskId}"
-               const val TASK_ID_ARG = "taskId"
+               const val routePattern = "task_detail/{taskId}"
                
                fun createRoute(taskId: String) = "task_detail/$taskId"
            }
@@ -771,7 +798,7 @@ These exercises are designed to be completed during the session with instructor 
 
 3. **Create NavHost:**
    ```
-   @codebase Create TaskNavHost.kt in navigation package:
+Create TaskNavHost.kt in navigation package:
    
    Requirements:
    - Create TaskNavHost composable taking NavHostController
@@ -791,26 +818,27 @@ These exercises are designed to be completed during the session with instructor 
    ) {
        NavHost(
            navController = navController,
-           startDestination = Route.Home.route,
+           startDestination = Route.HomeRoute.route,
            modifier = modifier
        ) {
-           composable(Route.Home.route) {
+           composable(Route.HomeRoute.routePattern) {
                TaskListScreen(
+                   navController = navController,
                    onTaskClick = { taskId ->
-                       navController.navigate(Route.TaskDetail.createRoute(taskId))
+                       navController.navigate(Route.TaskDetailRoute.createRoute(taskId))
                    }
                )
            }
            
            composable(
-               route = Route.TaskDetail.ROUTE_PATTERN,
+               route = Route.TaskDetailRoute.routePattern,
                arguments = listOf(
-                   navArgument(Route.TaskDetail.TASK_ID_ARG) {
+                   navArgument("taskId") {
                        type = NavType.StringType
                    }
                )
            ) { backStackEntry ->
-               val taskId = backStackEntry.arguments?.getString(Route.TaskDetail.TASK_ID_ARG)
+               val taskId = backStackEntry.arguments?.getString("taskId")
                TaskDetailScreen(
                    taskId = taskId,
                    onNavigateBack = {
@@ -826,14 +854,15 @@ These exercises are designed to be completed during the session with instructor 
 
 1. **In Cursor Composer:**
    ```
-   @codebase Create TaskListScreen.kt in ui/screen package:
+Create TaskListScreen.kt in ui/screen package:
    
    Requirements:
    - Scaffold with TopAppBar showing "Task Manager"
    - FloatingActionButton with "Add" icon (bottom-right)
    - TaskList in content area
-   - Take onTaskClick callback for navigation
-   - Wire up ViewModel
+   - Take NavController and onTaskClick callback for navigation
+   - Show AlertDialog for adding new tasks (with title and description fields)
+   - Wire up ViewModel using hiltViewModel()
    ```
 
 2. **Expected Code:**
@@ -841,10 +870,14 @@ These exercises are designed to be completed during the session with instructor 
    @OptIn(ExperimentalMaterial3Api::class)
    @Composable
    fun TaskListScreen(
-       onTaskClick: (String) -> Unit,
-       viewModel: TaskViewModel = viewModel(),
+       navController: NavController,
+       viewModel: TaskViewModel = hiltViewModel(),
        modifier: Modifier = Modifier
    ) {
+       var showAddTaskDialog by remember { mutableStateOf(false) }
+       var taskTitle by remember { mutableStateOf("") }
+       var taskDescription by remember { mutableStateOf("") }
+
        Scaffold(
            topBar = {
                TopAppBar(
@@ -853,7 +886,7 @@ These exercises are designed to be completed during the session with instructor 
            },
            floatingActionButton = {
                FloatingActionButton(
-                   onClick = { /* TODO: Navigate to add task */ }
+                   onClick = { showAddTaskDialog = true }
                ) {
                    Icon(Icons.Default.Add, contentDescription = "Add task")
                }
@@ -862,16 +895,20 @@ These exercises are designed to be completed during the session with instructor 
        ) { paddingValues ->
            TaskList(
                viewModel = viewModel,
-               onTaskClick = onTaskClick,
+               onTaskClick = { taskId ->
+                   navController.navigate(Route.TaskDetailRoute.createRoute(taskId))
+               },
                modifier = Modifier.padding(paddingValues)
            )
        }
+       
+       // Add task dialog implementation...
    }
    ```
 
 3. **Update TaskList to support onTaskClick:**
    ```
-   @codebase Update TaskList composable to take an onTaskClick callback
+Update TaskList composable to take an onTaskClick callback
    and call it when a TaskCard is clicked
    ```
 
@@ -879,7 +916,7 @@ These exercises are designed to be completed during the session with instructor 
 
 1. **In Cursor Composer:**
    ```
-   @codebase Create TaskDetailScreen.kt in ui/screen package:
+Create TaskDetailScreen.kt in ui/screen package:
    
    Requirements:
    - Accept taskId and onNavigateBack callback
@@ -976,13 +1013,12 @@ These exercises are designed to be completed during the session with instructor 
                    
                    Button(
                        onClick = {
-                           task?.let {
+                           taskId?.let { id ->
                                viewModel.updateTask(
-                                   it.copy(
-                                       title = title,
-                                       description = description,
-                                       completed = completed
-                                   )
+                                   taskId = id,
+                                   title = title,
+                                   description = description,
+                                   completed = completed
                                )
                            }
                            onNavigateBack()
@@ -1001,24 +1037,33 @@ These exercises are designed to be completed during the session with instructor 
 
 1. **In Cursor Composer:**
    ```
-   @codebase Update MainActivity to use rememberNavController
+Update MainActivity to use rememberNavController
    and display TaskNavHost instead of TaskList directly
    ```
 
 2. **Expected MainActivity:**
    ```kotlin
+   @AndroidEntryPoint
    class MainActivity : ComponentActivity() {
        override fun onCreate(savedInstanceState: Bundle?) {
            super.onCreate(savedInstanceState)
+           enableEdgeToEdge()
            setContent {
                TaskManagerTheme {
-                   val navController = rememberNavController()
-                   TaskNavHost(navController = navController)
+                   MainContent()
                }
            }
        }
    }
+   
+   @Composable
+   fun MainContent() {
+       val navController = rememberNavController()
+       TaskNavHost(navController = navController)
+   }
    ```
+   
+   **Note:** The `@AndroidEntryPoint` annotation is required for Hilt (added in Lab 7). If you're building incrementally, you may add it later.
 
 ### Step 5: Test Navigation (1 min)
 
@@ -1080,31 +1125,37 @@ These exercises are designed to be completed during the session with instructor 
 
 1. **In Cursor Composer** (Cmd/Ctrl+Shift+I):
    ```
-   @codebase Add Room database dependencies to app/build.gradle.kts:
+Add Room database dependencies using version catalog:
    
-   - room-runtime
-   - room-ktx for coroutines/Flow support
-   - room-compiler as kapt
-   - Also add kapt plugin if not present
+   Add to gradle/libs.versions.toml:
+   - room version 2.8.3
+   - Room runtime, ktx, and compiler libraries
    
-   Use version 2.6.1 or later
+   Then add to app/build.gradle.kts dependencies section:
+   - implementation for room-runtime and room-ktx
+   - ksp for room-compiler (KSP plugin should already be present)
    ```
 
-2. **Expected additions to `build.gradle.kts`:**
-   ```kotlin
-   plugins {
-       // ... existing plugins
-       id("kotlin-kapt")
-   }
+2. **Expected additions to `gradle/libs.versions.toml`:**
+   ```toml
+   [versions]
+   room = "2.8.3"
    
+   [libraries]
+   androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+   androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+   androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+   ```
+   
+   Then in `app/build.gradle.kts`:
+   ```kotlin
    dependencies {
        // ... existing dependencies
        
        // Room
-       val roomVersion = "2.6.1"
-       implementation("androidx.room:room-runtime:$roomVersion")
-       implementation("androidx.room:room-ktx:$roomVersion")
-       kapt("androidx.room:room-compiler:$roomVersion")
+       implementation(libs.androidx.room.runtime)
+       implementation(libs.androidx.room.ktx)
+       ksp(libs.androidx.room.compiler)  // KSP instead of kapt
    }
    ```
 
@@ -1114,7 +1165,7 @@ These exercises are designed to be completed during the session with instructor 
 
 1. **In Cursor Composer:**
    ```
-   @codebase Update the existing Task data class to be a Room entity:
+Update the existing Task data class to be a Room entity:
    
    Requirements:
    - Add @Entity annotation with tableName = "tasks"
@@ -1127,7 +1178,7 @@ These exercises are designed to be completed during the session with instructor 
 
 2. **Expected Updated Task:**
    ```kotlin
-   package com.example.taskmanager
+   package com.example.taskmanager.model
    
    import androidx.room.ColumnInfo
    import androidx.room.Entity
@@ -1141,7 +1192,7 @@ These exercises are designed to be completed during the session with instructor 
        val id: String = UUID.randomUUID().toString(),
        
        @ColumnInfo(name = "title")
-       val title: String,
+       val title: String = "",
        
        @ColumnInfo(name = "description")
        val description: String = "",
@@ -1153,12 +1204,14 @@ These exercises are designed to be completed during the session with instructor 
        val createdAt: Long = System.currentTimeMillis()
    )
    ```
+   
+   **Note:** Task is in the `model` package for better organization.
 
 ### Step 3: Create TaskDao (5 min)
 
 1. **In Cursor Composer:**
    ```
-   @codebase Create TaskDao.kt interface in data/local package:
+Create TaskDao.kt interface in data/local package:
    
    Requirements:
    - Interface annotated with @Dao
@@ -1211,7 +1264,7 @@ These exercises are designed to be completed during the session with instructor 
 
 1. **In Cursor Composer:**
    ```
-   @codebase Create AppDatabase.kt in data/local package:
+Create AppDatabase.kt in data/local package:
    
    Requirements:
    - Abstract class extending RoomDatabase
@@ -1220,7 +1273,7 @@ These exercises are designed to be completed during the session with instructor 
    - Abstract function to get TaskDao
    - Singleton pattern with companion object
    - getInstance(context) returning database instance
-   - Use fallbackToDestructiveMigration for demo purposes
+   - Use fallbackToDestructiveMigration(dropAllTables = true) for demo purposes
    ```
 
 2. **Expected AppDatabase:**
@@ -1253,7 +1306,7 @@ These exercises are designed to be completed during the session with instructor 
                        AppDatabase::class.java,
                        "task_database"
                    )
-                   .fallbackToDestructiveMigration()
+                   .fallbackToDestructiveMigration(dropAllTables = true)
                    .build()
                    INSTANCE = instance
                    instance
@@ -1267,7 +1320,7 @@ These exercises are designed to be completed during the session with instructor 
 
 1. **In Cursor Composer:**
    ```
-   @codebase Create TaskRepository.kt in data/repository package:
+Create TaskRepository.kt in data/repository package:
    
    Requirements:
    - Class taking TaskDao as constructor parameter
@@ -1337,7 +1390,7 @@ These exercises are designed to be completed during the session with instructor 
 
 1. **In Cursor Composer:**
    ```
-   @codebase Update TaskViewModel to use TaskRepository:
+Update TaskViewModel to use TaskRepository:
    
    Requirements:
    - Accept TaskRepository in constructor (will need context temporarily)
@@ -1363,15 +1416,18 @@ These exercises are designed to be completed during the session with instructor 
        
        private fun loadTasks() {
            viewModelScope.launch {
-               try {
-                   repository.allTasks.collect { tasks ->
-                       _uiState.value = TaskListUiState.Success(tasks)
+               repository.allTasks
+                   .onStart {
+                       _uiState.value = TaskListUiState.Loading
                    }
-               } catch (e: Exception) {
-                   _uiState.value = TaskListUiState.Error(
-                       e.message ?: "Unknown error occurred"
-                   )
-               }
+                   .catch { exception ->
+                       _uiState.value = TaskListUiState.Error(
+                           message = exception.message ?: "Failed to load tasks"
+                       )
+                   }
+                   .collect { tasks ->
+                       _uiState.value = TaskListUiState.Success(tasks = tasks)
+                   }
            }
        }
        
@@ -1406,10 +1462,23 @@ These exercises are designed to be completed during the session with instructor 
            }
        }
        
-       fun updateTask(task: Task) {
+       fun updateTask(
+           taskId: String,
+           title: String? = null,
+           description: String? = null,
+           completed: Boolean? = null
+       ) {
            viewModelScope.launch {
                try {
-                   repository.updateTask(task)
+                   val task = repository.getTaskById(taskId)
+                   if (task != null) {
+                       val updatedTask = task.copy(
+                           title = title ?: task.title,
+                           description = description ?: task.description,
+                           completed = completed ?: task.completed
+                       )
+                       repository.updateTask(updatedTask)
+                   }
                } catch (e: Exception) {
                    _uiState.value = TaskListUiState.Error(
                        "Failed to update task: ${e.message}"
@@ -1433,12 +1502,7 @@ These exercises are designed to be completed during the session with instructor 
    }
    ```
 
-3. **Create ViewModel Factory (temporary solution):**
-   ```
-   @codebase Create TaskViewModelFactory.kt that provides
-   repository to TaskViewModel. Take Application context to
-   create database and repository.
-   ```
+3. **Note:** In Lab 7, we'll use Hilt for dependency injection, which eliminates the need for ViewModelFactory. For now, you can create a simple factory, or wait until Lab 7.
 
 ### Step 7: Wire Up in UI (2 min)
 
@@ -1446,7 +1510,7 @@ These exercises are designed to be completed during the session with instructor 
    
    In Cursor Composer:
    ```
-   @codebase Update TaskListScreen and TaskDetailScreen to use
+Update TaskListScreen and TaskDetailScreen to use
    TaskViewModelFactory to create ViewModel with repository
    ```
 
@@ -1485,8 +1549,9 @@ These exercises are designed to be completed during the session with instructor 
 
 ### Troubleshooting
 
-**Kapt not found:**
-- Make sure `kotlin-kapt` plugin is added
+**KSP not found:**
+- Make sure `ksp` plugin is added (not kapt)
+- Verify KSP plugin in project-level `build.gradle.kts`
 - Sync gradle
 
 **Database not created:**
@@ -1515,37 +1580,67 @@ These exercises are designed to be completed during the session with instructor 
 
 1. **In Cursor Composer** (Cmd/Ctrl+Shift+I):
    ```
-   @codebase Add testing dependencies to app/build.gradle.kts:
+Add testing dependencies using version catalog:
    
-   For unit tests:
-   - JUnit 5 (jupiter)
-   - MockK for mocking
-   - Turbine for Flow testing
-   - Coroutines test
+   Add to gradle/libs.versions.toml:
+   - JUnit Jupiter 6.0.1
+   - MockK 1.14.6
+   - Turbine 1.2.1
+   - Coroutines test 1.10.2
+   - Compose UI test 1.9.4
+   - Espresso 3.7.0
    
-   For instrumented tests:
-   - Compose UI test
-   - Test runner
-   - Test rules
-   
-   Use latest stable versions
+   Then add to app/build.gradle.kts dependencies section
    ```
 
-2. **Expected additions:**
+2. **Expected additions to `gradle/libs.versions.toml`:**
+   ```toml
+   [versions]
+   junitJupiter = "6.0.1"
+   mockk = "1.14.6"
+   turbine = "1.2.1"
+   coroutinesTest = "1.10.2"
+   composeUiTest = "1.9.4"
+   espressoCore = "3.7.0"
+   junitVersion = "1.3.0"
+   
+   [libraries]
+   junit-jupiter-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junitJupiter" }
+   junit-jupiter-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junitJupiter" }
+   mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+   turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
+   kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutinesTest" }
+   androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+   androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+   androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "composeUiTest" }
+   androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "composeUiTest" }
+   ```
+   
+   Then in `app/build.gradle.kts`:
    ```kotlin
    dependencies {
        // Unit testing
-       testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
-       testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
-       testImplementation("io.mockk:mockk:1.13.8")
-       testImplementation("app.cash.turbine:turbine:1.0.0")
-       testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+       testImplementation(libs.junit.jupiter.api)
+       testRuntimeOnly(libs.junit.jupiter.engine)
+       testImplementation(libs.mockk)
+       testImplementation(libs.turbine)
+       testImplementation(libs.kotlinx.coroutines.test)
        
        // Instrumented testing
-       androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-       androidTestImplementation("androidx.test.ext:junit:1.1.5")
-       androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-       debugImplementation("androidx.compose.ui:ui-test-manifest")
+       androidTestImplementation(libs.androidx.junit)
+       androidTestImplementation(libs.androidx.espresso.core)
+       androidTestImplementation(platform(libs.androidx.compose.bom))
+       androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+       androidTestImplementation(libs.androidx.compose.ui.test)
+       debugImplementation(libs.androidx.compose.ui.test.manifest)
+   }
+   
+   testOptions {
+       unitTests {
+           all {
+               it.useJUnitPlatform()
+           }
+       }
    }
    ```
 
@@ -1555,7 +1650,7 @@ These exercises are designed to be completed during the session with instructor 
 
 1. **In Cursor Composer:**
    ```
-   @codebase Create TaskViewModelTest.kt in test directory
+Create TaskViewModelTest.kt in test directory
    (src/test/java/com/example/taskmanager/):
    
    Requirements:
@@ -1595,53 +1690,83 @@ These exercises are designed to be completed during the session with instructor 
    @OptIn(ExperimentalCoroutinesApi::class)
    class TaskViewModelTest {
        
+       @MockK
        private lateinit var repository: TaskRepository
+       
+       private lateinit var testDispatcher: TestDispatcher
        private lateinit var viewModel: TaskViewModel
-       private val testDispatcher = StandardTestDispatcher()
        
        @BeforeEach
        fun setup() {
+           MockKAnnotations.init(this)
+           testDispatcher = UnconfinedTestDispatcher()
            Dispatchers.setMain(testDispatcher)
-           repository = mockk(relaxed = true)
            
-           // Default: repository returns empty list
-           every { repository.allTasks } returns flowOf(emptyList())
-           
-           viewModel = TaskViewModel(repository)
+           // Default: repository returns empty list flow
+           val tasksFlow = MutableStateFlow<List<Task>>(emptyList())
+           every { repository.getAllTasks() } returns tasksFlow
        }
        
        @AfterEach
        fun tearDown() {
            Dispatchers.resetMain()
-           clearAllMocks()
+           unmockkAll()
        }
        
        @Test
-       fun `initial state is Loading then Success with empty list`() = runTest {
+       fun `initial state is Loading then Success with empty list`() = runTest(testDispatcher) {
+           // When
+           viewModel = TaskViewModel(repository)
+           advanceUntilIdle()
+           
+           // Then
            viewModel.uiState.test {
-               // Initial state
-               val loading = awaitItem()
-               assertTrue(loading is TaskListUiState.Loading)
-               
-               // After collecting from repository
-               val success = awaitItem()
-               assertTrue(success is TaskListUiState.Success)
-               assertEquals(0, (success as TaskListUiState.Success).tasks.size)
+               // First state might be Loading or Success depending on timing
+               val firstState = awaitItem()
+               if (firstState is TaskListUiState.Loading) {
+                   val successState = awaitItem()
+                   assertInstanceOf(TaskListUiState.Success::class.java, successState)
+                   val success = successState as TaskListUiState.Success
+                   assertTrue(success.tasks.isEmpty())
+               } else {
+                   assertInstanceOf(TaskListUiState.Success::class.java, firstState)
+                   val success = firstState as TaskListUiState.Success
+                   assertTrue(success.tasks.isEmpty())
+               }
+               cancel()
            }
        }
        
        @Test
-       fun `addTask inserts task into repository`() = runTest {
+       fun `addTask inserts task into repository`() = runTest(testDispatcher) {
            // Given
-           val task = Task(title = "Test Task", description = "Description")
-           coEvery { repository.insertTask(any()) } just Runs
+           val tasksFlow = MutableStateFlow<List<Task>>(emptyList())
+           every { repository.getAllTasks() } returns tasksFlow
+           coEvery { repository.insertTask(any()) } coAnswers {
+               val task = firstArg<Task>()
+               tasksFlow.value = tasksFlow.value + task
+           }
+           
+           viewModel = TaskViewModel(repository)
+           advanceUntilIdle()
            
            // When
-           viewModel.addTask("Test Task", "Description")
+           val newTaskTitle = "New Task"
+           val newTaskDescription = "Task description"
+           viewModel.addTask(newTaskTitle, newTaskDescription)
            advanceUntilIdle()
            
            // Then
-           coVerify { repository.insertTask(match { it.title == "Test Task" }) }
+           coVerify { repository.insertTask(any()) }
+           viewModel.uiState.test {
+               val successState = awaitItem()
+               assertInstanceOf(TaskListUiState.Success::class.java, successState)
+               val success = successState as TaskListUiState.Success
+               assertEquals(1, success.tasks.size)
+               assertEquals(newTaskTitle, success.tasks[0].title)
+               assertEquals(newTaskDescription, success.tasks[0].description)
+               cancel()
+           }
        }
        
        @Test
@@ -1713,7 +1838,7 @@ These exercises are designed to be completed during the session with instructor 
 
 1. **In Cursor Composer:**
    ```
-   @codebase Create TaskCardTest.kt in androidTest directory
+Create TaskCardTest.kt in androidTest directory
    (src/androidTest/java/com/example/taskmanager/):
    
    Requirements:
@@ -1840,7 +1965,7 @@ These exercises are designed to be completed during the session with instructor 
    
    In Cursor Composer:
    ```
-   @codebase Add semantics to TaskCard Checkbox:
+Add semantics to TaskCard Checkbox:
    set contentDescription = "Task completion" for accessibility
    ```
 
@@ -1903,22 +2028,36 @@ These exercises are designed to be completed during the session with instructor 
 
 1. **In Cursor Composer** (Cmd/Ctrl+Shift+I):
    ```
-   @codebase Add Hilt dependency injection to the project:
+Add Hilt dependency injection using version catalog:
    
-   1. Add hilt-android-gradle-plugin to project-level build.gradle.kts
-   2. Apply hilt plugin in app-level build.gradle.kts
-   3. Add Hilt dependencies (hilt-android, hilt-compiler as kapt)
-   4. Add hilt-navigation-compose for ViewModel integration
+   Add to gradle/libs.versions.toml:
+   - Hilt version 2.57.2
+   - Hilt navigation compose 1.3.0
+   - Hilt plugin and libraries
    
-   Use Hilt version 2.48 or later
+   Add Hilt plugin to project and app build.gradle.kts
+   Add Hilt dependencies to app/build.gradle.kts
    ```
 
-2. **Expected changes:**
+2. **Expected additions to `gradle/libs.versions.toml`:**
+   ```toml
+   [versions]
+   hilt = "2.57.2"
+   hiltNavigationCompose = "1.3.0"
+   
+   [libraries]
+   hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+   hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+   hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+   
+   [plugins]
+   hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+   ```
    
    **Project-level `build.gradle.kts`:**
    ```kotlin
    plugins {
-       id("com.google.dagger.hilt.android") version "2.48" apply false
+       alias(libs.plugins.hilt.android) apply false
    }
    ```
    
@@ -1926,15 +2065,15 @@ These exercises are designed to be completed during the session with instructor 
    ```kotlin
    plugins {
        // ... existing plugins
-       id("com.google.dagger.hilt.android")
-       id("kotlin-kapt")
+       alias(libs.plugins.hilt.android)
+       alias(libs.plugins.ksp)  // KSP for Hilt compiler (should already be present)
    }
    
    dependencies {
        // Hilt
-       implementation("com.google.dagger:hilt-android:2.48")
-       kapt("com.google.dagger:hilt-compiler:2.48")
-       implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
+       implementation(libs.hilt.android)
+       ksp(libs.hilt.compiler)  // KSP instead of kapt
+       implementation(libs.hilt.navigation.compose)
    }
    ```
 
@@ -1944,7 +2083,7 @@ These exercises are designed to be completed during the session with instructor 
 
 1. **In Cursor Composer:**
    ```
-   @codebase Create TaskApplication.kt in the root package:
+Create TaskApplication.kt in the root package:
    
    Requirements:
    - Extend Application class
@@ -1965,7 +2104,7 @@ These exercises are designed to be completed during the session with instructor 
 
 3. **Update AndroidManifest.xml:**
    ```
-   @codebase Add android:name=".TaskApplication" to the
+Add android:name=".TaskApplication" to the
    <application> tag in AndroidManifest.xml
    ```
 
@@ -1973,7 +2112,7 @@ These exercises are designed to be completed during the session with instructor 
 
 1. **In Cursor Composer:**
    ```
-   @codebase Create DatabaseModule.kt in di package:
+Create DatabaseModule.kt in di package:
    
    Requirements:
    - @Module and @InstallIn(SingletonComponent::class)
@@ -2013,7 +2152,7 @@ These exercises are designed to be completed during the session with instructor 
                AppDatabase::class.java,
                "task_database"
            )
-           .fallbackToDestructiveMigration()
+           .fallbackToDestructiveMigration(dropAllTables = true)
            .build()
        }
        
@@ -2034,7 +2173,7 @@ These exercises are designed to be completed during the session with instructor 
 
 1. **In Cursor Composer:**
    ```
-   @codebase Update TaskViewModel to use Hilt:
+Update TaskViewModel to use Hilt:
    
    Requirements:
    - Add @HiltViewModel annotation
@@ -2055,14 +2194,14 @@ These exercises are designed to be completed during the session with instructor 
 
 3. **Update MainActivity:**
    ```
-   @codebase Add @AndroidEntryPoint annotation to MainActivity
+Add @AndroidEntryPoint annotation to MainActivity
    ```
 
 ### Step 5: Update Composables (1 min)
 
 1. **In Cursor Composer:**
    ```
-   @codebase Update all screens to use hiltViewModel() instead
+Update all screens to use hiltViewModel() instead
    of viewModel() or custom factory:
    
    - TaskListScreen
@@ -2087,7 +2226,7 @@ These exercises are designed to be completed during the session with instructor 
 
 1. **In Cursor Composer:**
    ```
-   @codebase Update the theme in ui/theme/Theme.kt:
+Update the theme in ui/theme/Theme.kt:
    
    Requirements:
    - Update color scheme to use purple as primary color
@@ -2141,9 +2280,10 @@ These exercises are designed to be completed during the session with instructor 
 ### Troubleshooting
 
 **Hilt annotation processor errors:**
-- Make sure kapt plugin is applied
-- Verify kapt("hilt-compiler") is added
+- Make sure KSP plugin is applied (not kapt)
+- Verify `ksp(libs.hilt.compiler)` is added
 - Clean and rebuild project
+- Check that KSP version matches Kotlin version
 
 **@AndroidEntryPoint missing:**
 - Must be on Activity classes
@@ -2418,7 +2558,7 @@ Answer these questions in your notes:
 
 1. **Use Cursor Composer to:**
    ```
-   @codebase Add categories feature:
+Add categories feature:
    
    1. Create Category entity with id, name, color
    2. Add many-to-many relationship between Task and Category
@@ -2445,7 +2585,7 @@ Answer these questions in your notes:
 
 1. **Use Cursor Composer:**
    ```
-   @codebase Add due date feature:
+Add due date feature:
    
    1. Add dueDate: Long? field to Task entity
    2. Update TaskCard to show due date with icon
@@ -2471,7 +2611,7 @@ Answer these questions in your notes:
 
 1. **Use Cursor Composer:**
    ```
-   @codebase Add search feature:
+Add search feature:
    
    1. Add SearchBar to TaskListScreen TopAppBar
    2. Add search query to TaskDao
@@ -2497,7 +2637,7 @@ Answer these questions in your notes:
 
 1. **Use Cursor Composer:**
    ```
-   @codebase Add priority feature:
+Add priority feature:
    
    1. Create Priority enum: LOW, MEDIUM, HIGH
    2. Add priority field to Task
@@ -2518,7 +2658,7 @@ Answer these questions in your notes:
 
 1. **Use Cursor Composer:**
    ```
-   @codebase Add swipe to delete:
+Add swipe to delete:
    
    1. Wrap TaskCard in SwipeToDismiss
    2. Show delete icon in background
@@ -2572,7 +2712,7 @@ Answer these questions in your notes:
 
 2. **Apply improvements using Composer:**
    ```
-   @codebase Add accessibility improvements:
+Add accessibility improvements:
    
    1. Add contentDescription to all icons
    2. Add semantic properties to interactive elements
@@ -2591,7 +2731,7 @@ Answer these questions in your notes:
 
 1. **Add comprehensive error handling:**
    ```
-   @codebase Improve error handling:
+Improve error handling:
    
    1. Add try-catch in all ViewModel functions
    2. Show meaningful error messages to users
@@ -2610,7 +2750,7 @@ Answer these questions in your notes:
 
 1. **Improve loading UX:**
    ```
-   @codebase Add loading indicators:
+Add loading indicators:
    
    1. Show progress when adding task
    2. Show shimmer effect while loading tasks
@@ -2632,7 +2772,7 @@ Answer these questions in your notes:
 
 2. **Apply optimizations:**
    ```
-   @codebase Optimize performance:
+Optimize performance:
    
    1. Add @Stable annotations where appropriate
    2. Use remember for expensive calculations
@@ -2650,7 +2790,7 @@ Answer these questions in your notes:
 
 1. **Enhance UI:**
    ```
-   @codebase Polish the UI:
+Polish the UI:
    
    1. Add animations (AnimatedVisibility, transitions)
    2. Improve spacing and padding consistency
@@ -2744,7 +2884,7 @@ After completing these labs, you've built a complete, production-quality Android
 
 ✅ **Skills Acquired:**
 - Hybrid workflow (Cursor + Android Studio)
-- Cursor Composer mode with `@codebase`
+- Cursor Composer mode (automatically uses codebase context)
 - AI-assisted Android development
 - Modern Android architecture
 - Jetpack Compose proficiency
