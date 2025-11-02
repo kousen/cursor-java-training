@@ -443,11 +443,12 @@ You have access to a legacy enterprise Java application with outdated architectu
 #### Exercise 1: Legacy System Analysis
 
 **Extended Thinking Prompt:**
+Type:
 ```
-Extended Thinking: "Analyze this legacy enterprise application and create 
-a comprehensive modernization strategy using AI agents. Identify technical 
-debt, security issues, performance bottlenecks, and modernization 
-opportunities."
+   Extended Thinking: "Analyze this legacy enterprise application and create 
+   a comprehensive modernization strategy using AI agents. Identify technical 
+   debt, security issues, performance bottlenecks, and modernization 
+   opportunities."
 ```
 
 **Tasks:**
@@ -460,10 +461,11 @@ opportunities."
 #### Exercise 2: Agent Integration Design
 
 **Plan Mode Prompt:**
+Type:
 ```
-Plan Mode: "Design a multi-agent system for legacy modernization including 
-analysis agents, refactoring agents, testing agents, and deployment agents. 
-Create a phased implementation plan."
+   Plan Mode: "Design a multi-agent system for legacy modernization including 
+   analysis agents, refactoring agents, testing agents, and deployment agents. 
+   Create a phased implementation plan."
 ```
 
 **Tasks:**
@@ -476,9 +478,10 @@ Create a phased implementation plan."
 #### Exercise 3: Implementation and Testing
 
 **Agent Mode Prompt:**
+Type:
 ```
-Agent Mode: "Implement the legacy modernization agent system including 
-analysis, refactoring, testing, and deployment capabilities."
+   Agent Mode: "Implement the legacy modernization agent system including 
+   analysis, refactoring, testing, and deployment capabilities."
 ```
 
 **Tasks:**
@@ -515,10 +518,11 @@ Model Context Protocol (MCP) enables AI agents to interact with external systems
 #### Exercise 1: Custom MCP Tools
 
 **Extended Thinking Prompt:**
+Type:
 ```
-Extended Thinking: "Design and implement custom MCP tools for specialized 
-domains including database analysis, API documentation generation, and 
-performance monitoring."
+   Extended Thinking: "Design and implement custom MCP tools for specialized 
+   domains including database analysis, API documentation generation, and 
+   performance monitoring."
 ```
 
 **Tasks:**
@@ -531,10 +535,11 @@ performance monitoring."
 #### Exercise 2: Enterprise System Integration
 
 **Plan Mode Prompt:**
+Type:
 ```
-Plan Mode: "Create MCP integrations for enterprise systems including 
-Confluence, Jenkins, and monitoring tools. Implement authentication, 
-error handling, and data transformation."
+   Plan Mode: "Create MCP integrations for enterprise systems including 
+   Confluence, Jenkins, and monitoring tools. Implement authentication, 
+   error handling, and data transformation."
 ```
 
 **Tasks:**
@@ -547,10 +552,11 @@ error handling, and data transformation."
 #### Exercise 3: Advanced Agent Patterns
 
 **Agent Mode Prompt:**
+Type:
 ```
-Agent Mode: "Implement advanced agent patterns including multi-agent 
-collaboration, learning mechanisms, and adaptive behavior using MCP 
-integrations."
+   Agent Mode: "Implement advanced agent patterns including multi-agent 
+   collaboration, learning mechanisms, and adaptive behavior using MCP 
+   integrations."
 ```
 
 **Tasks:**
@@ -586,10 +592,11 @@ AI development is rapidly evolving. This lab helps you plan for future AI develo
 #### Exercise 1: Future Trends Analysis
 
 **Extended Thinking Prompt:**
+Type:
 ```
-Extended Thinking: "Analyze current AI development trends and predict 
-future evolution including autonomous development, self-healing systems, 
-and human-AI collaboration patterns."
+   Extended Thinking: "Analyze current AI development trends and predict 
+   future evolution including autonomous development, self-healing systems, 
+   and human-AI collaboration patterns."
 ```
 
 **Tasks:**
@@ -602,10 +609,11 @@ and human-AI collaboration patterns."
 #### Exercise 2: Implementation Strategy
 
 **Plan Mode Prompt:**
+Type:
 ```
-Plan Mode: "Create an implementation strategy for adopting future AI 
-development patterns including technology adoption, team training, and 
-organizational change management."
+   Plan Mode: "Create an implementation strategy for adopting future AI 
+   development patterns including technology adoption, team training, and 
+   organizational change management."
 ```
 
 **Tasks:**
@@ -618,10 +626,11 @@ organizational change management."
 #### Exercise 3: Future-Ready Architecture
 
 **Agent Mode Prompt:**
+Type:
 ```
-Agent Mode: "Design a future-ready architecture that can adapt to 
-emerging AI development patterns including modular design, extensibility, 
-and evolution capabilities."
+   Agent Mode: "Design a future-ready architecture that can adapt to 
+   emerging AI development patterns including modular design, extensibility, 
+   and evolution capabilities."
 ```
 
 **Tasks:**

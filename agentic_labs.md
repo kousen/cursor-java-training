@@ -63,10 +63,11 @@ These exercises are designed to be completed during the session with instructor 
 2. **Test Extended Thinking Mode**
 
    **Open Chat Mode (Cmd/Ctrl+L):**
+   Type:
    ```
-   Extended Thinking: "Analyze this monolithic e-commerce application. 
-   What are the main components and how do they interact? Identify 
-   potential areas for modularization."
+      Extended Thinking: "Analyze this monolithic e-commerce application. 
+      What are the main components and how do they interact? Identify 
+      potential areas for modularization."
    ```
 
    **Expected Response:**
@@ -78,8 +79,9 @@ These exercises are designed to be completed during the session with instructor 
 3. **Compare with Regular Chat**
 
    **Regular Chat Mode:**
+   Type:
    ```
-   "What controllers are in this application?"
+      "What controllers are in this application?"
    ```
 
    **Notice the difference:**
@@ -110,10 +112,11 @@ These exercises are designed to be completed during the session with instructor 
 2. **Generate Initial Plan**
 
    **Plan Mode Prompt:**
+   Type:
    ```
-   Analyze this monolithic e-commerce application and create a plan to 
-   refactor it into modular architecture. Identify module boundaries, 
-   shared dependencies, and refactoring phases.
+      Analyze this monolithic e-commerce application and create a plan to 
+      refactor it into modular architecture. Identify module boundaries, 
+      shared dependencies, and refactoring phases.
    ```
 
 3. **Review Generated Plan**
@@ -138,9 +141,10 @@ These exercises are designed to be completed during the session with instructor 
 1. **Modify the Plan**
 
    **Plan Mode Refinement:**
+   Type:
    ```
-   Modify the plan to prioritize User module first, include local Docker 
-   services, and add comprehensive testing strategy.
+      Modify the plan to prioritize User module first, include local Docker 
+      services, and add comprehensive testing strategy.
    ```
 
 2. **Review Refined Plan**
@@ -231,9 +235,10 @@ These exercises are designed to be completed during the session with instructor 
 1. **Validate Module Boundaries**
 
    **Chat Mode Review:**
+   Type:
    ```
-   Review the extracted User module. Does it have clear boundaries? 
-   Are there any dependencies that should be moved to shared library?
+      Review the extracted User module. Does it have clear boundaries? 
+      Are there any dependencies that should be moved to shared library?
    ```
 
 2. **Check for Issues**
@@ -314,9 +319,10 @@ These exercises are designed to be completed during the session with instructor 
 1. **Update User Module**
 
    **Plan Mode:**
+   Type:
    ```
-   Update User module to use shared library components.
-   Replace custom DTOs and utilities with shared library versions.
+      Update User module to use shared library components.
+      Replace custom DTOs and utilities with shared library versions.
    ```
 
 2. **Test Integration**
@@ -448,9 +454,10 @@ These exercises are designed to be completed during the session with instructor 
 1. **Generate OpenAPI Documentation**
 
    **MCP Prompt:**
+   Type:
    ```
-   Analyze all REST endpoints in the e-commerce application and generate 
-   comprehensive OpenAPI 3.0 documentation with examples and schemas.
+      Analyze all REST endpoints in the e-commerce application and generate 
+      comprehensive OpenAPI 3.0 documentation with examples and schemas.
    ```
 
 2. **Review Generated Documentation**
@@ -489,10 +496,11 @@ These exercises are designed to be completed during the session with instructor 
 1. **AI-Assisted Review**
 
    **Extended Thinking Prompt:**
+   Type:
    ```
-   Extended Thinking: "Conduct a comprehensive code review of the User module.
-   Analyze code quality, architecture, security, performance, and maintainability.
-   Provide specific recommendations with examples."
+      Extended Thinking: "Conduct a comprehensive code review of the User module.
+      Analyze code quality, architecture, security, performance, and maintainability.
+      Provide specific recommendations with examples."
    ```
 
 2. **Review AI Analysis**
@@ -570,8 +578,9 @@ These exercises are designed to be completed during the session with instructor 
 2. **Test Shared Context**
 
    **Chat Mode Test:**
+   Type:
    ```
-   "What coding standards should I follow for this project?"
+      "What coding standards should I follow for this project?"
    ```
 
    **Expected Response:** AI references the .cursorrules file
@@ -579,8 +588,9 @@ These exercises are designed to be completed during the session with instructor 
 3. **Verify Consistency**
 
    **Generate Code Test:**
+   Type:
    ```
-   "Create a new service class for order processing"
+      "Create a new service class for order processing"
    ```
 
    **Expected Output:** Code follows team standards
@@ -590,10 +600,11 @@ These exercises are designed to be completed during the session with instructor 
 1. **Feature Branch Workflow**
 
    **Plan Mode Demo:**
+   Type:
    ```
-   Plan Mode: "Design and implement an Order module that integrates 
-   with User and Product modules. Include order processing, inventory 
-   management, and email notifications."
+      Plan Mode: "Design and implement an Order module that integrates 
+      with User and Product modules. Include order processing, inventory 
+      management, and email notifications."
    ```
 
 2. **Review Process**
@@ -661,10 +672,11 @@ These exercises help you practice applying agentic coding principles to real-wor
 2. **Initial Assessment**
 
    **Extended Thinking Analysis:**
+   Type:
    ```
-   Extended Thinking: "Analyze this legacy Java application and create a 
-   modernization strategy. Identify technical debt, security issues, 
-   performance bottlenecks, and migration opportunities."
+      Extended Thinking: "Analyze this legacy Java application and create a 
+      modernization strategy. Identify technical debt, security issues, 
+      performance bottlenecks, and migration opportunities."
    ```
 
 ### Exercise 1: Technical Debt Analysis (15 min)
@@ -672,21 +684,24 @@ These exercises help you practice applying agentic coding principles to real-wor
 **Use Extended Thinking to explore:**
 
 1. **Architecture Issues:**
+   Type:
    ```
-   Extended Thinking: "What are the main architectural issues in this 
-   codebase? How does the current structure impact maintainability?"
+      Extended Thinking: "What are the main architectural issues in this 
+      codebase? How does the current structure impact maintainability?"
    ```
 
 2. **Code Quality Issues:**
+   Type:
    ```
-   Extended Thinking: "Identify code quality issues including deprecated 
-   APIs, poor error handling, and missing documentation."
+      Extended Thinking: "Identify code quality issues including deprecated 
+      APIs, poor error handling, and missing documentation."
    ```
 
 3. **Dependency Analysis:**
+   Type:
    ```
-   Extended Thinking: "Analyze the dependency structure. Are there 
-   circular dependencies or outdated libraries?"
+      Extended Thinking: "Analyze the dependency structure. Are there 
+      circular dependencies or outdated libraries?"
    ```
 
 **Document your findings** in `legacy-analysis.md`
@@ -696,22 +711,25 @@ These exercises help you practice applying agentic coding principles to real-wor
 **Security Analysis:**
 
 1. **Vulnerability Assessment:**
+   Type:
    ```
-   Extended Thinking: "Conduct a security assessment of this legacy 
-   application. Identify potential vulnerabilities including SQL injection, 
-   XSS, authentication bypass, and data exposure risks."
+      Extended Thinking: "Conduct a security assessment of this legacy 
+      application. Identify potential vulnerabilities including SQL injection, 
+      XSS, authentication bypass, and data exposure risks."
    ```
 
 2. **Authentication and Authorization:**
+   Type:
    ```
-   Extended Thinking: "Review the authentication and authorization 
-   mechanisms. Are they secure and following current best practices?"
+      Extended Thinking: "Review the authentication and authorization 
+      mechanisms. Are they secure and following current best practices?"
    ```
 
 3. **Data Protection:**
+   Type:
    ```
-   Extended Thinking: "Analyze how sensitive data is handled. Are there 
-   proper encryption and access controls?"
+      Extended Thinking: "Analyze how sensitive data is handled. Are there 
+      proper encryption and access controls?"
    ```
 
 ### Exercise 3: Performance Analysis (15 min)
@@ -719,21 +737,24 @@ These exercises help you practice applying agentic coding principles to real-wor
 **Performance Assessment:**
 
 1. **Bottleneck Identification:**
+   Type:
    ```
-   Extended Thinking: "Identify performance bottlenecks in this 
-   application. Focus on database queries, memory usage, and I/O operations."
+      Extended Thinking: "Identify performance bottlenecks in this 
+      application. Focus on database queries, memory usage, and I/O operations."
    ```
 
 2. **Scalability Issues:**
+   Type:
    ```
-   Extended Thinking: "Analyze the application's scalability. What 
-   limitations exist and how could they be addressed?"
+      Extended Thinking: "Analyze the application's scalability. What 
+      limitations exist and how could they be addressed?"
    ```
 
 3. **Optimization Opportunities:**
+   Type:
    ```
-   Extended Thinking: "Identify specific optimization opportunities 
-   including caching, query optimization, and resource management."
+      Extended Thinking: "Identify specific optimization opportunities 
+      including caching, query optimization, and resource management."
    ```
 
 ### Exercise 4: Modernization Strategy (15 min)
@@ -741,22 +762,25 @@ These exercises help you practice applying agentic coding principles to real-wor
 **Create Modernization Plan:**
 
 1. **Migration Strategy:**
+   Type:
    ```
-   Extended Thinking: "Create a comprehensive modernization strategy 
-   for this legacy application. Include phased approach, risk assessment, 
-   and success criteria."
+      Extended Thinking: "Create a comprehensive modernization strategy 
+      for this legacy application. Include phased approach, risk assessment, 
+      and success criteria."
    ```
 
 2. **Technology Stack Update:**
+   Type:
    ```
-   Extended Thinking: "Recommend technology stack updates including 
-   framework versions, libraries, and tools."
+      Extended Thinking: "Recommend technology stack updates including 
+      framework versions, libraries, and tools."
    ```
 
 3. **Implementation Plan:**
+   Type:
    ```
-   Extended Thinking: "Create a detailed implementation plan with 
-   timelines, resources, and milestones."
+      Extended Thinking: "Create a detailed implementation plan with 
+      timelines, resources, and milestones."
    ```
 
 ### Success Criteria
@@ -781,16 +805,18 @@ These exercises help you practice applying agentic coding principles to real-wor
 **Create Custom Provider:**
 
 1. **Design Custom Provider:**
+   Type:
    ```
-   Extended Thinking: "Design a custom MCP provider for code quality 
-   analysis. What capabilities should it have?"
+      Extended Thinking: "Design a custom MCP provider for code quality 
+      analysis. What capabilities should it have?"
    ```
 
 2. **Implement Provider:**
+   Type:
    ```
-   Plan Mode: "Implement a custom MCP provider that analyzes code 
-   quality metrics including cyclomatic complexity, code coverage, 
-   and maintainability index."
+      Plan Mode: "Implement a custom MCP provider that analyzes code 
+      quality metrics including cyclomatic complexity, code coverage, 
+      and maintainability index."
    ```
 
 3. **Test Provider:**
@@ -803,21 +829,24 @@ These exercises help you practice applying agentic coding principles to real-wor
 **API Integration:**
 
 1. **Weather Service Integration:**
+   Type:
    ```
-   Extended Thinking: "Design an MCP integration with a weather API 
-   for an e-commerce application that needs weather-based recommendations."
+      Extended Thinking: "Design an MCP integration with a weather API 
+      for an e-commerce application that needs weather-based recommendations."
    ```
 
 2. **Payment Gateway Integration:**
+   Type:
    ```
-   Extended Thinking: "Create an MCP integration with a payment gateway 
-   for secure transaction processing."
+      Extended Thinking: "Create an MCP integration with a payment gateway 
+      for secure transaction processing."
    ```
 
 3. **Email Service Integration:**
+   Type:
    ```
-   Extended Thinking: "Design an MCP integration with an email service 
-   for order notifications and marketing campaigns."
+      Extended Thinking: "Design an MCP integration with an email service 
+      for order notifications and marketing campaigns."
    ```
 
 ### Exercise 3: Documentation Generation (10 min)
@@ -862,21 +891,24 @@ These exercises help you practice applying agentic coding principles to real-wor
 **Define Team Standards:**
 
 1. **Coding Standards:**
+   Type:
    ```
-   Extended Thinking: "Design comprehensive coding standards for a 
-   development team using Spring Boot and modern Java practices."
+      Extended Thinking: "Design comprehensive coding standards for a 
+      development team using Spring Boot and modern Java practices."
    ```
 
 2. **Architecture Guidelines:**
+   Type:
    ```
-   Extended Thinking: "Create architecture guidelines for modular 
-   application development including module boundaries and communication patterns."
+      Extended Thinking: "Create architecture guidelines for modular 
+      application development including module boundaries and communication patterns."
    ```
 
 3. **Review Process:**
+   Type:
    ```
-   Extended Thinking: "Design a code review process that incorporates 
-   AI assistance while maintaining human oversight."
+      Extended Thinking: "Design a code review process that incorporates 
+      AI assistance while maintaining human oversight."
    ```
 
 ### Exercise 2: Workflow Automation (15 min)
@@ -884,21 +916,24 @@ These exercises help you practice applying agentic coding principles to real-wor
 **Automate Workflows:**
 
 1. **Feature Development Workflow:**
+   Type:
    ```
-   Plan Mode: "Design an automated workflow for feature development 
-   including planning, implementation, testing, and deployment."
+      Plan Mode: "Design an automated workflow for feature development 
+      including planning, implementation, testing, and deployment."
    ```
 
 2. **Bug Fix Workflow:**
+   Type:
    ```
-   Plan Mode: "Create an automated workflow for bug fixes including 
-   triage, analysis, implementation, and verification."
+      Plan Mode: "Create an automated workflow for bug fixes including 
+      triage, analysis, implementation, and verification."
    ```
 
 3. **Release Process:**
+   Type:
    ```
-   Plan Mode: "Design an automated release process including versioning, 
-   testing, documentation, and deployment."
+      Plan Mode: "Design an automated release process including versioning, 
+      testing, documentation, and deployment."
    ```
 
 ### Exercise 3: Team Onboarding (15 min)
@@ -906,21 +941,24 @@ These exercises help you practice applying agentic coding principles to real-wor
 **Onboarding Process:**
 
 1. **New Developer Setup:**
+   Type:
    ```
-   Extended Thinking: "Design an onboarding process for new developers 
-   that leverages AI assistance for faster productivity."
+      Extended Thinking: "Design an onboarding process for new developers 
+      that leverages AI assistance for faster productivity."
    ```
 
 2. **Knowledge Transfer:**
+   Type:
    ```
-   Extended Thinking: "Create a knowledge transfer process that uses 
-   AI to help new team members understand existing codebases."
+      Extended Thinking: "Create a knowledge transfer process that uses 
+      AI to help new team members understand existing codebases."
    ```
 
 3. **Mentorship Program:**
+   Type:
    ```
-   Extended Thinking: "Design a mentorship program that incorporates 
-   AI tools for learning and development."
+      Extended Thinking: "Design a mentorship program that incorporates 
+      AI tools for learning and development."
    ```
 
 ### Success Criteria
@@ -939,15 +977,17 @@ These exercises help you practice applying agentic coding principles to real-wor
 **Advanced: Add support for multiple programming languages**
 
 1. **Language Analysis:**
+   Type:
    ```
-   Extended Thinking: "Design an MCP provider that can analyze and 
-   generate code in multiple programming languages (Java, Kotlin, Python, JavaScript)."
+      Extended Thinking: "Design an MCP provider that can analyze and 
+      generate code in multiple programming languages (Java, Kotlin, Python, JavaScript)."
    ```
 
 2. **Cross-Language Integration:**
+   Type:
    ```
-   Extended Thinking: "Create a workflow for integrating microservices 
-   written in different programming languages."
+      Extended Thinking: "Create a workflow for integrating microservices 
+      written in different programming languages."
    ```
 
 ### Challenge: AI Model Fine-Tuning
@@ -955,15 +995,17 @@ These exercises help you practice applying agentic coding principles to real-wor
 **Advanced: Customize AI behavior for your team**
 
 1. **Team-Specific Training:**
+   Type:
    ```
-   Extended Thinking: "Design a process for fine-tuning AI models 
-   based on your team's coding patterns and preferences."
+      Extended Thinking: "Design a process for fine-tuning AI models 
+      based on your team's coding patterns and preferences."
    ```
 
 2. **Domain-Specific Knowledge:**
+   Type:
    ```
-   Extended Thinking: "Create a knowledge base that helps AI understand 
-   your specific domain and business requirements."
+      Extended Thinking: "Create a knowledge base that helps AI understand 
+      your specific domain and business requirements."
    ```
 
 ### Challenge: Continuous Learning
@@ -971,15 +1013,17 @@ These exercises help you practice applying agentic coding principles to real-wor
 **Advanced: Implement continuous learning workflows**
 
 1. **Feedback Loop:**
+   Type:
    ```
-   Extended Thinking: "Design a feedback loop that allows AI to learn 
-   from code review comments and improve over time."
+      Extended Thinking: "Design a feedback loop that allows AI to learn 
+      from code review comments and improve over time."
    ```
 
 2. **Pattern Recognition:**
+   Type:
    ```
-   Extended Thinking: "Create a system that recognizes successful 
-   patterns and suggests them for similar problems."
+      Extended Thinking: "Create a system that recognizes successful 
+      patterns and suggests them for similar problems."
    ```
 
 ---

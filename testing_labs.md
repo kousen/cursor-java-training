@@ -55,10 +55,11 @@ These exercises are designed to be completed during the session with instructor 
 2. **Test AI Testing Philosophy**
 
    **Extended Thinking Analysis:**
+   Type:
    ```
-   Extended Thinking: "Analyze this e-commerce application and create a 
-   comprehensive testing strategy. Identify what types of tests are needed 
-   and prioritize them based on risk and business value."
+      Extended Thinking: "Analyze this e-commerce application and create a 
+      comprehensive testing strategy. Identify what types of tests are needed 
+      and prioritize them based on risk and business value."
    ```
 
    **Expected Response:**
@@ -70,14 +71,16 @@ These exercises are designed to be completed during the session with instructor 
 3. **Compare Testing Approaches**
 
    **Traditional Approach:**
+   Type:
    ```
-   Chat Mode: "What unit tests should I write for UserService?"
+      Chat Mode: "What unit tests should I write for UserService?"
    ```
 
    **AI-Assisted Approach:**
+   Type:
    ```
-   Extended Thinking: "Generate comprehensive unit tests for UserService 
-   including edge cases, error conditions, and boundary value testing."
+      Extended Thinking: "Generate comprehensive unit tests for UserService 
+      including edge cases, error conditions, and boundary value testing."
    ```
 
    **Notice the difference:**
@@ -103,10 +106,11 @@ These exercises are designed to be completed during the session with instructor 
 1. **Generate Service Tests**
 
    **Agent Mode:**
+   Type:
    ```
-   Generate comprehensive unit tests for UserService using JUnit 5, Mockito, 
-   and AssertJ. Test all public methods with comprehensive scenarios including 
-   happy path, edge cases, and error conditions.
+      Generate comprehensive unit tests for UserService using JUnit 5, Mockito, 
+      and AssertJ. Test all public methods with comprehensive scenarios including 
+      happy path, edge cases, and error conditions.
    ```
 
 2. **Review Generated Tests**
@@ -162,9 +166,10 @@ These exercises are designed to be completed during the session with instructor 
 1. **Generate Repository Tests**
 
    **Plan Mode:**
+   Type:
    ```
-   Create unit tests for UserRepository using @DataJpaTest. Test all CRUD 
-   operations, custom query methods, and error conditions.
+      Create unit tests for UserRepository using @DataJpaTest. Test all CRUD 
+      operations, custom query methods, and error conditions.
    ```
 
 2. **Review Generated Tests**
@@ -229,10 +234,11 @@ These exercises are designed to be completed during the session with instructor 
 1. **Generate Integration Tests**
 
    **Extended Thinking:**
+   Type:
    ```
-   Set up TestContainers for integration testing with PostgreSQL. Create tests 
-   that verify database operations, transactions, and data consistency for 
-   the User module.
+      Set up TestContainers for integration testing with PostgreSQL. Create tests 
+      that verify database operations, transactions, and data consistency for 
+      the User module.
    ```
 
 2. **Review Generated Setup**
@@ -293,9 +299,10 @@ These exercises are designed to be completed during the session with instructor 
 1. **Setup WireMock**
 
    **Agent Mode:**
+   Type:
    ```
-   Set up WireMock for mocking external services. Create integration tests 
-   for payment processing and email notifications in the Order module.
+      Set up WireMock for mocking external services. Create integration tests 
+      for payment processing and email notifications in the Order module.
    ```
 
 2. **Review Generated Tests**
@@ -368,9 +375,10 @@ These exercises are designed to be completed during the session with instructor 
 1. **Generate API Tests**
 
    **Extended Thinking:**
+   Type:
    ```
-   Create comprehensive API tests for the e-commerce application. Include 
-   authentication, authorization, data validation, and error handling scenarios.
+      Create comprehensive API tests for the e-commerce application. Include 
+      authentication, authorization, data validation, and error handling scenarios.
    ```
 
 2. **Review Generated Tests**
@@ -428,9 +436,10 @@ These exercises are designed to be completed during the session with instructor 
 1. **Create Workflow Tests**
 
    **Plan Mode:**
+   Type:
    ```
-   Create end-to-end tests for the complete order processing workflow from 
-   user login to order completion.
+      Create end-to-end tests for the complete order processing workflow from 
+      user login to order completion.
    ```
 
 2. **Review Generated Tests**
@@ -475,9 +484,10 @@ These exercises are designed to be completed during the session with instructor 
 1. **AI Performance Analysis**
 
    **Extended Thinking:**
+   Type:
    ```
-   Analyze the e-commerce application for performance bottlenecks. Create 
-   performance tests using JMeter and identify optimization opportunities.
+      Analyze the e-commerce application for performance bottlenecks. Create 
+      performance tests using JMeter and identify optimization opportunities.
    ```
 
 2. **Review Performance Analysis**
@@ -492,9 +502,10 @@ These exercises are designed to be completed during the session with instructor 
 3. **Performance Test Generation**
 
    **Plan Mode:**
+   Type:
    ```
-   Generate JMeter test plans for critical user journeys including user 
-   registration, product browsing, and order processing.
+      Generate JMeter test plans for critical user journeys including user 
+      registration, product browsing, and order processing.
    ```
 
 ### Step 2: JMeter Test Implementation (10 min)
@@ -561,9 +572,10 @@ These exercises are designed to be completed during the session with instructor 
 1. **AI Security Analysis**
 
    **Extended Thinking:**
+   Type:
    ```
-   Conduct a comprehensive security assessment of the e-commerce application. 
-   Identify vulnerabilities and create security tests using OWASP ZAP.
+      Conduct a comprehensive security assessment of the e-commerce application. 
+      Identify vulnerabilities and create security tests using OWASP ZAP.
    ```
 
 2. **Review Security Analysis**
@@ -579,9 +591,10 @@ These exercises are designed to be completed during the session with instructor 
 3. **Security Test Generation**
 
    **Agent Mode:**
+   Type:
    ```
-   Generate security tests for the e-commerce application including 
-   authentication bypass, SQL injection, and XSS vulnerability testing.
+      Generate security tests for the e-commerce application including 
+      authentication bypass, SQL injection, and XSS vulnerability testing.
    ```
 
 ### Step 2: OWASP ZAP Integration (5 min)
@@ -653,9 +666,10 @@ These exercises are designed to be completed during the session with instructor 
 1. **Generate CI/CD Pipeline**
 
    **Extended Thinking:**
+   Type:
    ```
-   Design a comprehensive CI/CD pipeline using GitHub Actions that includes 
-   unit tests, integration tests, performance tests, and security scans.
+      Design a comprehensive CI/CD pipeline using GitHub Actions that includes 
+      unit tests, integration tests, performance tests, and security scans.
    ```
 
 2. **Review Generated Pipeline**
@@ -708,9 +722,10 @@ These exercises are designed to be completed during the session with instructor 
 1. **Create Quality Gates**
 
    **Agent Mode:**
+   Type:
    ```
-   Create quality gates that prevent deployment if tests fail, coverage 
-   drops below threshold, or security vulnerabilities are detected.
+      Create quality gates that prevent deployment if tests fail, coverage 
+      drops below threshold, or security vulnerabilities are detected.
    ```
 
 2. **Review Quality Gate Configuration**
@@ -766,9 +781,10 @@ These exercises are designed to be completed during the session with instructor 
 2. **AI Debugging Analysis**
 
    **Extended Thinking:**
+   Type:
    ```
-   Analyze this failing test and provide debugging guidance. Identify the 
-   root cause and suggest fixes.
+      Analyze this failing test and provide debugging guidance. Identify the 
+      root cause and suggest fixes.
    ```
 
 3. **Review Debugging Process**
@@ -869,10 +885,11 @@ These exercises help you practice applying AI testing strategies to real-world s
 2. **Initial Assessment**
 
    **Extended Thinking Analysis:**
+   Type:
    ```
-   Extended Thinking: "Analyze this legacy Java application and create a 
-   testing strategy. Identify testing challenges and recommend approaches 
-   for improving test coverage."
+      Extended Thinking: "Analyze this legacy Java application and create a 
+      testing strategy. Identify testing challenges and recommend approaches 
+      for improving test coverage."
    ```
 
 ### Exercise 1: Testing Challenge Analysis (15 min)
@@ -880,21 +897,24 @@ These exercises help you practice applying AI testing strategies to real-world s
 **Use Extended Thinking to explore:**
 
 1. **Current Test Coverage:**
+   Type:
    ```
-   Extended Thinking: "Analyze the current test coverage in this legacy 
-   application. What areas are tested and what gaps exist?"
+      Extended Thinking: "Analyze the current test coverage in this legacy 
+      application. What areas are tested and what gaps exist?"
    ```
 
 2. **Testing Challenges:**
+   Type:
    ```
-   Extended Thinking: "Identify the main testing challenges in this 
-   legacy codebase. What makes it difficult to test?"
+      Extended Thinking: "Identify the main testing challenges in this 
+      legacy codebase. What makes it difficult to test?"
    ```
 
 3. **Risk Assessment:**
+   Type:
    ```
-   Extended Thinking: "Assess the risks of adding tests to this legacy 
-   code. What could go wrong and how can we mitigate those risks?"
+      Extended Thinking: "Assess the risks of adding tests to this legacy 
+      code. What could go wrong and how can we mitigate those risks?"
    ```
 
 **Document your findings** in `legacy-testing-analysis.md`
@@ -904,23 +924,26 @@ These exercises help you practice applying AI testing strategies to real-world s
 **Create Testing Strategy:**
 
 1. **Characterization Testing:**
+   Type:
    ```
-   Extended Thinking: "Design a characterization testing approach for 
-   this legacy application. How can we understand current behavior before 
-   adding comprehensive tests?"
+      Extended Thinking: "Design a characterization testing approach for 
+      this legacy application. How can we understand current behavior before 
+      adding comprehensive tests?"
    ```
 
 2. **Incremental Test Addition:**
+   Type:
    ```
-   Extended Thinking: "Create a plan for incrementally adding tests to 
-   this legacy codebase. What should be tested first and why?"
+      Extended Thinking: "Create a plan for incrementally adding tests to 
+      this legacy codebase. What should be tested first and why?"
    ```
 
 3. **Refactoring for Testability:**
+   Type:
    ```
-   Extended Thinking: "Identify refactoring opportunities that would 
-   make this legacy code more testable. What changes would have the 
-   biggest impact?"
+      Extended Thinking: "Identify refactoring opportunities that would 
+      make this legacy code more testable. What changes would have the 
+      biggest impact?"
    ```
 
 ### Exercise 3: Legacy Test Implementation (15 min)
@@ -928,21 +951,24 @@ These exercises help you practice applying AI testing strategies to real-world s
 **Implement Testing Strategy:**
 
 1. **Characterization Tests:**
+   Type:
    ```
-   Agent Mode: "Create characterization tests for the UserService class 
-   in this legacy application. Focus on understanding current behavior."
+      Agent Mode: "Create characterization tests for the UserService class 
+      in this legacy application. Focus on understanding current behavior."
    ```
 
 2. **Incremental Tests:**
+   Type:
    ```
-   Plan Mode: "Add unit tests to the OrderService class following the 
-   incremental testing strategy."
+      Plan Mode: "Add unit tests to the OrderService class following the 
+      incremental testing strategy."
    ```
 
 3. **Refactoring Tests:**
+   Type:
    ```
-   Extended Thinking: "Refactor the PaymentService class to improve 
-   testability and add comprehensive tests."
+      Extended Thinking: "Refactor the PaymentService class to improve 
+      testability and add comprehensive tests."
    ```
 
 ### Exercise 4: Legacy Testing Validation (15 min)
@@ -950,21 +976,24 @@ These exercises help you practice applying AI testing strategies to real-world s
 **Validate Testing Approach:**
 
 1. **Test Coverage Analysis:**
+   Type:
    ```
-   Extended Thinking: "Analyze the test coverage improvement after 
-   implementing the legacy testing strategy. What progress was made?"
+      Extended Thinking: "Analyze the test coverage improvement after 
+      implementing the legacy testing strategy. What progress was made?"
    ```
 
 2. **Risk Mitigation:**
+   Type:
    ```
-   Extended Thinking: "Evaluate the risk mitigation strategies used 
-   in the legacy testing approach. Were the risks successfully managed?"
+      Extended Thinking: "Evaluate the risk mitigation strategies used 
+      in the legacy testing approach. Were the risks successfully managed?"
    ```
 
 3. **Lessons Learned:**
+   Type:
    ```
-   Extended Thinking: "Document lessons learned from applying AI testing 
-   strategies to legacy code. What worked well and what could be improved?"
+      Extended Thinking: "Document lessons learned from applying AI testing 
+      strategies to legacy code. What worked well and what could be improved?"
    ```
 
 ### Success Criteria
@@ -989,22 +1018,25 @@ These exercises help you practice applying AI testing strategies to real-world s
 **Advanced Stress Testing:**
 
 1. **Stress Test Design:**
+   Type:
    ```
-   Extended Thinking: "Design comprehensive stress tests for the 
-   e-commerce application. Include scenarios that push the system 
-   beyond normal capacity."
+      Extended Thinking: "Design comprehensive stress tests for the 
+      e-commerce application. Include scenarios that push the system 
+      beyond normal capacity."
    ```
 
 2. **Breaking Point Analysis:**
+   Type:
    ```
-   Extended Thinking: "Create tests to identify the breaking point 
-   of the e-commerce application. What happens when load exceeds capacity?"
+      Extended Thinking: "Create tests to identify the breaking point 
+      of the e-commerce application. What happens when load exceeds capacity?"
    ```
 
 3. **Recovery Testing:**
+   Type:
    ```
-   Extended Thinking: "Design recovery tests to verify system behavior 
-   after stress conditions. How does the system recover from overload?"
+      Extended Thinking: "Design recovery tests to verify system behavior 
+      after stress conditions. How does the system recover from overload?"
    ```
 
 ### Exercise 2: Performance Optimization (15 min)
@@ -1012,21 +1044,24 @@ These exercises help you practice applying AI testing strategies to real-world s
 **AI-Guided Optimization:**
 
 1. **Bottleneck Identification:**
+   Type:
    ```
-   Extended Thinking: "Analyze performance test results to identify 
-   specific bottlenecks in the e-commerce application."
+      Extended Thinking: "Analyze performance test results to identify 
+      specific bottlenecks in the e-commerce application."
    ```
 
 2. **Optimization Recommendations:**
+   Type:
    ```
-   Extended Thinking: "Provide specific optimization recommendations 
-   for the identified performance bottlenecks."
+      Extended Thinking: "Provide specific optimization recommendations 
+      for the identified performance bottlenecks."
    ```
 
 3. **Optimization Implementation:**
+   Type:
    ```
-   Plan Mode: "Implement the recommended performance optimizations 
-   and create tests to verify improvements."
+      Plan Mode: "Implement the recommended performance optimizations 
+      and create tests to verify improvements."
    ```
 
 ### Exercise 3: Performance Monitoring (15 min)
@@ -1034,21 +1069,24 @@ These exercises help you practice applying AI testing strategies to real-world s
 **Continuous Performance Monitoring:**
 
 1. **Monitoring Strategy:**
+   Type:
    ```
-   Extended Thinking: "Design a comprehensive performance monitoring 
-   strategy for the e-commerce application."
+      Extended Thinking: "Design a comprehensive performance monitoring 
+      strategy for the e-commerce application."
    ```
 
 2. **Alert Configuration:**
+   Type:
    ```
-   Extended Thinking: "Create performance alert configurations for 
-   proactive monitoring and issue detection."
+      Extended Thinking: "Create performance alert configurations for 
+      proactive monitoring and issue detection."
    ```
 
 3. **Performance Regression Testing:**
+   Type:
    ```
-   Extended Thinking: "Design performance regression tests to prevent 
-   performance degradation over time."
+      Extended Thinking: "Design performance regression tests to prevent 
+      performance degradation over time."
    ```
 
 ### Success Criteria
@@ -1072,21 +1110,24 @@ These exercises help you practice applying AI testing strategies to real-world s
 **Advanced Penetration Testing:**
 
 1. **Penetration Test Design:**
+   Type:
    ```
-   Extended Thinking: "Design comprehensive penetration tests for the 
-   e-commerce application. Include various attack vectors and scenarios."
+      Extended Thinking: "Design comprehensive penetration tests for the 
+      e-commerce application. Include various attack vectors and scenarios."
    ```
 
 2. **Attack Vector Analysis:**
+   Type:
    ```
-   Extended Thinking: "Analyze potential attack vectors for the 
-   e-commerce application. What are the most likely security threats?"
+      Extended Thinking: "Analyze potential attack vectors for the 
+      e-commerce application. What are the most likely security threats?"
    ```
 
 3. **Vulnerability Exploitation:**
+   Type:
    ```
-   Extended Thinking: "Create tests that attempt to exploit identified 
-   vulnerabilities in the e-commerce application."
+      Extended Thinking: "Create tests that attempt to exploit identified 
+      vulnerabilities in the e-commerce application."
    ```
 
 ### Exercise 2: Security Compliance (15 min)
@@ -1094,21 +1135,24 @@ These exercises help you practice applying AI testing strategies to real-world s
 **Compliance Testing:**
 
 1. **Compliance Requirements:**
+   Type:
    ```
-   Extended Thinking: "Identify security compliance requirements for 
-   the e-commerce application. What standards should be followed?"
+      Extended Thinking: "Identify security compliance requirements for 
+      the e-commerce application. What standards should be followed?"
    ```
 
 2. **Compliance Testing:**
+   Type:
    ```
-   Extended Thinking: "Create tests to verify compliance with security 
-   standards and regulations."
+      Extended Thinking: "Create tests to verify compliance with security 
+      standards and regulations."
    ```
 
 3. **Compliance Reporting:**
+   Type:
    ```
-   Extended Thinking: "Design compliance reporting mechanisms for 
-   security testing results."
+      Extended Thinking: "Design compliance reporting mechanisms for 
+      security testing results."
    ```
 
 ### Exercise 3: Security Monitoring (15 min)
@@ -1116,21 +1160,24 @@ These exercises help you practice applying AI testing strategies to real-world s
 **Continuous Security Monitoring:**
 
 1. **Security Monitoring Strategy:**
+   Type:
    ```
-   Extended Thinking: "Design a comprehensive security monitoring 
-   strategy for the e-commerce application."
+      Extended Thinking: "Design a comprehensive security monitoring 
+      strategy for the e-commerce application."
    ```
 
 2. **Threat Detection:**
+   Type:
    ```
-   Extended Thinking: "Create threat detection mechanisms and alert 
-   configurations for security monitoring."
+      Extended Thinking: "Create threat detection mechanisms and alert 
+      configurations for security monitoring."
    ```
 
 3. **Incident Response:**
+   Type:
    ```
-   Extended Thinking: "Design incident response procedures for security 
-   issues detected through monitoring."
+      Extended Thinking: "Design incident response procedures for security 
+      issues detected through monitoring."
    ```
 
 ### Success Criteria
@@ -1150,15 +1197,17 @@ These exercises help you practice applying AI testing strategies to real-world s
 **Advanced: Test across multiple environments**
 
 1. **Environment Strategy:**
+   Type:
    ```
-   Extended Thinking: "Design a testing strategy that works across 
-   development, staging, and production environments."
+      Extended Thinking: "Design a testing strategy that works across 
+      development, staging, and production environments."
    ```
 
 2. **Environment-Specific Tests:**
+   Type:
    ```
-   Extended Thinking: "Create environment-specific tests that adapt 
-   to different deployment configurations."
+      Extended Thinking: "Create environment-specific tests that adapt 
+      to different deployment configurations."
    ```
 
 ### Challenge: AI Test Maintenance
@@ -1166,15 +1215,17 @@ These exercises help you practice applying AI testing strategies to real-world s
 **Advanced: Automated test maintenance**
 
 1. **Test Maintenance Strategy:**
+   Type:
    ```
-   Extended Thinking: "Design an AI-powered test maintenance strategy 
-   that keeps tests up-to-date with code changes."
+      Extended Thinking: "Design an AI-powered test maintenance strategy 
+      that keeps tests up-to-date with code changes."
    ```
 
 2. **Automated Test Refactoring:**
+   Type:
    ```
-   Extended Thinking: "Create automated test refactoring mechanisms 
-   that improve test quality over time."
+      Extended Thinking: "Create automated test refactoring mechanisms 
+      that improve test quality over time."
    ```
 
 ### Challenge: Testing Metrics and Analytics
@@ -1182,15 +1233,17 @@ These exercises help you practice applying AI testing strategies to real-world s
 **Advanced: Testing analytics and insights**
 
 1. **Testing Metrics:**
+   Type:
    ```
-   Extended Thinking: "Design comprehensive testing metrics and 
-   analytics for the e-commerce application."
+      Extended Thinking: "Design comprehensive testing metrics and 
+      analytics for the e-commerce application."
    ```
 
 2. **Testing Insights:**
+   Type:
    ```
-   Extended Thinking: "Create AI-powered testing insights that provide 
-   actionable recommendations for test improvement."
+      Extended Thinking: "Create AI-powered testing insights that provide 
+      actionable recommendations for test improvement."
    ```
 
 ---

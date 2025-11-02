@@ -121,14 +121,15 @@ These exercises are designed to be completed during the session with instructor 
 1. **Open Agent Mode** (Cmd/Ctrl+I)
 
 2. **Use this prompt:**
+   Type:
    ```
-   Create a REST controller for a Greeting resource with:
-   - Package: com.example.hellospring.controller
-   - Class name: GreetingController
-   - A GET endpoint at /api/greetings
-   - Accept a 'name' query parameter (default: "World")
-   - Return a JSON response with a message field
-   - Use a Java record for the response
+      Create a REST controller for a Greeting resource with:
+      - Package: com.example.hellospring.controller
+      - Class name: GreetingController
+      - A GET endpoint at /api/greetings
+      - Accept a 'name' query parameter (default: "World")
+      - Return a JSON response with a message field
+      - Use a Java record for the response
    ```
 
 3. **Review Generated Code**
@@ -191,8 +192,9 @@ These exercises are designed to be completed during the session with instructor 
 ### Understanding Check (Chat Mode)
 
 Ask Chat (Cmd/Ctrl+L):
+Type:
 ```
-Explain how Spring Boot automatically configures this REST controller
+   Explain how Spring Boot automatically configures this REST controller
 ```
 
 Expected learning:
@@ -214,12 +216,13 @@ Expected learning:
 1. **Use Agent Mode** (Cmd/Ctrl+I)
 
 2. **Prompt:**
+   Type:
    ```
-   Create a GreetingService in package com.example.hellospring.service with:
-   - @Service annotation
-   - Method createGreeting(String name) - returns formatted greeting
-   - Method createFormalGreeting(String name) - returns formal greeting
-   - Use String.format() for message formatting
+      Create a GreetingService in package com.example.hellospring.service with:
+      - @Service annotation
+      - Method createGreeting(String name) - returns formatted greeting
+      - Method createFormalGreeting(String name) - returns formal greeting
+      - Use String.format() for message formatting
    ```
 
 3. **Review Generated Service**
@@ -244,9 +247,10 @@ Expected learning:
 1. **Select GreetingController class**
 
 2. **Use Agent Mode:**
+   Type:
    ```
-   Refactor this controller to use GreetingService with constructor injection.
-   Use the createGreeting method from the service.
+      Refactor this controller to use GreetingService with constructor injection.
+      Use the createGreeting method from the service.
    ```
 
 3. **Review Refactored Controller**
@@ -279,9 +283,10 @@ Expected learning:
 **Student Exercise (5 min):**
 
 Use Agent to:
+Type:
 ```
-Add a new GET endpoint at /api/greetings/formal that uses 
-the createFormalGreeting method from the service
+   Add a new GET endpoint at /api/greetings/formal that uses 
+   the createFormalGreeting method from the service
 ```
 
 Test:
@@ -299,8 +304,9 @@ curl http://localhost:8080/api/greetings/formal?name=Java
 ### Understanding Check (Chat Mode)
 
 Ask Chat:
+Type:
 ```
-Explain Spring's dependency injection and why constructor injection is preferred
+   Explain Spring's dependency injection and why constructor injection is preferred
 ```
 
 ---
@@ -314,13 +320,14 @@ Explain Spring's dependency injection and why constructor injection is preferred
 ### Step 1: Create Person Entity (10 min)
 
 1. **Use Agent Mode:**
+   Type:
    ```
-   Create a Person entity in package com.example.hellospring.entity with:
-   - JPA annotations (@Entity, @Table, @Id, @GeneratedValue)
-   - Fields: id (Long), firstName, lastName, email
-   - Validation: firstName and lastName @NotBlank, email @Email and @NotBlank
-   - Standard getters, setters, constructors
-   - equals, hashCode, toString methods
+      Create a Person entity in package com.example.hellospring.entity with:
+      - JPA annotations (@Entity, @Table, @Id, @GeneratedValue)
+      - Fields: id (Long), firstName, lastName, email
+      - Validation: firstName and lastName @NotBlank, email @Email and @NotBlank
+      - Standard getters, setters, constructors
+      - equals, hashCode, toString methods
    ```
 
 2. **Review Generated Entity**
@@ -339,13 +346,14 @@ Explain Spring's dependency injection and why constructor injection is preferred
 ### Step 2: Create Repository (5 min)
 
 1. **Use Agent Mode:**
+   Type:
    ```
-   Create a PersonRepository interface in package com.example.hellospring.repository:
-   - Extend JpaRepository<Person, Long>
-   - Add derived query methods:
-     - findByLastName(String lastName)
-     - findByEmail(String email)
-     - findByFirstNameContainingIgnoreCase(String firstName)
+      Create a PersonRepository interface in package com.example.hellospring.repository:
+      - Extend JpaRepository<Person, Long>
+      - Add derived query methods:
+      - findByLastName(String lastName)
+      - findByEmail(String email)
+      - findByFirstNameContainingIgnoreCase(String firstName)
    ```
 
 2. **Review Generated Repository**
@@ -361,25 +369,27 @@ Explain Spring's dependency injection and why constructor injection is preferred
    ```
 
 3. **Ask Chat:**
+   Type:
    ```
-   How does Spring Data JPA generate implementations for these methods?
+      How does Spring Data JPA generate implementations for these methods?
    ```
 
 ### Step 3: Create CRUD Controller (15 min)
 
 1. **Use Agent Mode:**
+   Type:
    ```
-   Create a PersonController in package com.example.hellospring.controller:
-   - @RestController with @RequestMapping("/api/persons")
-   - Inject PersonRepository
-   - Implement all CRUD endpoints:
-     - GET / - find all persons
-     - GET /{id} - find person by id
-     - POST / - create person (with @Valid)
-     - PUT /{id} - update person
-     - DELETE /{id} - delete person
-   - Use appropriate HTTP status codes
-   - Return ResponseEntity for proper responses
+      Create a PersonController in package com.example.hellospring.controller:
+      - @RestController with @RequestMapping("/api/persons")
+      - Inject PersonRepository
+      - Implement all CRUD endpoints:
+      - GET / - find all persons
+      - GET /{id} - find person by id
+      - POST / - create person (with @Valid)
+      - PUT /{id} - update person
+      - DELETE /{id} - delete person
+      - Use appropriate HTTP status codes
+      - Return ResponseEntity for proper responses
    ```
 
 2. **Review Generated Controller**
@@ -441,8 +451,9 @@ Explain Spring's dependency injection and why constructor injection is preferred
 ### Understanding Check (Chat Mode)
 
 Ask Chat:
+Type:
 ```
-Explain the full request flow from HTTP request to database for POST /api/persons
+   Explain the full request flow from HTTP request to database for POST /api/persons
 ```
 
 ---
@@ -456,22 +467,24 @@ Explain the full request flow from HTTP request to database for POST /api/person
 ### Step 1: Create DTOs with Records (10 min)
 
 1. **Ask Chat first:**
+   Type:
    ```
-   Why should I use DTOs instead of exposing JPA entities directly in REST APIs?
+      Why should I use DTOs instead of exposing JPA entities directly in REST APIs?
    ```
 
 2. **Use Agent Mode:**
+   Type:
    ```
-   Create PersonRequest and PersonResponse DTOs using Java records in package 
-   com.example.hellospring.dto:
+      Create PersonRequest and PersonResponse DTOs using Java records in package 
+      com.example.hellospring.dto:
 
-   PersonRequest (for POST/PUT):
-   - Fields: firstName, lastName, email
-   - Include validation annotations
+      PersonRequest (for POST/PUT):
+      - Fields: firstName, lastName, email
+      - Include validation annotations
 
-   PersonResponse (for GET responses):
-   - Fields: id, firstName, lastName, email
-   - Add static factory method from(Person person)
+      PersonResponse (for GET responses):
+      - Fields: id, firstName, lastName, email
+      - Add static factory method from(Person person)
    ```
 
 3. **Review Generated DTOs**
@@ -513,21 +526,23 @@ Explain the full request flow from HTTP request to database for POST /api/person
 4. **Refactor Controller to Use DTOs**
 
    Use Agent:
+   Type:
    ```
-   Refactor PersonController to use PersonRequest for input and 
-   PersonResponse for output instead of Person entity
+      Refactor PersonController to use PersonRequest for input and 
+      PersonResponse for output instead of Person entity
    ```
 
 ### Step 2: Add Global Exception Handler (10 min)
 
 1. **Use Agent Mode:**
+   Type:
    ```
-   Create a GlobalExceptionHandler in package com.example.hellospring.exception:
-   - Use @RestControllerAdvice
-   - Handle MethodArgumentNotValidException (validation errors)
-   - Handle generic exceptions
-   - Return structured error responses with timestamp, status, message, and errors
-   - Use a record for ErrorResponse
+      Create a GlobalExceptionHandler in package com.example.hellospring.exception:
+      - Use @RestControllerAdvice
+      - Handle MethodArgumentNotValidException (validation errors)
+      - Handle generic exceptions
+      - Return structured error responses with timestamp, status, message, and errors
+      - Use a record for ErrorResponse
    ```
 
 2. **Review Generated Handler**
@@ -601,12 +616,13 @@ Explain the full request flow from HTTP request to database for POST /api/person
 1. **Select PersonController class**
 
 2. **Ask Chat:**
+   Type:
    ```
-   Review this controller and suggest improvements for:
-   - Code organization
-   - Best practices
-   - Error handling
-   - Performance
+      Review this controller and suggest improvements for:
+      - Code organization
+      - Best practices
+      - Error handling
+      - Performance
    ```
 
 3. **Apply ONE suggested improvement with Agent**
@@ -632,13 +648,14 @@ Explain the full request flow from HTTP request to database for POST /api/person
 1. **Select GreetingService class**
 
 2. **Use Agent Mode:**
+   Type:
    ```
-   Generate comprehensive unit tests for this service using:
-   - JUnit 5
-   - AssertJ assertions
-   - @DisplayName annotations for readable test names
-   - Test all public methods
-   - Include edge cases (null, empty string, special characters)
+      Generate comprehensive unit tests for this service using:
+      - JUnit 5
+      - AssertJ assertions
+      - @DisplayName annotations for readable test names
+      - Test all public methods
+      - Include edge cases (null, empty string, special characters)
    ```
 
 3. **Review Generated Tests**
@@ -689,14 +706,15 @@ Explain the full request flow from HTTP request to database for POST /api/person
 1. **Select PersonController class**
 
 2. **Use Agent Mode:**
+   Type:
    ```
-   Generate integration tests for this controller using:
-   - @SpringBootTest and @AutoConfigureMockMvc
-   - MockMvc for HTTP requests
-   - ObjectMapper for JSON serialization
-   - Test all CRUD endpoints
-   - Include valid and invalid data scenarios
-   - Use @BeforeEach to clear database
+      Generate integration tests for this controller using:
+      - @SpringBootTest and @AutoConfigureMockMvc
+      - MockMvc for HTTP requests
+      - ObjectMapper for JSON serialization
+      - Test all CRUD endpoints
+      - Include valid and invalid data scenarios
+      - Use @BeforeEach to clear database
    ```
 
 3. **Review Generated Tests**
@@ -787,9 +805,10 @@ Explain the full request flow from HTTP request to database for POST /api/person
 ### Understanding Check (Chat Mode)
 
 Ask Chat:
+Type:
 ```
-Explain the difference between @SpringBootTest and @WebMvcTest. 
-When should I use each?
+   Explain the difference between @SpringBootTest and @WebMvcTest. 
+   When should I use each?
 ```
 
 ---
@@ -848,21 +867,24 @@ These exercises help you practice analyzing and understanding complex existing c
 **Use Chat Mode for these questions:**
 
 1. **Overall Architecture:**
+   Type:
    ```
-   Explain the overall architecture of this Spring PetClinic application. 
-   What layers does it have?
+      Explain the overall architecture of this Spring PetClinic application. 
+      What layers does it have?
    ```
 
 2. **Design Patterns:**
+   Type:
    ```
-   What design patterns are used in this application? 
-   Give specific examples with file names.
+      What design patterns are used in this application? 
+      Give specific examples with file names.
    ```
 
 3. **Technology Stack:**
+   Type:
    ```
-   List all the major technologies and frameworks used in this project. 
-   Include Spring Boot version, database, template engine, etc.
+      List all the major technologies and frameworks used in this project. 
+      Include Spring Boot version, database, template engine, etc.
    ```
 
 **Document your findings:**
@@ -874,27 +896,31 @@ These exercises help you practice analyzing and understanding complex existing c
 **Understanding the Domain Model:**
 
 1. **Identify Entities:**
+   Type:
    ```
-   Chat: List all JPA entity classes in this application with their purpose
+      Chat: List all JPA entity classes in this application with their purpose
    ```
 
 2. **Relationship Analysis:**
+   Type:
    ```
-   Chat: Explain the relationship between Owner, Pet, and Visit entities. 
-   Show me the JPA annotations used.
+      Chat: Explain the relationship between Owner, Pet, and Visit entities. 
+      Show me the JPA annotations used.
    ```
 
 3. **Inheritance Hierarchy:**
+   Type:
    ```
-   Chat: Explain the class hierarchy starting from BaseEntity. 
-   Which entities extend which classes?
+      Chat: Explain the class hierarchy starting from BaseEntity. 
+      Which entities extend which classes?
    ```
 
 4. **Draw the Diagram:**
 
    Ask Chat:
+   Type:
    ```
-   Create a mermaid diagram showing all entity relationships in this application
+      Create a mermaid diagram showing all entity relationships in this application
    ```
 
    Copy the diagram to your notes
@@ -904,9 +930,10 @@ These exercises help you practice analyzing and understanding complex existing c
 **Follow a Complete Request:**
 
 1. **Trace Owner Retrieval:**
+   Type:
    ```
-   Chat: Walk me through the complete flow when a user requests GET /owners/1
-   Include: controller → service → repository → database → response
+      Chat: Walk me through the complete flow when a user requests GET /owners/1
+      Include: controller → service → repository → database → response
    ```
 
 2. **Find the Code:**
@@ -919,8 +946,9 @@ These exercises help you practice analyzing and understanding complex existing c
 3. **Understand Each Layer:**
 
    For each file, ask Chat:
+   Type:
    ```
-   Explain what this [Controller/Repository/Entity] does and its key methods
+      Explain what this [Controller/Repository/Entity] does and its key methods
    ```
 
 ### Exercise 4: Feature Discovery (10 min)
@@ -928,27 +956,31 @@ These exercises help you practice analyzing and understanding complex existing c
 **Find Specific Features:**
 
 1. **REST Endpoints:**
+   Type:
    ```
-   Chat: Show me all REST endpoints in this application. 
-   Group them by resource (owners, pets, vets, visits).
+      Chat: Show me all REST endpoints in this application. 
+      Group them by resource (owners, pets, vets, visits).
    ```
 
 2. **Validation Rules:**
+   Type:
    ```
-   Chat: What validation is applied to the Owner entity? 
-   List all validation annotations and their purposes.
+      Chat: What validation is applied to the Owner entity? 
+      List all validation annotations and their purposes.
    ```
 
 3. **Query Methods:**
+   Type:
    ```
-   Chat: Find all custom query methods in the repositories. 
-   Explain how Spring Data JPA generates implementations.
+      Chat: Find all custom query methods in the repositories. 
+      Explain how Spring Data JPA generates implementations.
    ```
 
 4. **Template Views:**
+   Type:
    ```
-   Chat: List all Thymeleaf templates in this application. 
-   What is each template used for?
+      Chat: List all Thymeleaf templates in this application. 
+      What is each template used for?
    ```
 
 ### Exercise 5: Running PetClinic (5 min)
@@ -971,9 +1003,10 @@ These exercises help you practice analyzing and understanding complex existing c
 3. **Connect UI to Code:**
 
    While using the UI, ask Chat:
+   Type:
    ```
-   How does the "Add Owner" form submission work? 
-   Show me the controller method and template.
+      How does the "Add Owner" form submission work? 
+      Show me the controller method and template.
    ```
 
 ### Success Criteria
@@ -1005,15 +1038,17 @@ Use Chat to explore:
 **Understand Multi-Database Support:**
 
 1. **Ask Chat:**
+   Type:
    ```
-   How does PetClinic support multiple databases (H2, MySQL, PostgreSQL)?
-   Show me the configuration files.
+      How does PetClinic support multiple databases (H2, MySQL, PostgreSQL)?
+      Show me the configuration files.
    ```
 
 2. **Explore Profiles:**
+   Type:
    ```
-   Chat: Explain the Spring profiles used in this application. 
-   What changes between profiles?
+      Chat: Explain the Spring profiles used in this application. 
+      What changes between profiles?
    ```
 
 3. **Switch Database:**
@@ -1028,8 +1063,9 @@ Use Chat to explore:
    ```
 
    Ask Chat:
+   Type:
    ```
-   What configuration changes when I activate the 'mysql' profile?
+      What configuration changes when I activate the 'mysql' profile?
    ```
 
 ### Challenge 2: Template Integration (15 min)
@@ -1041,26 +1077,29 @@ Use Chat to explore:
    Navigate to: `src/main/resources/templates/owners/ownerDetails.html`
 
 2. **Ask Chat:**
+   Type:
    ```
-   Explain how this Thymeleaf template works:
-   [paste the template content]
+      Explain how this Thymeleaf template works:
+      [paste the template content]
    
-   Focus on:
-   - How data is passed from controller
-   - Thymeleaf expressions used
-   - How it handles the pets collection
+      Focus on:
+      - How data is passed from controller
+      - Thymeleaf expressions used
+      - How it handles the pets collection
    ```
 
 3. **Trace Data Flow:**
+   Type:
    ```
-   Chat: Show me the complete flow from OwnerController to this template.
-   How does the Owner object with its pets get to the view?
+      Chat: Show me the complete flow from OwnerController to this template.
+      How does the Owner object with its pets get to the view?
    ```
 
 4. **Form Handling:**
+   Type:
    ```
-   Chat: How does the "Add Pet" form work? 
-   Show me the template, controller method, and validation.
+      Chat: How does the "Add Pet" form work? 
+      Show me the template, controller method, and validation.
    ```
 
 ### Challenge 3: Repository Patterns (15 min)
@@ -1070,23 +1109,26 @@ Use Chat to explore:
 1. **Custom Queries:**
 
    Find `OwnerRepository.java` and ask Chat:
+   Type:
    ```
-   Explain this custom query method:
-   [paste the @Query annotation and method]
+      Explain this custom query method:
+      [paste the @Query annotation and method]
    
-   Why use @Query instead of derived query methods?
+      Why use @Query instead of derived query methods?
    ```
 
 2. **Eager vs Lazy Loading:**
+   Type:
    ```
-   Chat: Find all @OneToMany and @ManyToOne relationships. 
-   Which use EAGER loading and which use LAZY? Why?
+      Chat: Find all @OneToMany and @ManyToOne relationships. 
+      Which use EAGER loading and which use LAZY? Why?
    ```
 
 3. **Compare to Hello Spring Boot:**
+   Type:
    ```
-   Chat: How do PetClinic's repository patterns differ from 
-   the simple PersonRepository we created in Hello Spring Boot?
+      Chat: How do PetClinic's repository patterns differ from 
+      the simple PersonRepository we created in Hello Spring Boot?
    ```
 
 ### Challenge 4: Testing Strategies (15 min)
@@ -1098,9 +1140,10 @@ Use Chat to explore:
    Find: `src/test/java/.../OwnerRepositoryTests.java`
 
    Ask Chat:
+   Type:
    ```
-   Explain the testing strategy used for this repository.
-   What annotations are used and why?
+      Explain the testing strategy used for this repository.
+      What annotations are used and why?
    ```
 
 2. **Controller Tests:**
@@ -1108,15 +1151,17 @@ Use Chat to explore:
    Find: `src/test/java/.../OwnerControllerTests.java`
 
    Ask Chat:
+   Type:
    ```
-   How are these controller tests different from our 
-   PersonController integration tests in Hello Spring Boot?
+      How are these controller tests different from our 
+      PersonController integration tests in Hello Spring Boot?
    ```
 
 3. **Test Coverage:**
+   Type:
    ```
-   Chat: What testing patterns and frameworks does PetClinic use? 
-   List examples of unit tests, integration tests, and any other test types.
+      Chat: What testing patterns and frameworks does PetClinic use? 
+      List examples of unit tests, integration tests, and any other test types.
    ```
 
 ### Success Criteria
@@ -1140,44 +1185,49 @@ Use Chat to explore:
 **Task: Add "Pet Insurance" Feature**
 
 1. **Design with Chat:**
+   Type:
    ```
-   Chat: I want to add a Pet Insurance feature to PetClinic where:
-   - Each pet can have one insurance policy
-   - Insurance has: provider, policyNumber, expiryDate, coverageAmount
-   - Owners should see insurance details on pet page
+      Chat: I want to add a Pet Insurance feature to PetClinic where:
+      - Each pet can have one insurance policy
+      - Insurance has: provider, policyNumber, expiryDate, coverageAmount
+      - Owners should see insurance details on pet page
    
-   Suggest the implementation approach including:
-   - New entity structure
-   - Repository methods needed
-   - Controller endpoints
-   - Template modifications
+      Suggest the implementation approach including:
+      - New entity structure
+      - Repository methods needed
+      - Controller endpoints
+      - Template modifications
    ```
 
 2. **Implement with Agent:**
 
    a. Create `PetInsurance` entity:
+   Type:
    ```
-   Agent: Create a PetInsurance entity in the model package with:
-   - Fields: id, provider, policyNumber, expiryDate, coverageAmount
-   - OneToOne relationship with Pet
-   - JPA annotations
-   - Validation
+      Agent: Create a PetInsurance entity in the model package with:
+      - Fields: id, provider, policyNumber, expiryDate, coverageAmount
+      - OneToOne relationship with Pet
+      - JPA annotations
+      - Validation
    ```
 
    b. Add repository:
+   Type:
    ```
-   Agent: Create PetInsuranceRepository extending JpaRepository
-   with methods to find insurance by pet
+      Agent: Create PetInsuranceRepository extending JpaRepository
+      with methods to find insurance by pet
    ```
 
    c. Update controller:
+   Type:
    ```
-   Agent: Add insurance management endpoints to PetController
+      Agent: Add insurance management endpoints to PetController
    ```
 
    d. Update templates:
+   Type:
    ```
-   Agent: Modify petDetails.html to display insurance information
+      Agent: Modify petDetails.html to display insurance information
    ```
 
 3. **Test Your Feature:**
@@ -1190,9 +1240,10 @@ Use Chat to explore:
 **Task: Modernize Code**
 
 1. **Find Improvement Opportunities:**
+   Type:
    ```
-   Chat: Review the Visit entity and controller. 
-   Suggest modern Java improvements (records, streams, optional, etc.)
+      Chat: Review the Visit entity and controller. 
+      Suggest modern Java improvements (records, streams, optional, etc.)
    ```
 
 2. **Apply Refactoring:**
@@ -1212,15 +1263,17 @@ Use Chat to explore:
 **Task: Identify Performance Issues**
 
 1. **N+1 Query Problem:**
+   Type:
    ```
-   Chat: Analyze the code for potential N+1 query problems. 
-   Show me specific examples where lazy loading might cause performance issues.
+      Chat: Analyze the code for potential N+1 query problems. 
+      Show me specific examples where lazy loading might cause performance issues.
    ```
 
 2. **Find Solutions:**
+   Type:
    ```
-   Chat: How can I fix the N+1 query problem in [specific location]? 
-   Show me the code changes needed.
+      Chat: How can I fix the N+1 query problem in [specific location]? 
+      Show me the code changes needed.
    ```
 
 3. **Implement Fix:**
@@ -1232,21 +1285,23 @@ Use Chat to explore:
 **Task: Security Analysis**
 
 1. **Ask Chat:**
+   Type:
    ```
-   Review this application for common security vulnerabilities:
-   - SQL injection risks
-   - XSS vulnerabilities
-   - Missing authentication/authorization
-   - Insecure data handling
+      Review this application for common security vulnerabilities:
+      - SQL injection risks
+      - XSS vulnerabilities
+      - Missing authentication/authorization
+      - Insecure data handling
    
-   Provide specific file locations and recommendations.
+      Provide specific file locations and recommendations.
    ```
 
 2. **Understand Findings:**
 
    For each issue found, ask:
+   Type:
    ```
-   Chat: Explain this security issue in detail and show me how to fix it
+      Chat: Explain this security issue in detail and show me how to fix it
    ```
 
 ### Challenge 5: API Documentation (20 min)
@@ -1254,9 +1309,10 @@ Use Chat to explore:
 **Task: Generate OpenAPI/Swagger Docs**
 
 1. **Research with Chat:**
+   Type:
    ```
-   How can I add OpenAPI/Swagger documentation to this Spring Boot application?
-   Show me the dependencies and configuration needed.
+      How can I add OpenAPI/Swagger documentation to this Spring Boot application?
+      Show me the dependencies and configuration needed.
    ```
 
 2. **Implement:**
@@ -1288,16 +1344,18 @@ Use Chat to explore:
 **Advanced: Port part of PetClinic to Kotlin**
 
 1. Ask Chat:
+   Type:
    ```
-   How would I convert the Owner entity from Java to Kotlin?
-   Show me the equivalent Kotlin code.
+      How would I convert the Owner entity from Java to Kotlin?
+      Show me the equivalent Kotlin code.
    ```
 
 2. Create a parallel Kotlin version of one entity
 
 3. Compare with Chat:
+   Type:
    ```
-   Compare the Java and Kotlin versions. What are the benefits of each?
+      Compare the Java and Kotlin versions. What are the benefits of each?
    ```
 
 ### Challenge: Add GraphQL API
@@ -1305,9 +1363,10 @@ Use Chat to explore:
 **Advanced: Add GraphQL alongside REST**
 
 1. Research:
+   Type:
    ```
-   Chat: How can I add GraphQL to this Spring Boot application 
-   alongside the existing REST API?
+      Chat: How can I add GraphQL to this Spring Boot application 
+      alongside the existing REST API?
    ```
 
 2. Implement a GraphQL endpoint for one resource
@@ -1319,9 +1378,10 @@ Use Chat to explore:
 **DevOps: Docker Setup**
 
 1. Ask Chat:
+   Type:
    ```
-   Generate a Dockerfile and docker-compose.yml for this application
-   Include MySQL database setup
+      Generate a Dockerfile and docker-compose.yml for this application
+      Include MySQL database setup
    ```
 
 2. Build and run:
