@@ -431,8 +431,10 @@ These exercises are designed to be completed during the session with instructor 
    ```
 
 3. **Add Preview with Sample Data:**
+   
+   In Composer, type:
    ```
-Add a preview for TaskList with 3-5 sample tasks
+   Add a preview for TaskList with 3-5 sample tasks
    ```
 
 ### Step 4: Test in Android Studio (2 min)
