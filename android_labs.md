@@ -442,9 +442,10 @@ These exercises are designed to be completed during the session with instructor 
 1. **Switch to Android Studio**
 
 2. **Update MainActivity.kt to show TaskList:**
-   - You can do this manually or use Cursor Composer:
+   
+   You can do this manually or use Cursor Composer to type:
    ```
-Update MainActivity to display TaskList in the content
+   Update MainActivity to display TaskList in the content
    area with sample tasks
    ```
 
