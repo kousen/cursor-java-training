@@ -259,8 +259,10 @@ These exercises are designed to be completed during the session with instructor 
 1. **In Cursor, open Composer** (Cmd/Ctrl+Shift+I)
 
 2. **Prompt for TaskCard:**
+   
+   In Composer, type:
    ```
-Create a TaskCard composable in a new file ui/TaskCard.kt
+   Create a TaskCard composable in a new file ui/TaskCard.kt
    
    Requirements:
    - Display a task with title, description, and completion checkbox
@@ -320,8 +322,10 @@ Create a TaskCard composable in a new file ui/TaskCard.kt
 ### Step 2: Generate Preview Functions (5 min)
 
 1. **In Cursor Composer:**
+   
+   Type:
    ```
-Add preview functions to TaskCard.kt showing:
+   Add preview functions to TaskCard.kt showing:
    1. An uncompleted task with short text
    2. A completed task
    3. A task with long text that might overflow
@@ -373,8 +377,10 @@ Add preview functions to TaskCard.kt showing:
 ### Step 3: Generate TaskList with LazyColumn (5 min)
 
 1. **In Cursor Composer:**
+   
+   Type:
    ```
-Create a TaskList composable in ui/TaskList.kt
+   Create a TaskList composable in ui/TaskList.kt
    
    Requirements:
    - Use LazyColumn to display a list of tasks
