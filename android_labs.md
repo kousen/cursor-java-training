@@ -543,6 +543,8 @@ Create a TaskListUiState.kt file in the ui/state package
 ### Step 3: Generate TaskViewModel (10 min)
 
 1. **In Cursor Composer:**
+   
+   Type:
    ```
 Create TaskViewModel.kt in the ui/viewmodel package
    
@@ -672,15 +674,17 @@ Create TaskViewModel.kt in the ui/viewmodel package
 
 3. **Add ViewModel dependencies to `build.gradle.kts`:**
    
-   In Cursor Composer:
+   In Cursor Composer, type:
    ```
-Add the required ViewModel and lifecycle dependencies
+   Add the required ViewModel and lifecycle dependencies
    to app/build.gradle.kts if they're not already present
    ```
 
 ### Step 4: Connect ViewModel to UI (5 min)
 
 1. **In Cursor Composer:**
+   
+   Type:
    ```
 Update TaskList composable to accept a TaskViewModel
    and observe its uiState using collectAsStateWithLifecycle.
@@ -894,6 +898,8 @@ Create TaskNavHost.kt in navigation package:
 ### Step 2: Create TaskListScreen (3 min)
 
 1. **In Cursor Composer:**
+   
+   Type:
    ```
 Create TaskListScreen.kt in ui/screen package:
    
@@ -956,6 +962,8 @@ Update TaskList composable to take an onTaskClick callback
 ### Step 3: Create TaskDetailScreen (5 min)
 
 1. **In Cursor Composer:**
+   
+   Type:
    ```
 Create TaskDetailScreen.kt in ui/screen package:
    
@@ -1077,6 +1085,8 @@ Create TaskDetailScreen.kt in ui/screen package:
 ### Step 4: Update MainActivity (2 min)
 
 1. **In Cursor Composer:**
+   
+   Type:
    ```
 Update MainActivity to use rememberNavController
    and display TaskNavHost instead of TaskList directly
@@ -1205,6 +1215,8 @@ Add Room database dependencies using version catalog:
 ### Step 2: Update Task as Entity (5 min)
 
 1. **In Cursor Composer:**
+   
+   Type:
    ```
 Update the existing Task data class to be a Room entity:
    
@@ -1251,6 +1263,8 @@ Update the existing Task data class to be a Room entity:
 ### Step 3: Create TaskDao (5 min)
 
 1. **In Cursor Composer:**
+   
+   Type:
    ```
 Create TaskDao.kt interface in data/local package:
    
@@ -1304,6 +1318,8 @@ Create TaskDao.kt interface in data/local package:
 ### Step 4: Create AppDatabase (3 min)
 
 1. **In Cursor Composer:**
+   
+   Type:
    ```
 Create AppDatabase.kt in data/local package:
    
@@ -1360,6 +1376,8 @@ Create AppDatabase.kt in data/local package:
 ### Step 5: Create Repository (4 min)
 
 1. **In Cursor Composer:**
+   
+   Type:
    ```
 Create TaskRepository.kt in data/repository package:
    
@@ -1430,6 +1448,8 @@ Create TaskRepository.kt in data/repository package:
 ### Step 6: Update ViewModel to Use Repository (5 min)
 
 1. **In Cursor Composer:**
+   
+   Type:
    ```
 Update TaskViewModel to use TaskRepository:
    
@@ -1549,9 +1569,9 @@ Update TaskViewModel to use TaskRepository:
 
 1. **Update composables to use factory:**
    
-   In Cursor Composer:
+   In Cursor Composer, type:
    ```
-Update TaskListScreen and TaskDetailScreen to use
+   Update TaskListScreen and TaskDetailScreen to use
    TaskViewModelFactory to create ViewModel with repository
    ```
 
@@ -1690,6 +1710,8 @@ Add testing dependencies using version catalog:
 ### Step 2: Generate ViewModel Tests (10 min)
 
 1. **In Cursor Composer:**
+   
+   Type:
    ```
 Create TaskViewModelTest.kt in test directory
    (src/test/java/com/example/taskmanager/):
@@ -1878,6 +1900,8 @@ Create TaskViewModelTest.kt in test directory
 ### Step 4: Generate Compose UI Tests (5 min)
 
 1. **In Cursor Composer:**
+   
+   Type:
    ```
 Create TaskCardTest.kt in androidTest directory
    (src/androidTest/java/com/example/taskmanager/):
@@ -2004,9 +2028,9 @@ Create TaskCardTest.kt in androidTest directory
 
 3. **Update TaskCard to add contentDescription:**
    
-   In Cursor Composer:
+   In Cursor Composer, type:
    ```
-Add semantics to TaskCard Checkbox:
+   Add semantics to TaskCard Checkbox:
    set contentDescription = "Task completion" for accessibility
    ```
 
@@ -2123,6 +2147,8 @@ Add Hilt dependency injection using version catalog:
 ### Step 2: Create Application Class (2 min)
 
 1. **In Cursor Composer:**
+   
+   Type:
    ```
 Create TaskApplication.kt in the root package:
    
@@ -2152,6 +2178,8 @@ Add android:name=".TaskApplication" to the
 ### Step 3: Create Hilt Modules (5 min)
 
 1. **In Cursor Composer:**
+   
+   Type:
    ```
 Create DatabaseModule.kt in di package:
    
@@ -2213,6 +2241,8 @@ Create DatabaseModule.kt in di package:
 ### Step 4: Update ViewModel for Hilt (2 min)
 
 1. **In Cursor Composer:**
+   
+   Type:
    ```
 Update TaskViewModel to use Hilt:
    
@@ -2241,6 +2271,8 @@ Add @AndroidEntryPoint annotation to MainActivity
 ### Step 5: Update Composables (1 min)
 
 1. **In Cursor Composer:**
+   
+   Type:
    ```
 Update all screens to use hiltViewModel() instead
    of viewModel() or custom factory:
@@ -2266,6 +2298,8 @@ Update all screens to use hiltViewModel() instead
 ### Step 6: Material 3 Theming (2 min)
 
 1. **In Cursor Composer:**
+   
+   Type:
    ```
 Update the theme in ui/theme/Theme.kt:
    
