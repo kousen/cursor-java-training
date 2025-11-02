@@ -509,7 +509,7 @@ These exercises are designed to be completed during the session with instructor 
    
    Type:
    ```
-Create a TaskListUiState.kt file in the ui/state package
+   Create a TaskListUiState.kt file in the ui/state package
    
    Requirements:
    - Create a sealed interface TaskListUiState
@@ -553,7 +553,7 @@ Create a TaskListUiState.kt file in the ui/state package
    
    Type:
    ```
-Create TaskViewModel.kt in the ui/viewmodel package
+   Create TaskViewModel.kt in the ui/viewmodel package
    
    Requirements:
    - Extend ViewModel from androidx.lifecycle
@@ -693,7 +693,7 @@ Create TaskViewModel.kt in the ui/viewmodel package
    
    Type:
    ```
-Update TaskList composable to accept a TaskViewModel
+   Update TaskList composable to accept a TaskViewModel
    and observe its uiState using collectAsStateWithLifecycle.
    Handle all three states: Loading (show CircularProgressIndicator),
    Success (show task list), Error (show error message).
@@ -767,7 +767,7 @@ Update TaskList composable to accept a TaskViewModel
    
    Type:
    ```
-Update MainActivity to use TaskList with ViewModel
+   Update MainActivity to use TaskList with ViewModel
    ```
 
 ### Step 5: Test State Management (2 min)
@@ -824,7 +824,7 @@ Update MainActivity to use TaskList with ViewModel
    
    Type:
    ```
-Set up Jetpack Compose Navigation:
+   Set up Jetpack Compose Navigation:
    
    1. Add navigation-compose dependency to build.gradle.kts if not present
    2. Create a sealed class Route in navigation/Route.kt with:
@@ -856,7 +856,7 @@ Set up Jetpack Compose Navigation:
    
    Type:
    ```
-Create TaskNavHost.kt in navigation package:
+   Create TaskNavHost.kt in navigation package:
    
    Requirements:
    - Create TaskNavHost composable taking NavHostController
@@ -914,7 +914,7 @@ Create TaskNavHost.kt in navigation package:
    
    Type:
    ```
-Create TaskListScreen.kt in ui/screen package:
+   Create TaskListScreen.kt in ui/screen package:
    
    Requirements:
    - Scaffold with TopAppBar showing "Task Manager"
@@ -970,7 +970,7 @@ Create TaskListScreen.kt in ui/screen package:
    
    Type:
    ```
-Update TaskList composable to take an onTaskClick callback
+   Update TaskList composable to take an onTaskClick callback
    and call it when a TaskCard is clicked
    ```
 
@@ -980,7 +980,7 @@ Update TaskList composable to take an onTaskClick callback
    
    Type:
    ```
-Create TaskDetailScreen.kt in ui/screen package:
+   Create TaskDetailScreen.kt in ui/screen package:
    
    Requirements:
    - Accept taskId and onNavigateBack callback
@@ -1103,7 +1103,7 @@ Create TaskDetailScreen.kt in ui/screen package:
    
    Type:
    ```
-Update MainActivity to use rememberNavController
+   Update MainActivity to use rememberNavController
    and display TaskNavHost instead of TaskList directly
    ```
 
@@ -1193,7 +1193,7 @@ Update MainActivity to use rememberNavController
    
    Type:
    ```
-Add Room database dependencies using version catalog:
+   Add Room database dependencies using version catalog:
    
    Add to gradle/libs.versions.toml:
    - room version 2.8.3
@@ -1235,7 +1235,7 @@ Add Room database dependencies using version catalog:
    
    Type:
    ```
-Update the existing Task data class to be a Room entity:
+   Update the existing Task data class to be a Room entity:
    
    Requirements:
    - Add @Entity annotation with tableName = "tasks"
@@ -1283,7 +1283,7 @@ Update the existing Task data class to be a Room entity:
    
    Type:
    ```
-Create TaskDao.kt interface in data/local package:
+   Create TaskDao.kt interface in data/local package:
    
    Requirements:
    - Interface annotated with @Dao
@@ -1338,7 +1338,7 @@ Create TaskDao.kt interface in data/local package:
    
    Type:
    ```
-Create AppDatabase.kt in data/local package:
+   Create AppDatabase.kt in data/local package:
    
    Requirements:
    - Abstract class extending RoomDatabase
@@ -1396,7 +1396,7 @@ Create AppDatabase.kt in data/local package:
    
    Type:
    ```
-Create TaskRepository.kt in data/repository package:
+   Create TaskRepository.kt in data/repository package:
    
    Requirements:
    - Class taking TaskDao as constructor parameter
@@ -1468,7 +1468,7 @@ Create TaskRepository.kt in data/repository package:
    
    Type:
    ```
-Update TaskViewModel to use TaskRepository:
+   Update TaskViewModel to use TaskRepository:
    
    Requirements:
    - Accept TaskRepository in constructor (will need context temporarily)
@@ -1660,7 +1660,7 @@ Update TaskViewModel to use TaskRepository:
    
    Type:
    ```
-Add testing dependencies using version catalog:
+   Add testing dependencies using version catalog:
    
    Add to gradle/libs.versions.toml:
    - JUnit Jupiter 6.0.1
@@ -1732,7 +1732,7 @@ Add testing dependencies using version catalog:
    
    Type:
    ```
-Create TaskViewModelTest.kt in test directory
+   Create TaskViewModelTest.kt in test directory
    (src/test/java/com/example/taskmanager/):
    
    Requirements:
@@ -1922,7 +1922,7 @@ Create TaskViewModelTest.kt in test directory
    
    Type:
    ```
-Create TaskCardTest.kt in androidTest directory
+   Create TaskCardTest.kt in androidTest directory
    (src/androidTest/java/com/example/taskmanager/):
    
    Requirements:
@@ -2114,7 +2114,7 @@ Create TaskCardTest.kt in androidTest directory
    
    Type:
    ```
-Add Hilt dependency injection using version catalog:
+   Add Hilt dependency injection using version catalog:
    
    Add to gradle/libs.versions.toml:
    - Hilt version 2.57.2
@@ -2171,7 +2171,7 @@ Add Hilt dependency injection using version catalog:
    
    Type:
    ```
-Create TaskApplication.kt in the root package:
+   Create TaskApplication.kt in the root package:
    
    Requirements:
    - Extend Application class
@@ -2194,7 +2194,7 @@ Create TaskApplication.kt in the root package:
    
    Type:
    ```
-Add android:name=".TaskApplication" to the
+   Add android:name=".TaskApplication" to the
    <application> tag in AndroidManifest.xml
    ```
 
@@ -2204,7 +2204,7 @@ Add android:name=".TaskApplication" to the
    
    Type:
    ```
-Create DatabaseModule.kt in di package:
+   Create DatabaseModule.kt in di package:
    
    Requirements:
    - @Module and @InstallIn(SingletonComponent::class)
@@ -2267,7 +2267,7 @@ Create DatabaseModule.kt in di package:
    
    Type:
    ```
-Update TaskViewModel to use Hilt:
+   Update TaskViewModel to use Hilt:
    
    Requirements:
    - Add @HiltViewModel annotation
@@ -2290,7 +2290,7 @@ Update TaskViewModel to use Hilt:
    
    Type:
    ```
-Add @AndroidEntryPoint annotation to MainActivity
+   Add @AndroidEntryPoint annotation to MainActivity
    ```
 
 ### Step 5: Update Composables (1 min)
@@ -2299,7 +2299,7 @@ Add @AndroidEntryPoint annotation to MainActivity
    
    Type:
    ```
-Update all screens to use hiltViewModel() instead
+   Update all screens to use hiltViewModel() instead
    of viewModel() or custom factory:
    
    - TaskListScreen
@@ -2326,7 +2326,7 @@ Update all screens to use hiltViewModel() instead
    
    Type:
    ```
-Update the theme in ui/theme/Theme.kt:
+   Update the theme in ui/theme/Theme.kt:
    
    Requirements:
    - Update color scheme to use purple as primary color
@@ -2662,7 +2662,7 @@ Answer these questions in your notes:
    
    Type:
    ```
-Add categories feature:
+   Add categories feature:
    
    1. Create Category entity with id, name, color
    2. Add many-to-many relationship between Task and Category
@@ -2691,7 +2691,7 @@ Add categories feature:
    
    Type:
    ```
-Add due date feature:
+   Add due date feature:
    
    1. Add dueDate: Long? field to Task entity
    2. Update TaskCard to show due date with icon
@@ -2719,7 +2719,7 @@ Add due date feature:
    
    Type:
    ```
-Add search feature:
+   Add search feature:
    
    1. Add SearchBar to TaskListScreen TopAppBar
    2. Add search query to TaskDao
@@ -2747,7 +2747,7 @@ Add search feature:
    
    Type:
    ```
-Add priority feature:
+   Add priority feature:
    
    1. Create Priority enum: LOW, MEDIUM, HIGH
    2. Add priority field to Task
@@ -2770,7 +2770,7 @@ Add priority feature:
    
    Type:
    ```
-Add swipe to delete:
+   Add swipe to delete:
    
    1. Wrap TaskCard in SwipeToDismiss
    2. Show delete icon in background
@@ -2826,7 +2826,7 @@ Add swipe to delete:
    
    Type:
    ```
-Add accessibility improvements:
+   Add accessibility improvements:
    
    1. Add contentDescription to all icons
    2. Add semantic properties to interactive elements
@@ -2845,7 +2845,7 @@ Add accessibility improvements:
 
 1. **Add comprehensive error handling:**
    ```
-Improve error handling:
+   Improve error handling:
    
    1. Add try-catch in all ViewModel functions
    2. Show meaningful error messages to users
@@ -2866,7 +2866,7 @@ Improve error handling:
    
    Type:
    ```
-Add loading indicators:
+   Add loading indicators:
    
    1. Show progress when adding task
    2. Show shimmer effect while loading tasks
@@ -2888,7 +2888,7 @@ Add loading indicators:
 
 2. **Apply optimizations:**
    ```
-Optimize performance:
+   Optimize performance:
    
    1. Add @Stable annotations where appropriate
    2. Use remember for expensive calculations
@@ -2906,7 +2906,7 @@ Optimize performance:
 
 1. **Enhance UI:**
    ```
-Polish the UI:
+   Polish the UI:
    
    1. Add animations (AnimatedVisibility, transitions)
    2. Improve spacing and padding consistency
