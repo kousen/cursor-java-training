@@ -213,7 +213,7 @@ Create a simple data class Task with properties:
 
 ---
 
-## Lab 2: Building Task UI Components
+## Lab 2: Building Task UI Components {#lab-2-building-task-ui-components}
 
 **Goal:** Create Jetpack Compose UI components with AI assistance  
 **Time:** 20 minutes  
@@ -434,7 +434,7 @@ Update MainActivity to display TaskList in the content
 
 ---
 
-## Lab 3: State Management with ViewModels
+## Lab 3: State Management with ViewModels {#lab-3-state-management-with-viewmodels}
 
 **Goal:** Implement MVVM architecture with StateFlow  
 **Time:** 25 minutes  
@@ -758,7 +758,7 @@ Update MainActivity to use TaskList with ViewModel
 
 ---
 
-## Lab 4: Multi-Screen Navigation
+## Lab 4: Multi-Screen Navigation {#lab-4-multi-screen-navigation}
 
 **Goal:** Implement navigation between Home and Detail screens  
 **Time:** 20 minutes  
@@ -1570,7 +1570,7 @@ Update TaskListScreen and TaskDetailScreen to use
 
 ---
 
-## Lab 6: Testing ViewModels and UIs
+## Lab 6: Testing ViewModels and UIs {#lab-6-testing-viewmodels-and-uis}
 
 **Goal:** Generate and run tests for Android components  
 **Time:** 20 minutes  
@@ -2307,7 +2307,7 @@ These exercises are designed for independent exploration after the session. They
 
 ---
 
-## Lab 8: Now in Android Analysis
+## Lab 8: Now in Android Analysis {#lab-8-now-in-android-analysis}
 
 **Goal:** Analyze Google's production sample app architecture  
 **Time:** 30-45 minutes  
@@ -2696,7 +2696,7 @@ Add swipe to delete:
 
 ---
 
-## Lab 10: Production Polish
+## Lab 10: Production Polish {#lab-10-production-polish}
 
 **Goal:** Add production-ready features and polish  
 **Time:** 30-45 minutes  
