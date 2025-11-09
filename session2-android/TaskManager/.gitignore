@@ -29,3 +29,6 @@ local.properties
 *.ap_
 
 # KSP generated files are gitignored by default via /build
+
+# Cursor IDE
+.cursor
