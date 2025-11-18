@@ -29,8 +29,8 @@ This training program is designed for approximately 100 experienced Java develop
 - 📄 [Cursor Quick Start for IntelliJ Users](cursor-quickstart-for-intellij-users.md)
 - 📊 [Session 1 Slides](session1-spring-boot/slides.md)
 - 🧪 [Lab Exercises](session1-spring-boot/labs.md)
-- 🛠️ [Hello Spring Boot Setup](hello-spring-setup.md)
-- 📖 [PetClinic Exploration Guide](petclinic-guide.md)
+- 🛠️ [Hello Spring Boot Setup](session1-spring-boot/hello-spring-setup.md)
+- 📖 [PetClinic Exploration Guide](session1-spring-boot/petclinic-guide.md)
 
 **Projects:**
 - **Hello Spring Boot** - Code-along project (built from scratch)
@@ -144,16 +144,20 @@ cursor-java-training/
 ├── session1-spring-boot/                       # Session 1 materials
 │   ├── session1-outline.md                     # Session outline
 │   ├── slides.md                               # Slidev presentation
+│   ├── slides.pdf                              # Slidev presentation (PDF)
 │   ├── labs.md                                 # Lab exercises
 │   ├── README.md                               # Session guide
+│   ├── hello-spring-setup.md                   # Hello Spring Boot setup guide
+│   ├── petclinic-guide.md                      # PetClinic exploration guide
 │   └── hello-spring/                           # Complete solution project
 │
 ├── session2-android/                           # Session 2 materials
 │   ├── session2-outline.md                     # Session outline
 │   ├── slides.md                               # Slidev presentation
+│   ├── android_slides.pdf                      # Slidev presentation (PDF)
 │   ├── labs.md                                 # Lab exercises
 │   ├── README.md                               # Session guide
-│   └── TaskManagerApp/                         # Complete solution project
+│   └── TaskManager/                            # Complete solution project
 │
 ├── session3-agentic/                           # Session 3 materials
 │   ├── session3-outline.md                     # Session outline
@@ -176,9 +180,7 @@ cursor-java-training/
 │   └── SETUP.md                                # General setup instructions
 │
 └── [General Resources - root level]
-    ├── cursor-quickstart-for-intellij-users.md
-    ├── hello-spring-setup.md
-    └── petclinic-guide.md
+    └── cursor-quickstart-for-intellij-users.md
 ```
 
 ---
@@ -321,13 +323,13 @@ cursor-java-training/
    - Progressive difficulty
    - Comprehensive examples
 
-4. **[Hello Spring Boot Setup](hello-spring-setup.md)**
+4. **[Hello Spring Boot Setup](session1-spring-boot/hello-spring-setup.md)**
    - Project setup instructions
    - Spring Initializr configuration
    - Pre-built starter (backup)
    - Troubleshooting guide
 
-5. **[PetClinic Exploration Guide](petclinic-guide.md)**
+5. **[PetClinic Exploration Guide](session1-spring-boot/petclinic-guide.md)**
    - Architecture overview
    - Entity relationships
    - Repository patterns
