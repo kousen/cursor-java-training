@@ -25,10 +25,10 @@ This training program is designed for approximately 100 experienced Java develop
 **Focus:** Cursor fundamentals, Spring Boot development, AI modes
 
 **Materials:**
-- 📄 [Session 1 Outline](session1-outline.md)
+- 📄 [Session 1 Outline](session1-spring-boot/session1-outline.md)
 - 📄 [Cursor Quick Start for IntelliJ Users](cursor-quickstart-for-intellij-users.md)
-- 📊 [Session 1 Slides](slides.md)
-- 🧪 [Lab Exercises](labs.md)
+- 📊 [Session 1 Slides](session1-spring-boot/slides.md)
+- 🧪 [Lab Exercises](session1-spring-boot/labs.md)
 - 🛠️ [Hello Spring Boot Setup](hello-spring-setup.md)
 - 📖 [PetClinic Exploration Guide](petclinic-guide.md)
 
@@ -51,9 +51,9 @@ This training program is designed for approximately 100 experienced Java develop
 **Focus:** Android development with Cursor Composer, Jetpack Compose, ViewModels, Room
 
 **Materials:**
-- 📄 [Session 2 Outline](session2-outline.md)
-- 📊 [Session 2 Slides](android_slides.md)
-- 🧪 [Lab Exercises](android_labs.md)
+- 📄 [Session 2 Outline](session2-android/session2-outline.md)
+- 📊 [Session 2 Slides](session2-android/slides.md)
+- 🧪 [Lab Exercises](session2-android/labs.md)
 - 📖 [Session 2 README](session2-android/README.md)
 
 **Projects:**
@@ -77,9 +77,9 @@ This training program is designed for approximately 100 experienced Java develop
 **Focus:** Extended Thinking, Plan Mode, modular architecture refactoring
 
 **Materials:**
-- 📄 [Session 3 Outline](session3-outline.md)
-- 📊 [Session 3 Slides](agentic_slides.md)
-- 🧪 [Lab Exercises](agentic_labs.md)
+- 📄 [Session 3 Outline](session3-agentic/session3-outline.md)
+- 📊 [Session 3 Slides](session3-agentic/slides.md)
+- 🧪 [Lab Exercises](session3-agentic/labs.md)
 
 **Key Topics:**
 - Agentic coding principles
@@ -98,9 +98,9 @@ This training program is designed for approximately 100 experienced Java develop
 **Focus:** AI-assisted testing, code review, quality assurance
 
 **Materials:**
-- 📄 [Session 4 Outline](session4-outline.md)
-- 📊 [Session 4 Slides](testing_slides.md)
-- 🧪 [Lab Exercises](testing_labs.md)
+- 📄 [Session 4 Outline](session4-testing/session4-outline.md)
+- 📊 [Session 4 Slides](session4-testing/slides.md)
+- 🧪 [Lab Exercises](session4-testing/labs.md)
 
 **Key Topics:**
 - AI test generation strategies
@@ -118,9 +118,9 @@ This training program is designed for approximately 100 experienced Java develop
 **Focus:** Advanced AI agents, Model Context Protocol, multi-agent systems
 
 **Materials:**
-- 📄 [Session 5 Outline](session5-outline.md)
-- 📊 [Session 5 Slides](agents_slides.md)
-- 🧪 [Lab Exercises](agents_labs.md)
+- 📄 [Session 5 Outline](session5-agents/session5-outline.md)
+- 📊 [Session 5 Slides](session5-agents/slides.md)
+- 🧪 [Lab Exercises](session5-agents/labs.md)
 
 **Key Topics:**
 - Custom AI agent development
@@ -141,27 +141,42 @@ cursor-java-training/
 ├── .cursor/
 │   └── CURSOR_TRAINING_CONTEXT.md              # AI context document
 │
-├── session1-spring-boot/                       # Session 1 solutions
-│   ├── README.md                               # Session 1 guide
+├── session1-spring-boot/                       # Session 1 materials
+│   ├── session1-outline.md                     # Session outline
+│   ├── slides.md                               # Slidev presentation
+│   ├── labs.md                                 # Lab exercises
+│   ├── README.md                               # Session guide
 │   └── hello-spring/                           # Complete solution project
 │
-├── session2-android/                           # Session 2 solutions
-│   ├── README.md                               # Session 2 guide
+├── session2-android/                           # Session 2 materials
+│   ├── session2-outline.md                     # Session outline
+│   ├── slides.md                               # Slidev presentation
+│   ├── labs.md                                 # Lab exercises
+│   ├── README.md                               # Session guide
 │   └── TaskManagerApp/                         # Complete solution project
 │
-├── session3-agentic/                           # Session 3 (coming soon)
-├── session4-testing/                           # Session 4 (coming soon)
-├── session5-agents/                            # Session 5 (coming soon)
+├── session3-agentic/                           # Session 3 materials
+│   ├── session3-outline.md                     # Session outline
+│   ├── slides.md                               # Slidev presentation
+│   ├── labs.md                                 # Lab exercises
+│   ├── ecommerce-monolith/                     # Starter code
+│   └── legacy-app/                             # Legacy code for analysis
+│
+├── session4-testing/                           # Session 4 materials
+│   ├── session4-outline.md                     # Session outline
+│   ├── slides.md                               # Slidev presentation
+│   └── labs.md                                 # Lab exercises
+│
+├── session5-agents/                            # Session 5 materials
+│   ├── session5-outline.md                     # Session outline
+│   ├── slides.md                               # Slidev presentation
+│   └── labs.md                                 # Lab exercises
 │
 ├── docs/
 │   └── SETUP.md                                # General setup instructions
 │
-└── [Course Materials - root level]
+└── [General Resources - root level]
     ├── cursor-quickstart-for-intellij-users.md
-    ├── session1-outline.md                     # Session outline
-    ├── slides.md                               # Slidev presentation
-    ├── labs.md                                 # Session 1 lab exercises
-    ├── android_labs.md                         # Session 2 lab exercises
     ├── hello-spring-setup.md
     └── petclinic-guide.md
 ```
@@ -182,7 +197,7 @@ cursor-java-training/
    
    # Review Session 1 materials
    cat cursor-quickstart-for-intellij-users.md
-   cat session1-outline.md
+   cat session1-spring-boot/session1-outline.md
    ```
 
 2. **Prepare Slidev Presentation:**
@@ -191,10 +206,10 @@ cursor-java-training/
    npm install -g @slidev/cli
    
    # Run slides in dev mode
-   slidev slides.md
-   
+   slidev session1-spring-boot/slides.md
+
    # Export to PDF (optional)
-   slidev export slides.md
+   slidev export session1-spring-boot/slides.md
    ```
 
 3. **Set Up Projects:**
@@ -248,13 +263,13 @@ cursor-java-training/
 #### During Session 1
 
 1. **Follow along with instructor** for code-along exercises
-2. **Use labs.md** as reference during class
+2. **Use session1-spring-boot/labs.md** as reference during class
 3. **Ask questions** in Chat mode to understand concepts
 4. **Save your work** for future reference
 
 #### After Session 1
 
-1. **Complete homework exercises** in labs.md (Part B)
+1. **Complete homework exercises** in session1-spring-boot/labs.md (Part B)
 2. **Explore Spring PetClinic** using the exploration guide
 3. **Practice AI modes** (Chat and Agent) with your own projects
 4. **Document learnings** for Session 2
@@ -295,12 +310,12 @@ cursor-java-training/
    - Chat vs Agent modes
    - Keyboard shortcuts
 
-2. **[Session 1 Slides](slides.md)**
+2. **[Session 1 Slides](session1-spring-boot/slides.md)**
    - Slidev presentation
    - Core concepts and demos
    - Live coding examples
 
-3. **[Lab Exercises](labs.md)**
+3. **[Lab Exercises](session1-spring-boot/labs.md)**
    - Part A: Code-along (in-class)
    - Part B: Exploration (homework)
    - Progressive difficulty
