@@ -26,11 +26,10 @@ By the end of this session, participants will be able to:
 
 **Key Technologies (All Local):**
 - Spring Boot with modular structure
-- Docker Compose for local services (PostgreSQL, Redis, Mock services)
-- H2 Database for development
-- Spring Cloud Gateway (embedded)
-- Mock external services (payment, email)
+- H2 Database (in-memory, no external dependencies)
 - Shared libraries and common utilities
+- Mock external services (payment, email)
+- Simple local development setup
 
 ### Project 2: Legacy Code Modernization (Exploration)
 **Purpose:** Apply agentic coding to real-world scenarios  
@@ -72,19 +71,24 @@ By the end of this session, participants will be able to:
   - **Collaborative:** AI as thinking partner, not just code generator
   - **Context-Aware:** AI understands entire system, not just files
 
-#### Extended Thinking Mode (10 min)
+#### Extended Thinking Mode and Lab 0 (10 min)
 - **What is Extended Thinking?**
   - AI takes time to reason through complex problems
   - Multi-step analysis and planning
   - Deeper understanding before code generation
   - Like having a senior developer think through architecture
-  
+
 - **When to Use:**
   - Architectural decisions
   - Complex refactoring projects
   - Performance optimization strategies
   - Security analysis
   - Legacy code modernization
+
+- **Lab 0: Hands-On Practice**
+  - Students test Extended Thinking mode
+  - Compare with regular Chat mode
+  - Understand when to use each approach
 
 **Checkpoint:** Understanding of agentic coding principles
 
@@ -125,8 +129,8 @@ By the end of this session, participants will be able to:
 
 - **Step 2: Refinement**
   ```
-  Plan Mode: "Modify the plan to prioritize User module first, 
-  include local Docker services, and add comprehensive testing strategy."
+  Plan Mode: "Modify the plan to prioritize User module first
+  and add comprehensive testing strategy for each module."
   ```
 
 #### Student Exercise: Plan Review (10 min)
@@ -141,15 +145,17 @@ By the end of this session, participants will be able to:
 
 ### Part 3: Executing Complex Plans (40 minutes)
 
-#### Phase 1: Module Extraction (20 min)
+#### Phase 1: Module Extraction (20 min or more)
+
+**Note:** Creating a fully independent module is complex and may require multiple iterations. Focus on understanding the **refactoring strategy** rather than achieving perfection. Students can continue refinement in labs.
 
 - **Execute Plan Phase 1:**
   ```
   Plan Mode: "Execute Phase 1: Extract User module from the monolith.
-  Create separate User module with its own package structure, 
+  Create separate User module with its own package structure,
   entities, and API endpoints."
   ```
-  
+
 - **Review Changes:**
   - New User module structure
   - User entity and repository
@@ -161,6 +167,7 @@ By the end of this session, participants will be able to:
   - Review generated User module
   - Test API endpoints
   - Understand module boundaries
+  - Note: Iteration is expected and encouraged
 
 #### Phase 2: Shared Library Creation (20 min)
 
@@ -260,42 +267,38 @@ By the end of this session, participants will be able to:
   - Enables tool integration and automation
   - Custom context providers
 
-- **Common MCP Integrations:**
-  - Database schema analysis
-  - API documentation generation
-  - Performance monitoring
-  - Security scanning
-  - Documentation generation
+- **MCP Servers We'll Use:**
+  - **Context7** - Up-to-date library documentation and best practices
+  - **Playwright** - Browser automation for testing web applications
 
-#### Demo: Database Schema Integration (10 min)
+#### Demo: Context7 for Documentation (10 min)
 
-- **Setup MCP Database Provider:**
+- **Look up Spring Boot best practices:**
   ```
-  MCP: "Connect to the e-commerce database and analyze the schema.
-  Generate entity classes and repository interfaces based on actual tables.
-  Include proper JPA annotations and relationships."
+  @context7 What are the current best practices for input validation
+  in Spring Boot 3.x? Show me examples using Jakarta validation annotations.
   ```
 
-- **Review Generated Code:**
-  - Entity classes match actual database schema
-  - Repository methods based on table relationships
-  - Proper JPA annotations and constraints
-  - Relationship mappings
+- **Context7 Response:**
+  - Current Spring Boot 3.x patterns (not outdated info)
+  - Jakarta validation examples: `@Valid`, `@NotNull`, `@Email`
+  - Code snippets you can use immediately
+  - Library-specific best practices
 
-#### Demo: API Documentation Generation (10 min)
+#### Demo: Playwright for Testing (10 min)
 
-- **Generate OpenAPI Documentation:**
+- **Test the running application:**
   ```
-  MCP: "Analyze all REST endpoints in the e-commerce application and generate 
-  comprehensive OpenAPI 3.0 documentation with examples and schemas."
+  @playwright Navigate to http://localhost:8080/api/users and capture
+  what you see. Then take a screenshot of the H2 console.
   ```
 
-- **Review Generated Documentation:**
-  - Complete API specification
-  - Request/response examples
-  - Schema definitions
-  - Interactive documentation
-  - Validation rules
+- **Playwright Actions:**
+  - Opens browser automatically
+  - Navigates to endpoints
+  - Captures screenshots
+  - Reports what it found
+  - Verifies HTTP status codes
 
 **Checkpoint:** MCP integration capabilities
 
@@ -551,35 +554,13 @@ Students should leave able to:
    - Error handling
    - Validation
 
-### Local Services (Docker Compose)
-```yaml
-services:
-  postgres:
-    image: postgres:15
-    environment:
-      POSTGRES_DB: ecommerce
-      POSTGRES_USER: ecommerce
-      POSTGRES_PASSWORD: password
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-  
-  redis:
-    image: redis:7
-    ports:
-      - "6379:6379"
-  
-  mock-payment-service:
-    image: mockserver/mockserver
-    ports:
-      - "1080:1080"
-    environment:
-      MOCKSERVER_INITIALIZATION_JSON_PATH: /config/mock-payment.json
-
-volumes:
-  postgres_data:
-```
+### Database Setup
+- **H2 In-Memory Database** - No external dependencies required
+- **Simple Configuration** - Configured in `application.properties`
+- **H2 Console** - Access at `http://localhost:8080/h2-console`
+- **JDBC URL:** `jdbc:h2:mem:ecommerce`
+- **Username:** `sa`
+- **Password:** (leave blank)
 
 ### Refactoring Phases
 1. **Phase 1:** Extract User module
@@ -629,10 +610,10 @@ volumes:
 |-----|-------|------|--------------|
 | 0 | Agentic Coding Setup | 10 min | Extended Thinking, Plan Mode |
 | 1 | Modular Architecture Planning | 20 min | Plan Mode, architecture analysis |
-| 2 | Service Extraction | 25 min | Plan execution, service boundaries |
+| 2 | Service Extraction | 25 min+ | Plan execution, service boundaries (may need iteration) |
 | 3 | Shared Library Creation | 20 min | Common utilities, module integration |
 | 4 | Custom Slash Commands | 15 min | Team workflows, reusable prompts |
-| 5 | MCP Integration | 20 min | External tools, database analysis |
+| 5 | MCP Integration | 20 min | Context7, Playwright, documentation & testing |
 | 6 | AI Code Review | 15 min | Quality analysis, automated improvements |
 | 7 | Team Collaboration | 15 min | Shared context, collaborative patterns |
 
