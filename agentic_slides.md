@@ -351,8 +351,8 @@ shared dependencies, and refactoring phases."
 
 **Step 2: Plan Refinement**
 ```
-Plan Mode: "Modify the plan to prioritize User module first, 
-include local Docker services, and add comprehensive testing strategy."
+Plan Mode: "Modify the plan to prioritize User module first and add
+comprehensive testing strategy for each module."
 ```
 
 **Refined Plan Features:**
@@ -598,13 +598,15 @@ and structured error responses with proper HTTP status codes"
 - Enables tool integration and automation
 - Custom context providers
 
-**Common MCP Integrations:**
-- Database schema analysis
-- API documentation generation
-- Performance monitoring
-- Security scanning
-- Documentation generation
-- External API integration
+**MCP Servers We'll Use:**
+- **Context7** - Up-to-date library documentation
+- **Playwright** - Browser automation for testing
+
+**What MCP Enables:**
+- Real-time access to current documentation
+- Automated browser testing from Cursor
+- Integration with external tools and services
+- Extended AI capabilities beyond code generation
 
 **Key Benefit:** AI becomes aware of your entire development ecosystem
 
@@ -612,47 +614,46 @@ and structured error responses with proper HTTP status codes"
 
 ---
 
-# Demo: Database Schema Integration
+# Demo: Context7 for Documentation
 
-**Setup MCP Database Provider:**
+**Look up Spring Boot best practices:**
 ```
-MCP: "Connect to the e-commerce database and analyze the schema.
-Generate entity classes and repository interfaces based on actual tables.
-Include proper JPA annotations and relationships."
+@context7 What are the current best practices for input validation
+in Spring Boot 3.x? Show me examples using Jakarta validation annotations.
 ```
 
 <v-clicks>
 
-**Generated Code:**
-- Entity classes match actual database schema
-- Repository methods based on table relationships
-- Proper JPA annotations and constraints
-- Relationship mappings
+**Context7 Response:**
+- Current Spring Boot 3.x patterns (not outdated info)
+- Jakarta validation examples: `@Valid`, `@NotNull`, `@Email`
+- Code snippets you can use immediately
+- Library-specific best practices
 
-**Key Insight:** AI understands your actual data structure, not just code
+**Key Insight:** Always up-to-date documentation without leaving Cursor
 
 </v-clicks>
 
 ---
 
-# Demo: API Documentation Generation
+# Demo: Playwright for Testing
 
-**Generate OpenAPI Documentation:**
+**Test the running application:**
 ```
-MCP: "Analyze all REST endpoints in the e-commerce application and generate 
-comprehensive OpenAPI 3.0 documentation with examples and schemas."
+@playwright Navigate to http://localhost:8080/api/users and capture
+what you see. Then take a screenshot of the H2 console.
 ```
 
 <v-clicks>
 
-**Generated Documentation:**
-- Complete API specification
-- Request/response examples
-- Schema definitions
-- Interactive documentation
-- Validation rules
+**Playwright Actions:**
+- Opens browser automatically
+- Navigates to endpoints
+- Captures screenshots
+- Reports what it found
+- Verifies HTTP status codes
 
-**Key Insight:** AI creates documentation that stays in sync with code
+**Key Insight:** Automated testing without manual browser work
 
 </v-clicks>
 
@@ -843,7 +844,7 @@ performance bottlenecks, and migration opportunities."
 
 ```
 ecommerce-app/
-├── ecommerce-monolith/          # Starting point
+├── ecommerce-monolith/          # Starting point (H2 database)
 ├── ecommerce-modular/           # Refactored version
 │   ├── user-module/
 │   │   ├── UserController
@@ -858,7 +859,6 @@ ecommerce-app/
 │   ├── order-module/
 │   ├── payment-module/
 │   └── shared-lib/              # Common utilities
-├── docker-compose.yml           # Local services
 └── README.md
 ```
 
@@ -868,50 +868,8 @@ ecommerce-app/
 - Clear module boundaries
 - Independent development
 - Shared common utilities
-- Local development environment
-
-</v-clicks>
-
----
-
-# Local Services (Docker Compose)
-
-```yaml
-services:
-  postgres:
-    image: postgres:15
-    environment:
-      POSTGRES_DB: ecommerce
-      POSTGRES_USER: ecommerce
-      POSTGRES_PASSWORD: password
-    ports:
-      - "5432:5432"
-  
-  redis:
-    image: redis:7
-    ports:
-      - "6379:6379"
-```
-
----
-
-# Local Services (Docker Compose - Continued)
-
-```yaml
-services:
-  mock-payment-service:
-    image: mockserver/mockserver
-    ports:
-      - "1080:1080"
-```
-
-<v-clicks>
-
-**Benefits:**
-- No cloud dependencies
-- Consistent local environment
-- Easy setup and teardown
-- Cost-effective development
+- H2 in-memory database (no external dependencies)
+- Simple local development setup
 
 </v-clicks>
 

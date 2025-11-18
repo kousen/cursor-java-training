@@ -29,7 +29,7 @@ These exercises are designed to be completed during the session with instructor 
 
 ## Lab 0: Agentic Coding Setup
 
-**Goal:** Understand agentic coding principles and Extended Thinking mode  
+**Goal:** Understand agentic coding principles and Extended Thinking mode
 **Time:** 10 minutes
 
 ### Prerequisites
@@ -37,6 +37,23 @@ These exercises are designed to be completed during the session with instructor 
 - Cursor installed and configured
 - Basic understanding of Sessions 1-2 concepts
 - E-commerce monolithic application (provided)
+
+### What is Extended Thinking?
+
+**Extended Thinking** is a Cursor feature where the AI takes additional time to reason through complex problems before responding. Think of it as asking the AI to "think deeply" about a problem rather than giving an immediate answer.
+
+**How to use it:**
+- In Chat Mode (Cmd/Ctrl+L), prefix your prompt with "Extended Thinking:"
+- The AI will spend more time analyzing the problem from multiple angles
+- Use it for architectural decisions, complex refactoring, and strategic planning
+
+**When to use Extended Thinking:**
+- ✅ Architectural design decisions
+- ✅ Complex refactoring strategies
+- ✅ Security analysis
+- ✅ Performance optimization planning
+- ❌ Simple questions like "What does this function do?"
+- ❌ Quick syntax lookups
 
 ### **Steps**
 
@@ -57,7 +74,7 @@ These exercises are designed to be completed during the session with instructor 
    │   └── EcommerceApplication.java
    ├── src/main/resources/
    │   └── application.properties
-   └── pom.xml
+   └── build.gradle
    ```
 
 2. **Test Extended Thinking Mode**
@@ -143,8 +160,8 @@ These exercises are designed to be completed during the session with instructor 
    **Plan Mode Refinement:**
    Type:
    ```
-      Modify the plan to prioritize User module first, include local Docker 
-      services, and add comprehensive testing strategy.
+      Modify the plan to prioritize User module first and add
+      comprehensive testing strategy for each module.
    ```
 
 2. **Review Refined Plan**
@@ -176,9 +193,19 @@ These exercises are designed to be completed during the session with instructor 
 
 ## Lab 2: Service Extraction
 
-**Goal:** Execute Phase 1 of the plan - extract User module  
-**Time:** 25 minutes  
+**Goal:** Execute Phase 1 of the plan - extract User module
+**Time:** 25 minutes (may require additional time for iteration)
 **Mode:** Code-along with instructor
+
+### Important Notes
+
+Creating a fully independent module is **complex** and may require multiple iterations. This lab focuses on understanding the **process** rather than achieving perfection. Be prepared to:
+- Iterate on the AI's suggestions
+- Handle dependency issues
+- Adjust configurations
+- Use Chat mode to troubleshoot
+
+If time is limited, focus on understanding the **refactoring strategy** rather than completing all implementation details.
 
 ### Step 1: Execute Plan Phase 1 (15 min)
 
@@ -187,9 +214,16 @@ These exercises are designed to be completed during the session with instructor 
    **Plan Mode Execution:**
    ```
    Execute Phase 1: Extract User module from the monolith.
-   Create separate User module with its own package structure, 
+   Create separate User module with its own package structure,
    entities, and API endpoints.
    ```
+
+   **Note:** AI may create the module structure in different ways:
+   - As a separate directory with its own build.gradle
+   - As a sub-package within the monolith
+   - As a multi-module Gradle project
+
+   All approaches are valid learning opportunities.
 
 2. **Review Generated Changes**
 
@@ -213,7 +247,7 @@ These exercises are designed to be completed during the session with instructor 
    │   └── UserModuleApplication.java
    ├── src/main/resources/
    │   └── application.yml
-   └── pom.xml
+   └── build.gradle
    ```
 
 4. **Test the Module**
@@ -221,7 +255,7 @@ These exercises are designed to be completed during the session with instructor 
    **Run the Application:**
    ```bash
    cd user-module
-   ./mvnw spring-boot:run
+   ./gradlew bootRun
    ```
 
    **Test API Endpoints:**
@@ -303,7 +337,7 @@ These exercises are designed to be completed during the session with instructor 
    │       ├── BusinessException.java
    │       └── GlobalExceptionHandler.java
    ├── src/main/resources/
-   └── pom.xml
+   └── build.gradle
    ```
 
 3. **Examine Generated Code**
@@ -418,77 +452,162 @@ These exercises are designed to be completed during the session with instructor 
 
 ## Lab 5: MCP Integration
 
-**Goal:** Integrate Model Context Protocol for external tool connectivity  
-**Time:** 20 minutes  
+**Goal:** Use MCP servers (Context7 and Playwright) to enhance development workflow
+**Time:** 20 minutes
 **Mode:** Code-along with instructor
 
-### Step 1: Database Schema Integration (10 min)
+### About This Lab
 
-1. **Setup MCP Database Provider**
+This lab demonstrates practical MCP (Model Context Protocol) integration using two real MCP servers:
+- **Context7** - Up-to-date library documentation and best practices
+- **Playwright** - Browser automation for testing web applications
 
-   **MCP Configuration:**
-   ```
-   Provider: Database Schema Analyzer
-   Connection: Local PostgreSQL database
-   ```
+**Prerequisites:** Context7 and Playwright MCP servers should be configured in Cursor.
 
-2. **Analyze Database Schema**
+### Step 1: Context7 for Documentation (10 min)
 
-   **MCP Prompt:**
-   ```
-   Connect to the e-commerce database and analyze the schema.
-   Generate entity classes and repository interfaces based on actual tables.
-   Include proper JPA annotations and relationships.
-   ```
+**Use Case:** Look up Spring Boot best practices while refactoring
 
-3. **Review Generated Code**
+1. **Query Spring Boot Validation**
 
-   **Expected Output:**
-   - Entity classes matching actual database schema
-   - Repository methods based on table relationships
-   - Proper JPA annotations and constraints
-   - Relationship mappings
-
-### Step 2: API Documentation Generation (10 min)
-
-1. **Generate OpenAPI Documentation**
-
-   **MCP Prompt:**
+   **Chat Mode with Context7:**
    Type:
    ```
-      Analyze all REST endpoints in the e-commerce application and generate 
-      comprehensive OpenAPI 3.0 documentation with examples and schemas.
+   @context7 What are the current best practices for input validation
+   in Spring Boot 3.x? Show me examples using Jakarta validation annotations.
    ```
 
-2. **Review Generated Documentation**
+   **Expected Response:**
+   - Current Spring Boot 3.x validation patterns
+   - `@Valid`, `@NotNull`, `@Email` examples
+   - Code snippets you can use immediately
+
+2. **Research REST API Best Practices**
+
+   **Chat Mode with Context7:**
+   Type:
+   ```
+   @context7 What are REST API best practices for Spring Boot controllers?
+   Include error handling, status codes, and response formatting.
+   ```
+
+   **Expected Response:**
+   - Current REST conventions
+   - `ResponseEntity` usage patterns
+   - Exception handling strategies
+   - HTTP status code guidelines
+
+3. **Look Up JPA Relationships**
+
+   **Chat Mode with Context7:**
+   Type:
+   ```
+   @context7 Show me best practices for JPA entity relationships in Spring Boot.
+   Include @OneToMany, @ManyToOne, and cascade operations.
+   ```
+
+   **Why This Matters:**
+   - Get up-to-date documentation without leaving Cursor
+   - Find current best practices (not outdated Stack Overflow posts)
+   - See actual code examples you can adapt
+
+### Step 2: Playwright for Application Testing (10 min)
+
+**Use Case:** Test the running e-commerce application
+
+1. **Start the Application**
+
+   **Terminal:**
+   ```bash
+   cd ecommerce-monolith
+   ./gradlew bootRun
+   ```
+
+   Wait for application to start on `http://localhost:8080`
+
+2. **Test API Endpoints with Playwright**
+
+   **Chat Mode with Playwright:**
+   Type:
+   ```
+   @playwright Navigate to http://localhost:8080/api/users and capture
+   what you see. Then navigate to http://localhost:8080/h2-console and
+   take a screenshot.
+   ```
+
+   **Expected Actions:**
+   - Playwright opens browser
+   - Navigates to endpoints
+   - Captures responses/screenshots
+   - Reports what it found
+
+3. **Verify Application is Working**
+
+   **Chat Mode with Playwright:**
+   Type:
+   ```
+   @playwright Go to http://localhost:8080/api/products and verify
+   the endpoint returns a 200 status code. Show me the response structure.
+   ```
 
    **Expected Output:**
-   - Complete API specification
-   - Request/response examples
-   - Schema definitions
-   - Interactive documentation
-   - Validation rules
+   - HTTP status verification
+   - Response body structure
+   - Confirmation endpoints are accessible
 
-3. **Test Documentation**
+   **Why This Matters:**
+   - Automated verification of running application
+   - Visual confirmation through screenshots
+   - Quick smoke testing without manual browser work
 
-   **Access Documentation:**
-   - OpenAPI spec file generated
-   - Interactive documentation available
-   - Examples and schemas included
+### Step 3: Combining Both (Optional)
+
+**Advanced Use Case:** Use Context7 to research, then Playwright to test
+
+1. **Research and Implement:**
+   ```
+   @context7 How do I add CORS configuration to Spring Boot?
+   ```
+
+2. **Implement the CORS configuration** in your code
+
+3. **Test with Playwright:**
+   ```
+   @playwright Test that CORS headers are present in the response
+   from http://localhost:8080/api/users
+   ```
 
 ### Success Criteria
 
-- ✅ MCP database integration working
-- ✅ Entity classes generated from actual schema
-- ✅ OpenAPI documentation generated
-- ✅ Understanding of MCP capabilities
+- ✅ Context7 provides up-to-date Spring Boot documentation
+- ✅ Context7 examples are directly applicable to your code
+- ✅ Playwright successfully navigates to application endpoints
+- ✅ Playwright captures screenshots and verifies responses
+- ✅ Understanding of how MCP extends Cursor's capabilities
+
+### Key Insights
+
+**Context7 Benefits:**
+- Always up-to-date (unlike static AI training data)
+- Library-specific best practices
+- Real code examples you can copy
+
+**Playwright Benefits:**
+- Automated browser testing from within Cursor
+- Visual verification of UI/endpoints
+- No need to manually open browser for smoke tests
+
+**MCP in General:**
+- Extends AI capabilities with external tools
+- Brings specialized knowledge into your workflow
+- Automates repetitive development tasks
 
 ---
 
 ## Lab 6: AI Code Review
 
-**Goal:** Conduct AI-assisted code review and quality improvement  
-**Time:** 15 minutes  
+**Goal:** Conduct AI-assisted code review and quality improvement
+**Time:** 15-20 minutes
 **Mode:** Code-along with instructor
 
 ### Step 1: Comprehensive Code Review (10 min)
@@ -666,7 +785,7 @@ These exercises help you practice applying agentic coding principles to real-wor
    │   ├── models/
    │   └── utils/
    ├── src/main/resources/
-   └── pom.xml
+   └── build.gradle
    ```
 
 2. **Initial Assessment**
@@ -794,89 +913,138 @@ These exercises help you practice applying agentic coding principles to real-wor
 
 ---
 
-## Lab 9: Advanced MCP Integration
+## Lab 9: Advanced MCP Usage
 
-**Goal:** Explore advanced MCP integrations and custom providers  
-**Time:** 30-45 minutes  
+**Goal:** Master advanced Context7 and Playwright workflows
+**Time:** 30-45 minutes
 **Mode:** Self-paced exploration
 
-### Exercise 1: Custom MCP Provider (20 min)
+### Exercise 1: Advanced Context7 Usage (20 min)
 
-**Create Custom Provider:**
+**Multi-Library Research:**
 
-1. **Design Custom Provider:**
+1. **Compare Libraries:**
    Type:
    ```
-      Extended Thinking: "Design a custom MCP provider for code quality 
-      analysis. What capabilities should it have?"
+   @context7 Compare Hibernate vs Spring Data JPA for entity management.
+   What are the trade-offs and when would you use each?
    ```
 
-2. **Implement Provider:**
+2. **Version-Specific Features:**
    Type:
    ```
-      Plan Mode: "Implement a custom MCP provider that analyzes code 
-      quality metrics including cyclomatic complexity, code coverage, 
-      and maintainability index."
+   @context7 What's new in Spring Boot 3.5 compared to 3.2?
+   Show me migration steps and new features I should use.
    ```
 
-3. **Test Provider:**
-   ```
-   MCP: "Use the custom code quality provider to analyze the User module"
-   ```
-
-### Exercise 2: External API Integration (15 min)
-
-**API Integration:**
-
-1. **Weather Service Integration:**
+3. **Security Best Practices:**
    Type:
    ```
-      Extended Thinking: "Design an MCP integration with a weather API 
-      for an e-commerce application that needs weather-based recommendations."
+   @context7 What are the current Spring Security best practices for
+   REST APIs? Include JWT, OAuth2, and CORS configuration examples.
    ```
 
-2. **Payment Gateway Integration:**
+4. **Performance Optimization:**
    Type:
    ```
-      Extended Thinking: "Create an MCP integration with a payment gateway 
-      for secure transaction processing."
+   @context7 How do I optimize Spring Boot application startup time?
+   Show me lazy initialization, conditional beans, and other techniques.
    ```
 
-3. **Email Service Integration:**
+**Why This Matters:**
+- Research multiple related topics quickly
+- Get version-specific information
+- Find current best practices without outdated blogs
+
+### Exercise 2: Advanced Playwright Workflows (15 min)
+
+**Comprehensive Application Testing:**
+
+1. **End-to-End User Flow:**
    Type:
    ```
-      Extended Thinking: "Design an MCP integration with an email service 
-      for order notifications and marketing campaigns."
+   @playwright Test this user workflow on http://localhost:8080:
+   1. Navigate to /api/users
+   2. Check that the response is valid JSON
+   3. Navigate to /api/products
+   4. Verify products are returned
+   5. Take screenshots at each step
    ```
 
-### Exercise 3: Documentation Generation (10 min)
-
-**Automated Documentation:**
-
-1. **API Documentation:**
+2. **Performance Testing:**
+   Type:
    ```
-   MCP: "Generate comprehensive API documentation for all modules 
-   including examples, schemas, and integration guides."
-   ```
-
-2. **Architecture Documentation:**
-   ```
-   MCP: "Create architecture documentation including diagrams, 
-   component descriptions, and deployment guides."
+   @playwright Measure page load times for the following endpoints:
+   - /api/users
+   - /api/products
+   - /api/orders
+   Report any endpoints slower than 500ms
    ```
 
-3. **User Documentation:**
+3. **Visual Regression:**
+   Type:
    ```
-   MCP: "Generate user documentation including setup instructions, 
-   configuration guides, and troubleshooting tips."
+   @playwright Take screenshots of the H2 console at:
+   http://localhost:8080/h2-console
+   Save them with timestamp so I can compare across sessions.
+   ```
+
+**Why This Matters:**
+- Automated acceptance testing
+- Performance monitoring
+- Visual change detection
+
+### Exercise 3: Combined Workflows (10 min)
+
+**Research → Implement → Test Cycle:**
+
+1. **Research with Context7:**
+   ```
+   @context7 How do I add pagination to Spring Data JPA repositories?
+   Show me examples with PageRequest and Pageable.
+   ```
+
+2. **Implement the pagination** in your ProductService
+
+3. **Test with Playwright:**
+   ```
+   @playwright Test the paginated product endpoint:
+   http://localhost:8080/api/products?page=0&size=10
+   Verify pagination metadata is present in the response.
+   ```
+
+4. **Verify Documentation:**
+   ```
+   @context7 Generate OpenAPI documentation example for a paginated
+   endpoint with page, size, and sort parameters.
    ```
 
 ### Success Criteria
 
-- ✅ Custom MCP provider created and tested
-- ✅ External API integrations designed
-- ✅ Automated documentation generation working
-- ✅ Understanding of advanced MCP capabilities
+- ✅ Use Context7 for multi-library research
+- ✅ Get version-specific Spring Boot information
+- ✅ Automate complex test workflows with Playwright
+- ✅ Combine research, implementation, and testing in one workflow
+- ✅ Understanding of MCP in real development scenarios
+
+### Key Insights
+
+**Advanced Context7 Patterns:**
+- Compare multiple libraries/approaches
+- Get migration guides between versions
+- Research complex topics (security, performance)
+- Generate documentation snippets
+
+**Advanced Playwright Patterns:**
+- End-to-end user flow testing
+- Performance measurement
+- Visual regression testing
+- Automated smoke tests
+
+**Integration Benefits:**
+- Research → Code → Test workflow stays in Cursor
+- No context switching between tools
+- Immediate verification of implementations
 
 ---
 
