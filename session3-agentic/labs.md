@@ -389,17 +389,17 @@ If time is limited, focus on understanding the **refactoring strategy** rather t
 
 ---
 
-## Lab 4: Custom Slash Commands
+## Lab 4: Custom Rules and Commands
 
-**Goal:** Create and use custom slash commands for team workflows
+**Goal:** Create and use custom rules for team workflows
 **Time:** 15 minutes
 **Mode:** Code-along with instructor
 
-### About Custom Commands in Cursor
+### About Custom Rules in Cursor
 
-Cursor supports custom commands through the `.cursorrules` file in your project root. This file allows you to define reusable prompts that your team can invoke consistently.
+Cursor supports custom rules through the Settings UI, which stores rules as individual `.mdc` (markdown) files in the `.cursor/rules/` directory. These rules help maintain consistency across your team by defining coding standards and common prompts.
 
-### Step 1: Create .cursorrules File (10 min)
+### Step 1: Create Team Coding Standards (5 min)
 
 1. **Verify Workspace Location**
 
@@ -407,24 +407,23 @@ Cursor supports custom commands through the `.cursorrules` file in your project 
    - Look at the bottom-left of Cursor - it should show `session3-agentic` as the workspace
    - If not, go back to Lab 0 and follow the "Workspace Setup" instructions
 
-2. **Create .cursorrules File**
+2. **Open Cursor Settings**
 
-   In your **workspace root** (`session3-agentic/`), create a file named `.cursorrules`
+   - Press **Cmd/Ctrl+,** (or File → Preferences → Settings)
+   - Navigate to: **"Rules, Memories, Commands"**
+   - You'll see sections for User Rules, Project Rules, and User Commands
 
-   **File location:**
-   ```
-   session3-agentic/
-   ├── .cursorrules          ← Create it here (workspace root)
-   ├── ecommerce-monolith/
-   ├── legacy-app/
-   └── labs.md
-   ```
+3. **Add Project Coding Standards**
 
-3. **Add Team Commands**
+   In the **Project Rules** section:
+   - Click **"+ Add Rule"**
+   - Set **"Apply Intelligently"** (let Cursor decide when to apply)
+   - In the description field: "Team coding standards"
+   - Add the following content:
 
-   **File: `.cursorrules`**
-   ```
+   ```markdown
    # Team Coding Standards
+
    This project follows Clean Architecture principles.
    Use dependency injection, implement proper error handling, include
    comprehensive tests, and follow REST API best practices.
@@ -436,100 +435,129 @@ Cursor supports custom commands through the `.cursorrules` file in your project 
    - Include comprehensive JavaDoc
    - Use meaningful variable names
    - Implement proper logging
+   ```
 
-   # Custom Command Shortcuts
+   - The file will be saved as `.cursor/rules/[name].mdc`
 
-   ## Security Review (/review-security)
+### Step 2: Create Custom Command Rules (5 min)
+
+Create three more rules for common tasks:
+
+1. **Security Review Rule**
+
+   - Click **"+ Add Rule"** in Project Rules
+   - Set **"Apply Intelligently"**
+   - Description: "Security review guidelines"
+   - Content:
+   ```markdown
    When asked to review security:
    Review this code for security vulnerabilities including SQL injection,
    XSS, authentication bypass, and data exposure risks. Provide specific
    recommendations with examples.
+   ```
 
-   ## Test Generation (/generate-tests)
+2. **Test Generation Rule**
+
+   - Click **"+ Add Rule"**
+   - Set **"Apply Intelligently"**
+   - Description: "Test generation standards"
+   - Content:
+   ```markdown
    When asked to generate tests:
    Generate comprehensive unit and integration tests for this class using
    JUnit 5, Mockito, and TestContainers. Include edge cases and error scenarios.
+   ```
 
-   ## Module Creation (/create-module)
+3. **Module Creation Rule**
+
+   - Click **"+ Add Rule"**
+   - Set **"Apply Intelligently"**
+   - Description: "Module creation pattern"
+   - Content:
+   ```markdown
    When asked to create a module:
    Create a new Spring Boot module following our architecture patterns:
    entity, repository, service, controller, and tests. Use shared library
    components where appropriate.
    ```
 
-3. **Verify .cursorrules is Working**
+4. **Verify Rules are Saved**
 
-   **Test with Chat:**
-   - Open Cursor Chat (Cmd/Ctrl+L)
-   - Type: "What coding standards should I follow?"
-   - AI should reference the standards from `.cursorrules`
+   Check your file system - you should see:
+   ```
+   session3-agentic/
+   ├── .cursor/
+   │   └── rules/
+   │       ├── [coding-standards].mdc
+   │       ├── [security-review].mdc
+   │       ├── [test-generation].mdc
+   │       └── [module-creation].mdc
+   ├── ecommerce-monolith/
+   └── labs.md
+   ```
 
-### Step 2: Use Team Commands (5 min)
+### Step 3: Test Your Rules (5 min)
 
-**Note:** The commands defined in `.cursorrules` work by asking Cursor to follow those patterns when you mention them in chat.
+**Note:** The rules you created will be intelligently applied by Cursor when relevant, or you can explicitly reference them in your prompts.
 
-1. **Test Security Review**
+1. **Test Security Review Rule**
 
    **Open the file:**
    `ecommerce-monolith/src/main/java/com/example/ecommerce/controller/UserController.java`
 
    **Chat Mode (Cmd/Ctrl+L):** Type:
    ```
-   Please do a security review of this controller following our
-   /review-security guidelines.
+   Please review this controller for security vulnerabilities.
    ```
-   **Review AI Response:** Security analysis and recommendations
+   **Expected:** Cursor should apply your security review rule and provide detailed analysis
 
-2. **Test Test Generation**
+2. **Test Test Generation Rule**
 
    **Open the file:**
    `ecommerce-monolith/src/main/java/com/example/ecommerce/service/UserService.java`
 
    **Chat Mode (Cmd/Ctrl+L):** Type:
    ```
-   Generate tests for this service following our /generate-tests guidelines.
+   Generate tests for this service.
    ```
-   **Review AI Response:** Generated test suite
+   **Expected:** Tests using JUnit 5, Mockito, and TestContainers (as specified in your rule)
 
-3. **Test Module Creation**
+3. **Test Coding Standards Rule**
 
-   **Chat Mode:** Type:
+   **Chat Mode (Cmd/Ctrl+L):** Type:
    ```
-   Create a Product module following our /create-module guidelines.
+   What coding standards should I follow in this project?
    ```
-   **Review AI Response:** Generated module structure
+   **Expected:** Cursor should reference your team coding standards rule
 
-### Alternative: Using Cursor's Settings UI
+### Understanding How Rules Work
 
-You can also configure project-specific rules through the GUI:
+**Rule Files Structure:**
+- Rules are stored as `.mdc` files in `.cursor/rules/`
+- Each file has YAML frontmatter: `alwaysApply: false` (or `true`)
+- **"Apply Intelligently"** = `alwaysApply: false` (Cursor decides when to use)
+- **"Always Apply"** = `alwaysApply: true` (included in every chat)
 
-1. **Open Cursor Settings** (Cmd/Ctrl+,)
-2. **Navigate to:** "Rules, Memories, Commands"
-3. **Project Rules section:** Click "+ Add Rule" button
-4. **Enter your rules** in the text editor that appears
-5. Rules added this way work alongside `.cursorrules` files
-
-**Note:** The `.cursorrules` file and the Settings UI are **separate systems**:
-- `.cursorrules` file won't appear in the Settings UI
-- Both work independently and complement each other
-- File-based approach is better for version control and team sharing
+**Version Control:**
+- Commit `.cursor/rules/` directory to git
+- Team members get the same rules when they clone the repo
+- Everyone maintains consistency
 
 ### Success Criteria
 
-- ✅ `.cursorrules` file created with team standards
-- ✅ AI follows defined patterns consistently (verify by asking about coding standards in chat)
+- ✅ Project rules created via Settings UI
+- ✅ Rules visible in Settings → Rules, Memories, Commands
+- ✅ `.cursor/rules/*.mdc` files exist in file system
+- ✅ AI applies rules intelligently in chat
 - ✅ Understanding of team workflow automation
-- ✅ Recognition of when to use custom command patterns
-- ✅ Awareness of both file-based and UI-based rule configuration
 
 ### Key Insights
 
-- `.cursorrules` provides consistent AI behavior across your team
-- File-based rules can be committed to git for team consistency
-- Everyone sees the same rules (transparency)
-- Commands are more like "guidelines" that AI follows
-- Great for ensuring consistency in generated code
-- Settings UI offers a graphical alternative for personal preferences
+- Settings UI creates `.cursor/rules/*.mdc` files automatically
+- Rules can be committed to version control for team sharing
+- "Apply Intelligently" mode lets Cursor decide when rules are relevant
+- Multiple team members can add their own rules
+- Great for ensuring consistency in generated code across the team
 
 ---
 
