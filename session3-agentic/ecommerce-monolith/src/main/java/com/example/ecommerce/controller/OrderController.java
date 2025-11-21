@@ -4,14 +4,18 @@ import com.example.ecommerce.entity.Order;
 import com.example.ecommerce.entity.OrderItem;
 import com.example.ecommerce.service.OrderService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/orders")
+@Validated
 public class OrderController {
     private final OrderService orderService;
 
@@ -20,7 +24,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<Order> createOrder(@RequestParam Long userId,
+    public ResponseEntity<Order> createOrder(@RequestParam @Positive(message = "User ID must be positive") Long userId,
                                             @Valid @RequestBody List<OrderItem> items) {
         try {
             Order createdOrder = orderService.createOrder(userId, items);
@@ -37,27 +41,27 @@ public class OrderController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Order> getOrderById(@PathVariable Long id) {
+    public ResponseEntity<Order> getOrderById(@PathVariable @Positive(message = "Order ID must be positive") Long id) {
         return orderService.getOrderById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Order>> getOrdersByUserId(@PathVariable Long userId) {
+    public ResponseEntity<List<Order>> getOrdersByUserId(@PathVariable @Positive(message = "User ID must be positive") Long userId) {
         List<Order> orders = orderService.getOrdersByUserId(userId);
         return ResponseEntity.ok(orders);
     }
 
     @GetMapping("/status/{status}")
-    public ResponseEntity<List<Order>> getOrdersByStatus(@PathVariable Order.OrderStatus status) {
+    public ResponseEntity<List<Order>> getOrdersByStatus(@PathVariable @NotNull(message = "Order status cannot be null") Order.OrderStatus status) {
         List<Order> orders = orderService.getOrdersByStatus(status);
         return ResponseEntity.ok(orders);
     }
 
     @PatchMapping("/{id}/status")
-    public ResponseEntity<Order> updateOrderStatus(@PathVariable Long id,
-                                                   @RequestParam Order.OrderStatus status) {
+    public ResponseEntity<Order> updateOrderStatus(@PathVariable @Positive(message = "Order ID must be positive") Long id,
+                                                   @RequestParam @NotNull(message = "Order status cannot be null") Order.OrderStatus status) {
         try {
             Order updatedOrder = orderService.updateOrderStatus(id, status);
             return ResponseEntity.ok(updatedOrder);
@@ -67,7 +71,7 @@ public class OrderController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> cancelOrder(@PathVariable Long id) {
+    public ResponseEntity<Void> cancelOrder(@PathVariable @Positive(message = "Order ID must be positive") Long id) {
         try {
             orderService.cancelOrder(id);
             return ResponseEntity.noContent().build();
