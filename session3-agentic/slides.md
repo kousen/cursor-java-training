@@ -76,10 +76,9 @@ Kousen IT, Inc.
 - **Agentic Coding Principles** - AI as collaborative partner, not just tool
 - **Extended Thinking Mode** - Complex problem analysis and planning
 - **Plan Mode** - Multi-phase project execution with AI
-- **Custom Slash Commands** - Team workflow automation
+- **Custom Rules and Commands** - Team workflow automation
 - **MCP Integration** - External tool connectivity
-- **AI-Assisted Code Review** - Automated quality improvement
-- **Team Collaboration** - Shared AI context and workflows
+- **Legacy Code Review** - AI-assisted modernization analysis
 
 </v-clicks>
 
@@ -140,8 +139,8 @@ layout: two-cols
 
 - **Extended Thinking** - Deep analysis and planning
 - **Plan Mode** - Multi-phase project execution
-- **Custom Commands** - Team workflow automation
-- **MCP Integration** - External tool connectivity
+- **Custom Rules** - Team workflow automation with `.cursor/rules/`
+- **MCP Integration** - External tool connectivity (natural language)
 - **AI Collaboration** - Partner, not just assistant
 
 **Key Shift:** From AI as tool to AI as collaborative partner
@@ -426,95 +425,101 @@ entities, and API endpoints."
 
 ---
 
-# Custom Slash Commands
+# Custom Rules and Commands
 
 ## Team Workflow Automation
 
 <v-clicks>
 
-**What are Slash Commands?**
-- Reusable prompt templates
-- Team-standardized AI interactions
-- Context-aware shortcuts
-- Consistent code generation
+**What are Cursor Rules?**
+- Project rules stored in `.cursor/rules/*.mdc` files
+- Team-standardized AI behavior
+- Version-controlled and shared via git
+- Consistent code generation across team
 
 **Benefits:**
-- **Consistency** - Same approach across team
-- **Efficiency** - No need to write prompts from scratch
+- **Consistency** - Same AI behavior across team
+- **Efficiency** - Rules apply automatically when relevant
 - **Quality** - Proven patterns and best practices
-- **Onboarding** - New team members follow established patterns
+- **Onboarding** - New team members get rules automatically
 
 </v-clicks>
 
 ---
 
-# Creating Team Commands
+# Creating Team Rules
 
-**Example Commands:**
+**Example Rules in `.cursor/rules/`:**
 
 <v-clicks>
 
-```
-/review-security: "Review this code for security vulnerabilities including 
-SQL injection, XSS, authentication bypass, and data exposure risks."
+**File: `security-review.mdc`**
+```markdown
+When asked to review security:
+Review this code for security vulnerabilities including SQL injection,
+XSS, authentication bypass, and data exposure risks. Provide specific
+recommendations with examples.
 ```
 
-```
-/generate-tests: "Generate comprehensive unit and integration tests for 
-this class using JUnit 5, Mockito, and TestContainers."
+**File: `test-generation.mdc`**
+```markdown
+When asked to generate tests:
+Generate comprehensive unit and integration tests for this class using
+JUnit 5, Mockito, and TestContainers. Include edge cases and error scenarios.
 ```
 
 </v-clicks>
 
 ---
 
-# Creating Team Commands (Continued)
+# Creating Team Rules (Continued)
 
-**More Example Commands:**
+**More Example Rules:**
 
 <v-clicks>
 
-```
-/refactor-legacy: "Modernize this legacy code using current best practices: 
-replace deprecated APIs, improve error handling, add proper logging."
+**File: `module-creation.mdc`**
+```markdown
+When asked to create a module:
+Create a new Spring Boot module following our architecture patterns:
+entity, repository, service, controller, and tests. Use shared library
+components where appropriate.
 ```
 
-```
-/create-module: "Create a new Spring Boot module following our architecture 
-patterns: entity, repository, service, controller, and tests."
+**File: `coding-standards.mdc`**
+```markdown
+This project follows Clean Architecture principles.
+Use Java 17+ features, Spring Boot conventions, comprehensive JavaDoc,
+meaningful variable names, and proper logging.
 ```
 
 </v-clicks>
 
 ---
 
-# Demo: Using Custom Commands
+# Demo: Using Team Rules
 
 <v-clicks>
 
 **Security Review:**
 ```
-/review-security
+"Please review this controller for security vulnerabilities."
 ```
-→ AI analyzes User module for vulnerabilities
+→ AI applies security-review.mdc rule automatically
 
 **Test Generation:**
 ```
-/generate-tests
+"Generate tests for this service."
 ```
-→ AI creates comprehensive test suite
+→ AI uses test-generation.mdc patterns
 
-**Legacy Modernization:**
+**Coding Standards:**
 ```
-/refactor-legacy
+"Create a new service class for order processing."
 ```
-→ AI updates old utility classes
+→ AI follows coding-standards.mdc automatically
 
-**Module Creation:**
-```
-/create-module
-```
-→ AI generates Product module following patterns
+**Key Insight:** Rules apply intelligently - no need to remember slash commands!
 
 </v-clicks>
 
@@ -618,9 +623,10 @@ and structured error responses with proper HTTP status codes"
 
 **Look up Spring Boot best practices:**
 ```
-@context7 What are the current best practices for input validation
-in Spring Boot 3.x? Show me examples using Jakarta validation annotations.
+What are the current best practices for input validation in Spring Boot 3.x?
+Show me examples using Jakarta validation annotations.
 ```
+*(Cursor's Composer will suggest using Context7 for up-to-date docs)*
 
 <v-clicks>
 
@@ -630,7 +636,7 @@ in Spring Boot 3.x? Show me examples using Jakarta validation annotations.
 - Code snippets you can use immediately
 - Library-specific best practices
 
-**Key Insight:** Always up-to-date documentation without leaving Cursor
+**Key Insight:** No special syntax needed - just ask naturally!
 
 </v-clicks>
 
@@ -640,9 +646,10 @@ in Spring Boot 3.x? Show me examples using Jakarta validation annotations.
 
 **Test the running application:**
 ```
-@playwright Navigate to http://localhost:8080/api/users and capture
-what you see. Then take a screenshot of the H2 console.
+Navigate to http://localhost:8080/api/users and capture what you see.
+Then take a screenshot of the H2 console.
 ```
+*(Cursor will suggest using Playwright for browser automation)*
 
 <v-clicks>
 
@@ -653,69 +660,77 @@ what you see. Then take a screenshot of the H2 console.
 - Reports what it found
 - Verifies HTTP status codes
 
-**Key Insight:** Automated testing without manual browser work
+**Key Insight:** Natural language requests - Cursor handles the tool selection!
 
 </v-clicks>
 
 ---
 
-# Part 5: AI-Assisted Code Review
+# Part 5: Legacy Code Review
 
-## Automated Quality Improvement
+## AI-Assisted Modernization Analysis
 
 ---
 
-# Collaborative Code Review
+# Legacy Code Review
 
-**AI as Review Partner:**
+**AI as Modernization Partner:**
 ```
-Extended Thinking: "Conduct a comprehensive code review of the User module.
-Analyze code quality, architecture, security, performance, and maintainability.
-Provide specific recommendations with examples."
+Conduct a comprehensive code review of the legacy-app Customer module.
+This is legacy code that needs modernization. Analyze:
+- Code quality and outdated patterns
+- Security vulnerabilities
+- Performance issues
+- Deprecated APIs or libraries
+- Missing error handling and testing gaps
+
+Provide specific recommendations with examples of modern alternatives.
 ```
 
 <v-clicks>
 
-**Review Categories:**
-- **Architecture:** Module boundaries, dependencies
-- **Security:** Authentication, authorization, data protection
-- **Performance:** Database queries, caching, scalability
-- **Maintainability:** Code organization, documentation, testing
-- **Best Practices:** Spring Boot conventions, error handling
+**Expected Issues Found:**
+- **Outdated patterns:** Old Java patterns, pre-Java 8 code
+- **Naming issues:** Inconsistent conventions (e.g., "Repo" vs "Repository")
+- **Security vulnerabilities:** SQL injection, missing validation
+- **Performance problems:** N+1 queries, missing caching
+- **Missing features:** No logging, error handling, tests
 
-**Key Insight:** AI provides comprehensive analysis humans might miss
+**Key Insight:** AI identifies modernization opportunities systematically
 
 </v-clicks>
 
 ---
 
-# Automated Quality Improvements
+# Prioritizing Modernization
 
-**Batch Refactoring:**
+**Create Action Plan:**
 ```
-Plan Mode: "Apply all recommended improvements from the code review.
-Focus on security enhancements, performance optimizations, and 
-code organization improvements."
+Based on the code review, create a prioritized modernization plan
+for the legacy-app. Group improvements into:
+1. Critical (security, data integrity)
+2. High Priority (performance, major bugs)
+3. Medium Priority (code quality, maintainability)
+4. Low Priority (nice-to-have improvements)
 ```
 
 <v-clicks>
 
-**Applied Changes:**
-- Security improvements (input validation, SQL injection prevention)
-- Performance optimizations (caching, query optimization)
-- Code organization (package structure, naming conventions)
-- Error handling enhancements
-- Documentation improvements
+**Expected Prioritization:**
+- **Critical:** SQL injection fixes, authentication issues
+- **High:** Exception handling, input validation, logging
+- **Medium:** Naming consistency, code organization, documentation
+- **Low:** Code style, minor refactoring, optional features
 
-**Key Insight:** AI can implement improvements systematically
+**Key Insight:** AI helps systematically plan legacy modernization
 
 </v-clicks>
 
 ---
 
-# Part 6: Team Collaboration Workflows
+# Part 6: Team Collaboration with Rules
 
-## Shared AI Context
+## Shared AI Context via Version Control
 
 ---
 
@@ -724,24 +739,29 @@ code organization improvements."
 <v-clicks>
 
 **Shared AI Context:**
-- Shared `.cursorrules` files
-- Team coding standards
-- Architecture documentation
+- Version-controlled `.cursor/rules/` directory
+- Team coding standards as `.mdc` files
+- Architecture guidelines
 - Common patterns and anti-patterns
 
-**Example .cursorrules:**
-```
+**Example `.cursor/rules/coding-standards.mdc`:**
+```markdown
 This project follows Clean Architecture principles.
-Use dependency injection, implement proper error handling, include 
+Use dependency injection, implement proper error handling, include
 comprehensive tests, and follow REST API best practices.
 Modules should be loosely coupled and highly cohesive.
+
+Coding Standards:
+- Use Java 17+ features
+- Follow Spring Boot conventions
+- Include comprehensive JavaDoc
 ```
 
 **Benefits:**
-- Consistent AI behavior across team
-- Shared knowledge and standards
-- Faster onboarding for new members
-- Reduced context switching
+- Consistent AI behavior across team (rules stored in git)
+- Automatic application when relevant
+- New team members get rules when they clone
+- Under 500 lines per rule for maintainability
 
 </v-clicks>
 
@@ -919,11 +939,10 @@ Code quality? → AI-assisted review
 <v-clicks>
 
 ✅ **Modular Architecture Refactoring** using Plan Mode
-✅ **Advanced AI Collaboration Patterns** with custom commands
-✅ **MCP Integration** for external tools
-✅ **AI-Assisted Code Review** and quality improvement
-✅ **Team Collaboration Workflows** with shared context
-✅ **Legacy Code Analysis** using Extended Thinking
+✅ **Custom Rules and Commands** with `.cursor/rules/`
+✅ **MCP Integration** with natural language (Context7, Playwright)
+✅ **Legacy Code Review** and modernization analysis
+✅ **Team Collaboration** with version-controlled rules
 
 **All with local development tools!**
 
@@ -937,11 +956,12 @@ Code quality? → AI-assisted review
 
 1. **Start with Extended Thinking** for complex problems
 2. **Use Plan Mode** for multi-phase projects
-3. **Create custom commands** for team consistency
-4. **Iterate and refine** - first output is rarely perfect
-5. **Establish shared context** for team collaboration
-6. **Review AI output** - AI assists, humans decide
-7. **Apply agentic principles** to legacy modernization
+3. **Create custom rules** in `.cursor/rules/` for team consistency
+4. **Use natural language** for MCP tools - no special syntax needed
+5. **Iterate and refine** - first output is rarely perfect
+6. **Version control rules** - commit `.cursor/rules/` to git
+7. **Review AI output** - AI assists, humans decide
+8. **Apply to legacy code** - AI excels at modernization analysis
 
 </v-clicks>
 
@@ -953,10 +973,10 @@ Code quality? → AI-assisted review
 |------------------------------|-------------------------|
 | Chat for understanding | Extended Thinking for complex analysis |
 | Agent for code generation | Plan Mode for multi-phase projects |
-| Composer for multi-file changes | Custom commands for team workflows |
-| Manual AI interaction | Automated AI collaboration |
-| Single-developer focus | Team collaboration patterns |
-| Code generation | Architecture and planning |
+| Composer for multi-file changes | Custom rules for team workflows |
+| Manual AI interaction | Rules apply automatically |
+| Single-developer focus | Version-controlled team collaboration |
+| Code generation | Architecture, planning, and modernization |
 
 <v-clicks>
 
@@ -996,17 +1016,17 @@ Code quality? → AI-assisted review
 
 **Part A: Reinforce Today's Learning**
 - Complete modular refactoring (if not done)
-- Create custom slash commands for your team
+- Create custom rules in `.cursor/rules/` for your team
 - Apply Extended Thinking to architectural decisions
-- Practice iterative refinement workflows
+- Practice MCP integration with Context7 and Playwright
 
 **Part B: Legacy Code Challenges**
-- Analyze provided legacy codebase
-- Create modernization strategy
+- Deep analysis of provided legacy codebase
+- Create modernization strategy with priorities
 - Apply agentic coding principles
 - Document findings and recommendations
 
-**See `agentic_labs.md` for details**
+**See `labs.md` for details**
 
 </v-clicks>
 
@@ -1037,9 +1057,9 @@ Code quality? → AI-assisted review
     <li>Agentic coding principles</li>
     <li>Extended Thinking mode</li>
     <li>Plan Mode execution</li>
-    <li>Custom slash commands</li>
-    <li>MCP integration</li>
-    <li>Team collaboration workflows</li>
+    <li>Custom rules in `.cursor/rules/`</li>
+    <li>MCP integration (natural language)</li>
+    <li>Legacy code modernization</li>
     <li>Your own projects</li>
   </ul>
 </div>
