@@ -499,27 +499,37 @@ Cursor supports custom commands through the `.cursorrules` file in your project 
    ```
    **Review AI Response:** Generated module structure
 
-### Alternative: Using Cursor's Rules for AI
+### Alternative: Using Cursor's Settings UI
 
-You can also configure project-specific rules through:
+You can also configure project-specific rules through the GUI:
 
-1. **Cursor Settings** → **Features** → **Rules for AI**
-2. Add your team's coding standards and command patterns there
-3. These rules will apply to all AI interactions in the project
+1. **Open Cursor Settings** (Cmd/Ctrl+,)
+2. **Navigate to:** "Rules, Memories, Commands"
+3. **Project Rules section:** Click "+ Add Rule" button
+4. **Enter your rules** in the text editor that appears
+5. Rules added this way work alongside `.cursorrules` files
+
+**Note:** The `.cursorrules` file and the Settings UI are **separate systems**:
+- `.cursorrules` file won't appear in the Settings UI
+- Both work independently and complement each other
+- File-based approach is better for version control and team sharing
 
 ### Success Criteria
 
 - ✅ `.cursorrules` file created with team standards
-- ✅ AI follows defined patterns consistently
+- ✅ AI follows defined patterns consistently (verify by asking about coding standards in chat)
 - ✅ Understanding of team workflow automation
 - ✅ Recognition of when to use custom command patterns
+- ✅ Awareness of both file-based and UI-based rule configuration
 
 ### Key Insights
 
 - `.cursorrules` provides consistent AI behavior across your team
-- Everyone gets the same coding standards and patterns
+- File-based rules can be committed to git for team consistency
+- Everyone sees the same rules (transparency)
 - Commands are more like "guidelines" that AI follows
 - Great for ensuring consistency in generated code
+- Settings UI offers a graphical alternative for personal preferences
 
 ---
 
