@@ -377,76 +377,116 @@ If time is limited, focus on understanding the **refactoring strategy** rather t
 
 ## Lab 4: Custom Slash Commands
 
-**Goal:** Create and use custom slash commands for team workflows  
-**Time:** 15 minutes  
+**Goal:** Create and use custom slash commands for team workflows
+**Time:** 15 minutes
 **Mode:** Code-along with instructor
 
-### Step 1: Create Custom Commands (10 min)
+### About Custom Commands in Cursor
 
-1. **Open Command Settings**
+Cursor supports custom commands through the `.cursorrules` file in your project root. This file allows you to define reusable prompts that your team can invoke consistently.
 
-   **Command Palette (Cmd/Ctrl+Shift+P):**
-   Type: `Cursor: Open Commands`
+### Step 1: Create .cursorrules File (10 min)
 
-2. **Create Security Review Command**
+1. **Create .cursorrules File**
 
-   **Command Configuration:**
+   In your project root (`session3-agentic/ecommerce-monolith/`), create a file named `.cursorrules`
+
+2. **Add Team Commands**
+
+   **File: `.cursorrules`**
    ```
-   Name: review-security
-   Description: Review code for security vulnerabilities
-   Prompt: "Review this code for security vulnerabilities including 
-   SQL injection, XSS, authentication bypass, and data exposure risks. 
-   Provide specific recommendations with examples."
+   # Team Coding Standards
+   This project follows Clean Architecture principles.
+   Use dependency injection, implement proper error handling, include
+   comprehensive tests, and follow REST API best practices.
+   Modules should be loosely coupled and highly cohesive.
+
+   Coding Standards:
+   - Use Java 17+ features
+   - Follow Spring Boot conventions
+   - Include comprehensive JavaDoc
+   - Use meaningful variable names
+   - Implement proper logging
+
+   # Custom Command Shortcuts
+
+   ## Security Review (/review-security)
+   When asked to review security:
+   Review this code for security vulnerabilities including SQL injection,
+   XSS, authentication bypass, and data exposure risks. Provide specific
+   recommendations with examples.
+
+   ## Test Generation (/generate-tests)
+   When asked to generate tests:
+   Generate comprehensive unit and integration tests for this class using
+   JUnit 5, Mockito, and TestContainers. Include edge cases and error scenarios.
+
+   ## Module Creation (/create-module)
+   When asked to create a module:
+   Create a new Spring Boot module following our architecture patterns:
+   entity, repository, service, controller, and tests. Use shared library
+   components where appropriate.
    ```
 
-3. **Create Test Generation Command**
+3. **Verify .cursorrules is Working**
 
-   **Command Configuration:**
-   ```
-   Name: generate-tests
-   Description: Generate comprehensive tests
-   Prompt: "Generate comprehensive unit and integration tests for 
-   this class using JUnit 5, Mockito, and TestContainers. Include 
-   edge cases and error scenarios."
-   ```
+   **Test with Chat:**
+   - Open Cursor Chat (Cmd/Ctrl+L)
+   - Type: "What coding standards should I follow?"
+   - AI should reference the standards from `.cursorrules`
 
-4. **Create Module Creation Command**
+### Step 2: Use Team Commands (5 min)
 
-   **Command Configuration:**
-   ```
-   Name: create-module
-   Description: Create new Spring Boot module
-   Prompt: "Create a new Spring Boot module following our architecture 
-   patterns: entity, repository, service, controller, and tests. 
-   Use shared library components where appropriate."
-   ```
-
-### Step 2: Test Custom Commands (5 min)
+**Note:** The commands defined in `.cursorrules` work by asking Cursor to follow those patterns when you mention them in chat.
 
 1. **Test Security Review**
 
-   **Select UserController.java**
-   **Use Command:** `/review-security`
+   **Open UserController.java**
+   **Chat Mode:** Type:
+   ```
+   Please do a security review of this controller following our
+   /review-security guidelines.
+   ```
    **Review AI Response:** Security analysis and recommendations
 
 2. **Test Test Generation**
 
-   **Select UserService.java**
-   **Use Command:** `/generate-tests`
+   **Open UserService.java**
+   **Chat Mode:** Type:
+   ```
+   Generate tests for this service following our /generate-tests guidelines.
+   ```
    **Review AI Response:** Generated test suite
 
 3. **Test Module Creation**
 
-   **Use Command:** `/create-module`
-   **Prompt:** "Create Product module"
+   **Chat Mode:** Type:
+   ```
+   Create a Product module following our /create-module guidelines.
+   ```
    **Review AI Response:** Generated module structure
+
+### Alternative: Using Cursor's Rules for AI
+
+You can also configure project-specific rules through:
+
+1. **Cursor Settings** → **Features** → **Rules for AI**
+2. Add your team's coding standards and command patterns there
+3. These rules will apply to all AI interactions in the project
 
 ### Success Criteria
 
-- ✅ Custom slash commands created successfully
-- ✅ Commands work as expected
+- ✅ `.cursorrules` file created with team standards
+- ✅ AI follows defined patterns consistently
 - ✅ Understanding of team workflow automation
-- ✅ Recognition of when to use custom commands
+- ✅ Recognition of when to use custom command patterns
+
+### Key Insights
+
+- `.cursorrules` provides consistent AI behavior across your team
+- Everyone gets the same coding standards and patterns
+- Commands are more like "guidelines" that AI follows
+- Great for ensuring consistency in generated code
 
 ---
 
