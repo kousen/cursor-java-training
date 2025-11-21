@@ -102,7 +102,6 @@ Apply agentic coding to real-world legacy systems
 </v-clicks>
 
 ---
-
 layout: two-cols
 ---
 
@@ -116,7 +115,7 @@ layout: two-cols
   - Ask questions
   - Understand code
   - Learn APIs
-  
+
 - **Agent Mode** (Cmd/Ctrl+I)
   - Generate code
   - Refactor
@@ -206,9 +205,13 @@ Plan → Execute → Review → Refine
 - Continuous improvement cycle
 - AI learns from feedback
 
+</v-clicks>
+
 ---
 
 # Agentic Coding Principles (Continued)
+
+<v-clicks>
 
 ## 3. Collaborative
 AI as thinking partner, not just code generator
@@ -571,9 +574,13 @@ and structured error responses with proper HTTP status codes"
 3. **Use refinement prompts** to enhance
 4. **Iterate until satisfied**
 
+</v-clicks>
+
 ---
 
 # Student Exercise: Refinement Practice (Continued)
+
+<v-clicks>
 
 **Refinement Examples:**
 - "Add input validation to all endpoints"
@@ -777,14 +784,18 @@ Coding Standards:
 3. **Review:** AI-assisted code review
 4. **Integration:** Automated testing and deployment
 
+</v-clicks>
+
 ---
 
 # Collaborative Development Patterns (Continued)
 
+<v-clicks>
+
 **Demo: Team Feature Development**
 ```
-Plan Mode: "Design and implement an Order module that integrates 
-with User and Product modules. Include order processing, inventory 
+Plan Mode: "Design and implement an Order module that integrates
+with User and Product modules. Include order processing, inventory
 management, and email notifications."
 ```
 
@@ -903,9 +914,13 @@ ecommerce-app/
 **Phase 2:** Create shared library
 **Phase 3:** Extract Product module
 
+</v-clicks>
+
 ---
 
 # Refactoring Phases (Continued)
+
+<v-clicks>
 
 **Phase 4:** Extract Order module
 **Phase 5:** Extract Payment module
@@ -1066,10 +1081,9 @@ Code quality? → AI-assisted review
 
 ---
 
-layout: end
----
-
 # Thank You!
+
+<div class="text-left">
 
 **Contact:**
 - ken.kousen@kousenit.com
@@ -1081,6 +1095,8 @@ layout: end
 - Apply agentic coding to your projects
 - Experiment with Extended Thinking
 - Join us for Session 4!
+
+</div>
 
 <div class="text-center mt-8">
   <p class="text-2xl">Happy Agentic Coding! 🤖🤝👨‍💻</p>
