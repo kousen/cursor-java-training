@@ -846,74 +846,133 @@ This lab demonstrates practical MCP (Model Context Protocol) integration using t
 
 ## Lab 7: Team Collaboration
 
-**Goal:** Establish team collaboration workflows with shared AI context  
-**Time:** 15 minutes  
+**Goal:** Establish team collaboration workflows with shared AI context
+**Time:** 15 minutes
 **Mode:** Code-along with instructor
 
-### Step 1: Shared AI Context (10 min)
+### Step 1: Review Shared Team Rules (5 min)
 
-1. **Create Team .cursorrules File**
+**Note:** If you completed Lab 4, you already created team rules! This lab shows how they support collaboration.
 
-   **File: `.cursorrules`**
+1. **Review Your Project Rules**
+
+   **Open Cursor Settings** (Cmd/Ctrl+,)
+   - Navigate to: **"Rules, Memories, Commands"**
+   - Look at your **Project Rules** section
+   - You should see the rules created in Lab 4:
+     - Team coding standards
+     - Security review guidelines
+     - Test generation standards
+     - Module creation pattern
+
+2. **Verify Rules Are Version-Controlled**
+
+   **Check your file system:**
+   ```bash
+   ls -la .cursor/rules/
    ```
-   This project follows Clean Architecture principles.
-   Use dependency injection, implement proper error handling, include 
-   comprehensive tests, and follow REST API best practices.
-   Modules should be loosely coupled and highly cohesive.
-   
-   Coding Standards:
-   - Use Java 17+ features
-   - Follow Spring Boot conventions
-   - Include comprehensive JavaDoc
-   - Use meaningful variable names
-   - Implement proper logging
+
+   **Expected output:**
+   ```
+   session3-agentic/.cursor/rules/
+   ├── coding-standards.mdc
+   ├── security-review.mdc
+   ├── test-generation.mdc
+   └── module-creation.mdc
    ```
 
-2. **Test Shared Context**
+   **Why this matters:**
+   - These files can be committed to git
+   - Team members get the same rules when they clone
+   - Everyone's AI follows consistent standards
 
-   **Chat Mode Test:**
+3. **Test Team Consistency**
+
+   **Composer Chat:**
    Type:
    ```
-      "What coding standards should I follow for this project?"
+   What coding standards should I follow for this project?
    ```
 
-   **Expected Response:** AI references the .cursorrules file
-
-3. **Verify Consistency**
+   **Expected Response:** AI references your team coding standards rule
 
    **Generate Code Test:**
    Type:
    ```
-      "Create a new service class for order processing"
+   Create a new service class for order processing
    ```
 
-   **Expected Output:** Code follows team standards
+   **Expected Output:** Code follows your team standards (Java 17+, Spring Boot conventions, etc.)
 
-### Step 2: Collaborative Development Patterns (5 min)
+### Step 2: Collaborative Development Workflow (10 min)
 
-1. **Feature Branch Workflow**
+1. **Team Rule Best Practices**
 
-   **Plan Mode Demo:**
-   Type:
+   **Discussion Points:**
+   - **Version control:** Always commit `.cursor/rules/` directory
+   - **Code reviews:** Check that new rules align with team practices
+   - **Documentation:** Use descriptive rule names and clear content
+   - **Composability:** Keep rules under 500 lines; split large rules
+   - **Maintenance:** Review and update rules as practices evolve
+
+2. **Enterprise Features (Optional Discussion)**
+
+   **For Team/Enterprise plans:**
+   - Create organization-wide rules from Cursor dashboard
+   - Enforce mandatory rules across all team members
+   - Precedence: Team Rules → Project Rules → User Rules
+   - Central management of coding standards
+
+3. **Collaborative Workflow Example**
+
+   **Scenario:** New team member joins the project
+
+   **Steps:**
+   1. Clone repository (includes `.cursor/rules/`)
+   2. Open project in Cursor
+   3. Cursor automatically applies project rules
+   4. AI assistance is consistent with rest of team
+   5. No manual setup or training needed
+
+   **Test this:**
    ```
-      Plan Mode: "Design and implement an Order module that integrates 
-      with User and Product modules. Include order processing, inventory 
-      management, and email notifications."
+   Design and implement an Order module that integrates with User
+   and Product modules. Include order processing, inventory management,
+   and email notifications.
    ```
 
-2. **Review Process**
+   **Expected:** AI follows your team's architecture patterns from rules
 
-   **AI-Generated Components:**
-   - Test cases
-   - Security scanning
-   - Performance analysis
-   - Documentation generation
+### Step 3: Team Collaboration Benefits
+
+**Discussion: How rules improve team collaboration:**
+
+1. **Consistency:**
+   - All team members get the same AI suggestions
+   - Code style remains uniform
+   - Architecture patterns are followed
+
+2. **Onboarding:**
+   - New developers get instant guidance
+   - No need to read lengthy style guides
+   - AI teaches best practices as they code
+
+3. **Quality:**
+   - Security rules catch vulnerabilities early
+   - Testing standards ensure coverage
+   - Code reviews focus on logic, not style
+
+4. **Knowledge Sharing:**
+   - Senior developers encode expertise in rules
+   - Best practices spread automatically
+   - Team learns from collective wisdom
 
 ### Success Criteria
 
-- ✅ Shared .cursorrules file created
-- ✅ AI follows team standards consistently
-- ✅ Collaborative development patterns established
+- ✅ Understanding of how project rules support team collaboration
+- ✅ `.cursor/rules/` directory can be version-controlled
+- ✅ AI follows team standards consistently across developers
+- ✅ Recognition of rules as living documentation
 - ✅ Understanding of team workflow benefits
 
 ---
