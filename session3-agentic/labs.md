@@ -605,18 +605,36 @@ This lab demonstrates practical MCP (Model Context Protocol) integration using t
 
 **Prerequisites:** Context7 and Playwright MCP servers should be configured in Cursor.
 
+### How MCP Servers Work in Cursor
+
+**Important:** You don't need special syntax to use MCP servers. Just chat naturally!
+
+- **Natural conversation:** Ask questions normally, and Cursor's Composer Agent automatically decides when to use MCP tools
+- **Or mention by name:** "Use Context7 to look up..." or "Use Playwright to test..."
+- **Available Tools:** You'll see a list of available MCP tools in the chat interface
+- **Approval required:** By default, Cursor asks for approval before using MCP tools
+- **Toggle tools:** Click tool names to enable/disable them for a chat session
+
+**Reference:** [Cursor MCP Documentation](https://cursor.com/docs/context/mcp)
+
 ### Step 1: Context7 for Documentation (10 min)
 
 **Use Case:** Look up Spring Boot best practices while refactoring
 
 1. **Query Spring Boot Validation**
 
-   **Chat Mode with Context7:**
+   **Composer Chat (Cmd/Ctrl+I or Cmd/Ctrl+Shift+L):**
    Type:
    ```
-   @context7 What are the current best practices for input validation
-   in Spring Boot 3.x? Show me examples using Jakarta validation annotations.
+   What are the current best practices for input validation in Spring Boot 3.x?
+   Show me examples using Jakarta validation annotations.
    ```
+
+   **What Happens:**
+   - Cursor's Composer Agent sees "Spring Boot 3.x" and may suggest using Context7
+   - You'll see Context7 appear in the "Available Tools" list
+   - Click to approve Context7 usage
+   - Context7 fetches up-to-date Spring Boot 3.x documentation
 
    **Expected Response:**
    - Current Spring Boot 3.x validation patterns
@@ -625,12 +643,14 @@ This lab demonstrates practical MCP (Model Context Protocol) integration using t
 
 2. **Research REST API Best Practices**
 
-   **Chat Mode with Context7:**
+   **Composer Chat:**
    Type:
    ```
-   @context7 What are REST API best practices for Spring Boot controllers?
+   Use Context7 to find REST API best practices for Spring Boot controllers.
    Include error handling, status codes, and response formatting.
    ```
+
+   **Note:** By explicitly mentioning "Use Context7", you guide the Agent to use that tool.
 
    **Expected Response:**
    - Current REST conventions
@@ -640,17 +660,20 @@ This lab demonstrates practical MCP (Model Context Protocol) integration using t
 
 3. **Look Up JPA Relationships**
 
-   **Chat Mode with Context7:**
+   **Composer Chat:**
    Type:
    ```
-   @context7 Show me best practices for JPA entity relationships in Spring Boot.
-   Include @OneToMany, @ManyToOne, and cascade operations.
+   Show me best practices for JPA entity relationships in Spring Boot,
+   including @OneToMany, @ManyToOne, and cascade operations.
    ```
+
+   **Note:** You can ask naturally without mentioning Context7—the Agent decides if it's helpful.
 
    **Why This Matters:**
    - Get up-to-date documentation without leaving Cursor
    - Find current best practices (not outdated Stack Overflow posts)
    - See actual code examples you can adapt
+   - No need to remember special syntax
 
 ### Step 2: Playwright for Application Testing (10 min)
 
@@ -668,28 +691,32 @@ This lab demonstrates practical MCP (Model Context Protocol) integration using t
 
 2. **Test API Endpoints with Playwright**
 
-   **Chat Mode with Playwright:**
+   **Composer Chat:**
    Type:
    ```
-   @playwright Navigate to http://localhost:8080/api/users and capture
+   Use Playwright to navigate to http://localhost:8080/api/users and capture
    what you see. Then navigate to http://localhost:8080/h2-console and
    take a screenshot.
    ```
 
-   **Expected Actions:**
-   - Playwright opens browser
+   **What Happens:**
+   - Cursor asks for approval to use Playwright
+   - Playwright tool appears in "Available Tools"
+   - After approval, Playwright opens browser
    - Navigates to endpoints
    - Captures responses/screenshots
    - Reports what it found
 
 3. **Verify Application is Working**
 
-   **Chat Mode with Playwright:**
+   **Composer Chat:**
    Type:
    ```
-   @playwright Go to http://localhost:8080/api/products and verify
-   the endpoint returns a 200 status code. Show me the response structure.
+   Navigate to http://localhost:8080/api/products and verify the endpoint
+   returns a 200 status code. Show me the response structure.
    ```
+
+   **Note:** You can ask naturally—Cursor will suggest Playwright if appropriate.
 
    **Expected Output:**
    - HTTP status verification
@@ -707,16 +734,20 @@ This lab demonstrates practical MCP (Model Context Protocol) integration using t
 
 1. **Research and Implement:**
    ```
-   @context7 How do I add CORS configuration to Spring Boot?
+   How do I add CORS configuration to Spring Boot?
    ```
+
+   (Cursor may use Context7 automatically, or you can say "Use Context7 to look up...")
 
 2. **Implement the CORS configuration** in your code
 
 3. **Test with Playwright:**
    ```
-   @playwright Test that CORS headers are present in the response
-   from http://localhost:8080/api/users
+   Test that CORS headers are present in the response from
+   http://localhost:8080/api/users
    ```
+
+   (Cursor will suggest using Playwright for browser-based testing)
 
 ### Success Criteria
 
@@ -742,6 +773,9 @@ This lab demonstrates practical MCP (Model Context Protocol) integration using t
 - Extends AI capabilities with external tools
 - Brings specialized knowledge into your workflow
 - Automates repetitive development tasks
+- No special syntax required—just natural conversation
+- Cursor's Composer Agent intelligently decides when to use tools
+- You maintain control with approval prompts (by default)
 
 ---
 
