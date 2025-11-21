@@ -38,6 +38,20 @@ These exercises are designed to be completed during the session with instructor 
 - Basic understanding of Sessions 1-2 concepts
 - E-commerce monolithic application (provided)
 
+### Important: Workspace Setup
+
+**Before starting the labs, open Cursor in the correct workspace:**
+
+1. **Open Cursor**
+2. **File → Open Folder** (or Cmd/Ctrl+O)
+3. **Navigate to and open:** `session3-agentic/`
+4. **Verify:** Your Cursor workspace root should be `session3-agentic/` (not `cursor-java-training/` or `ecommerce-monolith/`)
+
+This is important because:
+- The `.cursorrules` file you'll create in Lab 4 needs to be in the workspace root
+- Cursor's AI features apply to the entire open workspace
+- All labs assume this workspace structure
+
 ### What is Extended Thinking?
 
 **Extended Thinking** is a Cursor feature where the AI takes additional time to reason through complex problems before responding. Think of it as asking the AI to "think deeply" about a problem rather than giving an immediate answer.
@@ -387,11 +401,26 @@ Cursor supports custom commands through the `.cursorrules` file in your project 
 
 ### Step 1: Create .cursorrules File (10 min)
 
-1. **Create .cursorrules File**
+1. **Verify Workspace Location**
 
-   In your project root (`session3-agentic/ecommerce-monolith/`), create a file named `.cursorrules`
+   **Important:** Ensure Cursor is opened in `session3-agentic/` as your workspace root.
+   - Look at the bottom-left of Cursor - it should show `session3-agentic` as the workspace
+   - If not, go back to Lab 0 and follow the "Workspace Setup" instructions
 
-2. **Add Team Commands**
+2. **Create .cursorrules File**
+
+   In your **workspace root** (`session3-agentic/`), create a file named `.cursorrules`
+
+   **File location:**
+   ```
+   session3-agentic/
+   ├── .cursorrules          ← Create it here (workspace root)
+   ├── ecommerce-monolith/
+   ├── legacy-app/
+   └── labs.md
+   ```
+
+3. **Add Team Commands**
 
    **File: `.cursorrules`**
    ```
