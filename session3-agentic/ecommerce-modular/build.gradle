@@ -1,0 +1,72 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.7' apply false
+    id 'io.spring.dependency-management' version '1.1.4' apply false
+}
+
+allprojects {
+    group = 'com.example'
+    version = '1.0.0'
+    
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    
+    java {
+        sourceCompatibility = '21'
+        targetCompatibility = '21'
+    }
+    
+    tasks.named('test') {
+        useJUnitPlatform()
+    }
+}
+
+// Common module configuration
+project(':common') {
+    apply plugin: 'io.spring.dependency-management'
+    
+    dependencyManagement {
+        imports {
+            mavenBom 'org.springframework.boot:spring-boot-dependencies:3.5.7'
+        }
+    }
+    
+    dependencies {
+        // JPA annotations for BaseEntity
+        implementation 'jakarta.persistence:jakarta.persistence-api'
+        // Validation API for error handling
+        implementation 'jakarta.validation:jakarta.validation-api'
+        // Spring Web for ControllerAdvice and exception handling
+        implementation 'org.springframework:spring-web'
+        implementation 'org.springframework:spring-webmvc'
+        // Jackson for JSON serialization (DTOs and configurations)
+        implementation 'com.fasterxml.jackson.core:jackson-annotations'
+        implementation 'com.fasterxml.jackson.core:jackson-databind'
+        implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+    }
+}
+
+// Service modules configuration
+configure(subprojects.findAll { it.name.endsWith('-service') }) {
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+        implementation 'org.springframework.boot:spring-boot-starter-validation'
+        implementation project(':common')
+        
+        runtimeOnly 'com.h2database:h2'
+        
+        developmentOnly 'org.springframework.boot:spring-boot-devtools'
+        
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+}
+
