@@ -470,8 +470,10 @@ Cursor supports custom commands through the `.cursorrules` file in your project 
 
 1. **Test Security Review**
 
-   **Open UserController.java**
-   **Chat Mode:** Type:
+   **Open the file:**
+   `ecommerce-monolith/src/main/java/com/example/ecommerce/controller/UserController.java`
+
+   **Chat Mode (Cmd/Ctrl+L):** Type:
    ```
    Please do a security review of this controller following our
    /review-security guidelines.
@@ -480,8 +482,10 @@ Cursor supports custom commands through the `.cursorrules` file in your project 
 
 2. **Test Test Generation**
 
-   **Open UserService.java**
-   **Chat Mode:** Type:
+   **Open the file:**
+   `ecommerce-monolith/src/main/java/com/example/ecommerce/service/UserService.java`
+
+   **Chat Mode (Cmd/Ctrl+L):** Type:
    ```
    Generate tests for this service following our /generate-tests guidelines.
    ```
