@@ -9,15 +9,14 @@
 2. [Lab 1: Modular Architecture Planning](#lab-1-modular-architecture-planning)
 3. [Lab 2: Service Extraction](#lab-2-service-extraction)
 4. [Lab 3: Shared Library Creation](#lab-3-shared-library-creation)
-5. [Lab 4: Custom Slash Commands](#lab-4-custom-slash-commands)
+5. [Lab 4: Custom Rules and Commands](#lab-4-custom-rules-and-commands)
 6. [Lab 5: MCP Integration](#lab-5-mcp-integration)
-7. [Lab 6: AI Code Review](#lab-6-ai-code-review)
-8. [Lab 7: Team Collaboration](#lab-7-team-collaboration)
+7. [Lab 6: Legacy Code Review](#lab-6-legacy-code-review)
 
 ### Part B: Exploration Exercises (Homework/Practice)
-9. [Lab 8: Legacy Code Analysis](#lab-8-legacy-code-analysis)
-10. [Lab 9: Advanced MCP Integration](#lab-9-advanced-mcp-integration)
-11. [Lab 10: Team Workflow Design](#lab-10-team-workflow-design)
+8. [Lab 7: Deep Legacy Code Analysis](#lab-7-deep-legacy-code-analysis)
+9. [Lab 8: Advanced MCP Usage](#lab-8-advanced-mcp-usage)
+10. [Lab 9: Team Workflow Design](#lab-9-team-workflow-design)
 
 ---
 
@@ -779,220 +778,127 @@ This lab demonstrates practical MCP (Model Context Protocol) integration using t
 
 ---
 
-## Lab 6: AI Code Review
+## Lab 6: Legacy Code Review
 
-**Goal:** Conduct AI-assisted code review and quality improvement
-**Time:** 15-20 minutes
+**Goal:** Conduct AI-assisted code review of legacy code and identify modernization opportunities
+**Time:** 20-25 minutes
 **Mode:** Code-along with instructor
 
-### Step 1: Comprehensive Code Review (10 min)
+### About This Lab
 
-1. **Prepare the Code for Review**
+This lab introduces the **legacy-app** - an older Java application with typical legacy code issues. You'll use AI to identify problems and suggest improvements.
 
-   **Open relevant files in the editor:**
-   - `ecommerce-monolith/src/main/java/com/example/ecommerce/controller/UserController.java`
-   - `ecommerce-monolith/src/main/java/com/example/ecommerce/service/UserService.java`
-   - `ecommerce-monolith/src/main/java/com/example/ecommerce/repository/UserRepository.java`
-   - `ecommerce-monolith/src/main/java/com/example/ecommerce/entity/User.java`
+### Step 1: Explore the Legacy Codebase (5 min)
+
+1. **Review the Legacy Application Structure**
+
+   **Browse the legacy-app directory:**
+   ```
+   legacy-app/
+   ├── src/main/java/com/legacy/
+   │   ├── controllers/
+   │   │   ├── CustomerController.java
+   │   │   └── ItemController.java
+   │   ├── services/
+   │   │   ├── CustomerService.java
+   │   │   └── ItemService.java
+   │   ├── repositories/
+   │   │   ├── CustomerRepo.java
+   │   │   └── ItemRepo.java
+   │   ├── models/
+   │   │   ├── Customer.java
+   │   │   └── Item.java
+   │   └── utils/
+   │       ├── NumberUtil.java
+   │       └── StringHelper.java
+   ├── src/main/resources/
+   └── build.gradle
+   ```
+
+2. **Open Key Files for Review**
+
+   **Open these files in your editor:**
+   - `legacy-app/src/main/java/com/legacy/controllers/CustomerController.java`
+   - `legacy-app/src/main/java/com/legacy/services/CustomerService.java`
+   - `legacy-app/src/main/java/com/legacy/repositories/CustomerRepo.java`
+   - `legacy-app/src/main/java/com/legacy/models/Customer.java`
 
    **Why:** Having files open helps Cursor understand the full context of what to review.
 
-2. **AI-Assisted Review**
+### Step 2: Comprehensive Legacy Code Review (10 min)
+
+1. **AI-Assisted Review**
 
    **Composer Chat (Cmd/Ctrl+I):**
    Type:
    ```
-   Conduct a comprehensive code review of the User module in the ecommerce-monolith.
-   Analyze code quality, architecture, security, performance, and maintainability.
-   Provide specific recommendations with examples.
-   ```
-
-   **Alternative with @-mentions:**
-   ```
-   @ecommerce-monolith/src/main/java/com/example/ecommerce/controller/UserController.java
-   @ecommerce-monolith/src/main/java/com/example/ecommerce/service/UserService.java
-
-   Conduct a comprehensive code review of these User module files.
-   Analyze code quality, architecture, security, performance, and maintainability.
-   ```
-
-3. **Review AI Analysis**
-
-   **Expected Analysis Categories:**
-   - **Architecture:** Module boundaries, dependencies
-   - **Security:** Authentication, authorization, data protection
-   - **Performance:** Database queries, caching, scalability
-   - **Maintainability:** Code organization, documentation, testing
-   - **Best Practices:** Spring Boot conventions, error handling
-
-4. **Examine Recommendations**
-
-   **Key Areas to Review:**
+   Conduct a comprehensive code review of the legacy-app Customer module.
+   This is legacy code that needs modernization. Analyze:
+   - Code quality and outdated patterns
    - Security vulnerabilities
-   - Performance bottlenecks
-   - Code organization issues
-   - Missing documentation
+   - Performance issues
+   - Deprecated APIs or libraries
+   - Naming conventions and organization
+   - Missing error handling
    - Testing gaps
 
-### Step 2: Automated Quality Improvements (5 min)
-
-1. **Apply Improvements**
-
-   **Plan Mode:**
-   ```
-   Apply all recommended improvements from the code review.
-   Focus on security enhancements, performance optimizations, and 
-   code organization improvements.
+   Provide specific recommendations with examples of modern alternatives.
    ```
 
-2. **Review Applied Changes**
+2. **Review AI Analysis**
 
-   **Expected Improvements:**
-   - Security enhancements (input validation, SQL injection prevention)
-   - Performance optimizations (caching, query optimization)
-   - Code organization (package structure, naming conventions)
-   - Error handling enhancements
-   - Documentation improvements
+   **Expected Issues Found:**
+   - **Outdated patterns:** Old Java patterns, pre-Java 8 code
+   - **Naming issues:** Inconsistent names (e.g., "Repo" vs "Repository")
+   - **Security vulnerabilities:** SQL injection, missing validation
+   - **Performance problems:** N+1 queries, missing caching
+   - **Missing features:** No logging, error handling, tests
+   - **Deprecated APIs:** Old Spring or Java APIs
+   - **Code organization:** Poor separation of concerns
 
-### Success Criteria
+3. **Examine Specific Recommendations**
 
-- ✅ AI-assisted code review completed
-- ✅ Comprehensive analysis provided
-- ✅ Quality improvements applied
-- ✅ Understanding of AI review process
-
----
-
-## Lab 7: Team Collaboration
-
-**Goal:** Establish team collaboration workflows with shared AI context
-**Time:** 15 minutes
-**Mode:** Code-along with instructor
-
-### Step 1: Review Shared Team Rules (5 min)
-
-**Note:** If you completed Lab 4, you already created team rules! This lab shows how they support collaboration.
-
-1. **Review Your Project Rules**
-
-   **Open Cursor Settings** (Cmd/Ctrl+,)
-   - Navigate to: **"Rules, Memories, Commands"**
-   - Look at your **Project Rules** section
-   - You should see the rules created in Lab 4:
-     - Team coding standards
-     - Security review guidelines
-     - Test generation standards
-     - Module creation pattern
-
-2. **Verify Rules Are Version-Controlled**
-
-   **Check your file system:**
-   ```bash
-   ls -la .cursor/rules/
+   **Ask follow-up questions:**
+   ```
+   What are the top 3 most critical issues in this code that should
+   be addressed first?
    ```
 
-   **Expected output:**
    ```
-   session3-agentic/.cursor/rules/
-   ├── coding-standards.mdc
-   ├── security-review.mdc
-   ├── test-generation.mdc
-   └── module-creation.mdc
+   Show me examples of how to modernize the CustomerService to use
+   Java 17+ features and Spring Boot best practices.
    ```
 
-   **Why this matters:**
-   - These files can be committed to git
-   - Team members get the same rules when they clone
-   - Everyone's AI follows consistent standards
+### Step 3: Prioritize Improvements (5 min)
 
-3. **Test Team Consistency**
+1. **Create Modernization Plan**
 
    **Composer Chat:**
    Type:
    ```
-   What coding standards should I follow for this project?
+   Based on the code review, create a prioritized modernization plan
+   for the legacy-app. Group improvements into:
+   1. Critical (security, data integrity)
+   2. High Priority (performance, major bugs)
+   3. Medium Priority (code quality, maintainability)
+   4. Low Priority (nice-to-have improvements)
    ```
 
-   **Expected Response:** AI references your team coding standards rule
+2. **Review the Plan**
 
-   **Generate Code Test:**
-   Type:
-   ```
-   Create a new service class for order processing
-   ```
-
-   **Expected Output:** Code follows your team standards (Java 17+, Spring Boot conventions, etc.)
-
-### Step 2: Collaborative Development Workflow (10 min)
-
-1. **Team Rule Best Practices**
-
-   **Discussion Points:**
-   - **Version control:** Always commit `.cursor/rules/` directory
-   - **Code reviews:** Check that new rules align with team practices
-   - **Documentation:** Use descriptive rule names and clear content
-   - **Composability:** Keep rules under 500 lines; split large rules
-   - **Maintenance:** Review and update rules as practices evolve
-
-2. **Enterprise Features (Optional Discussion)**
-
-   **For Team/Enterprise plans:**
-   - Create organization-wide rules from Cursor dashboard
-   - Enforce mandatory rules across all team members
-   - Precedence: Team Rules → Project Rules → User Rules
-   - Central management of coding standards
-
-3. **Collaborative Workflow Example**
-
-   **Scenario:** New team member joins the project
-
-   **Steps:**
-   1. Clone repository (includes `.cursor/rules/`)
-   2. Open project in Cursor
-   3. Cursor automatically applies project rules
-   4. AI assistance is consistent with rest of team
-   5. No manual setup or training needed
-
-   **Test this:**
-   ```
-   Design and implement an Order module that integrates with User
-   and Product modules. Include order processing, inventory management,
-   and email notifications.
-   ```
-
-   **Expected:** AI follows your team's architecture patterns from rules
-
-### Step 3: Team Collaboration Benefits
-
-**Discussion: How rules improve team collaboration:**
-
-1. **Consistency:**
-   - All team members get the same AI suggestions
-   - Code style remains uniform
-   - Architecture patterns are followed
-
-2. **Onboarding:**
-   - New developers get instant guidance
-   - No need to read lengthy style guides
-   - AI teaches best practices as they code
-
-3. **Quality:**
-   - Security rules catch vulnerabilities early
-   - Testing standards ensure coverage
-   - Code reviews focus on logic, not style
-
-4. **Knowledge Sharing:**
-   - Senior developers encode expertise in rules
-   - Best practices spread automatically
-   - Team learns from collective wisdom
+   **Expected Prioritization:**
+   - **Critical:** SQL injection fixes, authentication issues
+   - **High:** Exception handling, input validation, logging
+   - **Medium:** Naming consistency, code organization, documentation
+   - **Low:** Code style, minor refactoring, optional features
 
 ### Success Criteria
 
-- ✅ Understanding of how project rules support team collaboration
-- ✅ `.cursor/rules/` directory can be version-controlled
-- ✅ AI follows team standards consistently across developers
-- ✅ Recognition of rules as living documentation
-- ✅ Understanding of team workflow benefits
+- ✅ Legacy code review completed
+- ✅ Multiple types of issues identified (security, performance, quality)
+- ✅ Understanding of difference between modern and legacy code
+- ✅ Prioritized modernization plan created
+- ✅ Recognition of AI's value in legacy code analysis
 
 ---
 
@@ -1003,12 +909,11 @@ This lab demonstrates practical MCP (Model Context Protocol) integration using t
 - ✅ Understanding of agentic coding principles
 - ✅ Experience with Extended Thinking mode
 - ✅ Plan Mode for complex projects
-- ✅ Custom slash commands for team workflows
+- ✅ Custom rules for team workflows
 - ✅ MCP integration capabilities
-- ✅ AI-assisted code review skills
-- ✅ Team collaboration workflows
+- ✅ AI-assisted code review skills for legacy code
 
-**Time for a break, then we'll explore legacy code modernization!**
+**Now explore the additional exercises at your own pace!**
 
 ---
 
@@ -1018,7 +923,7 @@ These exercises help you practice applying agentic coding principles to real-wor
 
 ---
 
-## Lab 8: Legacy Code Analysis
+## Lab 7: Deep Legacy Code Analysis
 
 **Goal:** Apply agentic coding principles to legacy code modernization  
 **Time:** 45-60 minutes  
@@ -1166,7 +1071,7 @@ These exercises help you practice applying agentic coding principles to real-wor
 
 ---
 
-## Lab 9: Advanced MCP Usage
+## Lab 8: Advanced MCP Usage
 
 **Goal:** Master advanced Context7 and Playwright workflows
 **Time:** 30-45 minutes
@@ -1177,30 +1082,31 @@ These exercises help you practice applying agentic coding principles to real-wor
 **Multi-Library Research:**
 
 1. **Compare Libraries:**
-   Type:
+   **Composer Chat:**
    ```
-   @context7 Compare Hibernate vs Spring Data JPA for entity management.
+   Use Context7 to compare Hibernate vs Spring Data JPA for entity management.
    What are the trade-offs and when would you use each?
    ```
 
 2. **Version-Specific Features:**
-   Type:
+   **Composer Chat:**
    ```
-   @context7 What's new in Spring Boot 3.5 compared to 3.2?
+   Use Context7 to find what's new in Spring Boot 3.5 compared to 3.2.
    Show me migration steps and new features I should use.
    ```
 
 3. **Security Best Practices:**
-   Type:
+   **Composer Chat:**
    ```
-   @context7 What are the current Spring Security best practices for
-   REST APIs? Include JWT, OAuth2, and CORS configuration examples.
+   What are the current Spring Security best practices for REST APIs?
+   Include JWT, OAuth2, and CORS configuration examples.
    ```
+   (Cursor may suggest Context7 automatically for up-to-date docs)
 
 4. **Performance Optimization:**
-   Type:
+   **Composer Chat:**
    ```
-   @context7 How do I optimize Spring Boot application startup time?
+   How do I optimize Spring Boot application startup time?
    Show me lazy initialization, conditional beans, and other techniques.
    ```
 
@@ -1214,20 +1120,21 @@ These exercises help you practice applying agentic coding principles to real-wor
 **Comprehensive Application Testing:**
 
 1. **End-to-End User Flow:**
-   Type:
+   **Composer Chat:**
    ```
-   @playwright Test this user workflow on http://localhost:8080:
+   Test this user workflow on http://localhost:8080:
    1. Navigate to /api/users
    2. Check that the response is valid JSON
    3. Navigate to /api/products
    4. Verify products are returned
    5. Take screenshots at each step
    ```
+   (Cursor will suggest using Playwright for browser-based testing)
 
 2. **Performance Testing:**
-   Type:
+   **Composer Chat:**
    ```
-   @playwright Measure page load times for the following endpoints:
+   Measure page load times for the following endpoints:
    - /api/users
    - /api/products
    - /api/orders
@@ -1235,11 +1142,10 @@ These exercises help you practice applying agentic coding principles to real-wor
    ```
 
 3. **Visual Regression:**
-   Type:
+   **Composer Chat:**
    ```
-   @playwright Take screenshots of the H2 console at:
-   http://localhost:8080/h2-console
-   Save them with timestamp so I can compare across sessions.
+   Take screenshots of the H2 console at http://localhost:8080/h2-console
+   and save them with timestamps so I can compare across sessions.
    ```
 
 **Why This Matters:**
@@ -1252,24 +1158,28 @@ These exercises help you practice applying agentic coding principles to real-wor
 **Research → Implement → Test Cycle:**
 
 1. **Research with Context7:**
+   **Composer Chat:**
    ```
-   @context7 How do I add pagination to Spring Data JPA repositories?
+   How do I add pagination to Spring Data JPA repositories?
    Show me examples with PageRequest and Pageable.
    ```
+   (Mention Context7 or let Cursor suggest it)
 
 2. **Implement the pagination** in your ProductService
 
 3. **Test with Playwright:**
+   **Composer Chat:**
    ```
-   @playwright Test the paginated product endpoint:
+   Test the paginated product endpoint at
    http://localhost:8080/api/products?page=0&size=10
    Verify pagination metadata is present in the response.
    ```
 
 4. **Verify Documentation:**
+   **Composer Chat:**
    ```
-   @context7 Generate OpenAPI documentation example for a paginated
-   endpoint with page, size, and sort parameters.
+   Generate OpenAPI documentation example for a paginated endpoint
+   with page, size, and sort parameters.
    ```
 
 ### Success Criteria
@@ -1301,7 +1211,7 @@ These exercises help you practice applying agentic coding principles to real-wor
 
 ---
 
-## Lab 10: Team Workflow Design
+## Lab 9: Team Workflow Design
 
 **Goal:** Design comprehensive team workflows using agentic coding principles  
 **Time:** 30-45 minutes  
