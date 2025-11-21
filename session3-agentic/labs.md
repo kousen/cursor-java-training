@@ -397,7 +397,17 @@ If time is limited, focus on understanding the **refactoring strategy** rather t
 
 ### About Custom Rules in Cursor
 
-Cursor supports custom rules through the Settings UI, which stores rules as individual `.mdc` (markdown) files in the `.cursor/rules/` directory. These rules help maintain consistency across your team by defining coding standards and common prompts.
+Cursor supports custom rules to maintain consistency across your team. Rules can be created in several ways:
+
+- **`.cursor/rules/*.mdc`** - Project rules (recommended, official format)
+- **`AGENTS.md`** - Simpler markdown format (alternative)
+- **`.cursorrules`** - Legacy format (being deprecated)
+
+In this lab, we'll use the **Settings UI** which creates `.mdc` files in `.cursor/rules/`. These files can be version-controlled and shared with your team.
+
+**Important:** Rules should be under 500 lines. Split larger instructions into multiple composable rules.
+
+**Reference:** [Cursor Rules Documentation](https://cursor.com/docs/context/rules)
 
 ### Step 1: Create Team Coding Standards (5 min)
 
@@ -409,14 +419,20 @@ Cursor supports custom rules through the Settings UI, which stores rules as indi
 
 2. **Open Cursor Settings**
 
+   **Option A - Settings Panel:**
    - Press **Cmd/Ctrl+,** (or File → Preferences → Settings)
    - Navigate to: **"Rules, Memories, Commands"**
    - You'll see sections for User Rules, Project Rules, and User Commands
 
+   **Option B - Command Palette (Alternative):**
+   - Press **Cmd/Ctrl+Shift+P**
+   - Type: `New Cursor Rule`
+   - Select the command to create a new rule
+
 3. **Add Project Coding Standards**
 
    In the **Project Rules** section:
-   - Click **"+ Add Rule"**
+   - Click **"+ Add Rule"** (or use the `New Cursor Rule` command)
    - Set **"Apply Intelligently"** (let Cursor decide when to apply)
    - In the description field: "Team coding standards"
    - Add the following content:
@@ -534,14 +550,28 @@ Create three more rules for common tasks:
 
 **Rule Files Structure:**
 - Rules are stored as `.mdc` files in `.cursor/rules/`
+- MDC format supports metadata and content
 - Each file has YAML frontmatter: `alwaysApply: false` (or `true`)
 - **"Apply Intelligently"** = `alwaysApply: false` (Cursor decides when to use)
 - **"Always Apply"** = `alwaysApply: true` (included in every chat)
+- Keep rules **under 500 lines** - split larger rules into multiple files
+
+**Rule Application Modes:**
+- **Always Apply** - Applies to every chat session
+- **Apply Intelligently** - Activated when Cursor deems it relevant (recommended)
+- **Apply to Specific Files** - Triggered by glob pattern matching
+- **Apply Manually** - Activated via @-mentions in chat
 
 **Version Control:**
 - Commit `.cursor/rules/` directory to git
 - Team members get the same rules when they clone the repo
 - Everyone maintains consistency
+- Team/Enterprise plans can enforce rules across the organization
+
+**Alternative Format:**
+- You can also create an `AGENTS.md` file in your project root
+- Simpler markdown format without metadata overhead
+- Good for straightforward instructions
 
 ### Success Criteria
 
