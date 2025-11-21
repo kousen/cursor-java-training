@@ -787,17 +787,36 @@ This lab demonstrates practical MCP (Model Context Protocol) integration using t
 
 ### Step 1: Comprehensive Code Review (10 min)
 
-1. **AI-Assisted Review**
+1. **Prepare the Code for Review**
 
-   **Extended Thinking Prompt:**
+   **Open relevant files in the editor:**
+   - `ecommerce-monolith/src/main/java/com/example/ecommerce/controller/UserController.java`
+   - `ecommerce-monolith/src/main/java/com/example/ecommerce/service/UserService.java`
+   - `ecommerce-monolith/src/main/java/com/example/ecommerce/repository/UserRepository.java`
+   - `ecommerce-monolith/src/main/java/com/example/ecommerce/entity/User.java`
+
+   **Why:** Having files open helps Cursor understand the full context of what to review.
+
+2. **AI-Assisted Review**
+
+   **Composer Chat (Cmd/Ctrl+I):**
    Type:
    ```
-      Extended Thinking: "Conduct a comprehensive code review of the User module.
-      Analyze code quality, architecture, security, performance, and maintainability.
-      Provide specific recommendations with examples."
+   Conduct a comprehensive code review of the User module in the ecommerce-monolith.
+   Analyze code quality, architecture, security, performance, and maintainability.
+   Provide specific recommendations with examples.
    ```
 
-2. **Review AI Analysis**
+   **Alternative with @-mentions:**
+   ```
+   @ecommerce-monolith/src/main/java/com/example/ecommerce/controller/UserController.java
+   @ecommerce-monolith/src/main/java/com/example/ecommerce/service/UserService.java
+
+   Conduct a comprehensive code review of these User module files.
+   Analyze code quality, architecture, security, performance, and maintainability.
+   ```
+
+3. **Review AI Analysis**
 
    **Expected Analysis Categories:**
    - **Architecture:** Module boundaries, dependencies
@@ -806,7 +825,7 @@ This lab demonstrates practical MCP (Model Context Protocol) integration using t
    - **Maintainability:** Code organization, documentation, testing
    - **Best Practices:** Spring Boot conventions, error handling
 
-3. **Examine Recommendations**
+4. **Examine Recommendations**
 
    **Key Areas to Review:**
    - Security vulnerabilities
