@@ -1,0 +1,11 @@
+# DTOs Directory
+
+This directory is for Data Transfer Objects (DTOs) used across service modules.
+
+**Guideline:** Use Java Records instead of POJOs for DTOs.
+
+Example:
+```java
+public record UserResponse(Long id, String username, String email) {}
+```
+

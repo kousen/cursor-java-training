@@ -4,7 +4,11 @@
       "Bash(find:*)",
       "Bash(chmod:*)",
       "Bash(git add:*)",
-      "Bash(git mv:*)"
+      "Bash(git mv:*)",
+      "Bash(git commit:*)",
+      "WebFetch(domain:cursor.com)",
+      "Bash(npx playwright install chromium)",
+      "Bash(slidev export:*)"
     ],
     "deny": [],
     "ask": []

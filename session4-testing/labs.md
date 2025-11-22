@@ -6,24 +6,20 @@
 
 ### Part A: Code-Along Exercises (In-Class)
 1. [Lab 0: AI Testing Setup](#lab-0-ai-testing-setup)
-2. [Lab 1: Unit Test Generation](#lab-1-unit-test-generation)
-3. [Lab 2: Integration Testing](#lab-2-integration-testing)
+2. [Lab 1: Unit Test Generation with Mockito & AssertJ](#lab-1-unit-test-generation)
+3. [Lab 2: Integration Testing with TestContainers](#lab-2-integration-testing)
 4. [Lab 3: End-to-End Testing](#lab-3-end-to-end-testing)
-5. [Lab 4: Performance Testing](#lab-4-performance-testing)
-6. [Lab 5: Security Testing](#lab-5-security-testing)
-7. [Lab 6: CI/CD Integration](#lab-6-cicd-integration)
-8. [Lab 7: AI Debugging](#lab-7-ai-debugging)
+5. [Lab 4: AI Debugging](#lab-4-ai-debugging)
 
 ### Part B: Exploration Exercises (Homework/Practice)
-9. [Lab 8: Legacy Code Testing](#lab-8-legacy-code-testing)
-10. [Lab 9: Advanced Performance Testing](#lab-9-advanced-performance-testing)
-11. [Lab 10: Security Testing Deep Dive](#lab-10-security-testing-deep-dive)
+6. [Lab 5: Legacy Code Testing](#lab-5-legacy-code-testing)
+7. [Lab 6: Advanced Mocking Scenarios](#lab-6-advanced-mocking)
 
 ---
 
 ## Part A: Code-Along Exercises (In-Class)
 
-These exercises are designed to be completed during the session with instructor guidance. They can be repeated independently for practice.
+These exercises are designed to be completed during the session with instructor guidance.
 
 ---
 
@@ -33,27 +29,15 @@ These exercises are designed to be completed during the session with instructor 
 **Time:** 10 minutes
 
 ### Prerequisites
-
 - Cursor installed and configured
-- Understanding of Sessions 1-3 concepts
-- E-commerce application (from Session 3)
+- E-commerce application (Session 4 version)
 
 ### **Steps**
 
 1. **Open the E-commerce Application**
-
-   Navigate to the modular e-commerce application:
-   ```
-   ecommerce-modular/
-   ├── user-module/
-   ├── product-module/
-   ├── order-module/
-   ├── payment-module/
-   └── shared-lib/
-   ```
+   Navigate to `session4-testing/ecommerce-modular`.
 
 2. **Test AI Testing Philosophy**
-
    **Extended Thinking Analysis:**
    Type:
    ```
@@ -62,14 +46,7 @@ These exercises are designed to be completed during the session with instructor 
       and prioritize them based on risk and business value."
    ```
 
-   **Expected Response:**
-   - Testing strategy overview
-   - Test type prioritization
-   - Risk assessment
-   - Coverage recommendations
-
 3. **Compare Testing Approaches**
-
    **Traditional Approach:**
    Type:
    ```
@@ -80,41 +57,31 @@ These exercises are designed to be completed during the session with instructor 
    Type:
    ```
       Extended Thinking: "Generate comprehensive unit tests for UserService 
-      including edge cases, error conditions, and boundary value testing."
+      including edge cases, error conditions, and boundary value testing.
+      Use JUnit 5, Mockito, and AssertJ."
    ```
-
-   **Notice the difference:**
-   - Traditional: Specific, limited scope
-   - AI-Assisted: Comprehensive, strategic approach
-
-### Success Criteria
-
-- ✅ Extended Thinking provides comprehensive testing strategy
-- ✅ Understanding of AI testing philosophy
-- ✅ Recognition of when to use different AI modes for testing
 
 ---
 
-## Lab 1: Unit Test Generation
+## Lab 1: Unit Test Generation with Mockito & AssertJ
 
 **Goal:** Generate comprehensive unit tests using AI assistance  
-**Time:** 25 minutes  
+**Time:** 35 minutes  
 **Mode:** Code-along with instructor
 
-### Step 1: Service Layer Testing (15 min)
+### Step 1: Service Layer Testing (20 min)
 
 1. **Generate Service Tests**
-
    **Agent Mode:**
    Type:
    ```
       Generate comprehensive unit tests for UserService using JUnit 5, Mockito, 
-      and AssertJ. Test all public methods with comprehensive scenarios including 
-      happy path, edge cases, and error conditions.
+      and AssertJ. Test all public methods.
+      Use @ExtendWith(MockitoExtension.class).
+      Use fluent assertions with AssertJ (e.g., assertThat(...).isNotNull()...).
    ```
 
 2. **Review Generated Tests**
-
    **Expected Test Structure:**
    ```java
    @ExtendWith(MockitoExtension.class)
@@ -139,302 +106,96 @@ These exercises are designed to be completed during the session with instructor 
            User result = userService.createUser(request);
            
            // Then
-           assertThat(result).isNotNull();
-           assertThat(result.getFirstName()).isEqualTo("John");
+           assertThat(result).isNotNull()
+               .satisfies(u -> {
+                   assertThat(u.getFirstName()).isEqualTo("John");
+                   assertThat(u.getEmail()).isEqualTo("john@example.com");
+               });
+           
            verify(userRepository).save(any(User.class));
-       }
-       
-       @Test
-       @DisplayName("Should throw exception when email already exists")
-       void shouldThrowExceptionWhenEmailExists() {
-           // Test implementation
        }
    }
    ```
 
-3. **Examine Test Features**
-
-   **Key Elements to Review:**
-   - Test structure and organization
-   - Mocking strategies
-   - Assertion patterns
-   - Edge case coverage
-   - Error scenario testing
-
-### Step 2: Repository Testing (10 min)
+### Step 2: Repository Testing (15 min)
 
 1. **Generate Repository Tests**
-
    **Plan Mode:**
    Type:
    ```
-      Create unit tests for UserRepository using @DataJpaTest. Test all CRUD 
-      operations, custom query methods, and error conditions.
+      Create unit tests for UserRepository using @DataJpaTest. 
+      Test all CRUD operations and custom query methods.
+      Use AssertJ for assertions.
    ```
 
-2. **Review Generated Tests**
-
-   **Expected Test Structure:**
-   ```java
-   @DataJpaTest
-   class UserRepositoryTest {
-       
-       @Autowired
-       private TestEntityManager entityManager;
-       
-       @Autowired
-       private UserRepository userRepository;
-       
-       @Test
-       @DisplayName("Should find user by email")
-       void shouldFindUserByEmail() {
-           // Given
-           User user = new User("John", "Doe", "john@example.com");
-           entityManager.persistAndFlush(user);
-           
-           // When
-           Optional<User> result = userRepository.findByEmail("john@example.com");
-           
-           // Then
-           assertThat(result).isPresent();
-           assertThat(result.get().getEmail()).isEqualTo("john@example.com");
-       }
-   }
-   ```
-
-3. **Run Tests**
-
-   **Execute Tests:**
+2. **Run Tests**
    ```bash
    ./mvnw test
    ```
 
-   **Verify Results:**
-   - All tests pass
-   - Coverage report generated
-   - Test execution time reasonable
-
-### Success Criteria
-
-- ✅ Service layer tests generated successfully
-- ✅ Repository tests generated successfully
-- ✅ Tests use modern JUnit 5 patterns
-- ✅ Comprehensive test coverage achieved
-
 ---
 
-## Lab 2: Integration Testing
+## Lab 2: Integration Testing with TestContainers
 
 **Goal:** Set up integration testing with TestContainers and service mocking  
-**Time:** 25 minutes  
+**Time:** 35 minutes  
 **Mode:** Code-along with instructor
 
-### Step 1: TestContainers Setup (15 min)
+### Step 1: TestContainers Setup (20 min)
 
 1. **Generate Integration Tests**
-
    **Extended Thinking:**
    Type:
    ```
-      Set up TestContainers for integration testing with PostgreSQL. Create tests 
-      that verify database operations, transactions, and data consistency for 
-      the User module.
+      Set up TestContainers for integration testing with PostgreSQL. 
+      Create tests that verify database operations, transactions, and data consistency 
+      for the User module. Ensure @ServiceConnection is used if available.
    ```
 
 2. **Review Generated Setup**
+   - Verify `PostgreSQLContainer` usage.
+   - Check for `@Testcontainers` annotation.
 
-   **Expected Test Structure:**
-   ```java
-   @SpringBootTest
-   @Testcontainers
-   class UserIntegrationTest {
-       
-       @Container
-       static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:15")
-               .withDatabaseName("testdb")
-               .withUsername("test")
-               .withPassword("test");
-       
-       @DynamicPropertySource
-       static void configureProperties(DynamicPropertyRegistry registry) {
-           registry.add("spring.datasource.url", postgres::getJdbcUrl);
-           registry.add("spring.datasource.username", postgres::getUsername);
-           registry.add("spring.datasource.password", postgres::getPassword);
-       }
-       
-       @Autowired
-       private UserService userService;
-       
-       @Test
-       @DisplayName("Should create and retrieve user from database")
-       void shouldCreateAndRetrieveUser() {
-           // Given
-           UserRequest request = new UserRequest("John", "Doe", "john@example.com");
-           
-           // When
-           User created = userService.createUser(request);
-           User retrieved = userService.findById(created.getId());
-           
-           // Then
-           assertThat(retrieved).isNotNull();
-           assertThat(retrieved.getEmail()).isEqualTo("john@example.com");
-       }
-   }
-   ```
-
-3. **Test Integration**
-
-   **Run Integration Tests:**
-   ```bash
-   ./mvnw verify
-   ```
-
-   **Verify Results:**
-   - TestContainers starts PostgreSQL
-   - Tests execute against real database
-   - Transaction handling works correctly
-
-### Step 2: External Service Mocking (10 min)
+### Step 2: External Service Mocking (15 min)
 
 1. **Setup WireMock**
-
    **Agent Mode:**
    Type:
    ```
       Set up WireMock for mocking external services. Create integration tests 
-      for payment processing and email notifications in the Order module.
+      for payment processing in the Order module.
    ```
 
 2. **Review Generated Tests**
-
-   **Expected Test Structure:**
-   ```java
-   @SpringBootTest
-   @AutoConfigureWireMock(port = 8089)
-   class OrderIntegrationTest {
-       
-       @Autowired
-       private OrderService orderService;
-       
-       @Test
-       @DisplayName("Should process order with payment and email")
-       void shouldProcessOrderWithPaymentAndEmail() {
-           // Given
-           stubFor(post(urlEqualTo("/api/payments"))
-                   .willReturn(aResponse()
-                           .withStatus(200)
-                           .withHeader("Content-Type", "application/json")
-                           .withBody("{\"status\":\"success\",\"transactionId\":\"12345\"}")));
-           
-           stubFor(post(urlEqualTo("/api/emails"))
-                   .willReturn(aResponse()
-                           .withStatus(200)
-                           .withHeader("Content-Type", "application/json")
-                           .withBody("{\"status\":\"sent\"}")));
-           
-           // When
-           Order order = orderService.processOrder(orderRequest);
-           
-           // Then
-           assertThat(order.getStatus()).isEqualTo(OrderStatus.CONFIRMED);
-           verify(postRequestedFor(urlEqualTo("/api/payments")));
-           verify(postRequestedFor(urlEqualTo("/api/emails")));
-       }
-   }
-   ```
-
-3. **Test Service Mocking**
-
-   **Run Tests:**
-   ```bash
-   ./mvnw test -Dtest=OrderIntegrationTest
-   ```
-
-   **Verify Results:**
-   - WireMock starts successfully
-   - External service calls are mocked
-   - Tests execute without external dependencies
-
-### Success Criteria
-
-- ✅ TestContainers integration working
-- ✅ Database integration tests passing
-- ✅ WireMock setup successful
-- ✅ External service mocking working
+   - Verify `WireMock` stubs.
+   - Ensure tests run without external network calls.
 
 ---
 
 ## Lab 3: End-to-End Testing
 
 **Goal:** Create comprehensive end-to-end tests for complete workflows  
-**Time:** 20 minutes  
+**Time:** 25 minutes  
 **Mode:** Code-along with instructor
 
-### Step 1: API Testing (10 min)
+### Step 1: API Testing (15 min)
 
 1. **Generate API Tests**
-
    **Extended Thinking:**
    Type:
    ```
-      Create comprehensive API tests for the e-commerce application. Include 
-      authentication, authorization, data validation, and error handling scenarios.
+      Create comprehensive API tests for the e-commerce application using MockMvc. 
+      Include authentication, authorization, data validation, and error handling scenarios.
+      Use AssertJ to verify the JSON responses.
    ```
 
 2. **Review Generated Tests**
-
-   **Expected Test Structure:**
-   ```java
-   @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-   @TestPropertySource(properties = "spring.datasource.url=jdbc:h2:mem:testdb")
-   class EcommerceApiIntegrationTest {
-       
-       @Autowired
-       private TestRestTemplate restTemplate;
-       
-       @Test
-       @DisplayName("Should complete full order workflow")
-       void shouldCompleteFullOrderWorkflow() {
-           // Given
-           UserRequest userRequest = new UserRequest("John", "Doe", "john@example.com");
-           
-           // When - Register user
-           ResponseEntity<UserResponse> userResponse = restTemplate.postForEntity(
-               "/api/users", userRequest, UserResponse.class);
-           
-           // When - Browse products
-           ResponseEntity<ProductResponse[]> productsResponse = restTemplate.getForEntity(
-               "/api/products", ProductResponse[].class);
-           
-           // When - Create order
-           OrderRequest orderRequest = new OrderRequest(
-               userResponse.getBody().getId(),
-               Arrays.asList(productsResponse.getBody()[0].getId())
-           );
-           
-           ResponseEntity<OrderResponse> orderResponse = restTemplate.postForEntity(
-               "/api/orders", orderRequest, OrderResponse.class);
-           
-           // Then
-           assertThat(userResponse.getStatusCode()).isEqualTo(HttpStatus.CREATED);
-           assertThat(productsResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
-           assertThat(orderResponse.getStatusCode()).isEqualTo(HttpStatus.CREATED);
-           assertThat(orderResponse.getBody().getStatus()).isEqualTo(OrderStatus.CONFIRMED);
-       }
-   }
-   ```
-
-3. **Test API Workflow**
-
-   **Run Tests:**
-   ```bash
-   ./mvnw test -Dtest=EcommerceApiIntegrationTest
-   ```
+   - Check `mockMvc.perform(...)` calls.
+   - Verify `jsonPath` or AssertJ JSON assertions.
 
 ### Step 2: Workflow Testing (10 min)
 
 1. **Create Workflow Tests**
-
    **Plan Mode:**
    Type:
    ```
@@ -442,344 +203,20 @@ These exercises are designed to be completed during the session with instructor 
       user login to order completion.
    ```
 
-2. **Review Generated Tests**
-
-   **Expected Test Scenarios:**
-   - User registration and authentication
-   - Product browsing and selection
-   - Cart management
-   - Checkout process
-   - Order confirmation
-   - Email notifications
-
-3. **Test Complete Workflow**
-
-   **Run Tests:**
-   ```bash
-   ./mvnw test -Dtest=OrderWorkflowTest
-   ```
-
-   **Verify Results:**
-   - Complete workflow executes successfully
-   - All integration points work correctly
-   - Error handling scenarios covered
-
-### Success Criteria
-
-- ✅ API tests generated successfully
-- ✅ Workflow tests created
-- ✅ End-to-end tests passing
-- ✅ Complete user journey validated
-
 ---
 
-## Lab 4: Performance Testing
-
-**Goal:** Set up performance testing with JMeter and AI analysis  
-**Time:** 20 minutes  
-**Mode:** Code-along with instructor
-
-### Step 1: Performance Analysis (10 min)
-
-1. **AI Performance Analysis**
-
-   **Extended Thinking:**
-   Type:
-   ```
-      Analyze the e-commerce application for performance bottlenecks. Create 
-      performance tests using JMeter and identify optimization opportunities.
-   ```
-
-2. **Review Performance Analysis**
-
-   **Expected Analysis:**
-   - Bottleneck identification
-   - Resource utilization analysis
-   - Database query optimization
-   - Caching opportunities
-   - Memory usage patterns
-
-3. **Performance Test Generation**
-
-   **Plan Mode:**
-   Type:
-   ```
-      Generate JMeter test plans for critical user journeys including user 
-      registration, product browsing, and order processing.
-   ```
-
-### Step 2: JMeter Test Implementation (10 min)
-
-1. **Review Generated JMeter Tests**
-
-   **Expected Test Plan Structure:**
-   ```xml
-   <?xml version="1.0" encoding="UTF-8"?>
-   <jmeterTestPlan version="1.2">
-     <hashTree>
-       <TestPlan testname="E-commerce Performance Test">
-         <elementProp name="TestPlan.arguments" elementType="Arguments" guiclass="ArgumentsPanel">
-           <collectionProp name="Arguments.arguments"/>
-         </elementProp>
-         <stringProp name="TestPlan.user_define_classpath"></stringProp>
-         <boolProp name="TestPlan.functional_mode">false</boolProp>
-         <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
-         <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
-       </TestPlan>
-       <hashTree>
-         <ThreadGroup testname="User Registration Load Test">
-           <stringProp name="ThreadGroup.num_threads">50</stringProp>
-           <stringProp name="ThreadGroup.ramp_time">60</stringProp>
-           <stringProp name="ThreadGroup.duration">300</stringProp>
-         </ThreadGroup>
-       </hashTree>
-     </hashTree>
-   </jmeterTestPlan>
-   ```
-
-2. **Run Performance Tests**
-
-   **Execute JMeter Tests:**
-   ```bash
-   jmeter -n -t ecommerce-performance.jmx -l results.jtl
-   ```
-
-3. **Analyze Results**
-
-   **Review Performance Metrics:**
-   - Response times
-   - Throughput
-   - Error rates
-   - Resource utilization
-
-### Success Criteria
-
-- ✅ Performance analysis completed
-- ✅ JMeter tests generated
-- ✅ Performance tests executed
-- ✅ Optimization opportunities identified
-
----
-
-## Lab 5: Security Testing
-
-**Goal:** Conduct security testing with OWASP ZAP and AI assessment  
-**Time:** 15 minutes  
-**Mode:** Code-along with instructor
-
-### Step 1: Security Assessment (10 min)
-
-1. **AI Security Analysis**
-
-   **Extended Thinking:**
-   Type:
-   ```
-      Conduct a comprehensive security assessment of the e-commerce application. 
-      Identify vulnerabilities and create security tests using OWASP ZAP.
-   ```
-
-2. **Review Security Analysis**
-
-   **Expected Assessment:**
-   - Vulnerability identification
-   - Authentication testing
-   - Authorization testing
-   - Input validation testing
-   - SQL injection testing
-   - XSS vulnerability testing
-
-3. **Security Test Generation**
-
-   **Agent Mode:**
-   Type:
-   ```
-      Generate security tests for the e-commerce application including 
-      authentication bypass, SQL injection, and XSS vulnerability testing.
-   ```
-
-### Step 2: OWASP ZAP Integration (5 min)
-
-1. **Review Generated Security Tests**
-
-   **Expected Test Structure:**
-   ```java
-   @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-   class SecurityTest {
-       
-       @Autowired
-       private TestRestTemplate restTemplate;
-       
-       @Test
-       @DisplayName("Should prevent SQL injection in user search")
-       void shouldPreventSqlInjection() {
-           // Given
-           String maliciousInput = "'; DROP TABLE users; --";
-           
-           // When
-           ResponseEntity<String> response = restTemplate.getForEntity(
-               "/api/users/search?query=" + maliciousInput, String.class);
-           
-           // Then
-           assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
-           // Verify database is not compromised
-       }
-       
-       @Test
-       @DisplayName("Should prevent XSS in user input")
-       void shouldPreventXss() {
-           // Test implementation
-       }
-   }
-   ```
-
-2. **Run Security Tests**
-
-   **Execute Security Tests:**
-   ```bash
-   ./mvnw test -Dtest=SecurityTest
-   ```
-
-3. **Analyze Security Results**
-
-   **Review Security Metrics:**
-   - Vulnerability count
-   - Risk levels
-   - Remediation recommendations
-
-### Success Criteria
-
-- ✅ Security assessment completed
-- ✅ Security tests generated
-- ✅ OWASP ZAP integration working
-- ✅ Vulnerabilities identified and tested
-
----
-
-## Lab 6: CI/CD Integration
-
-**Goal:** Integrate testing into CI/CD pipeline with quality gates  
-**Time:** 15 minutes  
-**Mode:** Code-along with instructor
-
-### Step 1: GitHub Actions Setup (10 min)
-
-1. **Generate CI/CD Pipeline**
-
-   **Extended Thinking:**
-   Type:
-   ```
-      Design a comprehensive CI/CD pipeline using GitHub Actions that includes 
-      unit tests, integration tests, performance tests, and security scans.
-   ```
-
-2. **Review Generated Pipeline**
-
-   **Expected Pipeline Structure:**
-   ```yaml
-   name: CI/CD Pipeline
-   
-   on:
-     push:
-       branches: [ main, develop ]
-     pull_request:
-       branches: [ main ]
-   
-   jobs:
-     test:
-       runs-on: ubuntu-latest
-       steps:
-       - uses: actions/checkout@v3
-       - name: Set up JDK 17
-         uses: actions/setup-java@v3
-         with:
-           java-version: '17'
-           distribution: 'temurin'
-       
-       - name: Run unit tests
-         run: ./mvnw test
-         
-       - name: Run integration tests
-         run: ./mvnw verify
-         
-       - name: Generate coverage report
-         run: ./mvnw jacoco:report
-         
-       - name: Upload coverage to Codecov
-         uses: codecov/codecov-action@v3
-   ```
-
-3. **Test Pipeline**
-
-   **Commit and Push:**
-   ```bash
-   git add .github/workflows/ci.yml
-   git commit -m "Add CI/CD pipeline"
-   git push origin main
-   ```
-
-### Step 2: Quality Gates (5 min)
-
-1. **Create Quality Gates**
-
-   **Agent Mode:**
-   Type:
-   ```
-      Create quality gates that prevent deployment if tests fail, coverage 
-      drops below threshold, or security vulnerabilities are detected.
-   ```
-
-2. **Review Quality Gate Configuration**
-
-   **Expected Quality Gates:**
-   - Test coverage minimum (80%)
-   - Performance benchmarks
-   - Security vulnerability limits
-   - Code quality metrics
-
-3. **Test Quality Gates**
-
-   **Trigger Pipeline with Issues:**
-   - Introduce failing test
-   - Verify deployment prevention
-   - Test notification system
-
-### Success Criteria
-
-- ✅ CI/CD pipeline created
-- ✅ Quality gates configured
-- ✅ Pipeline executes successfully
-- ✅ Quality gates prevent bad deployments
-
----
-
-## Lab 7: AI Debugging
+## Lab 4: AI Debugging
 
 **Goal:** Use AI for intelligent debugging and troubleshooting  
 **Time:** 15 minutes  
 **Mode:** Code-along with instructor
 
-### Step 1: Test Failure Analysis (10 min)
+### Step 1: Test Failure Analysis
 
 1. **Introduce Test Failure**
-
-   **Create Failing Test:**
-   ```java
-   @Test
-   @DisplayName("Should handle null user gracefully")
-   void shouldHandleNullUser() {
-       // Given
-       UserRequest request = null;
-       
-       // When
-       User result = userService.createUser(request);
-       
-       // Then
-       assertThat(result).isNotNull();
-   }
-   ```
+   Modify `UserService.java` to throw a `NullPointerException` when creating a user.
 
 2. **AI Debugging Analysis**
-
    **Extended Thinking:**
    Type:
    ```
@@ -788,16 +225,52 @@ These exercises are designed to be completed during the session with instructor 
    ```
 
 3. **Review Debugging Process**
-
-   **Expected Analysis:**
-   - Error analysis and interpretation
+   - Error analysis
    - Root cause identification
    - Fix recommendation
-   - Prevention strategies
 
-### Step 2: Debugging Implementation (5 min)
+---
 
-1. **Apply AI Recommendations**
+## Part B: Exploration Exercises (Homework)
+
+### Lab 5: Legacy Code Testing
+
+**Goal:** Apply agent patterns to real-world legacy system modernization
+
+1. **Analyze Legacy System**
+   **Extended Thinking:**
+   Type:
+   ```
+      Analyze this legacy Spring Boot 2.7 application. 
+      Identify technical debt and missing test coverage.
+   ```
+
+2. **Generate Tests for Legacy Code**
+   **Agent Mode:**
+   Type:
+   ```
+      Generate JUnit 5 tests for the legacy OrderService. 
+      You may need to refactor the code slightly to make it testable (e.g., add constructor injection).
+   ```
+
+### Lab 6: Advanced Mocking Scenarios
+
+**Goal:** Handle complex mocking scenarios with Mockito
+
+1. **Mock Static Methods**
+   **Agent Mode:**
+   Type:
+   ```
+      Show me how to mock a static utility method using Mockito-inline.
+      Create a test case that demonstrates this.
+   ```
+
+2. **Mock Final Classes**
+   **Agent Mode:**
+   Type:
+   ```
+      Show me how to mock a final class using Mockito.
+   ```
 
    **Fix the Test:**
    ```java
