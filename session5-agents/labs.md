@@ -8,13 +8,13 @@
 
 ### Part A: Code-Along Exercises (In-Class)
 1. [Lab 0: Spring AI Setup](#lab-0-spring-ai-setup)
-2. [Lab 1: Chat Client & Templating](#lab-1-chat-client)
-3. [Lab 2: Implementing RAG](#lab-2-rag)
-4. [Lab 3: Tools & Function Calling](#lab-3-tools)
-5. [Lab 4: MCP Exploration](#lab-4-mcp)
+2. [Lab 1: Chat Client & Templating](#lab-1-chat-client--templating)
+3. [Lab 2: Implementing RAG](#lab-2-implementing-rag)
+4. [Lab 3: Tools & Function Calling](#lab-3-tools--function-calling)
+5. [Lab 4: MCP Exploration](#lab-4-mcp-exploration)
 
 ### Part B: Exploration Exercises (Homework)
-6. [Lab 5: Legacy Modernization with Agents](#lab-5-legacy-modernization)
+6. [Lab 5: Legacy Modernization with Agents](#lab-5-legacy-modernization-with-agents)
 
 ---
 

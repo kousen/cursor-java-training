@@ -6,14 +6,14 @@
 
 ### Part A: Code-Along Exercises (In-Class)
 1. [Lab 0: AI Testing Setup](#lab-0-ai-testing-setup)
-2. [Lab 1: Unit Test Generation with Mockito & AssertJ](#lab-1-unit-test-generation)
-3. [Lab 2: Integration Testing with TestContainers](#lab-2-integration-testing)
+2. [Lab 1: Unit Test Generation with Mockito & AssertJ](#lab-1-unit-test-generation-with-mockito--assertj)
+3. [Lab 2: Integration Testing with TestContainers](#lab-2-integration-testing-with-testcontainers)
 4. [Lab 3: End-to-End Testing](#lab-3-end-to-end-testing)
 5. [Lab 4: AI Debugging](#lab-4-ai-debugging)
 
 ### Part B: Exploration Exercises (Homework/Practice)
 6. [Lab 5: Legacy Code Testing](#lab-5-legacy-code-testing)
-7. [Lab 6: Advanced Mocking Scenarios](#lab-6-advanced-mocking)
+7. [Lab 6: Advanced Mocking Scenarios](#lab-6-advanced-mocking-scenarios)
 
 ---
 

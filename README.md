@@ -89,7 +89,7 @@ This training program is designed for approximately 100 experienced Java develop
 - Custom slash commands
 - Model Context Protocol (MCP) basics
 
-**Note:** Requires Plan Mode features in Cursor. Instructions validated, full implementation pending.
+**Note:** Requires Plan Mode features in Cursor.
 
 ---
 
@@ -109,7 +109,7 @@ This training program is designed for approximately 100 experienced Java develop
 - Performance and security testing
 - CI/CD integration with quality gates
 
-**Note:** Extends Session 3 project. Instructions validated, full implementation pending.
+**Note:** Extends Session 3 project.
 
 ---
 
@@ -123,13 +123,12 @@ This training program is designed for approximately 100 experienced Java develop
 - 🧪 [Lab Exercises](session5-agents/labs.md)
 
 **Key Topics:**
-- Custom AI agent development
-- Model Context Protocol (MCP) integration
-- Multi-agent collaboration patterns
-- Enterprise tool integration
-- Production agent deployment
+- Spring AI Fundamentals
+- Retrieval Augmented Generation (RAG)
+- Tools & Function Calling
+- Legacy Modernization
 
-**Note:** Requires MCP setup. Instructions validated, full implementation pending.
+**Note:** Requires MCP setup.
 
 ---
 
@@ -281,8 +280,8 @@ cursor-java-training/
 ## 🛠️ Technology Stack
 
 ### Core Technologies
-- **Java:** 17 or 21
-- **Spring Boot:** 3.2+
+- **Java:** 21
+- **Spring Boot:** 3.5+
 - **Build Tools:** Gradle (Groovy), Maven
 - **Database:** H2 (in-memory), MySQL, PostgreSQL
 - **Testing:** JUnit 5, AssertJ, MockMvc
