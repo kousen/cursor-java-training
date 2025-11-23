@@ -763,46 +763,6 @@ class EcommerceApiIntegrationTest {
 
 ---
 
-# Part 5: Performance and Security Testing
-
-## JMeter and OWASP ZAP Integration
-
----
-
-# Performance Testing Strategies
-
-<v-clicks>
-
-## Load Testing
-- Normal load scenarios
-- Peak load testing
-- Gradual load increase
-- Sustained load testing
-
-## Stress Testing
-- Beyond normal capacity
-- Breaking point identification
-- Recovery testing
-- Resource exhaustion testing
-
----
-
-# Performance Testing Strategies (Continued)
-
-## Volume Testing
-- Large data set testing
-- Database size testing
-- File upload testing
-- Memory usage testing
-
-## Spike Testing
-- Sudden load increases
-- Traffic spike handling
-- System recovery
-- Performance degradation
-
-</v-clicks>
-
 ---
 
 # Demo: Performance Analysis
