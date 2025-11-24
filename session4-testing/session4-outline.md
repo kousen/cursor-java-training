@@ -19,9 +19,9 @@ By the end of this session, participants will be able to:
 ## Two-Project Approach
 
 ### Project 1: E-Commerce Testing Suite (Code-Along)
-**Purpose:** Build comprehensive testing strategy with AI assistance  
-**Duration:** ~140 minutes (Parts 1-6)  
-**Approach:** Instructor-led, students follow along  
+**Purpose:** Build comprehensive testing strategy with AI assistance
+**Duration:** ~155 minutes (Parts 1-6)
+**Approach:** Instructor-led, students follow along
 **Deliverable:** Complete testing suite with unit, integration, and end-to-end tests
 
 **Key Technologies:**
@@ -34,9 +34,9 @@ By the end of this session, participants will be able to:
 - WireMock for external service mocking
 
 ### Project 2: Legacy Code Testing (Exploration)
-**Purpose:** Apply AI testing strategies to real-world legacy systems  
-**Duration:** ~30 minutes intro + homework  
-**Approach:** Guided exploration, deeper practice in labs  
+**Purpose:** Apply AI testing strategies to real-world legacy systems
+**Duration:** ~20 minutes intro
+**Approach:** Guided exploration, deeper practice in labs
 **Repository:** Legacy Spring Boot 2.7 Application (provided)
 
 ---
@@ -68,9 +68,9 @@ By the end of this session, participants will be able to:
 
 ---
 
-### Part 2: Comprehensive Unit Testing with Mockito & AssertJ (45 minutes)
+### Part 2: Comprehensive Unit Testing with Mockito & AssertJ (35 minutes)
 
-#### AI-Generated Unit Tests (25 min)
+#### AI-Generated Unit Tests (20 min)
 
 **Demo: Service Layer Testing with Mockito**
 ```
@@ -90,11 +90,11 @@ Plan Mode: "Create unit tests for UserRepository using @DataJpaTest.
 Use AssertJ to verify the returned entities."
 ```
 
-#### Student Exercise: Controller Testing (20 min)
+#### Student Exercise: Controller Testing (15 min)
 
 **Your Turn:**
 ```
-Agent Mode: "Generate unit tests for UserController using @WebMvcTest. 
+Agent Mode: "Generate unit tests for UserController using @WebMvcTest.
 Use MockMvc to perform requests and AssertJ to verify the response body."
 ```
 
@@ -107,13 +107,44 @@ Use MockMvc to perform requests and AssertJ to verify the response body."
 
 ---
 
-### Part 3: Integration Testing Strategies (40 minutes)
+### Part 2B: AI-Powered Test Quality (15 minutes)
+
+#### Test Quality Review (8 min)
+
+**Demo: AI Test Quality Review**
+```
+Chat Mode: "Review these unit tests and suggest improvements.
+Focus on test coverage, assertion quality, and maintainability."
+```
+
+**Review AI Insights:**
+- Missing test cases (edge cases, error conditions)
+- Weak assertions
+- Test smells and anti-patterns
+- Improvement suggestions
+
+#### Test Data Generation (7 min)
+
+**Demo: AI-Generated Test Data**
+```
+Extended Thinking: "Generate realistic test data for User and Order entities.
+Include various scenarios: valid data, edge cases, invalid data."
+```
+
+**Student Quick Exercise:**
+Students use AI to review their own tests and generate test data for their entities.
+
+**Checkpoint:** Higher quality tests with AI assistance
+
+---
+
+### Part 3: Integration Testing Strategies (35 minutes)
 
 #### TestContainers Integration (20 min)
 
 **Demo: Database Integration Testing**
 ```
-Extended Thinking: "Set up TestContainers for integration testing with PostgreSQL. 
+Extended Thinking: "Set up TestContainers for integration testing with PostgreSQL.
 Ensure the context loads correctly and transactions are rolled back."
 ```
 
@@ -122,11 +153,11 @@ Ensure the context loads correctly and transactions are rolled back."
 - DynamicPropertySource (if needed)
 - Real database verification
 
-#### Student Exercise: External Service Mocking (20 min)
+#### Student Exercise: External Service Mocking (15 min)
 
 **Your Turn:**
 ```
-Agent Mode: "Set up WireMock for mocking the PaymentService. 
+Agent Mode: "Set up WireMock for mocking the PaymentService.
 Create an integration test that verifies the order processing flow when payment succeeds."
 ```
 
@@ -142,13 +173,47 @@ Create an integration test that verifies the order processing flow when payment 
 
 ---
 
-### Part 4: AI-Powered Debugging and Troubleshooting (25 minutes)
+### Part 4: End-to-End Testing (25 minutes)
 
-#### Intelligent Debugging (15 min)
+#### API Testing (15 min)
+
+**Demo: Complete API Testing**
+```
+Extended Thinking: "Create comprehensive API tests for the e-commerce application
+using MockMvc. Include authentication, authorization, data validation, and error
+handling scenarios."
+```
+
+**Review Generated Tests:**
+- MockMvc usage
+- JSON path assertions
+- Authentication testing
+- Error handling validation
+
+#### Student Exercise: Workflow Testing (10 min)
+
+**Your Turn:**
+```
+Plan Mode: "Create end-to-end tests for the complete order processing workflow
+from user login to order completion."
+```
+
+**Review and Test:**
+- Complete workflow validation
+- Multi-step process testing
+- State verification
+
+**Checkpoint:** End-to-end testing capabilities
+
+---
+
+### Part 5: AI-Powered Debugging and Troubleshooting (20 minutes)
+
+#### Intelligent Debugging (12 min)
 
 **Demo: AI-Guided Debugging**
 ```
-Extended Thinking: "Analyze this failing test (NullPointerException). 
+Extended Thinking: "Analyze this failing test (NullPointerException).
 Explain the root cause and provide a fix using Optional."
 ```
 
@@ -157,11 +222,11 @@ Explain the root cause and provide a fix using Optional."
 - Root cause identification
 - Fix recommendation
 
-#### Student Exercise: Test Failure Analysis (10 min)
+#### Student Exercise: Test Failure Analysis (8 min)
 
 **Your Turn:**
 ```
-Chat Mode: "This test is failing with an assertion error. 
+Chat Mode: "This test is failing with an assertion error.
 Show me how to fix the production code to make it pass."
 ```
 
@@ -169,14 +234,14 @@ Show me how to fix the production code to make it pass."
 
 ---
 
-### Part 5: Legacy Code Testing (30 minutes)
+### Part 6: Legacy Code Testing (20 minutes)
 
-#### Exploring Legacy Testing Challenges (15 min)
+#### Exploring Legacy Testing Challenges (10 min)
 
 **Demo: Legacy Code Analysis**
 ```
-Extended Thinking: "Analyze this legacy Spring Boot 2.7 application. 
-It uses field injection and older JUnit 4. 
+Extended Thinking: "Analyze this legacy Spring Boot 2.7 application.
+It uses field injection and older JUnit 4.
 Create a plan to migrate tests to JUnit 5 and add coverage for the OrderService."
 ```
 
@@ -185,8 +250,14 @@ Create a plan to migrate tests to JUnit 5 and add coverage for the OrderService.
 - Migration strategies (JUnit 4 -> 5)
 - Refactoring for testability
 
-**Student Guided Exploration (15 min):**
+#### Student Guided Exploration (10 min)
+
 Students use Extended Thinking to generate tests for a legacy component without changing the production code initially.
+
+**Explore:**
+- Testing challenges
+- Prioritization strategies
+- Risk assessment
 
 ---
 

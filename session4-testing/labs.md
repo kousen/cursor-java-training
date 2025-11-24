@@ -7,13 +7,13 @@
 ### Part A: Code-Along Exercises (In-Class)
 1. [Lab 0: AI Testing Setup](#lab-0-ai-testing-setup)
 2. [Lab 1: Unit Test Generation with Mockito & AssertJ](#lab-1-unit-test-generation-with-mockito--assertj)
-3. [Lab 2: Integration Testing with TestContainers](#lab-2-integration-testing-with-testcontainers)
-4. [Lab 3: End-to-End Testing](#lab-3-end-to-end-testing)
-5. [Lab 4: AI Debugging](#lab-4-ai-debugging)
+3. [Lab 1B: AI-Powered Test Quality](#lab-1b-ai-powered-test-quality)
+4. [Lab 2: Integration Testing with TestContainers](#lab-2-integration-testing-with-testcontainers)
+5. [Lab 3: End-to-End Testing](#lab-3-end-to-end-testing)
+6. [Lab 4: AI Debugging](#lab-4-ai-debugging)
 
-### Part B: Exploration Exercises (Homework/Practice)
-6. [Lab 5: Legacy Code Testing](#lab-5-legacy-code-testing)
-7. [Lab 6: Advanced Mocking Scenarios](#lab-6-advanced-mocking-scenarios)
+### Part B: Legacy Code Testing (In-Class Exploration)
+7. [Lab 5: Legacy Code Testing](#lab-5-legacy-code-testing)
 
 ---
 
@@ -65,9 +65,12 @@ These exercises are designed to be completed during the session with instructor 
 
 ## Lab 1: Unit Test Generation with Mockito & AssertJ
 
-**Goal:** Generate comprehensive unit tests using AI assistance  
-**Time:** 35 minutes  
+**Goal:** Generate comprehensive unit tests using AI assistance
+**Time:** 35 minutes
 **Mode:** Code-along with instructor
+
+**Important Note:** Spring Boot 3.4+ uses `@MockitoBean` instead of deprecated `@MockBean`.
+The new annotation is in package `org.springframework.test.context.bean.override.mockito`.
 
 ### Step 1: Service Layer Testing (20 min)
 
@@ -123,7 +126,7 @@ These exercises are designed to be completed during the session with instructor 
    **Plan Mode:**
    Type:
    ```
-      Create unit tests for UserRepository using @DataJpaTest. 
+      Create unit tests for UserRepository using @DataJpaTest.
       Test all CRUD operations and custom query methods.
       Use AssertJ for assertions.
    ```
@@ -135,10 +138,55 @@ These exercises are designed to be completed during the session with instructor 
 
 ---
 
+## Lab 1B: AI-Powered Test Quality
+
+**Goal:** Improve test quality with AI review and generate realistic test data
+**Time:** 15 minutes
+**Mode:** Code-along with instructor
+
+### Step 1: AI Test Quality Review (8 min)
+
+1. **Review Generated Tests**
+   **Chat Mode:**
+   Type:
+   ```
+      Review these UserService unit tests and suggest improvements.
+      Focus on test coverage, assertion quality, and maintainability.
+   ```
+
+2. **Analyze AI Feedback**
+   - Missing test cases
+   - Weak or generic assertions
+   - Test smells (unclear names, brittle tests)
+   - Improvement suggestions
+
+3. **Apply Improvements**
+   Implement 1-2 key suggestions from AI
+
+### Step 2: Test Data Generation (7 min)
+
+1. **Generate Test Data**
+   **Extended Thinking:**
+   Type:
+   ```
+      Generate realistic test data for User and Order entities.
+      Include various scenarios: valid data, edge cases, invalid data.
+   ```
+
+2. **Review Generated Data**
+   - Normal/happy path data
+   - Edge cases (boundaries, special characters)
+   - Invalid data for validation testing
+
+3. **Apply to Tests**
+   Use generated test data in your existing tests
+
+---
+
 ## Lab 2: Integration Testing with TestContainers
 
-**Goal:** Set up integration testing with TestContainers and service mocking  
-**Time:** 35 minutes  
+**Goal:** Set up integration testing with TestContainers and service mocking
+**Time:** 35 minutes
 **Mode:** Code-along with instructor
 
 ### Step 1: TestContainers Setup (20 min)
@@ -162,7 +210,7 @@ These exercises are designed to be completed during the session with instructor 
    **Agent Mode:**
    Type:
    ```
-      Set up WireMock for mocking external services. Create integration tests 
+      Set up WireMock for mocking external services. Create integration tests
       for payment processing in the Order module.
    ```
 
@@ -207,8 +255,8 @@ These exercises are designed to be completed during the session with instructor 
 
 ## Lab 4: AI Debugging
 
-**Goal:** Use AI for intelligent debugging and troubleshooting  
-**Time:** 15 minutes  
+**Goal:** Use AI for intelligent debugging and troubleshooting
+**Time:** 20 minutes
 **Mode:** Code-along with instructor
 
 ### Step 1: Test Failure Analysis
@@ -231,493 +279,68 @@ These exercises are designed to be completed during the session with instructor 
 
 ---
 
-## Part B: Exploration Exercises (Homework)
+## Part B: Legacy Code Testing (In-Class Exploration)
 
-### Lab 5: Legacy Code Testing
+## Lab 5: Legacy Code Testing
 
-**Goal:** Apply agent patterns to real-world legacy system modernization
+**Goal:** Apply AI testing strategies to legacy code modernization
+**Time:** 20 minutes (in-class) + optional practice
+**Mode:** Guided exploration with instructor
 
-1. **Analyze Legacy System**
+### Step 1: Legacy Code Analysis (10 min)
+
+**Instructor Demo:**
+
+1. **Analyze Legacy Codebase**
    **Extended Thinking:**
    Type:
    ```
-      Analyze this legacy Spring Boot 2.7 application. 
-      Identify technical debt and missing test coverage.
+      Extended Thinking: "Analyze this legacy Spring Boot 2.7 application.
+      It uses field injection and older JUnit 4. Create a plan to migrate
+      tests to JUnit 5 and add coverage for the OrderService."
    ```
 
-2. **Generate Tests for Legacy Code**
-   **Agent Mode:**
+2. **Review Analysis Together:**
+   - Legacy code patterns (field injection, JUnit 4)
+   - Migration strategies (JUnit 4 -> JUnit 5)
+   - Refactoring for testability
+   - Testing challenges and priorities
+
+### Step 2: Student Exploration (10 min)
+
+**Your Turn:**
+
+Use Extended Thinking to explore the legacy codebase:
+
+1. **Testing Challenges:**
    Type:
    ```
-      Generate JUnit 5 tests for the legacy OrderService. 
-      You may need to refactor the code slightly to make it testable (e.g., add constructor injection).
+      Extended Thinking: "What are the main testing challenges in this
+      legacy codebase?"
    ```
 
-### Lab 6: Advanced Mocking Scenarios
-
-**Goal:** Handle complex mocking scenarios with Mockito
-
-1. **Mock Static Methods**
-   **Agent Mode:**
+2. **Prioritization:**
    Type:
    ```
-      Show me how to mock a static utility method using Mockito-inline.
-      Create a test case that demonstrates this.
-   ```
-
-2. **Mock Final Classes**
-   **Agent Mode:**
-   Type:
-   ```
-      Show me how to mock a final class using Mockito.
-   ```
-
-   **Fix the Test:**
-   ```java
-   @Test
-   @DisplayName("Should throw exception for null user request")
-   void shouldThrowExceptionForNullUserRequest() {
-       // Given
-       UserRequest request = null;
-       
-       // When & Then
-       assertThatThrownBy(() -> userService.createUser(request))
-           .isInstanceOf(IllegalArgumentException.class)
-           .hasMessage("User request cannot be null");
-   }
-   ```
-
-2. **Validate Fix**
-
-   **Run Tests:**
-   ```bash
-   ./mvnw test
-   ```
-
-3. **Learn from Debugging**
-
-   **Document Lessons:**
-   - Error patterns
-   - Debugging strategies
-   - Prevention measures
-
-### Success Criteria
-
-- ✅ AI debugging analysis completed
-- ✅ Root cause identified
-- ✅ Fix implemented successfully
-- ✅ Debugging strategies learned
-
----
-
-## 🎉 Checkpoint: AI Testing Complete!
-
-**Congratulations!** You now have:
-
-- ✅ Comprehensive test suite generation with AI
-- ✅ Integration testing with TestContainers
-- ✅ End-to-end testing strategies
-- ✅ Performance testing with JMeter
-- ✅ Security testing with OWASP ZAP
-- ✅ CI/CD integration with quality gates
-- ✅ AI-powered debugging skills
-
-**Time for a break, then we'll explore legacy code testing!**
-
----
-
-## Part B: Exploration Exercises (Homework/Practice)
-
-These exercises help you practice applying AI testing strategies to real-world scenarios. Complete them at your own pace.
-
----
-
-## Lab 8: Legacy Code Testing
-
-**Goal:** Apply AI testing strategies to legacy code modernization  
-**Time:** 45-60 minutes  
-**Mode:** Self-paced with guided questions
-
-### Setup
-
-1. **Open Legacy Codebase**
-
-   Navigate to the provided legacy Java application:
-   ```
-   legacy-app/
-   ├── src/main/java/com/legacy/
-   │   ├── controllers/
-   │   ├── services/
-   │   ├── repositories/
-   │   ├── models/
-   │   └── utils/
-   ├── src/main/resources/
-   └── pom.xml
-   ```
-
-2. **Initial Assessment**
-
-   **Extended Thinking Analysis:**
-   Type:
-   ```
-      Extended Thinking: "Analyze this legacy Java application and create a 
-      testing strategy. Identify testing challenges and recommend approaches 
-      for improving test coverage."
-   ```
-
-### Exercise 1: Testing Challenge Analysis (15 min)
-
-**Use Extended Thinking to explore:**
-
-1. **Current Test Coverage:**
-   Type:
-   ```
-      Extended Thinking: "Analyze the current test coverage in this legacy 
-      application. What areas are tested and what gaps exist?"
-   ```
-
-2. **Testing Challenges:**
-   Type:
-   ```
-      Extended Thinking: "Identify the main testing challenges in this 
-      legacy codebase. What makes it difficult to test?"
+      Extended Thinking: "How would you prioritize testing improvements?"
    ```
 
 3. **Risk Assessment:**
    Type:
    ```
-      Extended Thinking: "Assess the risks of adding tests to this legacy 
-      code. What could go wrong and how can we mitigate those risks?"
+      Extended Thinking: "What risks should be considered when adding
+      tests to legacy code?"
    ```
 
-**Document your findings** in `legacy-testing-analysis.md`
+**Share Findings:** Discuss what you discovered with the group
 
-### Exercise 2: Incremental Testing Strategy (15 min)
+### Optional Extended Practice
 
-**Create Testing Strategy:**
-
-1. **Characterization Testing:**
-   Type:
-   ```
-      Extended Thinking: "Design a characterization testing approach for 
-      this legacy application. How can we understand current behavior before 
-      adding comprehensive tests?"
-   ```
-
-2. **Incremental Test Addition:**
-   Type:
-   ```
-      Extended Thinking: "Create a plan for incrementally adding tests to 
-      this legacy codebase. What should be tested first and why?"
-   ```
-
-3. **Refactoring for Testability:**
-   Type:
-   ```
-      Extended Thinking: "Identify refactoring opportunities that would 
-      make this legacy code more testable. What changes would have the 
-      biggest impact?"
-   ```
-
-### Exercise 3: Legacy Test Implementation (15 min)
-
-**Implement Testing Strategy:**
-
-1. **Characterization Tests:**
-   Type:
-   ```
-      Agent Mode: "Create characterization tests for the UserService class 
-      in this legacy application. Focus on understanding current behavior."
-   ```
-
-2. **Incremental Tests:**
-   Type:
-   ```
-      Plan Mode: "Add unit tests to the OrderService class following the 
-      incremental testing strategy."
-   ```
-
-3. **Refactoring Tests:**
-   Type:
-   ```
-      Extended Thinking: "Refactor the PaymentService class to improve 
-      testability and add comprehensive tests."
-   ```
-
-### Exercise 4: Legacy Testing Validation (15 min)
-
-**Validate Testing Approach:**
-
-1. **Test Coverage Analysis:**
-   Type:
-   ```
-      Extended Thinking: "Analyze the test coverage improvement after 
-      implementing the legacy testing strategy. What progress was made?"
-   ```
-
-2. **Risk Mitigation:**
-   Type:
-   ```
-      Extended Thinking: "Evaluate the risk mitigation strategies used 
-      in the legacy testing approach. Were the risks successfully managed?"
-   ```
-
-3. **Lessons Learned:**
-   Type:
-   ```
-      Extended Thinking: "Document lessons learned from applying AI testing 
-      strategies to legacy code. What worked well and what could be improved?"
-   ```
-
-### Success Criteria
-
-- ✅ Legacy code testing challenges identified
-- ✅ Incremental testing strategy created
-- ✅ Characterization tests implemented
-- ✅ Test coverage improved
-- ✅ Risk mitigation strategies applied
-- ✅ Lessons learned documented
-
----
-
-## Lab 9: Advanced Performance Testing
-
-**Goal:** Explore advanced performance testing scenarios and optimization  
-**Time:** 30-45 minutes  
-**Mode:** Self-paced exploration
-
-### Exercise 1: Stress Testing (15 min)
-
-**Advanced Stress Testing:**
-
-1. **Stress Test Design:**
-   Type:
-   ```
-      Extended Thinking: "Design comprehensive stress tests for the 
-      e-commerce application. Include scenarios that push the system 
-      beyond normal capacity."
-   ```
-
-2. **Breaking Point Analysis:**
-   Type:
-   ```
-      Extended Thinking: "Create tests to identify the breaking point 
-      of the e-commerce application. What happens when load exceeds capacity?"
-   ```
-
-3. **Recovery Testing:**
-   Type:
-   ```
-      Extended Thinking: "Design recovery tests to verify system behavior 
-      after stress conditions. How does the system recover from overload?"
-   ```
-
-### Exercise 2: Performance Optimization (15 min)
-
-**AI-Guided Optimization:**
-
-1. **Bottleneck Identification:**
-   Type:
-   ```
-      Extended Thinking: "Analyze performance test results to identify 
-      specific bottlenecks in the e-commerce application."
-   ```
-
-2. **Optimization Recommendations:**
-   Type:
-   ```
-      Extended Thinking: "Provide specific optimization recommendations 
-      for the identified performance bottlenecks."
-   ```
-
-3. **Optimization Implementation:**
-   Type:
-   ```
-      Plan Mode: "Implement the recommended performance optimizations 
-      and create tests to verify improvements."
-   ```
-
-### Exercise 3: Performance Monitoring (15 min)
-
-**Continuous Performance Monitoring:**
-
-1. **Monitoring Strategy:**
-   Type:
-   ```
-      Extended Thinking: "Design a comprehensive performance monitoring 
-      strategy for the e-commerce application."
-   ```
-
-2. **Alert Configuration:**
-   Type:
-   ```
-      Extended Thinking: "Create performance alert configurations for 
-      proactive monitoring and issue detection."
-   ```
-
-3. **Performance Regression Testing:**
-   Type:
-   ```
-      Extended Thinking: "Design performance regression tests to prevent 
-      performance degradation over time."
-   ```
-
-### Success Criteria
-
-- ✅ Advanced stress testing implemented
-- ✅ Performance bottlenecks identified
-- ✅ Optimization recommendations applied
-- ✅ Performance monitoring strategy created
-- ✅ Regression testing implemented
-
----
-
-## Lab 10: Security Testing Deep Dive
-
-**Goal:** Explore advanced security testing and vulnerability assessment  
-**Time:** 30-45 minutes  
-**Mode:** Self-paced exploration
-
-### Exercise 1: Penetration Testing (15 min)
-
-**Advanced Penetration Testing:**
-
-1. **Penetration Test Design:**
-   Type:
-   ```
-      Extended Thinking: "Design comprehensive penetration tests for the 
-      e-commerce application. Include various attack vectors and scenarios."
-   ```
-
-2. **Attack Vector Analysis:**
-   Type:
-   ```
-      Extended Thinking: "Analyze potential attack vectors for the 
-      e-commerce application. What are the most likely security threats?"
-   ```
-
-3. **Vulnerability Exploitation:**
-   Type:
-   ```
-      Extended Thinking: "Create tests that attempt to exploit identified 
-      vulnerabilities in the e-commerce application."
-   ```
-
-### Exercise 2: Security Compliance (15 min)
-
-**Compliance Testing:**
-
-1. **Compliance Requirements:**
-   Type:
-   ```
-      Extended Thinking: "Identify security compliance requirements for 
-      the e-commerce application. What standards should be followed?"
-   ```
-
-2. **Compliance Testing:**
-   Type:
-   ```
-      Extended Thinking: "Create tests to verify compliance with security 
-      standards and regulations."
-   ```
-
-3. **Compliance Reporting:**
-   Type:
-   ```
-      Extended Thinking: "Design compliance reporting mechanisms for 
-      security testing results."
-   ```
-
-### Exercise 3: Security Monitoring (15 min)
-
-**Continuous Security Monitoring:**
-
-1. **Security Monitoring Strategy:**
-   Type:
-   ```
-      Extended Thinking: "Design a comprehensive security monitoring 
-      strategy for the e-commerce application."
-   ```
-
-2. **Threat Detection:**
-   Type:
-   ```
-      Extended Thinking: "Create threat detection mechanisms and alert 
-      configurations for security monitoring."
-   ```
-
-3. **Incident Response:**
-   Type:
-   ```
-      Extended Thinking: "Design incident response procedures for security 
-      issues detected through monitoring."
-   ```
-
-### Success Criteria
-
-- ✅ Advanced penetration testing implemented
-- ✅ Security compliance testing created
-- ✅ Security monitoring strategy designed
-- ✅ Threat detection mechanisms implemented
-- ✅ Incident response procedures documented
-
----
-
-## Bonus Challenges
-
-### Challenge: Multi-Environment Testing
-
-**Advanced: Test across multiple environments**
-
-1. **Environment Strategy:**
-   Type:
-   ```
-      Extended Thinking: "Design a testing strategy that works across 
-      development, staging, and production environments."
-   ```
-
-2. **Environment-Specific Tests:**
-   Type:
-   ```
-      Extended Thinking: "Create environment-specific tests that adapt 
-      to different deployment configurations."
-   ```
-
-### Challenge: AI Test Maintenance
-
-**Advanced: Automated test maintenance**
-
-1. **Test Maintenance Strategy:**
-   Type:
-   ```
-      Extended Thinking: "Design an AI-powered test maintenance strategy 
-      that keeps tests up-to-date with code changes."
-   ```
-
-2. **Automated Test Refactoring:**
-   Type:
-   ```
-      Extended Thinking: "Create automated test refactoring mechanisms 
-      that improve test quality over time."
-   ```
-
-### Challenge: Testing Metrics and Analytics
-
-**Advanced: Testing analytics and insights**
-
-1. **Testing Metrics:**
-   Type:
-   ```
-      Extended Thinking: "Design comprehensive testing metrics and 
-      analytics for the e-commerce application."
-   ```
-
-2. **Testing Insights:**
-   Type:
-   ```
-      Extended Thinking: "Create AI-powered testing insights that provide 
-      actionable recommendations for test improvement."
-   ```
+For those interested in deeper practice, the full Lab 5 exercises are available in the labs folder:
+- Characterization testing
+- Incremental test addition
+- Refactoring for testability
+- Test coverage analysis
 
 ---
 
@@ -745,32 +368,26 @@ After completing these labs, reflect on:
    - How might AI testing evolve in the future?
    - What skills will be most important for testers?
 
-**Document in:** `ai-testing-reflection.md`
-
 ---
 
 ## Additional Resources
 
 ### Testing Resources
 - [JUnit 5 User Guide](https://junit.org/junit5/docs/current/user-guide/)
+- [Mockito Documentation](https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html)
+- [AssertJ Documentation](https://assertj.github.io/doc/)
 - [TestContainers Documentation](https://www.testcontainers.org/)
 - [Spring Boot Testing](https://spring.io/guides/gs/testing-web/)
-- [JMeter User Manual](https://jmeter.apache.org/usermanual/)
+- [WireMock Documentation](https://wiremock.org/docs/)
 
 ### AI Testing
 - [Cursor Documentation - Testing](https://docs.cursor.com)
 - [AI-Assisted Testing Best Practices](https://cursor.com/blog/ai-testing)
 - [Quality Assurance with AI](https://cursor.com/blog/quality-assurance)
 
-### Security Testing
-- [OWASP ZAP Documentation](https://www.zaproxy.org/docs/)
-- [OWASP Testing Guide](https://owasp.org/www-project-web-security-testing-guide/)
-- [Security Testing Best Practices](https://owasp.org/www-project-top-ten/)
-
 ### Next Steps
 - Session 5: Exploring Agents and MCP
 - Apply AI testing to your own projects
-- Experiment with advanced testing scenarios
 - Explore testing tool integrations
 
 ---
