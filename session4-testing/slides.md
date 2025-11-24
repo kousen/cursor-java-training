@@ -5,9 +5,9 @@ highlighter: shiki
 lineNumbers: true
 info: |
   ## Reviewing and Testing Code Using Cursor and Claude
-  
+
   By Kenneth Kousen
-  
+
   Session 4 of Cursor for Java Developers training series
 drawings:
   persist: false
@@ -78,7 +78,6 @@ Kousen IT, Inc.
 - **Integration Testing Strategies** - TestContainers and service mocking
 - **End-to-End Testing** - Complete workflow validation
 - **AI-Powered Debugging** - Intelligent troubleshooting
-- **Legacy Code Testing** - Applying AI to existing codebases
 
 </v-clicks>
 
@@ -110,6 +109,8 @@ Apply AI testing strategies to real-world legacy systems
 
 </v-clicks>
 
+---
+
 # Sessions 1-3 Recap
 
 <v-clicks>
@@ -118,7 +119,6 @@ Apply AI testing strategies to real-world legacy systems
 - **Agent Mode** (Cmd/Ctrl+I) - Generate code, refactor
 - **Composer Mode** (Cmd/Ctrl+Shift+I) - Multi-file generation
 - **Extended Thinking** - Complex analysis and planning
-- **Plan Mode** - Multi-phase project execution
 
 </v-clicks>
 
@@ -131,17 +131,26 @@ Apply AI testing strategies to real-world legacy systems
 - **Test Generation** - AI creates comprehensive test suites
 - **Quality Analysis** - AI reviews code for issues
 - **Integration Testing** - TestContainers and mocking
-- **End-to-End Testing** - Validate complete workflows
 - **Debugging Assistance** - AI troubleshoots failures
-- **Legacy Code Testing** - Modernize and test old code
 
 </v-clicks>
 
 ---
+layout: image-right
+image: https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=800
+---
 
 # Part 1: AI-Assisted Test Generation
 
-## The Testing Paradigm Shift
+The Testing Paradigm Shift
+
+<v-clicks>
+
+- From manual to AI-assisted
+- From reactive to proactive
+- From limited to comprehensive
+
+</v-clicks>
 
 ---
 
@@ -153,7 +162,6 @@ Apply AI testing strategies to real-world legacy systems
 - Limited test coverage
 - Reactive quality assurance
 - Time-consuming maintenance
-- Human bias in test design
 
 </v-clicks>
 
@@ -167,7 +175,6 @@ Apply AI testing strategies to real-world legacy systems
 - Comprehensive coverage analysis
 - Proactive quality assurance
 - Intelligent test maintenance
-- Objective test scenario design
 
 </v-clicks>
 
@@ -187,7 +194,7 @@ AI generates realistic test scenarios and user journeys
 
 ---
 
-# AI Testing Philosophy (2)
+# AI Testing Philosophy (continued)
 
 <v-clicks>
 
@@ -249,46 +256,62 @@ Include happy path, edge cases, and error conditions.
 Use JUnit 5, Mockito, and AssertJ."
 ```
 
+---
+
+# AI Response Process
+
 <v-clicks>
 
-**AI Response Process:**
 1. **Analysis** - Understanding the service
 2. **Strategy** - Identifying test scenarios
 3. **Generation** - Creating tests
 4. **Validation** - Ensuring quality
 
-**Generated Features:** Happy path, edge cases, error handling, mocking, assertions
-
 </v-clicks>
 
+---
+layout: image-left
+image: https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800
 ---
 
 # Part 2: Comprehensive Unit Testing
 
-## JUnit 5, Mockito, and AssertJ
+JUnit 5, Mockito, and AssertJ
+
+<v-clicks>
+
+- Modern testing stack
+- AI-assisted generation
+- Quality-focused approach
+
+</v-clicks>
 
 ---
 
 # Spring Boot 3.4+ Testing Changes
 
-<v-clicks>
-
 **Important Update:**
 
 `@MockBean` and `@SpyBean` are deprecated as of Spring Boot 3.4
+
+<v-clicks>
 
 **New annotations:**
 - `@MockitoBean` - replaces `@MockBean`
 - `@MockitoSpyBean` - replaces `@SpyBean`
 
-**New package:**
-```
-org.springframework.test.context.bean.override.mockito
+</v-clicks>
+
+---
+
+# New Package Location
+
+```java
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 ```
 
 **Migration:** AI can help update your tests automatically!
-
-</v-clicks>
 
 ---
 
@@ -301,6 +324,14 @@ Mock dependencies, test business logic, verify error handling
 
 ## Repository Layer
 @DataJpaTest for CRUD operations and custom queries
+
+</v-clicks>
+
+---
+
+# Unit Testing Strategies (continued)
+
+<v-clicks>
 
 ## Controller Layer
 @WebMvcTest for endpoints, validation, and responses
@@ -339,8 +370,6 @@ class UserServiceTest {
     }
 }
 ```
-
-**Benefits:** Mocking, organization, assertions, verifications
 
 ---
 
@@ -383,22 +412,23 @@ class UserRepositoryTest {
 
 **Your Turn:**
 
+Generate tests using this prompt:
+
+```
+"Generate unit tests for UserController using @WebMvcTest.
+Use @MockitoBean for service mocking (Spring Boot 3.4+).
+Test endpoints, validation, and error handling."
+```
+
+---
+
+# Controller Testing Goals
+
 <v-clicks>
 
-1. **Generate Tests:**
-   ```
-   "Generate unit tests for UserController using @WebMvcTest.
-   Use @MockitoBean for service mocking (Spring Boot 3.4+).
-   Test endpoints, validation, and error handling."
-   ```
-
-2. **Review:** Endpoint coverage, MockMvc usage, JSON assertions
-
-3. **Refine:** Add edge cases and improve test data
-
-**Goal:** Master AI-assisted test generation
-
-**Note:** Spring Boot 3.4+ uses `@MockitoBean` from `org.springframework.test.context.bean.override.mockito`
+- **Review:** Endpoint coverage, MockMvc usage, JSON assertions
+- **Refine:** Add edge cases and improve test data
+- **Note:** Spring Boot 3.4+ uses `@MockitoBean`
 
 </v-clicks>
 
@@ -406,7 +436,7 @@ class UserRepositoryTest {
 
 # Part 2B: AI-Powered Test Quality
 
-## Review and Improvement
+Review and Improvement
 
 ---
 
@@ -426,7 +456,7 @@ Focus on test coverage, assertion quality, and maintainability."
 
 - **Missing test cases** - Edge cases, error conditions
 - **Weak assertions** - Too generic, not specific enough
-- **Test smells** - Unclear names, too much setup, brittle tests
+- **Test smells** - Unclear names, too much setup
 - **Improvement suggestions** - Better structure, clearer intent
 
 </v-clicks>
@@ -443,14 +473,20 @@ Include various scenarios: valid data, edge cases, invalid data."
 
 ---
 
-# AI-Generated Test Data
+# AI-Generated Test Data: Valid Users
 
 ```java
 // Valid users
 User normalUser = new User("John", "Doe", "john@example.com");
 User longNameUser = new User("Christopher", "Bartholomew",
     "christopher.bartholomew@example.com");
+```
 
+---
+
+# AI-Generated Test Data: Edge Cases
+
+```java
 // Edge cases
 User shortNameUser = new User("A", "B", "a@b.co");
 User unicodeUser = new User("José", "García", "jose@example.es");
@@ -464,63 +500,58 @@ User invalidEmailUser = new User("John", "Doe", "not-an-email");
 
 # Student Exercise: Improve Your Tests
 
-**Your Turn:**
-
-<v-clicks>
-
-1. **Review Generated Tests:**
-   ```
-   "Review my UserService tests. What's missing?
-   What could be improved?"
-   ```
-
-2. **Generate Test Data:**
-   ```
-   "Generate test data for various Order scenarios:
-   new orders, completed orders, cancelled orders."
-   ```
-
-3. **Apply Improvements:** Implement AI suggestions
-
-**Goal:** Write higher quality tests with AI assistance
-
-</v-clicks>
+**Review Generated Tests:**
+```
+"Review my UserService tests. What's missing?
+What could be improved?"
+```
 
 ---
 
-# Part 3: Integration Testing Strategies
+# Student Exercise: Generate Test Data
 
-## TestContainers and Service Mocking
+**Generate Test Data:**
+```
+"Generate test data for various Order scenarios:
+new orders, completed orders, cancelled orders."
+```
+
+**Goal:** Write higher quality tests with AI assistance
+
+---
+layout: image-right
+image: https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800
+---
+
+# Part 3: Integration Testing
+
+TestContainers and Service Mocking
+
+<v-clicks>
+
+- Real database testing
+- Component interaction
+- External service mocking
+
+</v-clicks>
 
 ---
 
 # Database Integration Testing
 
-<v-clicks>
-
 TestContainers for real databases, SQL queries, transactions
-
-</v-clicks>
 
 ---
 
 # Service Integration Testing
 
-<v-clicks>
-
 Test component interactions, data flow, error propagation
-
-</v-clicks>
 
 ---
 
 # External Service Testing
 
-<v-clicks>
-
 WireMock for HTTP services, payment gateways, third-party APIs
-
-</v-clicks>
 
 ---
 
@@ -559,20 +590,29 @@ class UserIntegrationTest {
 
 **Complete Module Testing:**
 ```
-Plan Mode: "Create integration tests for the complete User module 
+Plan Mode: "Create integration tests for the complete User module
 including service, repository, and database layers."
 ```
 
+---
+
+# Generated Integration Tests
+
 <v-clicks>
 
-**Generated Integration Tests:**
 - Service layer integration
 - Repository integration
 - Database transaction testing
 - Error handling verification
-- Data consistency validation
 
-**Key Benefits:**
+</v-clicks>
+
+---
+
+# Integration Test Benefits
+
+<v-clicks>
+
 - Real database testing
 - Actual component interaction
 - Transaction boundary testing
@@ -592,7 +632,7 @@ Create integration tests for payment processing."
 
 ---
 
-# Configure Service Mocking
+# WireMock Configuration Goals
 
 <v-clicks>
 
@@ -605,30 +645,28 @@ Create integration tests for payment processing."
 
 ---
 
-# Test Integration Scenarios
-
-<v-clicks>
-
-- Verify service calls
-- Test error handling
-- Validate response processing
-- Check retry logic
-
-</v-clicks>
-
----
-
-# Break Time! ☕
+# Break Time!
 
 **10 Minutes**
 
-We're halfway through - stretch, grab coffee, be back on time!
+Stretch, grab coffee, be back on time!
 
+---
+layout: image-left
+image: https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800
 ---
 
 # Part 4: End-to-End Testing
 
-## Complete Workflow Validation
+Complete Workflow Validation
+
+<v-clicks>
+
+- Full user journeys
+- API contracts
+- Cross-system integration
+
+</v-clicks>
 
 ---
 
@@ -636,7 +674,7 @@ We're halfway through - stretch, grab coffee, be back on time!
 
 <v-clicks>
 
-- **API Testing:** Complete workflows, authentication, validation
+- **API Testing:** Complete workflows, authentication
 - **Workflow Testing:** User journeys, business processes
 - **Cross-System Testing:** Multi-service integration
 
@@ -661,7 +699,6 @@ Include authentication, authorization, and error handling."
 - Authentication flow testing
 - Authorization scenario testing
 - CRUD operation validation
-- Data validation testing
 - Error response verification
 
 </v-clicks>
@@ -688,59 +725,66 @@ class EcommerceApiIntegrationTest {
 
 # Student Exercise: Workflow Testing
 
-**Your Turn:**
+**Create Workflow Tests:**
+```
+Plan Mode: "Create end-to-end tests for the complete order processing
+workflow from user login to order completion."
+```
+
+---
+
+# Workflow Test Scenarios
 
 <v-clicks>
 
-1. **Create Workflow Tests:**
-   ```
-   Plan Mode: "Create end-to-end tests for the complete order processing
-   workflow from user login to order completion."
-   ```
-
-2. **Design Test Scenarios:**
-   - User registration and login
-   - Product browsing and selection
-   - Cart management
-   - Checkout process
-   - Order confirmation
-
-3. **Implement and Validate:**
-   - Test data setup
-   - Workflow execution
-   - State validation
-   - Error handling
-   - Response verification
-
-**Goal:** Master end-to-end testing with AI assistance
+- User registration and login
+- Product browsing and selection
+- Cart management
+- Checkout process
 
 </v-clicks>
 
 ---
 
+# Workflow Test Implementation
+
+<v-clicks>
+
+- Test data setup
+- Workflow execution
+- State validation
+- Response verification
+
+</v-clicks>
+
+---
+layout: image-right
+image: https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800
+---
+
 # Part 5: AI-Powered Debugging
 
-## Intelligent Troubleshooting
+Intelligent Troubleshooting
+
+<v-clicks>
+
+- Error analysis
+- Root cause identification
+- Fix recommendations
+
+</v-clicks>
 
 ---
 
 # Error Analysis with AI
 
-<v-clicks>
-
 Stack traces, root causes, error patterns
-
-</v-clicks>
 
 ---
 
 # Test Failure Debugging
 
-<v-clicks>
-
 Failures, environment issues, data problems, configuration
-
-</v-clicks>
 
 ---
 
@@ -767,54 +811,43 @@ Identify the root cause and suggest fixes."
 
 ---
 
-# AI Debugging Features
+# Student Exercise: Test Failure Analysis
+
+**Analyze Test Failure:**
+```
+Chat Mode: "This test is failing with a NullPointerException.
+Help me debug the issue and fix the test."
+```
+
+---
+
+# Debug Process Steps
 
 <v-clicks>
 
-- Stack trace interpretation
-- Error pattern recognition
-- Historical context analysis
-- Fix recommendation
-- Prevention strategies
+- Analyze error message
+- Identify root cause
+- Implement fix
+- Validate solution
 
 </v-clicks>
 
 ---
-
-# Student Exercise: Test Failure Analysis
-
-**Your Turn:**
-
-<v-clicks>
-
-1. **Analyze Test Failure:**
-   ```
-   Chat Mode: "This test is failing with a NullPointerException.
-   Help me debug the issue and fix the test."
-   ```
-
-2. **Debug Process:**
-   - Analyze error message
-   - Identify root cause
-   - Implement fix
-   - Validate solution
-   - Prevent future issues
-
-3. **Learn from Failure:**
-   - Understand error patterns
-   - Improve test design
-   - Enhance error handling
-   - Document lessons learned
-
-**Goal:** Master AI-assisted debugging techniques
-
-</v-clicks>
-
+layout: image-left
+image: https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800
 ---
 
 # Part 6: Legacy Code Testing
 
-## Testing Strategies for Legacy Systems
+Testing Strategies for Legacy Systems
+
+<v-clicks>
+
+- Incremental approach
+- Risk-based testing
+- Modernization path
+
+</v-clicks>
 
 ---
 
@@ -825,7 +858,6 @@ Identify the root cause and suggest fixes."
 - Limited test coverage
 - Tightly coupled code
 - Missing documentation
-- Outdated dependencies
 - Complex business logic
 
 </v-clicks>
@@ -839,7 +871,6 @@ Identify the root cause and suggest fixes."
 - Incremental test addition
 - Characterization testing
 - Refactoring for testability
-- Legacy code modernization
 - Risk-based testing
 
 </v-clicks>
@@ -850,26 +881,34 @@ Identify the root cause and suggest fixes."
 
 **Legacy Testing Strategy:**
 ```
-Extended Thinking: "Analyze this legacy Java application and create 
-a testing strategy. Identify testing challenges and recommend 
+Extended Thinking: "Analyze this legacy Java application and create
+a testing strategy. Identify testing challenges and recommend
 approaches for improving test coverage."
 ```
 
+---
+
+# Analysis Results
+
 <v-clicks>
 
-**Analysis Results:**
 - Current test coverage assessment
 - Testing challenge identification
 - Risk-based testing approach
-- Incremental improvement strategy
 - Modernization recommendations
 
-**Recommended Approach:**
+</v-clicks>
+
+---
+
+# Recommended Approach
+
+<v-clicks>
+
 1. **Characterization Testing** - Understand current behavior
 2. **Incremental Testing** - Add tests gradually
-3. **Refactoring for Testability** - Improve code structure
-4. **Modernization** - Update dependencies and patterns
-5. **Comprehensive Testing** - Full test coverage
+3. **Refactoring** - Improve code structure
+4. **Comprehensive Testing** - Full coverage
 
 </v-clicks>
 
@@ -881,19 +920,19 @@ approaches for improving test coverage."
 
 <v-clicks>
 
-1. **"What are the main testing challenges in this legacy codebase?"**
-2. **"How would you prioritize testing improvements?"**
-3. **"What risks should be considered when adding tests to legacy code?"**
-
-**Share findings:** What did you discover?
-
-**Key Learning:** AI-assisted legacy code testing strategies
+- "What are the main testing challenges in this legacy codebase?"
+- "How would you prioritize testing improvements?"
+- "What risks should be considered?"
 
 </v-clicks>
 
 ---
+layout: section
+---
 
-# Wrap-Up: Key Takeaways
+# Wrap-Up
+
+Key Takeaways
 
 ---
 
@@ -904,8 +943,6 @@ Need unit tests? → Use Agent Mode with JUnit 5
 Need integration tests? → Use TestContainers with Plan Mode
 Need end-to-end tests? → Use Extended Thinking for workflow design
 Need debugging help? → Use Chat Mode for analysis
-Testing legacy code? → Use Extended Thinking for strategy
-Need mocking? → Use Agent Mode with Mockito/WireMock
 ```
 
 ---
@@ -914,43 +951,45 @@ Need mocking? → Use Agent Mode with Mockito/WireMock
 
 <v-clicks>
 
-✅ **Comprehensive Test Suite Generation** using AI
-
-✅ **Unit Testing Mastery** with JUnit 5, Mockito, AssertJ
-
-✅ **Integration Testing** with TestContainers and WireMock
+- ✅ **Test Suite Generation** using AI
+- ✅ **Unit Testing** with JUnit 5, Mockito, AssertJ
+- ✅ **Integration Testing** with TestContainers
 
 </v-clicks>
 
 ---
 
-# What We Accomplished Today (cont'd)
+# What We Accomplished Today (continued)
 
 <v-clicks>
 
-✅ **End-to-End Testing** for complete workflows
-
-✅ **AI-Powered Debugging** and troubleshooting
-
-✅ **Legacy Code Testing** strategies
-
-**All with AI as your quality partner!**
+- ✅ **End-to-End Testing** for workflows
+- ✅ **AI-Powered Debugging**
+- ✅ **Legacy Code Testing** strategies
 
 </v-clicks>
 
 ---
 
-# Best Practices We Learned
+# Best Practices: Generation
 
 <v-clicks>
 
-1. **Start with AI test generation** - Comprehensive coverage from the beginning
-2. **Use appropriate testing strategies** - Unit, integration, and end-to-end
-3. **Master the testing stack** - JUnit 5, Mockito, AssertJ, TestContainers
-4. **Leverage AI for debugging** - Intelligent troubleshooting
-5. **Apply testing to legacy code** - Incremental improvement strategies
-6. **Use realistic test data** - AI helps generate meaningful scenarios
-7. **Iterate and improve** - Continuous testing enhancement
+- Start with AI test generation for comprehensive coverage
+- Use appropriate testing strategies (unit, integration, E2E)
+- Master the stack: JUnit 5, Mockito, AssertJ, TestContainers
+
+</v-clicks>
+
+---
+
+# Best Practices: Quality
+
+<v-clicks>
+
+- Leverage AI for debugging and troubleshooting
+- Apply testing to legacy code incrementally
+- Use realistic test data from AI generation
 
 </v-clicks>
 
@@ -958,23 +997,22 @@ Need mocking? → Use Agent Mode with Mockito/WireMock
 
 # Comparing Sessions 1-4
 
-| Session 1-3 (Development) | Session 4 (Testing) |
-|---------------------------|---------------------|
+| Sessions 1-3 | Session 4 |
+|--------------|-----------|
 | Code generation | Test generation |
-| Architecture planning | Testing strategy planning |
+| Architecture planning | Testing strategy |
 | AI collaboration | AI quality partnership |
-| Manual development | Automated testing |
-| Individual focus | Team quality assurance |
-| Code creation | Code validation |
+
+---
+
+# Same Core Principles
 
 <v-clicks>
 
-**Same principles, quality focus:**
 - Natural language as interface
 - Iterative refinement
 - Context awareness
 - Human-AI collaboration
-- Quality verification
 
 </v-clicks>
 
@@ -982,93 +1020,91 @@ Need mocking? → Use Agent Mode with Mockito/WireMock
 
 # Preview: Session 5
 
-## Exploring Agents and MCP
+## Building AI-Powered Java Apps with Spring AI
 
 <v-clicks>
 
-**Coming up:**
-- Advanced Model Context Protocol integrations
-- Custom AI agents for specific domains
-- Multi-agent collaboration patterns
-- Enterprise AI tool integration
-- Future of AI-assisted development
-
-**Get ready to explore the cutting edge!**
+- ChatClient and prompt templates
+- RAG (Retrieval Augmented Generation)
+- Function calling and tools
+- Model Context Protocol (MCP)
 
 </v-clicks>
 
 ---
 
-# Homework / Lab Exercises
+# Lab Exercises
+
+**Part A: Reinforce Today's Learning**
 
 <v-clicks>
 
-**Part A: Reinforce Today's Learning**
-- Complete testing suite generation (if not done)
+- Complete testing suite generation
 - Apply AI debugging to test failures
 - Create custom testing workflows
-- Integrate testing into CI/CD pipeline
 
-**Part B: Legacy Code Testing Challenges**
+</v-clicks>
+
+---
+
+# Lab Exercises (continued)
+
+**Part B: Legacy Code Testing**
+
+<v-clicks>
+
 - Analyze provided legacy codebase
 - Create testing strategy
 - Apply incremental testing approach
-- Document testing improvements
-
-**See `testing_labs.md` for details**
 
 </v-clicks>
 
+**See `labs.md` for details**
+
 ---
 
-# Resources
+# Resources: Testing
 
-**Testing Resources:**
 - [JUnit 5 User Guide](https://junit.org/junit5/docs/current/user-guide/)
 - [TestContainers Documentation](https://www.testcontainers.org/)
-- [Spring Boot Testing](https://spring.io/guides/gs/testing-web/)
 - [Mockito Documentation](https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html)
 - [AssertJ Documentation](https://assertj.github.io/doc/)
 
-**AI Testing:**
-- [Cursor Documentation - Testing](https://docs.cursor.com)
-- [AI-Assisted Testing Best Practices](https://cursor.com/blog/ai-testing)
-- [Quality Assurance with AI](https://cursor.com/blog/quality-assurance)
+---
 
+# Resources: Spring
+
+- [Spring Boot Testing](https://spring.io/guides/gs/testing-web/)
+- [Cursor Documentation](https://docs.cursor.com)
+
+---
+layout: center
+class: text-center
 ---
 
 # Questions?
 
-<div class="text-center mt-10">
-  <h2>Open Q&A</h2>
-  <p class="text-xl mt-4">
-    Ask about anything we covered today:
-  </p>
-  <ul class="text-left mx-auto max-w-2xl mt-6">
-    <li>AI test generation</li>
-    <li>Unit testing with Mockito & AssertJ</li>
-    <li>Integration testing with TestContainers</li>
-    <li>End-to-end testing</li>
-    <li>AI debugging</li>
-    <li>Legacy code testing</li>
-  </ul>
+<div class="pt-8">
+
+AI test generation • Unit testing • Integration testing
+
+End-to-end testing • AI debugging • Legacy code
+
 </div>
 
+---
+layout: center
+class: text-center
 ---
 
 # Thank You!
 
-**Contact:**
-- ken.kousen@kousenit.com
-- http://kousenit.com
-- [@kenkousen](https://twitter.com/kenkousen)
+**ken.kousen@kousenit.com** • **kousenit.com** • **@kenkousen**
 
-**Continue Learning:**
-- Apply AI testing to your projects
-- Explore the testing tools and frameworks
-- Join us for Session 5!
+<div class="pt-8">
 
-<div class="text-center mt-8">
-  <p class="text-2xl">Happy AI Testing! 🧪🤖✅</p>
+Apply AI testing to your projects
+
+Join us for Session 5!
+
 </div>
-

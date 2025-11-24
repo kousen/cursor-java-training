@@ -1,135 +1,249 @@
-# Session 5: Agents and MCP Solutions
+# Session 5: Building AI-Powered Java Apps with Spring AI
 
-This directory will contain the solution implementation for Session 5 lab exercises.
+This directory contains materials and project code for Session 5 lab exercises.
 
 ## Project Structure
 
 ```
 session5-agents/
-├── README.md              # This file
-└── multi-agent-system/    # Multi-agent development system
+├── README.md                    # This file
+├── session5-outline-NEW.md      # Session timeline and structure
+├── slides.md                    # Slidev presentation
+├── labs.md                      # Lab exercises
+└── spring-ai-demo/              # Demo Spring AI application
 ```
 
-## Agents and MCP Project
+## Spring AI Demo Application
 
-This project demonstrates:
-- Custom AI agent development
-- Model Context Protocol (MCP) integration
-- Multi-agent collaboration patterns
-- Enterprise tool integration (JIRA, Slack)
-- Agent orchestration and workflow management
-- Production agent deployment and monitoring
+This project demonstrates building intelligent Java applications using Spring AI:
+
+- **ChatClient API** - Fluent interface for LLM interactions
+- **Prompt Templates** - Reusable, parameterized prompts
+- **RAG (Retrieval Augmented Generation)** - Chat with your documents
+- **Function Calling** - Give AI tools to execute Java code
+- **Vector Stores** - Document embedding and similarity search
+- **Model Context Protocol (MCP)** - Enhanced context in Cursor
 
 ## Prerequisites
 
-- Cursor with MCP support
-- Model Context Protocol setup
-- Java 17 or 21 (for Java-based agents)
-- Node.js (for TypeScript-based agents)
-- Access to enterprise tools (JIRA, Slack) - optional
-- Understanding of agent architecture patterns
+- **Java 21** or higher
+- **Maven** or Gradle
+- **Spring Boot 3.5+**
+- **OpenAI API Key** (or Anthropic API Key)
+- **Cursor** with Claude support
 
 ## How to Run
 
-**Note:** This session requires MCP setup and custom agent development.
+### 1. Set Up API Keys
 
-1. **Navigate to project:**
-   ```bash
-   cd multi-agent-system
-   ```
+Set your OpenAI API key as an environment variable:
 
-2. **Set up MCP configuration:**
-   - Configure MCP servers
-   - Set up context providers
-   - Configure tool integrations
+```bash
+export OPENAI_API_KEY="your-api-key-here"
+```
 
-3. **Build and run:**
-   ```bash
-   npm install  # or gradle build
-   npm start    # or ./gradlew bootRun
-   ```
+Or add it to `spring-ai-demo/src/main/resources/application.properties`:
+
+```properties
+spring.ai.openai.api-key=your-api-key-here
+```
+
+### 2. Navigate to Project
+
+```bash
+cd spring-ai-demo
+```
+
+### 3. Build and Run
+
+**Using Maven:**
+```bash
+./mvnw spring-boot:run
+```
+
+**Using Gradle:**
+```bash
+./gradlew bootRun
+```
+
+### 4. Test the Endpoints
+
+**Basic Chat:**
+```bash
+curl "http://localhost:8080/chat?message=Tell me a joke about Java"
+```
+
+**RAG Query (after completing Lab 2):**
+```bash
+curl "http://localhost:8080/api/rag/query?question=What is the company policy?"
+```
+
+**Function Calling (after completing Lab 3):**
+```bash
+curl "http://localhost:8080/api/tools/chat?message=What's the weather in San Francisco?"
+```
 
 ## Technologies Used
 
-- Model Context Protocol (MCP)
-- TypeScript / Java (agent implementation)
-- Spring Boot (optional, for Java agents)
-- Node.js (for TypeScript agents)
-- Enterprise APIs (JIRA, Slack, Confluence)
-- Agent orchestration frameworks
+- **Spring Boot 3.5.7** - Application framework
+- **Spring AI 1.1.0** - AI integration for Spring
+- **Java 21** - Programming language with records, pattern matching
+- **OpenAI/Anthropic APIs** - Large Language Model providers
+- **Simple Vector Store** - In-memory vector storage for development
+- **Maven** - Build and dependency management
 
 ## Lab Exercises
 
-This solution implements exercises from [Agents Lab Exercises](../agents_labs.md):
+This project is built through hands-on labs from [labs.md](./labs.md):
 
-- ⏳ Lab 0: Agent Development Setup (requires MCP)
-- ⏳ Lab 1: Custom Agent Creation
-- ⏳ Lab 2: Multi-Agent Collaboration
-- ⏳ Lab 3: Enterprise Tool Integration
-- ⏳ Lab 4: Advanced Agent Patterns
-- ⏳ Lab 5: Production Deployment
-- ⏳ Lab 6: Future AI Development
-- ⏳ Lab 7: Legacy Agent Integration
+### Part A: Code-Along (In-Class)
 
-## MCP Setup
+- ✅ **Lab 0:** Spring AI Setup (15 min)
+- ✅ **Lab 1:** Chat Client & Templating (20 min)
+- ⏳ **Lab 2:** Implementing RAG (40 min)
+- ⏳ **Lab 3:** Tools & Function Calling (40 min)
+- ⏳ **Lab 4:** MCP Exploration (20 min)
 
-**Model Context Protocol:**
-- Protocol for AI to interact with external tools
-- Enables database schema analysis
-- API documentation generation
-- Performance monitoring integration
-- Security scanning integration
+### Part B: Exploration (Homework)
 
-**Required MCP Servers:**
-- Database MCP server (optional)
-- API documentation MCP server (optional)
-- Custom domain-specific MCP servers
+- ⏳ **Lab 5:** Legacy Modernization with Agents (45 min)
 
-## Agent Types Covered
+## Project Features
 
-1. **Code Review Agent:** Analyzes code quality and security
-2. **Testing Agent:** Generates and executes tests
-3. **Deployment Agent:** Manages build and deployment
-4. **Documentation Agent:** Generates API and code documentation
-5. **Integration Agent:** Handles external service integration
+### ChatClient (Lab 1)
 
-## Enterprise Integration
+**Basic chat interface using Spring AI's fluent API:**
 
-**Optional Integrations:**
-- JIRA (issue tracking)
-- Slack (team communication)
-- Confluence (documentation)
-- GitHub (code repository)
-- Jenkins (CI/CD)
-- Monitoring tools
+```java
+@RestController
+public class ChatController {
+    private final ChatClient chatClient;
 
-## Notes
+    public ChatController(ChatClient.Builder builder) {
+        this.chatClient = builder.build();
+    }
 
-- **MCP Availability:** Verify MCP support in Cursor
-- **Agent Development:** Focuses on agent architecture and patterns
-- **Enterprise Tools:** Some labs require API access to external tools
-- **Production Ready:** Labs 5-6 focus on production deployment
+    @GetMapping("/chat")
+    public String chat(@RequestParam String message) {
+        return chatClient.prompt()
+            .user(message)
+            .call()
+            .content();
+    }
+}
+```
 
-## Verification Status
+### RAG Pipeline (Lab 2)
 
-⚠️ **Pending Full Validation:**
-- Requires MCP setup and configuration
-- Requires custom agent development environment
-- Requires enterprise tool API access (optional)
-- Requires understanding of agent patterns
+**Chat with your documents using vector similarity search:**
 
-**Lab Instructions Validated:** ✅ All instructions reviewed and appear complete
+1. **Document Ingestion** - Load documents from classpath
+2. **Text Splitting** - Break into ~500 token chunks
+3. **Embeddings** - Convert text to vectors using OpenAI
+4. **Vector Storage** - Store in SimpleVectorStore
+5. **Similarity Search** - Find relevant context for queries
+6. **Context Injection** - Add retrieved docs to LLM prompt
+
+### Function Calling (Lab 3)
+
+**Give AI the ability to execute Java code:**
+
+```java
+@Bean
+@Description("Get current weather for a location")
+public Function<WeatherRequest, WeatherResponse> weatherFunction() {
+    return request -> new WeatherResponse(
+        request.location(),
+        "72°F",
+        "Sunny with light clouds"
+    );
+}
+```
+
+AI automatically calls this function when users ask about weather!
+
+### Model Context Protocol (Lab 4)
+
+**Enhanced context in Cursor:**
+
+- Configure MCP servers in Cursor settings
+- Provide real-time database schema to AI
+- Access live data for better suggestions
+- Reduce hallucinations with grounded context
+
+## Resources
+
+### Spring AI Documentation
+
+- [Spring AI Reference](https://docs.spring.io/spring-ai/reference/)
+- [Spring AI GitHub](https://github.com/spring-projects/spring-ai)
+- [Spring AI Examples](https://github.com/spring-projects/spring-ai-examples)
+
+### RAG & Vector Stores
+
+- [RAG Best Practices](https://www.anthropic.com/research/rag)
+- [Vector Database Comparison](https://www.pinecone.io/learn/vector-database/)
+- [Chunking Strategies](https://www.llamaindex.ai/blog/chunking)
+
+### MCP Resources
+
+- [Model Context Protocol Spec](https://modelcontextprotocol.io/)
+- [Cursor MCP Documentation](https://docs.cursor.com/mcp)
+- [MCP Examples](https://github.com/modelcontextprotocol/examples)
+
+## Common Issues & Solutions
+
+### API Key Issues
+
+**Problem:** `401 Unauthorized` when calling chat endpoint
+
+**Solution:**
+- Verify `OPENAI_API_KEY` environment variable is set
+- Check API key has sufficient credits
+- Ensure no extra spaces in the key
+
+### Port Already in Use
+
+**Problem:** Port 8080 already in use
+
+**Solution:**
+```bash
+# Kill process on port 8080
+lsof -ti:8080 | xargs kill -9
+
+# Or change port in application.properties
+server.port=8081
+```
+
+### Vector Store Not Populated
+
+**Problem:** RAG queries return "I don't know"
+
+**Solution:**
+- Ensure `CommandLineRunner` executed on startup (check logs)
+- Verify documents exist in `src/main/resources/documents/`
+- Check document loading logs for errors
 
 ## Next Steps
 
-1. Set up Model Context Protocol
-2. Configure MCP servers
-3. Create custom agent architecture
-4. Implement multi-agent collaboration
-5. Test enterprise integrations
-6. Deploy to production environment
+After completing Session 5:
+
+1. **Apply Spring AI to your projects** - Add AI capabilities to existing apps
+2. **Experiment with different providers** - Try Anthropic, Ollama, Azure OpenAI
+3. **Explore advanced RAG** - Metadata filtering, hybrid search, re-ranking
+4. **Build custom tools** - Domain-specific functions for your business
+5. **Deploy to production** - Use real vector stores (Chroma, PgVector, Pinecone)
+6. **Share knowledge** - Teach your team about Spring AI patterns
+
+## Verification Status
+
+✅ **Project Structure:** Complete and validated
+✅ **Dependencies:** Spring Boot 3.5.7 + Spring AI 1.1.0 configured
+✅ **ChatController:** Basic implementation present
+⏳ **RagController:** Placeholder - to be implemented in Lab 2
+⏳ **Function Calling:** To be implemented in Lab 3
+⏳ **MCP Configuration:** Optional exploration in Lab 4
 
 ---
 
-*Status: Instructions validated, full implementation pending MCP setup*
-
+**Session 5 Status:** Ready for instruction! Spring AI demo app prepared for labs 🚀
