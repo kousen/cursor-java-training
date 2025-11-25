@@ -51,13 +51,7 @@ class: text-center
 layout: default
 ---
 
-# Session 5 Overview
-
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## What We'll Build Today
+# What We'll Build Today
 
 <v-clicks>
 
@@ -69,11 +63,9 @@ layout: default
 
 </v-clicks>
 
-</div>
+---
 
-<div>
-
-## Course Journey
+# Course Journey
 
 <v-clicks>
 
@@ -81,21 +73,23 @@ layout: default
 - **Session 2:** Mobile development with AI
 - **Session 3:** Agentic coding patterns
 - **Session 4:** AI-assisted testing
-- **Session 5:** Building AI apps with Spring AI
+- **Session 5:** Building AI apps with Spring AI ← **Today**
 
 </v-clicks>
 
-</div>
+---
 
-</div>
+# Today's Stack
 
-<div class="pt-8">
+**Spring Boot 3.5.7** • **Spring AI 1.1.0** • **Java 21**
 
-## Today's Stack
+<v-clicks>
 
-**Spring Boot 3.5.7** • **Spring AI 1.1.0** • **Java 21** • **OpenAI/Anthropic APIs**
+- OpenAI or Anthropic API keys required
+- All code available in `spring-ai-demo/` folder
+- Labs guide you through each feature
 
-</div>
+</v-clicks>
 
 ---
 layout: image-right
@@ -120,27 +114,18 @@ layout: default
 
 # What is Spring AI?
 
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Spring AI Overview
-
 <v-clicks>
 
 - **Official Spring Project** for AI integration
 - **Portable abstraction** over AI providers
 - **Spring Boot auto-configuration**
 - **Familiar Spring programming model**
-- **Production-ready** with Spring ecosystem
 
 </v-clicks>
 
-</div>
+---
 
-<div>
-
-## Core Components
+# Spring AI Core Components
 
 <v-clicks>
 
@@ -152,13 +137,9 @@ layout: default
 
 </v-clicks>
 
-</div>
+---
 
-</div>
-
-<div class="pt-8">
-
-## Spring AI Advantages
+# Spring AI Advantages
 
 <v-clicks>
 
@@ -169,70 +150,45 @@ layout: default
 
 </v-clicks>
 
-</div>
-
 ---
 layout: default
 ---
 
-# Spring AI Project Setup
+# Spring AI Maven Dependencies
 
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Maven Dependencies
-
-```xml {all|3-5|10-13|14-17|all}
+```xml
 <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>3.5.7</version>
 </parent>
 
-<properties>
-    <java.version>21</java.version>
-    <spring-ai.version>1.1.0</spring-ai.version>
-</properties>
-
 <dependencies>
     <dependency>
         <groupId>org.springframework.ai</groupId>
         <artifactId>spring-ai-starter-model-openai</artifactId>
     </dependency>
-    <dependency>
-        <groupId>org.springframework.ai</groupId>
-        <artifactId>spring-ai-pdf-document-reader</artifactId>
-    </dependency>
 </dependencies>
 ```
 
-</div>
+---
 
-<div>
+# Spring AI Configuration
 
-## Configuration
-
-```properties {all|1|2-3|4-5|all}
+```properties
 # application.properties
 spring.ai.openai.api-key=${OPENAI_API_KEY}
 spring.ai.openai.chat.options.model=gpt-4o
 spring.ai.openai.chat.options.temperature=0.7
-spring.ai.openai.chat.options.max-tokens=500
 ```
 
 <v-clicks>
 
-**Environment Setup:**
 - Set `OPENAI_API_KEY` environment variable
-- Or use `.env` file (with Spring Boot support)
+- Or use `.env` file with Spring Boot
 - Alternative: Use Anthropic with `spring-ai-anthropic`
 
 </v-clicks>
-
-</div>
-
-</div>
 
 ---
 layout: image-left
@@ -257,13 +213,7 @@ layout: default
 
 # ChatClient Basics
 
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Demo: Basic Chat Interaction
-
-```java {all|5-7|9-14|16-19|all}
+```java
 @RestController
 @RequestMapping("/api/chat")
 public class ChatController {
@@ -284,11 +234,9 @@ public class ChatController {
 }
 ```
 
-</div>
+---
 
-<div>
-
-## ChatClient Features
+# ChatClient Features
 
 <v-clicks>
 
@@ -296,39 +244,22 @@ public class ChatController {
 - **System and user messages** configuration
 - **Response parsing** and handling
 - **Streaming responses** (optional)
-- **Error management** built-in
 
 </v-clicks>
 
-<div class="pt-8">
-
 **Agent Mode Prompt:**
 ```
-Create a ChatController with a GET
-endpoint /chat. Inject ChatClient.Builder.
-Use the ChatClient to send the user's
-message to the LLM and return the response.
+Create a ChatController with a GET endpoint /chat.
+Inject ChatClient.Builder and return LLM response.
 ```
-
-</div>
-
-</div>
-
-</div>
 
 ---
 layout: default
 ---
 
-# Advanced ChatClient Features
+# System Prompts
 
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## System Prompts
-
-```java {all|4-8|10-12|all}
+```java
 @GetMapping("/expert")
 public String expertChat(@RequestParam String topic) {
     return chatClient.prompt()
@@ -343,13 +274,11 @@ public String expertChat(@RequestParam String topic) {
 }
 ```
 
-</div>
+---
 
-<div>
+# Structured Responses
 
-## Structured Responses
-
-```java {all|4-5|7-10|all}
+```java
 record BookReview(String title, int rating, String summary) {}
 
 @GetMapping("/review")
@@ -361,18 +290,7 @@ public BookReview getBookReview(@RequestParam String book) {
 }
 ```
 
-<v-clicks>
-
-**Spring AI automatically:**
-- Generates JSON schema from Java record
-- Instructs LLM to respond with JSON
-- Parses response into Java object
-
-</v-clicks>
-
-</div>
-
-</div>
+**Spring AI automatically:** Generates JSON schema → Instructs LLM → Parses to Java object
 
 ---
 layout: default
@@ -380,23 +298,23 @@ layout: default
 
 # Prompt Templates
 
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Demo: Template-Based Prompts
-
 **Template File:** `src/main/resources/prompts/joke.st`
 
 ```text
 Tell me a {style} joke about {topic}.
-Make it appropriate for a professional
-audience.
+Make it appropriate for a professional audience.
 ```
 
-**Controller:**
+**Key Points:**
+- StringTemplate format (.st files)
+- Variable substitution with `{variableName}`
+- Version control your prompts
 
-```java {all|4-7|9-13|all}
+---
+
+# Using Prompt Templates
+
+```java
 @GetMapping("/joke")
 public String tellJoke(
     @RequestParam String topic,
@@ -412,50 +330,13 @@ public String tellJoke(
 }
 ```
 
-</div>
-
-<div>
-
-## Template Patterns
-
-<v-clicks>
-
-- **StringTemplate format** (.st files)
-- **Variable substitution** with `{variableName}`
-- **Organize by purpose** (prompts folder)
-- **Reusable across controllers**
-- **Version control** your prompts
-
-</v-clicks>
-
-<div class="pt-8">
-
-**Agent Mode Prompt:**
-```
-Refactor the controller to use a
-PromptTemplate. Load the template from
-'classpath:/prompts/joke.st'.
-The template should accept a 'topic'
-variable.
-```
-
-</div>
-
-</div>
-
-</div>
-
 ---
 layout: default
 ---
 
 # Student Exercise: Chat Interface
 
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Your Turn: Build a Chat Endpoint
+**Time:** 10 minutes
 
 <v-clicks>
 
@@ -467,38 +348,20 @@ layout: default
 
 </v-clicks>
 
-<div class="pt-8">
+---
 
-**Time:** 10 minutes
-
-</div>
-
-</div>
-
-<div>
-
-## Challenge Ideas
+# Challenge Ideas
 
 <v-clicks>
 
 - **Code reviewer** - Analyze Java code snippets
 - **Documentation generator** - Create JavaDoc
-- **Test data generator** - Generate test cases
 - **SQL translator** - Natural language to SQL
 - **Tech explainer** - Simplify complex topics
 
 </v-clicks>
 
-<div class="pt-8">
-
-**Bonus Challenge:**
-Use `.entity()` to return structured responses as Java records
-
-</div>
-
-</div>
-
-</div>
+**Bonus:** Use `.entity()` to return structured responses as Java records
 
 ---
 layout: image-right
@@ -521,13 +384,7 @@ image: https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800
 layout: default
 ---
 
-# Understanding RAG
-
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Why RAG?
+# Why RAG?
 
 <v-clicks>
 
@@ -535,15 +392,12 @@ layout: default
 - **Prevent hallucinations** - Provide context
 - **Domain-specific knowledge** - Your documents, policies, code
 - **Up-to-date information** - Add new docs anytime
-- **Traceable sources** - Know where answers come from
 
 </v-clicks>
 
-</div>
+---
 
-<div>
-
-## RAG Pipeline
+# RAG Pipeline
 
 ```mermaid {scale: 0.8}
 graph TD
@@ -558,24 +412,18 @@ graph TD
     I --> J[Grounded Answer]
 ```
 
-</div>
+---
 
-</div>
-
-<div class="pt-8">
-
-## Key Concepts
+# RAG Key Concepts
 
 <v-clicks>
 
 - **Chunking:** Split documents into manageable pieces
-- **Embeddings:** Convert text to vectors (numbers representing meaning)
+- **Embeddings:** Convert text to vectors (meaning as numbers)
 - **Vector Similarity:** Find chunks semantically similar to query
 - **Context Injection:** Add retrieved chunks to LLM prompt
 
 </v-clicks>
-
-</div>
 
 ---
 layout: default
@@ -583,16 +431,9 @@ layout: default
 
 # Document Ingestion
 
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Demo: Loading Documents
-
-```java {all|7-10|12-14|16-19|21-24|all}
+```java
 @Component
-public class DocumentLoader implements
-    CommandLineRunner {
+public class DocumentLoader implements CommandLineRunner {
 
     private final VectorStore vectorStore;
 
@@ -602,38 +443,26 @@ public class DocumentLoader implements
 
     @Override
     public void run(String... args) {
-        // Load document
-        Resource resource = new ClassPathResource(
-            "documents/policy.txt"
-        );
-
-        // Split into chunks
-        TextSplitter splitter =
-            new TokenTextSplitter();
-
-        List<Document> documents =
-            splitter.split(
-                new TextReader(resource).get()
-            );
+        Resource resource = new ClassPathResource("documents/policy.txt");
+        TextSplitter splitter = new TokenTextSplitter();
+        List<Document> documents = splitter.split(new TextReader(resource).get());
 ```
 
-</div>
+---
 
-<div>
+# Document Ingestion (continued)
 
-```java {all|2-3|5-6|all}
+```java
         // Generate embeddings and store
         vectorStore.add(documents);
-
-        log.info("Loaded {} documents",
-                 documents.size());
+        log.info("Loaded {} documents", documents.size());
     }
 }
 ```
 
 <v-clicks>
 
-**What Happens Here:**
+**What Happens:**
 1. Load `policy.txt` from classpath
 2. Split into ~500 token chunks
 3. Generate embeddings (via OpenAI)
@@ -641,110 +470,52 @@ public class DocumentLoader implements
 
 </v-clicks>
 
-<div class="pt-8">
-
-**Extended Thinking Prompt:**
-```
-Create a CommandLineRunner that reads
-'policy.txt' from the classpath. Use
-TokenTextSplitter to split it into
-chunks. Load the chunks into the
-SimpleVectorStore.
-```
-
-</div>
-
-</div>
-
-</div>
-
 ---
 layout: default
 ---
 
-# Vector Store Configuration
+# SimpleVectorStore (In-Memory)
 
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## SimpleVectorStore (In-Memory)
-
-```java {all|3-7|9-11|all}
+```java
 @Configuration
 public class VectorStoreConfig {
 
     @Bean
-    public VectorStore vectorStore(
-        EmbeddingModel embeddingModel) {
-        return new SimpleVectorStore(
-            embeddingModel
-        );
+    public VectorStore vectorStore(EmbeddingModel embeddingModel) {
+        return new SimpleVectorStore(embeddingModel);
     }
 }
 ```
 
-<v-clicks>
+**Good for:** Development, testing, small document sets, prototypes
 
-**Good for:**
-- Development and testing
-- Small document sets
-- Prototypes
+---
 
-</v-clicks>
-
-</div>
-
-<div>
-
-## Production Vector Stores
+# Production Vector Stores
 
 <v-clicks>
 
-**Spring AI supports:**
 - **Chroma** - Open source, easy setup
 - **Pinecone** - Managed service
-- **Weaviate** - Feature-rich, self-hosted
 - **PgVector** - PostgreSQL extension
 - **Redis** - If already using Redis
 
 </v-clicks>
 
-<div class="pt-8">
-
-**Example: PgVector**
-
 ```java
 @Bean
-public VectorStore vectorStore(
-    JdbcTemplate jdbcTemplate,
-    EmbeddingModel embeddingModel) {
-    return new PgVectorStore(
-        jdbcTemplate,
-        embeddingModel
-    );
+public VectorStore vectorStore(JdbcTemplate jdbc, EmbeddingModel model) {
+    return new PgVectorStore(jdbc, model);
 }
 ```
-
-</div>
-
-</div>
-
-</div>
 
 ---
 layout: default
 ---
 
-# RAG Query Implementation
+# RAG Controller Setup
 
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Demo: RAG Controller
-
-```java {all|7-10|12-16|18-24|all}
+```java
 @RestController
 @RequestMapping("/api/rag")
 public class RagController {
@@ -752,41 +523,38 @@ public class RagController {
     private final ChatClient chatClient;
     private final VectorStore vectorStore;
 
-    public RagController(
-        ChatClient.Builder builder,
-        VectorStore vectorStore) {
+    public RagController(ChatClient.Builder builder, VectorStore vectorStore) {
         this.chatClient = builder.build();
         this.vectorStore = vectorStore;
     }
+```
 
+---
+
+# RAG Query Implementation
+
+```java
     @GetMapping("/query")
     public String query(@RequestParam String question) {
         // Search for similar documents
-        List<Document> similarDocs =
-            vectorStore.similaritySearch(
-                SearchRequest.query(question)
-                    .withTopK(5)
-            );
-```
+        List<Document> similarDocs = vectorStore.similaritySearch(
+            SearchRequest.query(question).withTopK(5)
+        );
 
-</div>
-
-<div>
-
-```java {all|2-7|9-15|17-18|all}
-        // Build context from documents
         String context = similarDocs.stream()
             .map(Document::getContent)
             .collect(Collectors.joining("\n\n"));
+```
 
-        // Query LLM with context
+---
+
+# RAG Response Generation
+
+```java
         return chatClient.prompt()
             .system("""
-                Answer the question based ONLY
-                on the provided context.
-                If you cannot answer from the
-                context, say so.
-
+                Answer the question based ONLY on the provided context.
+                If you cannot answer from the context, say so.
                 Context: {context}
                 """)
             .user(question)
@@ -796,70 +564,40 @@ public class RagController {
 }
 ```
 
-</div>
-
-</div>
-
 ---
 layout: default
 ---
 
-# RAG Best Practices
-
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Chunking Strategies
+# Chunking Strategies
 
 <v-clicks>
 
 - **TokenTextSplitter** - By token count (most common)
 - **Paragraph splitter** - Natural boundaries
-- **Sentence splitter** - Precise context
 - **Sliding window** - Overlap for continuity
-- **Semantic chunking** - By topic/meaning
 
 </v-clicks>
 
-<div class="pt-8">
+**Sweet spot:** 300-800 tokens with 10-20% overlap
 
-**Chunk Size Guidelines:**
-- Too small: Loss of context
-- Too large: Noise in retrieval
-- **Sweet spot:** 300-800 tokens
-- **Overlap:** 10-20% recommended
+---
 
-</div>
-
-</div>
-
-<div>
-
-## Search Configuration
+# Search Configuration
 
 ```java
 SearchRequest.query(question)
-    .withTopK(5)              // Return top 5 matches
-    .withSimilarityThreshold(0.7) // Min similarity
-    .withFilterExpression(     // Metadata filtering
-        "type == 'policy' AND year >= 2024"
-    );
+    .withTopK(5)                   // Return top 5 matches
+    .withSimilarityThreshold(0.7)  // Min similarity
+    .withFilterExpression("type == 'policy'");  // Metadata filter
 ```
 
 <v-clicks>
 
-**Prompt Engineering for RAG:**
 - Explicitly tell AI to use context
-- Ask for citations/sources
 - Handle "I don't know" gracefully
 - Test with questions not in docs
 
 </v-clicks>
-
-</div>
-
-</div>
 
 ---
 layout: default
@@ -867,11 +605,7 @@ layout: default
 
 # Student Exercise: RAG Pipeline
 
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Your Turn: Implement RAG
+**Time:** 20 minutes
 
 <v-clicks>
 
@@ -879,44 +613,23 @@ layout: default
 2. **Configure** VectorStore bean
 3. **Implement** DocumentLoader
 4. **Create** RAG endpoint
-5. **Test** with queries that require document knowledge
+5. **Test** with queries requiring document knowledge
 
 </v-clicks>
 
-<div class="pt-8">
+---
 
-**Time:** 20 minutes
-
-</div>
-
-</div>
-
-<div>
-
-## Challenge Ideas
+# RAG Challenge Ideas
 
 <v-clicks>
 
 - **Company policies** - HR handbook, procedures
 - **Technical docs** - API documentation
-- **Code analysis** - Index your codebase
-- **Product catalog** - Search product info
 - **Knowledge base** - FAQ, troubleshooting
 
 </v-clicks>
 
-<div class="pt-8">
-
-**Bonus Challenge:**
-- Add metadata to documents (author, date, type)
-- Filter search by metadata
-- Return sources with answers
-
-</div>
-
-</div>
-
-</div>
+**Bonus:** Add metadata (author, date) and filter search results
 
 ---
 layout: center
@@ -954,13 +667,7 @@ image: https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800
 layout: default
 ---
 
-# Function Calling Concepts
-
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## What is Function Calling?
+# What is Function Calling?
 
 <v-clicks>
 
@@ -968,15 +675,14 @@ layout: default
 - **Structured output** from LLM (function name + args)
 - **Your code executes** the function
 - **Return result** to AI for response
-- **Multi-step workflows** possible
 
 </v-clicks>
 
-<div class="pt-8">
+---
 
-## How It Works
+# Function Calling Flow
 
-```mermaid {scale: 0.7}
+```mermaid {scale: 0.8}
 graph LR
     A[User: What's weather in SF?] --> B[LLM]
     B --> C{Need function?}
@@ -987,123 +693,73 @@ graph LR
     B --> G[AI: It's 72° and sunny]
 ```
 
-</div>
+---
 
-</div>
-
-<div>
-
-## Use Cases
+# Function Calling Use Cases
 
 <v-clicks>
 
 - **Database lookups** - Query data
 - **API calls** - External services
 - **Calculations** - Math, business logic
-- **System operations** - File, process management
 - **Workflow automation** - Multi-step tasks
 
 </v-clicks>
 
-<div class="pt-8">
-
-**Key Point:**
-AI can now "use tools" - call your Java methods based on natural language requests!
-
-</div>
-
-</div>
-
-</div>
+**Key:** AI can call your Java methods based on natural language!
 
 ---
 layout: default
 ---
 
-# Simple Tool Implementation
+# Weather Tool: Request/Response
 
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Demo: Weather Tool
-
-**Step 1: Define Request/Response**
-
-```java {all|1-3|5-7|all}
+```java
 record WeatherRequest(
-    @JsonProperty(required = true,
-    value = "location") String location,
-    @JsonProperty(required = false,
-    value = "unit") String unit
+    @JsonProperty(required = true, value = "location") String location,
+    @JsonProperty(required = false, value = "unit") String unit
 ) {}
 
 record WeatherResponse(
-    String location,
-    String temperature,
-    String description
+    String location, String temperature, String description
 ) {}
 ```
 
-</div>
+---
 
-<div>
+# Weather Tool: Function Bean
 
-**Step 2: Create Function Bean**
-
-```java {all|2|3|5-12|all}
+```java
 @Configuration
 public class ToolConfig {
 
     @Bean
     @Description("Get current weather for a location")
-    public Function<WeatherRequest, WeatherResponse>
-        weatherFunction() {
+    public Function<WeatherRequest, WeatherResponse> weatherFunction() {
         return request -> new WeatherResponse(
-            request.location(),
-            "72°F",
-            "Sunny with light clouds"
+            request.location(), "72°F", "Sunny with light clouds"
         );
     }
 }
 ```
 
-<v-clicks>
-
-- `@Description` tells AI what the function does
-- Spring AI reads function signature for parameters
-- Return mock data (real impl would call weather API)
-
-</v-clicks>
-
-</div>
-
-</div>
+**Key:** `@Description` tells AI when to call this function
 
 ---
 layout: default
 ---
 
-# Using Functions with ChatClient
+# Register Functions with ChatClient
 
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Register Functions
-
-```java {all|5-7|9-14|16-20|all}
+```java
 @RestController
 @RequestMapping("/api/tools")
 public class ToolController {
 
     private final ChatClient chatClient;
 
-    public ToolController(
-        ChatClient.Builder builder,
-        Function<WeatherRequest, WeatherResponse>
-            weatherFunction) {
-
+    public ToolController(ChatClient.Builder builder,
+        Function<WeatherRequest, WeatherResponse> weatherFunction) {
         this.chatClient = builder
             .defaultFunctions(weatherFunction)
             .build();
@@ -1111,123 +767,69 @@ public class ToolController {
 
     @GetMapping("/chat")
     public String chat(@RequestParam String message) {
-        return chatClient.prompt()
-            .user(message)
-            .call()
-            .content();
+        return chatClient.prompt().user(message).call().content();
     }
 }
 ```
 
-</div>
+---
 
-<div>
-
-## Example Interactions
-
-<v-clicks>
+# Function Calling in Action
 
 **User:** "What's the weather in San Francisco?"
 
-**AI Process:**
-1. Recognizes need for `weatherFunction`
+<v-clicks>
+
+1. AI recognizes need for `weatherFunction`
 2. Extracts location: "San Francisco"
 3. Calls your Java function
 4. Receives: 72°F, Sunny
 5. Responds: "It's currently 72°F and sunny..."
 
-**User:** "How about in London?"
-
-**AI:** Calls function again with "London"
-
 </v-clicks>
-
-<div class="pt-8">
-
-**Agent Mode Prompt:**
-```
-Create a Function bean named
-'weatherFunction' with @Description
-annotation. Return mock weather data.
-```
-
-</div>
-
-</div>
-
-</div>
 
 ---
 layout: default
 ---
 
-# Advanced Tool: Database Access
+# Database Access Tool
 
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Demo: User Lookup Tool
-
-**Entity & Repository:**
-
-```java {all|1-7|9-13|all}
+```java
 @Entity
 public class User {
     @Id private Long id;
     private String email;
-    private String firstName;
-    private String lastName;
+    private String firstName, lastName;
 }
 
-public interface UserRepository
-    extends JpaRepository<User, Long> {
-
+public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
 }
 ```
 
-</div>
+---
 
-<div>
+# User Lookup Function Bean
 
-**Function Bean:**
-
-```java {all|2-3|5-11|13-16|all}
+```java
 @Bean
 @Description("Find user by email address")
 public Function<UserLookupRequest, UserLookupResponse>
     userLookupFunction(UserRepository repo) {
 
-    return request -> {
-        return repo.findByEmail(request.email())
-            .map(u -> new UserLookupResponse(
-                u.getFirstName() + " " + u.getLastName(),
-                u.getEmail()
-            ))
-            .orElse(new UserLookupResponse(
-                "Unknown",
-                request.email()
-            ));
-    };
+    return request -> repo.findByEmail(request.email())
+        .map(u -> new UserLookupResponse(
+            u.getFirstName() + " " + u.getLastName(), u.getEmail()
+        ))
+        .orElse(new UserLookupResponse("Unknown", request.email()));
 }
 ```
-
-</div>
-
-</div>
 
 ---
 layout: default
 ---
 
-# Tool Best Practices
-
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Function Design
+# Tool Design Best Practices
 
 <v-clicks>
 
@@ -1235,52 +837,38 @@ layout: default
 - **Strong typing** - Use records for parameters
 - **Validation** - Check inputs before executing
 - **Error handling** - Return meaningful errors
-- **Idempotency** - Safe to call multiple times
 
 </v-clicks>
 
-<div class="pt-8">
+---
 
-**Good Description Examples:**
+# Good Description Examples
 
 ```java
-@Description("Get user by email. Returns name and
-email if found, 'Unknown' if not found.")
+@Description("Get user by email. Returns name and email if found.")
 
-@Description("Calculate order total including tax.
-Requires orderId. Returns amount in USD.")
+@Description("Calculate order total including tax. Returns USD.")
 
-@Description("Send email notification. Requires
-recipient email and message. Returns success status.")
+@Description("Send email notification. Returns success status.")
 ```
 
-</div>
+---
 
-</div>
-
-<div>
-
-## Security Considerations
+# Security Considerations
 
 <v-clicks>
 
 - **Authentication** - Verify user context
 - **Authorization** - Check permissions
 - **Input validation** - Sanitize all inputs
-- **Rate limiting** - Prevent abuse
 - **Audit logging** - Track function calls
 
 </v-clicks>
 
-<div class="pt-8">
-
-**Example: Secure Function**
-
 ```java
 @Bean
-public Function<OrderLookup, OrderResponse>
-    orderFunction(OrderService service,
-                  SecurityContext security) {
+public Function<OrderLookup, OrderResponse> orderFunction(
+    OrderService service, SecurityContext security) {
     return request -> {
         security.checkPermission("orders:read");
         return service.getOrder(request.orderId());
@@ -1288,23 +876,13 @@ public Function<OrderLookup, OrderResponse>
 }
 ```
 
-</div>
-
-</div>
-
-</div>
-
 ---
 layout: default
 ---
 
-# Student Exercise: Create Custom Tools
+# Student Exercise: Custom Tools
 
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Your Turn: Build a Tool
+**Time:** 20 minutes
 
 <v-clicks>
 
@@ -1316,17 +894,9 @@ layout: default
 
 </v-clicks>
 
-<div class="pt-8">
+---
 
-**Time:** 20 minutes
-
-</div>
-
-</div>
-
-<div>
-
-## Challenge Ideas
+# Tool Challenge Ideas
 
 <v-clicks>
 
@@ -1334,20 +904,10 @@ layout: default
 - **Time converter** - Timezones, formats
 - **Currency exchange** - Convert currencies
 - **Database query** - Look up records
-- **Email sender** - Send notifications
 
 </v-clicks>
 
-<div class="pt-8">
-
-**Bonus Challenge:**
-Create multiple related functions that work together (e.g., createOrder + getOrderStatus + cancelOrder)
-
-</div>
-
-</div>
-
-</div>
+**Bonus:** Create related functions (createOrder + getOrderStatus + cancelOrder)
 
 ---
 layout: image-right
@@ -1372,168 +932,86 @@ layout: default
 
 # What is MCP?
 
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## MCP Overview
-
 <v-clicks>
 
 - **Protocol** for connecting AI to external data
 - **Cursor's MCP support** - Enhanced context in Cursor
 - **Standard interface** for tool integration
-- **Context providers** - Real-time data access
 - **Resources** - Files, databases, APIs
 
 </v-clicks>
 
-<div class="pt-8">
+---
 
-## How It Works
+# MCP Architecture
 
-```mermaid {scale: 0.7}
+```mermaid {scale: 0.8}
 graph LR
     A[Cursor AI] --> B[MCP Protocol]
     B --> C[Database Server]
     B --> D[File System]
     B --> E[API Server]
-    C --> F[Schema Info]
-    D --> G[Project Files]
-    E --> H[External Data]
 ```
 
-</div>
+---
 
-</div>
-
-<div>
-
-## MCP Benefits
+# MCP Benefits
 
 <v-clicks>
 
 - **Real-time context** - Current database schema
 - **Dynamic resources** - Access live data
-- **Tool discovery** - AI learns available operations
 - **Better suggestions** - More accurate code generation
 - **Reduced hallucinations** - Grounded in actual data
 
 </v-clicks>
 
-<div class="pt-8">
-
-**Example Use Cases:**
-- Database schema awareness for query generation
-- API documentation for client code
-- Codebase navigation and understanding
-- Real-time data queries for reports
-
-</div>
-
-</div>
-
-</div>
-
 ---
 layout: default
 ---
 
-# Cursor MCP Configuration
+# MCP Setup in Cursor
 
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Demo: MCP Setup in Cursor
-
-**Step 1: Open Settings**
-- Cursor → Settings → Features → MCP
-
-**Step 2: Add MCP Server**
+**Step 1:** Cursor → Settings → Features → MCP
 
 ```json
 {
   "mcpServers": {
     "database": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-postgres",
-        "postgresql://localhost/mydb"
-      ]
+      "args": ["-y", "@modelcontextprotocol/server-postgres",
+               "postgresql://localhost/mydb"]
     }
   }
 }
 ```
 
-**Step 3: Restart Cursor**
+**Step 2:** Restart Cursor
 
-</div>
+---
 
-<div>
-
-## Available MCP Servers
+# Available MCP Servers
 
 <v-clicks>
 
-**Official Servers:**
-- `@modelcontextprotocol/server-postgres` - PostgreSQL
-- `@modelcontextprotocol/server-filesystem` - File access
-- `@modelcontextprotocol/server-github` - GitHub API
+**Official:**
+- `server-postgres` - PostgreSQL
+- `server-filesystem` - File access
+- `server-github` - GitHub API
 
-**Community Servers:**
+**Community:**
 - Jira, Slack, Notion integrations
 - Cloud providers (AWS, GCP, Azure)
-- Custom domain servers
 
 </v-clicks>
-
-<div class="pt-8">
-
-**Testing Connection:**
-
-In Cursor Chat:
-```
-Ask: "What tables are in my database?"
-```
-
-Cursor will use MCP to query schema!
-
-</div>
-
-</div>
-
-</div>
 
 ---
 layout: default
 ---
 
-# MCP with Spring AI
+# Spring AI + MCP
 
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Building MCP Servers in Java
-
-**Spring AI + MCP (Coming Soon)**
-
-<v-clicks>
-
-Spring AI team is working on:
-- MCP server implementation in Java
-- Integration with Spring Boot
-- Standard Spring configuration
-
-</v-clicks>
-
-<div class="pt-8">
-
-**Current Approach:**
-
-Use Spring AI functions as building blocks for MCP tools:
+**Current Approach:** Use Spring AI functions as MCP tool building blocks
 
 ```java
 @Bean
@@ -1546,41 +1024,18 @@ public Function<SchemaRequest, SchemaResponse>
 }
 ```
 
-</div>
+---
 
-</div>
-
-<div>
-
-## MCP Use Cases in Development
+# MCP Use Cases
 
 <v-clicks>
 
-**Database Schema Awareness:**
-- Generate accurate SQL queries
-- Create JPA entities from schema
-- Understand table relationships
-
-**API Documentation Access:**
-- Correct API endpoint usage
-- Proper request/response formats
-- Authentication patterns
-
-**Codebase Navigation:**
-- Find related code sections
-- Understand project structure
-- Identify dependencies
-
-**Real-time Data Queries:**
-- Development status
-- Performance metrics
-- User analytics
+- **Database schema** - Generate accurate SQL, create JPA entities
+- **API documentation** - Correct endpoint usage, auth patterns
+- **Codebase navigation** - Find related code, understand structure
+- **Real-time data** - Status, metrics, analytics
 
 </v-clicks>
-
-</div>
-
-</div>
 
 ---
 layout: default
@@ -1588,11 +1043,7 @@ layout: default
 
 # Student Exercise: MCP Exploration
 
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Your Turn: Configure MCP
+**Time:** 10 minutes
 
 <v-clicks>
 
@@ -1603,17 +1054,9 @@ layout: default
 
 </v-clicks>
 
-<div class="pt-8">
+---
 
-**Time:** 10 minutes
-
-</div>
-
-</div>
-
-<div>
-
-## Exploration Questions
+# MCP Exploration Questions
 
 <v-clicks>
 
@@ -1624,20 +1067,7 @@ layout: default
 
 </v-clicks>
 
-<div class="pt-8">
-
-**Chat Mode Prompt:**
-```
-With MCP configured, ask:
-"What are the main entities in my
-database and their relationships?"
-```
-
-</div>
-
-</div>
-
-</div>
+**Try:** "What are the main entities in my database?"
 
 ---
 layout: image-left
@@ -1660,58 +1090,28 @@ image: https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800
 layout: default
 ---
 
-# AI-Assisted Legacy Analysis
-
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Demo: Legacy Code Analysis
+# Legacy Code Analysis
 
 ```java
 // Legacy OrderService (Spring Boot 2.7)
 @Service
 public class OrderService {
+    @Autowired private OrderRepository orderRepo;
+    @Autowired private UserRepository userRepo;
 
-    @Autowired
-    private OrderRepository orderRepo;
-
-    @Autowired
-    private UserRepository userRepo;
-
-    public void processOrder(Long orderId)
-        throws Exception {
-
-        Order order = orderRepo.findById(orderId)
-            .orElseThrow();
-
-        // Complex business logic
-        // No error handling
-        // No validation
-        // Hard to test
+    public void processOrder(Long orderId) throws Exception {
+        Order order = orderRepo.findById(orderId).orElseThrow();
+        // Complex business logic, no error handling, hard to test
     }
 }
 ```
 
-</div>
+---
 
-<div>
-
-**Extended Thinking Prompt:**
-
-```
-Analyze this legacy OrderService.
-Create a plan to:
-1. Migrate to Spring Boot 3.x
-2. Replace field injection with constructor
-3. Add proper error handling
-4. Improve testability
-5. Modernize to use Spring AI for order analysis
-```
+# AI Identifies Issues
 
 <v-clicks>
 
-**AI Identifies:**
 - Field injection anti-pattern
 - Missing validation
 - Poor error handling
@@ -1720,164 +1120,79 @@ Create a plan to:
 
 </v-clicks>
 
-</div>
-
-</div>
+**Prompt:** "Analyze this legacy OrderService and create a migration plan"
 
 ---
 layout: default
 ---
 
-# Modernization Strategies
+# Step 1: Constructor Injection
 
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Incremental Refactoring
-
-<v-clicks>
-
-**Step 1: Constructor Injection**
 ```java
-public OrderService(
-    OrderRepository orderRepo,
-    UserRepository userRepo) {
+public OrderService(OrderRepository orderRepo, UserRepository userRepo) {
     this.orderRepo = orderRepo;
     this.userRepo = userRepo;
 }
 ```
 
-**Step 2: Proper Error Handling**
+---
+
+# Step 2: Proper Error Handling
+
 ```java
 public Order processOrder(Long orderId) {
     return orderRepo.findById(orderId)
         .map(this::validateAndProcess)
-        .orElseThrow(() ->
-            new OrderNotFoundException(orderId));
+        .orElseThrow(() -> new OrderNotFoundException(orderId));
 }
 ```
 
-</v-clicks>
+---
 
-</div>
-
-<div>
-
-## Add AI Capabilities
-
-<v-clicks>
-
-**Spring AI Integration:**
+# Step 3: Add AI Capabilities
 
 ```java
-public class ModernOrderService {
+public OrderAnalysisReport analyzeOrder(Long orderId) {
+    Order order = getOrder(orderId);
 
-    private final ChatClient chatClient;
-    private final Function<OrderAnalysis, Report>
-        analyzeOrder;
-
-    public OrderAnalysisReport analyzeOrder(
-        Long orderId) {
-
-        Order order = getOrder(orderId);
-
-        return chatClient.prompt()
-            .system("Analyze order for risks")
-            .user(toJson(order))
-            .functions(analyzeOrder)
-            .call()
-            .entity(OrderAnalysisReport.class);
-    }
+    return chatClient.prompt()
+        .system("Analyze order for risks")
+        .user(toJson(order))
+        .call()
+        .entity(OrderAnalysisReport.class);
 }
 ```
-
-</v-clicks>
-
-</div>
-
-</div>
 
 ---
 layout: default
 ---
 
-# Student Guided Exploration
+# Student Exercise: Legacy Analysis
 
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Your Turn: Legacy Analysis
-
-**Use Extended Thinking to explore:**
+**Time:** 10 minutes - Use Extended Thinking to explore:
 
 <v-clicks>
 
-1. **Testing challenges** in legacy code
-   ```
-   "What are the main testing challenges
-   in this legacy codebase?"
-   ```
-
-2. **Prioritization**
-   ```
-   "How would you prioritize testing
-   improvements?"
-   ```
-
-3. **Risk assessment**
-   ```
-   "What risks should be considered when
-   adding tests to legacy code?"
-   ```
+1. "What are the main testing challenges in this legacy codebase?"
+2. "How would you prioritize testing improvements?"
+3. "What risks should be considered when adding tests?"
 
 </v-clicks>
 
-<div class="pt-8">
+---
 
-**Time:** 10 minutes
-
-</div>
-
-</div>
-
-<div>
-
-## AI-Powered Modernization
+# AI-Powered Modernization
 
 <v-clicks>
 
-**AI can help:**
 - Identify code smells and anti-patterns
 - Suggest refactoring strategies
 - Generate tests for legacy code
-- Modernize to newer framework versions
 - Add AI capabilities to existing features
 
 </v-clicks>
 
-<div class="pt-8">
-
-**Pattern Detection:**
-
-```
-Extended Thinking: "Analyze this
-legacy service and identify
-opportunities to add Spring AI
-for business intelligence."
-```
-
-AI suggests:
-- RAG for policy/rule lookup
-- Function calling for external services
-- ChatClient for natural language queries
-
-</div>
-
-</div>
-
-</div>
+**AI suggests:** RAG for policy lookup, function calling for external services
 
 ---
 layout: section
@@ -1891,38 +1206,20 @@ layout: section
 layout: default
 ---
 
-# Key Takeaways
-
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Spring AI Decision Tree
+# Spring AI Decision Tree
 
 <v-clicks>
 
-**Need chat interface?**
-→ Use ChatClient with templates
-
-**Need to chat with your data?**
-→ Implement RAG pipeline
-
-**Need AI to execute code?**
-→ Use function calling
-
-**Need enhanced context?**
-→ Configure MCP
-
-**Need to modernize legacy code?**
-→ Apply AI analysis patterns
+- **Chat interface?** → Use ChatClient with templates
+- **Chat with your data?** → Implement RAG pipeline
+- **AI execute code?** → Use function calling
+- **Enhanced context?** → Configure MCP
 
 </v-clicks>
 
-</div>
+---
 
-<div>
-
-## What We Accomplished
+# What We Accomplished
 
 <v-clicks>
 
@@ -1931,85 +1228,58 @@ layout: default
 - ✅ RAG pipeline for document Q&A
 - ✅ Function calling with Spring AI tools
 - ✅ MCP exploration for enhanced context
-- ✅ Legacy code modernization strategies
 
 </v-clicks>
 
-</div>
+---
 
-</div>
+# Core Pattern
 
-<div class="pt-8">
+**Spring AI brings AI capabilities with familiar patterns:**
 
-## Core Pattern
+`RestTemplate` → `ChatClient`
 
-**Spring AI brings AI capabilities to Spring Boot with familiar patterns:**
-`RestTemplate` → `ChatClient` | `JpaRepository` → `VectorStore` | `@Bean` → `@Bean Function`
+`JpaRepository` → `VectorStore`
 
-</div>
+`@Bean` → `@Bean Function`
 
 ---
 layout: default
 ---
 
-# Complete Training Journey
-
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## The Five-Session Arc
+# The Five-Session Arc
 
 <v-clicks>
 
-- **Session 1:** Cursor fundamentals
-  - Chat, Agent, Composer modes
-
-- **Session 2:** Mobile development with AI
-  - Kotlin, Jetpack Compose
-
+- **Session 1:** Cursor fundamentals - Chat, Agent, Composer
+- **Session 2:** Mobile development - Kotlin, Jetpack Compose
 - **Session 3:** Agentic coding patterns
-  - Advanced AI-assisted development
-
-- **Session 4:** AI-assisted testing
-  - JUnit 5, Mockito, AssertJ, TestContainers
-
-- **Session 5:** Building AI-powered Java apps
-  - Spring AI, RAG, Function Calling, MCP
+- **Session 4:** AI-assisted testing - JUnit 5, Mockito, TestContainers
+- **Session 5:** Spring AI - RAG, Function Calling, MCP
 
 </v-clicks>
 
-</div>
+---
 
-<div>
-
-## Next Steps
+# Next Steps
 
 <v-clicks>
 
 - **Apply Spring AI** to your projects
 - **Experiment** with different AI providers
-- **Explore** advanced RAG patterns
 - **Build** custom tools for your domain
-- **Share knowledge** with your team
 - **Stay updated** on Spring AI releases
 
 </v-clicks>
 
-<div class="pt-8">
+---
 
-## Resources
+# Resources
 
 - [Spring AI Docs](https://docs.spring.io/spring-ai/reference/)
 - [Spring AI GitHub](https://github.com/spring-projects/spring-ai)
 - [Spring AI Examples](https://github.com/spring-projects/spring-ai-examples)
 - [MCP Specification](https://modelcontextprotocol.io/)
-
-</div>
-
-</div>
-
-</div>
 
 ---
 layout: center

@@ -1,163 +1,148 @@
 # Session 5: Exploring Agents and MCP
 
-**Duration:** 3 hours  
-**Audience:** ~100 experienced developers (Java/Android background from Sessions 1-4)  
-**Format:** Instructor-led with hands-on exercises  
+**Duration:** 3 hours
+**Audience:** ~100 experienced developers (Java/Android background from Sessions 1-4)
+**Format:** Instructor-led with hands-on exercises
 **Prerequisite:** Completion of Sessions 1-4 or equivalent Cursor experience
 
 ## Session Objectives
 
 By the end of this session, participants will be able to:
-- Understand and implement Model Context Protocol (MCP) integrations
-- Create custom AI agents for specific development domains
-- Design multi-agent collaboration patterns for complex workflows
-- Integrate AI agents with enterprise tools and systems
-- Build domain-specific AI assistants for specialized tasks
-- Implement agent orchestration and workflow management
-- Apply advanced AI patterns to real-world development scenarios
+- Build Java applications with Spring AI framework
+- Implement chat interfaces using ChatClient API
+- Create Retrieval Augmented Generation (RAG) pipelines
+- Implement function calling with Spring AI tools (AI agents that execute code)
+- Understand Model Context Protocol (MCP) for enhanced AI capabilities
+- Apply AI patterns to modernize legacy Java applications
 
-## Two-Project Approach
+## Project Approach
 
-### Project 1: Multi-Agent Development System (Code-Along)
-**Purpose:** Build a comprehensive multi-agent system for development workflows  
-**Duration:** ~140 minutes (Parts 1-6)  
-**Approach:** Instructor-led, students follow along  
-**Deliverable:** Complete multi-agent system with specialized agents and orchestration
+### Project: Spring AI Demo Application (Code-Along)
+**Purpose:** Build a complete Spring AI application with chat, RAG, and function calling
+**Duration:** ~150 minutes (Parts 1-5)
+**Approach:** Instructor-led, students follow along
+**Deliverable:** Working Spring AI application with multiple AI capabilities
 
 **Key Technologies:**
-- Model Context Protocol (MCP) implementation
-- Custom AI agents for different domains
-- Agent orchestration and communication
-- Enterprise tool integration (JIRA, Confluence, Slack)
-- Workflow automation and management
-- Real-time collaboration and monitoring
-
-### Project 2: Legacy System Agent Integration (Exploration)
-**Purpose:** Apply agent patterns to real-world legacy system modernization  
-**Duration:** ~30 minutes intro + homework  
-**Approach:** Guided exploration, deeper practice in labs  
-**Repository:** Custom legacy enterprise application (provided)
+- Spring Boot 3.5.7
+- Spring AI 1.1.0
+- Java 21
+- OpenAI/Anthropic API integration
+- Vector stores for RAG
+- Function calling with Spring AI tools
 
 ---
 
 ## Detailed Timeline
 
-### Part 1: Understanding AI Agents and MCP (30 minutes)
+### Part 1: Introduction to Spring AI (20 minutes)
 
 #### Welcome & Session 5 Overview (5 min)
-- Recap Sessions 1-4: Chat, Agent, Composer, Agentic Coding, Testing
-- Session 5 focus: **Advanced AI Agents and MCP** - The future of AI development
-- The agent paradigm: AI as specialized team members
-- Two-project approach explanation
-- Today's deliverables: multi-agent development system
+- Recap Sessions 1-4: Development AI tools → Testing AI → Building AI Apps
+- Session 5 focus: **Creating AI-powered Java applications**
+- The Spring AI framework: Bringing AI capabilities to Spring Boot
+- Today's deliverables: Complete Spring AI application
 
-#### AI Agents vs. Traditional AI (15 min)
-- **Traditional AI:**
-  - Single-purpose interactions
-  - Limited context awareness
-  - Manual task management
-  - Isolated problem solving
-  
-- **AI Agents:**
-  - Specialized domain expertise
-  - Persistent context and memory
-  - Autonomous task execution
-  - Collaborative problem solving
+#### What is Spring AI? (15 min)
+- **Spring AI Overview:**
+  - Official Spring project for AI integration
+  - Portable abstraction over AI providers (OpenAI, Anthropic, etc.)
+  - Spring Boot auto-configuration
+  - Familiar Spring programming model
 
-- **Key Agent Characteristics:**
-  - **Specialization:** Domain-specific knowledge and skills
-  - **Autonomy:** Independent task execution and decision making
-  - **Collaboration:** Communication and coordination with other agents
-  - **Learning:** Adaptation and improvement over time
+- **Core Components:**
+  - **ChatClient:** Fluent API for LLM interactions
+  - **Embeddings:** Vector representations of text
+  - **Vector Stores:** Storage for document embeddings
+  - **Function Calling:** Tools that AI can invoke
+  - **Document Readers:** PDF, Word, text file processing
 
-#### Model Context Protocol (MCP) Deep Dive (10 min)
-- **What is MCP?**
-  - Protocol for AI to interact with external systems
-  - Standardized interface for tool integration
-  - Context-aware data exchange
-  - Extensible architecture for custom integrations
-
-- **MCP Components:**
-  - **Context Providers:** Sources of information and data
-  - **Tool Integrations:** External system connections
-  - **Protocol Handlers:** Communication management
-  - **Custom Extensions:** Domain-specific implementations
-
-**Checkpoint:** Understanding of AI agents and MCP
+**Checkpoint:** Understanding of Spring AI ecosystem
 
 ---
 
-### Part 2: Building Custom AI Agents (35 minutes)
+### Part 2: Chat Client & Templating (30 minutes)
 
-#### Agent Architecture Patterns (15 min)
+#### ChatClient API (15 min)
 
-**Demo: Specialized Agent Creation**
+**Demo: Basic Chat Interaction**
 ```
-Extended Thinking: "Design a specialized 'Code Review Agent' that can 
-analyze code quality, security, performance, and maintainability. 
-Define its capabilities, knowledge base, and interaction patterns."
-```
-
-**Review Agent Design:**
-- Agent capabilities and responsibilities
-- Knowledge base and expertise areas
-- Interaction patterns and communication
-- Decision-making processes
-- Learning and adaptation mechanisms
-
-#### Student Exercise: Domain-Specific Agents (20 min)
-
-**Your Turn:**
-```
-Plan Mode: "Create a 'Database Optimization Agent' that can analyze 
-database performance, suggest optimizations, and implement improvements."
+Agent Mode: "Create a ChatController with a GET endpoint /api/chat.
+Inject ChatClient.Builder. Use the ChatClient to send the user's
+message to the LLM and return the response."
 ```
 
-**Review Agent Implementation:**
-- Agent specialization and expertise
-- Tool integration and data access
-- Decision-making algorithms
-- Communication protocols
-- Performance monitoring
+**Review ChatClient Features:**
+- Fluent API for building requests
+- System and user message configuration
+- Response parsing and handling
+- Error management
+- Streaming responses (optional)
 
-**Checkpoint:** Custom agent development
+#### Prompt Templates (15 min)
+
+**Demo: Template-Based Prompts**
+```
+Agent Mode: "Refactor the controller to use a PromptTemplate.
+Load the template from 'classpath:/prompts/joke.st'.
+The template should accept a 'topic' variable."
+```
+
+**Review Template Patterns:**
+- StringTemplate format (.st files)
+- Variable substitution
+- Template organization
+- Reusable prompt patterns
+
+**Checkpoint:** Working chat interface with templates
 
 ---
 
-### Part 3: Multi-Agent Collaboration (35 minutes)
+### Part 3: Retrieval Augmented Generation (RAG) (45 minutes)
 
-#### Agent Communication Patterns (20 min)
+#### Understanding RAG (10 min)
 
-**Demo: Agent Orchestration**
+**RAG Concepts:**
+- Why RAG? - Grounding AI in your data
+- Document chunking and embeddings
+- Vector similarity search
+- Context injection into prompts
+- Preventing hallucinations
+
+#### Document Ingestion (20 min)
+
+**Demo: Loading Documents**
 ```
-Extended Thinking: "Design a multi-agent system for software development 
-where different agents collaborate on tasks like requirements analysis, 
-code generation, testing, and deployment."
-```
-
-**Review Orchestration Design:**
-- Agent roles and responsibilities
-- Communication protocols
-- Task distribution and coordination
-- Conflict resolution mechanisms
-- Performance monitoring and optimization
-
-#### Student Exercise: Workflow Management (15 min)
-
-**Your Turn:**
-```
-Agent Mode: "Implement a workflow management system that coordinates 
-multiple agents working on a feature development task."
+Extended Thinking: "Create a CommandLineRunner that reads 'policy.txt'
+from the classpath. Use TokenTextSplitter to split it into chunks.
+Load the chunks into the SimpleVectorStore. Log when ingestion is complete."
 ```
 
-**Review Implementation:**
-- Workflow definition and execution
-- Agent coordination and communication
-- Task tracking and monitoring
-- Error handling and recovery
-- Performance optimization
+**Review Ingestion Pipeline:**
+- Document loaders (PDF, text, etc.)
+- Text splitting strategies
+- Embedding generation
+- Vector store population
+- Production considerations
 
-**Checkpoint:** Multi-agent collaboration
+#### RAG Query Implementation (15 min)
+
+**Demo: RAG Controller**
+```
+Agent Mode: "Create a RagController. When a query comes in:
+1. Search the VectorStore for similar documents.
+2. Inject the documents into the system prompt.
+3. Ask the LLM to answer based ONLY on the provided context."
+```
+
+**Review RAG Implementation:**
+- Similarity search configuration
+- Context window management
+- Prompt engineering for RAG
+- Answer verification
+- Source citation
+
+**Checkpoint:** Working RAG system
 
 ---
 
@@ -165,226 +150,148 @@ multiple agents working on a feature development task."
 
 ---
 
-### Part 4: Enterprise Tool Integration (30 minutes)
+### Part 4: Tools & Function Calling (45 minutes)
 
-#### MCP Enterprise Integrations (15 min)
+#### Function Calling Concepts (10 min)
 
-**Demo: JIRA Integration**
+**What is Function Calling?**
+- Giving AI the ability to execute code (AI agents!)
+- Structured output from LLM
+- Tool registration and discovery
+- Parameter extraction and validation
+- Response formatting
+
+#### Simple Tool Implementation (20 min)
+
+**Demo: Weather Tool**
 ```
-Extended Thinking: "Create an MCP integration with JIRA that allows 
-AI agents to read tickets, update status, and create new issues based 
-on code analysis."
-```
-
-**Review Integration:**
-- MCP protocol implementation
-- JIRA API integration
-- Data mapping and transformation
-- Error handling and recovery
-- Security and authentication
-
-#### Student Exercise: Slack Integration (15 min)
-
-**Your Turn:**
-```
-Plan Mode: "Implement an MCP integration with Slack that enables 
-AI agents to send notifications, create channels, and coordinate 
-team communication."
+Agent Mode: "Create a Java Record 'WeatherRequest(String location, String unit)'.
+Create a Java Record 'WeatherResponse(String temp, String desc)'.
+Create a Function<WeatherRequest, WeatherResponse> bean named 'weatherFunction'.
+Annotate it with @Description('Get weather for a location').
+Implement it to return mock data."
 ```
 
-**Review Implementation:**
-- Slack API integration
-- Message formatting and delivery
-- Channel management
-- User interaction handling
-- Notification strategies
+**Review Tool Implementation:**
+- Function bean registration
+- Description annotations
+- Parameter schemas
+- Return value handling
+- Error management
 
-**Checkpoint:** Enterprise tool integration
+#### Advanced Tool: Database Access (15 min)
+
+**Demo: Database Tool**
+```
+Extended Thinking: "Create a tool that looks up a user by email in a
+UserRepository. Expose this tool to the AI. Test by asking:
+'Who is the user with email bob@example.com?'"
+```
+
+**Review Database Integration:**
+- Repository integration
+- Transaction management
+- Security considerations
+- Error handling
+- Result formatting
+
+**Checkpoint:** Working function calling system
 
 ---
 
-### Part 5: Advanced Agent Patterns (35 minutes)
+### Part 5: Model Context Protocol (MCP) Exploration (20 minutes)
 
-#### Agent Learning and Adaptation (20 min)
+#### What is MCP? (10 min)
 
-**Demo: Adaptive Agent Behavior**
-```
-Extended Thinking: "Implement an agent that learns from user feedback 
-and adapts its behavior to improve performance over time."
-```
+**MCP Overview:**
+- Protocol for connecting AI to external data sources
+- Cursor's MCP support
+- Standard interface for tool integration
+- Context providers and resources
+- Real-time data access
 
-**Review Implementation:**
-- Learning algorithms and mechanisms
-- Feedback collection and processing
-- Behavior adaptation strategies
-- Performance measurement and optimization
-- Knowledge base updates
+#### Cursor MCP Configuration (10 min)
 
-#### Student Exercise: Agent Specialization (15 min)
+**Demo: MCP Setup**
+- Cursor Settings → Features → MCP
+- Adding MCP servers
+- Testing MCP connections
+- Observing enhanced context
 
-**Your Turn:**
-```
-Agent Mode: "Create a specialized agent for your domain (e.g., 
-mobile development, backend services, DevOps) with custom 
-capabilities and knowledge."
-```
+**MCP Use Cases:**
+- Database schema awareness
+- API documentation access
+- Codebase navigation
+- Real-time data queries
+- Custom domain integrations
 
-**Review Specialization:**
-- Domain-specific knowledge and skills
-- Custom tool integrations
-- Specialized decision-making processes
-- Performance optimization
-- Integration with existing workflows
-
-**Checkpoint:** Advanced agent patterns
+**Checkpoint:** Understanding of MCP capabilities
 
 ---
 
-### Part 6: Real-World Agent Applications (25 minutes)
+### Part 6: Legacy Modernization with AI (15 minutes)
 
-#### Production Agent Deployment (15 min)
+#### AI-Assisted Refactoring (15 min)
 
-**Demo: Agent Monitoring and Management**
+**Demo: Legacy Analysis**
 ```
-Extended Thinking: "Design a monitoring and management system for 
-AI agents in production, including health checks, performance metrics, 
-and automated recovery."
-```
-
-**Review System Design:**
-- Agent health monitoring
-- Performance metrics and analytics
-- Automated recovery mechanisms
-- Alerting and notification systems
-- Maintenance and updates
-
-#### Student Exercise: Agent Scaling (10 min)
-
-**Your Turn:**
-```
-Chat Mode: "Design a scaling strategy for AI agents that can handle 
-increased workload and maintain performance."
+Extended Thinking: "Analyze the legacy 'OrderService' (from Session 4).
+Create a plan to refactor it using Spring AI to add order analysis capabilities."
 ```
 
-**Review Scaling Strategy:**
-- Horizontal and vertical scaling approaches
-- Load balancing and distribution
-- Resource management and optimization
-- Performance monitoring and adjustment
-- Cost optimization strategies
+**Review Modernization Strategies:**
+- AI-powered code analysis
+- Pattern detection
+- Refactoring recommendations
+- Adding AI capabilities to existing code
+- Incremental modernization
 
-**Checkpoint:** Production agent deployment
+**Checkpoint:** Legacy modernization understanding
 
 ---
 
-### BREAK (10 minutes)
+### Wrap-Up & Course Completion (15 minutes)
 
----
+#### Key Takeaways (7 min)
 
-### Part 7: Future of AI Development (25 minutes)
-
-#### Emerging AI Patterns (15 min)
-
-**Demo: Next-Generation AI Development**
+**Spring AI Decision Tree:**
 ```
-Extended Thinking: "Explore emerging patterns in AI-assisted development, 
-including autonomous coding, self-healing systems, and predictive 
-development."
-```
-
-**Review Emerging Patterns:**
-- Autonomous development capabilities
-- Self-healing and self-optimizing systems
-- Predictive development and planning
-- Human-AI collaboration evolution
-- Ethical considerations and governance
-
-#### Student Exercise: Vision for AI Development (10 min)
-
-**Your Turn:**
-```
-Chat Mode: "Describe your vision for the future of AI-assisted development 
-and how it might change the way we build software."
-```
-
-**Review Visions:**
-- Future development workflows
-- Human-AI collaboration patterns
-- Technology evolution and adoption
-- Challenges and opportunities
-- Implementation strategies
-
-**Checkpoint:** Future AI development understanding
-
----
-
-### Part 8: Legacy System Agent Integration Introduction (15 minutes)
-
-#### Exploring Legacy Agent Integration (15 min)
-
-**Demo: Legacy System Analysis**
-```
-Extended Thinking: "Analyze this legacy enterprise application and 
-design an agent integration strategy that can modernize and improve 
-the system over time."
-```
-
-**Review Analysis:**
-- Legacy system challenges and opportunities
-- Agent integration strategies
-- Modernization approaches
-- Risk assessment and mitigation
-- Implementation roadmap
-
-**Student Guided Exploration (5 min):**
-Students use Extended Thinking to explore:
-1. "What are the main challenges in integrating AI agents with legacy systems?"
-2. "How would you prioritize agent integration efforts?"
-3. "What risks should be considered when modernizing legacy systems with AI?"
-
----
-
-### Wrap-Up & Next Steps (10 minutes)
-
-#### Key Takeaways (5 min)
-
-**Agent Development Decision Tree:**
-```
-Need specialized expertise? → Create domain-specific agents
-Need multi-step workflows? → Implement agent orchestration
-Need enterprise integration? → Use MCP for tool connectivity
-Need learning capabilities? → Implement adaptive agents
-Need production deployment? → Design monitoring and management
-Need future planning? → Explore emerging AI patterns
+Need chat interface? → Use ChatClient with templates
+Need to chat with your data? → Implement RAG
+Need AI to execute code? → Use function calling
+Need enhanced context? → Configure MCP
+Need to modernize legacy code? → Apply AI analysis
 ```
 
 **What We Accomplished:**
-- ✅ Custom AI agent development
-- ✅ Multi-agent collaboration patterns
-- ✅ Enterprise tool integration with MCP
-- ✅ Advanced agent patterns and learning
-- ✅ Production deployment strategies
-- ✅ Future AI development exploration
+- ✅ Spring AI application setup
+- ✅ ChatClient with prompt templates
+- ✅ RAG pipeline for document Q&A
+- ✅ Function calling with Spring AI tools
+- ✅ MCP exploration for enhanced context
+- ✅ Legacy code modernization strategies
 
-#### Course Completion Summary (3 min)
+#### Complete Training Journey (5 min)
 
-**Complete Cursor Training Journey:**
-- **Session 1:** Chat, Agent, Composer modes
+**The Five-Session Arc:**
+- **Session 1:** Cursor fundamentals (Chat, Agent, Composer)
 - **Session 2:** Mobile development with AI
-- **Session 3:** Agentic coding principles
-- **Session 4:** AI-assisted testing and quality
-- **Session 5:** Advanced agents and MCP
+- **Session 3:** Agentic coding patterns
+- **Session 4:** AI-assisted testing
+- **Session 5:** Building AI-powered Java apps with Spring AI
 
 **Next Steps:**
-- Apply learned concepts to your projects
-- Experiment with custom agents and MCP
-- Explore advanced AI development patterns
-- Continue learning and adapting to AI evolution
+- Apply Spring AI to your projects
+- Experiment with different AI providers
+- Explore advanced RAG patterns
+- Build custom tools for your domain
+- Share knowledge with your team
 
-#### Q&A (2 min)
-- Advanced agent questions
-- MCP integration challenges
-- Future AI development trends
+#### Q&A (3 min)
+- Spring AI questions
+- RAG implementation challenges
+- MCP integration topics
+- Future AI development
 
 ---
 
@@ -392,195 +299,137 @@ Need future planning? → Explore emerging AI patterns
 
 ### Pre-Session
 - Session 1-4 recap document
-- Agent development guide
-- Legacy system for exploration
-- MCP implementation examples
-- Enterprise integration patterns
+- Spring AI introduction guide
+- API key setup instructions
 
 ### During Session
 - This session outline
 - Slidev presentation
-- Multi-agent development project
-- Legacy system for analysis
-- Agent orchestration templates
+- spring-ai-demo project
+- Sample documents for RAG
+- Prompt template examples
 
 ### Post-Session
 - Complete labs.md with all exercises
-- Legacy agent integration challenges
-- Agent development templates
-- MCP integration guides
-- Future AI development resources
+- Spring AI reference guide
+- RAG implementation patterns
+- Function calling examples
+- MCP configuration guides
 
 ---
 
 ## Success Metrics
 
 Students should leave able to:
-- [ ] Understand and implement Model Context Protocol (MCP) integrations
-- [ ] Create custom AI agents for specific development domains
-- [ ] Design multi-agent collaboration patterns for complex workflows
-- [ ] Integrate AI agents with enterprise tools and systems
-- [ ] Build domain-specific AI assistants for specialized tasks
-- [ ] Implement agent orchestration and workflow management
-- [ ] Apply advanced AI patterns to real-world development scenarios
-- [ ] Plan for future AI development evolution
+- [ ] Create Spring Boot applications with Spring AI
+- [ ] Build chat interfaces using ChatClient API
+- [ ] Implement RAG pipelines for document Q&A
+- [ ] Create and register custom functions for AI
+- [ ] Configure MCP for enhanced context
+- [ ] Apply AI patterns to legacy code modernization
 
 ---
 
 ## Instructor Notes
 
 ### Timing Buffers
-- Breaks provide 20 min catch-up time
-- Can compress advanced patterns if needed
-- Core agent concepts must be completed
-- Future patterns can be shortened if running behind
+- Break provides 10 min catch-up time
+- Can compress MCP section if needed
+- Core Spring AI concepts must be completed
+- Legacy modernization can be homework if short on time
 
 ### Common Issues & Solutions
-- **MCP complexity:** Start with simple examples, build complexity gradually
-- **Agent orchestration confusion:** Use clear examples, emphasize communication
-- **Enterprise integration challenges:** Focus on concepts, provide working examples
-- **Future patterns overwhelm:** Keep grounded in current capabilities
-- **Students confused about agent vs. AI:** Clarify terminology and concepts
+- **API key problems:** Have backup keys ready, test before session
+- **RAG complexity:** Start simple, emphasize concepts over implementation
+- **Function calling confusion:** Use simple examples first (weather, calculator)
+- **MCP availability:** MCP is optional, focus on concepts if unavailable
 
 ### Adaptation Points
-- If ahead: Add more advanced agent patterns, explore additional MCP integrations
-- If behind: Focus on core agent concepts, simplify orchestration examples
+- If ahead: Add more advanced RAG patterns, explore streaming responses
+- If behind: Simplify examples, focus on ChatClient and basic RAG
 - If questions: Use Chat mode to explore answers together
-- If students struggle with concepts: More Chat mode explanations, simpler examples
+- If students struggle: More demos, less exercises
 
 ### Demo Tips
-- **Always explain the agent concept** before implementation
-- **Show agent communication** - how agents work together
-- **Demonstrate real-world value** - practical applications
-- **Highlight specialization** - different agents for different tasks
-- **Use real examples** - avoid toy problems
-- **Show mistakes and recovery** - agents make errors too
-- **Emphasize human oversight** - agents assist, humans decide
+- **Always test with API keys** before the session
+- **Show real responses** from the LLM, not mock data
+- **Explain the flow** - user → Spring AI → LLM → response
+- **Highlight Spring patterns** - familiar dependency injection, auto-config
+- **Use realistic examples** - avoid toy problems
+- **Show errors and recovery** - API failures happen
+- **Emphasize production readiness** - error handling, timeouts, rate limits
 
 ---
 
-## Project: Multi-Agent Development System
+## Project: Spring AI Demo Application
 
-### Agent Architecture Overview
-1. **Code Review Agent**
-   - Code quality analysis
-   - Security vulnerability detection
-   - Performance optimization suggestions
-   - Maintainability assessment
+### Application Structure
+```
+spring-ai-demo/
+├── src/main/java/com/example/ai/
+│   ├── SpringAiDemoApplication.java
+│   ├── ChatController.java          # Basic chat with templates
+│   ├── RagController.java           # RAG implementation
+│   ├── ToolController.java          # Function calling
+│   ├── WeatherFunction.java         # Tool example
+│   └── config/
+│       └── VectorStoreConfig.java   # Vector store setup
+├── src/main/resources/
+│   ├── application.properties       # API keys, config
+│   ├── prompts/
+│   │   └── joke.st                  # Prompt templates
+│   └── documents/
+│       └── policy.txt               # Sample document for RAG
+└── pom.xml
+```
 
-2. **Testing Agent**
-   - Test generation and execution
-   - Coverage analysis
-   - Performance testing
-   - Security testing
-
-3. **Deployment Agent**
-   - Build and deployment automation
-   - Environment management
-   - Rollback and recovery
-   - Monitoring and alerting
-
-4. **Documentation Agent**
-   - API documentation generation
-   - Code documentation
-   - User guide creation
-   - Knowledge base management
-
-5. **Integration Agent**
-   - External service integration
-   - Data synchronization
-   - API management
-   - Error handling and recovery
-
-### MCP Integrations
-- **JIRA** - Issue tracking and project management
-- **Slack** - Team communication and notifications
-- **Confluence** - Documentation and knowledge sharing
-- **GitHub** - Code repository and collaboration
-- **Jenkins** - CI/CD pipeline management
-- **Monitoring Tools** - Performance and health monitoring
+### Dependencies
+- Spring Boot 3.5.7
+- Spring AI 1.1.0 (OpenAI starter)
+- Spring AI PDF Document Reader
+- Spring AI Simple Vector Store
 
 ---
 
-## Progression from Sessions 1-4
-
-### Building on Previous Sessions
-
-| Session 1-4 (AI Tools) | Session 5 (AI Agents) |
-|------------------------|------------------------|
-| Single AI interactions | Multi-agent collaboration |
-| Manual task management | Autonomous task execution |
-| Limited context | Persistent context and memory |
-| Tool-based assistance | Specialized agent expertise |
-| Individual workflows | Collaborative agent workflows |
-| Current capabilities | Future AI development |
-
-### Same AI Principles, Advanced Application
-- Natural language as interface
-- Iterative refinement
-- Context awareness
-- Human-AI collaboration
-- Quality verification
-
-### New Agent-Specific Skills
-- Agent architecture design
-- Multi-agent orchestration
-- Enterprise tool integration
-- Autonomous task execution
-- Learning and adaptation
-- Future AI development planning
-
----
-
-## Lab Preview (labs-session5.md)
+## Lab Preview (labs.md)
 
 ### Part A: Code-Along (In-Class)
 
 | Lab | Title | Time | Key Concepts |
 |-----|-------|------|--------------|
-| 0 | Agent Development Setup | 10 min | Agent concepts, MCP basics |
-| 1 | Custom Agent Creation | 25 min | Specialized agents, domain expertise |
-| 2 | Multi-Agent Collaboration | 25 min | Agent communication, orchestration |
-| 3 | Enterprise Tool Integration | 20 min | MCP integrations, JIRA, Slack |
-| 4 | Advanced Agent Patterns | 20 min | Learning, adaptation, specialization |
-| 5 | Production Deployment | 15 min | Monitoring, management, scaling |
-| 6 | Future AI Development | 15 min | Emerging patterns, vision planning |
-| 7 | Legacy Agent Integration | 15 min | Legacy system modernization |
+| 0 | Spring AI Setup | 15 min | Project setup, API configuration |
+| 1 | Chat Client & Templating | 20 min | ChatClient, prompt templates |
+| 2 | Implementing RAG | 40 min | Document ingestion, vector search |
+| 3 | Tools & Function Calling | 40 min | Function registration, tool execution |
+| 4 | MCP Exploration | 20 min | MCP configuration, enhanced context |
 
-**Total In-Class Time:** ~145 minutes (2h 25m)
+**Total In-Class Time:** ~135 minutes (2h 15m) + breaks
 
 ### Part B: Exploration (Homework)
 
 | Lab | Title | Time | Key Concepts |
 |-----|-------|------|--------------|
-| 8 | Legacy System Agent Integration | 45-60 min | Legacy modernization, agent integration |
-| 9 | Advanced MCP Integrations | 30-45 min | Custom tools, enterprise systems |
-| 10 | Future AI Development Planning | 30-45 min | Emerging patterns, implementation strategy |
+| 5 | Legacy Modernization with AI | 30 min | AI-assisted refactoring, code analysis |
 
-**Total Homework Time:** ~2-3 hours
+**Total Homework Time:** ~30 minutes
 
 ---
 
 ## Resources and Links
 
-### Agent Development Resources
-- [Model Context Protocol Specification](https://modelcontextprotocol.io)
-- [AI Agent Architecture Patterns](https://cursor.com/blog/ai-agents)
-- [Multi-Agent Systems](https://en.wikipedia.org/wiki/Multi-agent_system)
-- [Agent-Based Software Engineering](https://www.researchgate.net/publication/2208345_Agent-Based_Software_Engineering)
+### Spring AI Resources
+- [Spring AI Documentation](https://docs.spring.io/spring-ai/reference/)
+- [Spring AI GitHub](https://github.com/spring-projects/spring-ai)
+- [Spring AI Examples](https://github.com/spring-projects/spring-ai-examples)
 
-### Enterprise Integration
-- [JIRA REST API](https://developer.atlassian.com/cloud/jira/platform/rest/v2/)
-- [Slack API Documentation](https://api.slack.com/)
-- [Confluence REST API](https://developer.atlassian.com/cloud/confluence/rest/v1/)
-- [GitHub API](https://docs.github.com/en/rest)
+### RAG Resources
+- [RAG Best Practices](https://www.anthropic.com/research/rag)
+- [Vector Database Comparison](https://www.pinecone.io/learn/vector-database/)
 
-### Future AI Development
-- [AI Development Trends](https://cursor.com/blog/ai-trends)
-- [Autonomous Software Development](https://www.researchgate.net/publication/autonomous-development)
-- [Human-AI Collaboration](https://cursor.com/blog/human-ai-collaboration)
-- [AI Ethics and Governance](https://www.partnershiponai.org/)
+### MCP Resources
+- [Model Context Protocol Specification](https://modelcontextprotocol.io/)
+- [Cursor MCP Documentation](https://docs.cursor.com/mcp)
 
 ---
 
-**Session 5 outline complete and ready for material development! 🚀**
+**Session 5 outline aligned with Spring AI focus!**

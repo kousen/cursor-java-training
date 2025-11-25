@@ -34,19 +34,21 @@ mdc: true
 
 # Contact Info
 
-Ken Kousen<br>
-Kousen IT, Inc.
+Ken Kousen • Kousen IT, Inc.
 
 - ken.kousen@kousenit.com
 - http://www.kousenit.com
 - http://kousenit.org (blog)
-- Social Media:
-  - [@kenkousen](https://twitter.com/kenkousen) (Twitter)
-  - [@kousenit.com](https://bsky.app/profile/kousenit.com) (Bluesky)
-  - [https://www.linkedin.com/in/kenkousen/](https://www.linkedin.com/in/kenkousen/) (LinkedIn)
-- *Tales from the jar side* (free newsletter)
-  - https://kenkousen.substack.com
-  - https://youtube.com/@talesfromthejarside
+
+---
+
+# Connect with Me
+
+- **Twitter:** [@kenkousen](https://twitter.com/kenkousen)
+- **Bluesky:** [@kousenit.com](https://bsky.app/profile/kousenit.com)
+- **LinkedIn:** [linkedin.com/in/kenkousen](https://www.linkedin.com/in/kenkousen/)
+- **Newsletter:** [kenkousen.substack.com](https://kenkousen.substack.com)
+- **YouTube:** [@talesfromthejarside](https://youtube.com/@talesfromthejarside)
 
 ---
 
