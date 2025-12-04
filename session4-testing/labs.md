@@ -61,12 +61,11 @@ These exercises are designed to be completed during the session with instructor 
 
 ## Lab 1: Unit Test Generation with Mockito & AssertJ
 
-**Goal:** Generate comprehensive unit tests using AI assistance  
-**Time:** 35 minutes  
-**Mode:** Code-along with instructor  
+**Goal:** Generate comprehensive unit tests using AI assistance
+**Time:** 35 minutes
+**Mode:** Code-along with instructor
 
-**Important Note:** Spring Boot 3.4+ uses `@MockitoBean` instead of deprecated `@MockBean`.
-The new annotation is in package `org.springframework.test.context.bean.override.mockito`.
+**Note:** These are *pure unit tests* - no Spring context. We use `@ExtendWith(MockitoExtension.class)` with `@Mock` and `@InjectMocks` for fast, isolated testing.
 
 ### Step 1: Service Layer Testing (20 min)
 
@@ -181,9 +180,11 @@ The new annotation is in package `org.springframework.test.context.bean.override
 
 ## Lab 2: Integration Testing with TestContainers
 
-**Goal:** Set up integration testing with TestContainers and service mocking  
-**Time:** 35 minutes  
-**Mode:** Code-along with instructor  
+**Goal:** Set up integration testing with TestContainers and service mocking
+**Time:** 35 minutes
+**Mode:** Code-along with instructor
+
+**Note:** Integration tests load the Spring context. When mocking beans, Spring Boot 3.4+ uses `@MockitoBean` instead of deprecated `@MockBean`. The new annotation is in package `org.springframework.test.context.bean.override.mockito`.
 
 ### Step 1: TestContainers Setup (20 min)
 
