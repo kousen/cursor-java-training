@@ -184,9 +184,9 @@ These exercises are designed to be completed during the session with instructor 
 
 ## Lab 2: Integration Testing with TestContainers
 
-**Goal:** Set up integration testing with TestContainers
-**Time:** 20 minutes
-**Mode:** Code-along with instructor
+**Goal:** Set up integration testing with TestContainers  
+**Time:** 20 minutes  
+**Mode:** Code-along with instructor  
 
 **Note:** Integration tests load the Spring context. When mocking beans, Spring Boot 3.4+ uses `@MockitoBean` instead of deprecated `@MockBean`. The new annotation is in package `org.springframework.test.context.bean.override.mockito`.
 
