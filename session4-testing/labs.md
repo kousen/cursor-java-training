@@ -164,7 +164,7 @@ These exercises are designed to be completed during the session with instructor 
    **Extended Thinking:**
    Type:
    ```
-      Generate realistic test data for User and Order entities.
+      Generate realistic test data for the User entity.
       Include various scenarios: valid data, edge cases, invalid data.
    ```
 
