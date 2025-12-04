@@ -26,7 +26,7 @@ These exercises are designed to be completed during the session with instructor 
 ## Lab 0: AI Testing Setup
 
 **Goal:** Understand AI testing philosophy and test generation strategies  
-**Time:** 10 minutes
+**Time:** 10 minutes  
 
 ### Prerequisites
 - Cursor installed and configured
@@ -65,9 +65,9 @@ These exercises are designed to be completed during the session with instructor 
 
 ## Lab 1: Unit Test Generation with Mockito & AssertJ
 
-**Goal:** Generate comprehensive unit tests using AI assistance
-**Time:** 35 minutes
-**Mode:** Code-along with instructor
+**Goal:** Generate comprehensive unit tests using AI assistance  
+**Time:** 35 minutes  
+**Mode:** Code-along with instructor  
 
 **Important Note:** Spring Boot 3.4+ uses `@MockitoBean` instead of deprecated `@MockBean`.
 The new annotation is in package `org.springframework.test.context.bean.override.mockito`.
@@ -140,9 +140,9 @@ The new annotation is in package `org.springframework.test.context.bean.override
 
 ## Lab 1B: AI-Powered Test Quality
 
-**Goal:** Improve test quality with AI review and generate realistic test data
-**Time:** 15 minutes
-**Mode:** Code-along with instructor
+**Goal:** Improve test quality with AI review and generate realistic test data  
+**Time:** 15 minutes  
+**Mode:** Code-along with instructor  
 
 ### Step 1: AI Test Quality Review (8 min)
 
@@ -185,9 +185,9 @@ The new annotation is in package `org.springframework.test.context.bean.override
 
 ## Lab 2: Integration Testing with TestContainers
 
-**Goal:** Set up integration testing with TestContainers and service mocking
-**Time:** 35 minutes
-**Mode:** Code-along with instructor
+**Goal:** Set up integration testing with TestContainers and service mocking  
+**Time:** 35 minutes  
+**Mode:** Code-along with instructor  
 
 ### Step 1: TestContainers Setup (20 min)
 
@@ -224,7 +224,7 @@ The new annotation is in package `org.springframework.test.context.bean.override
 
 **Goal:** Create comprehensive end-to-end tests for complete workflows  
 **Time:** 25 minutes  
-**Mode:** Code-along with instructor
+**Mode:** Code-along with instructor  
 
 ### Step 1: API Testing (15 min)
 
@@ -255,9 +255,9 @@ The new annotation is in package `org.springframework.test.context.bean.override
 
 ## Lab 4: AI Debugging
 
-**Goal:** Use AI for intelligent debugging and troubleshooting
-**Time:** 20 minutes
-**Mode:** Code-along with instructor
+**Goal:** Use AI for intelligent debugging and troubleshooting  
+**Time:** 20 minutes  
+**Mode:** Code-along with instructor  
 
 ### Step 1: Test Failure Analysis
 
@@ -283,9 +283,9 @@ The new annotation is in package `org.springframework.test.context.bean.override
 
 ## Lab 5: Legacy Code Testing
 
-**Goal:** Apply AI testing strategies to legacy code modernization
-**Time:** 20 minutes (in-class) + optional practice
-**Mode:** Guided exploration with instructor
+**Goal:** Apply AI testing strategies to legacy code modernization  
+**Time:** 20 minutes (in-class) + optional practice  
+**Mode:** Guided exploration with instructor  
 
 ### Step 1: Legacy Code Analysis (10 min)
 
