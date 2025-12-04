@@ -46,20 +46,24 @@ These exercises are designed to be completed during the session with instructor 
       and prioritize them based on risk and business value."
    ```
 
-3. **Compare Testing Approaches**
-   **Traditional Approach:**
-   Type:
-   ```
-      Chat Mode: "What unit tests should I write for @user-service?"
-   ```
+3. **Compare Prompting Approaches**
 
-   **AI-Assisted Approach:**
-   Type:
+   Notice the difference between these two prompts (we'll use the second approach in Lab 1):
+
+   **Basic Prompt:**
    ```
-      Extended Thinking: "Generate comprehensive unit tests for @user-service
-      including edge cases, error conditions, and boundary value testing.
-      Use JUnit 5, Mockito, and AssertJ."
+      "What unit tests should I write for UserService?"
    ```
+   *Result: Generic advice, you do the work*
+
+   **Comprehensive Prompt:**
+   ```
+      "Generate comprehensive unit tests for UserService including edge cases,
+      error conditions, and boundary value testing. Use JUnit 5, Mockito, and AssertJ."
+   ```
+   *Result: AI generates actual tests with specific coverage*
+
+   **Key Insight:** Specific, detailed prompts with technology choices yield better results.
 
 ---
 
