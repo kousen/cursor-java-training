@@ -180,13 +180,13 @@ These exercises are designed to be completed during the session with instructor 
 
 ## Lab 2: Integration Testing with TestContainers
 
-**Goal:** Set up integration testing with TestContainers and service mocking
-**Time:** 35 minutes
+**Goal:** Set up integration testing with TestContainers
+**Time:** 20 minutes
 **Mode:** Code-along with instructor
 
 **Note:** Integration tests load the Spring context. When mocking beans, Spring Boot 3.4+ uses `@MockitoBean` instead of deprecated `@MockBean`. The new annotation is in package `org.springframework.test.context.bean.override.mockito`.
 
-### Step 1: TestContainers Setup (20 min)
+### Steps
 
 1. **Generate Integration Tests**
    **Extended Thinking:**
@@ -200,20 +200,6 @@ These exercises are designed to be completed during the session with instructor 
 2. **Review Generated Setup**
    - Verify `PostgreSQLContainer` usage.
    - Check for `@Testcontainers` annotation.
-
-### Step 2: External Service Mocking (15 min)
-
-1. **Setup WireMock**
-   **Agent Mode:**
-   Type:
-   ```
-      Set up WireMock for mocking external services. Create integration tests
-      for payment processing in @ecommerce-modular/order-service.
-   ```
-
-2. **Review Generated Tests**
-   - Verify `WireMock` stubs.
-   - Ensure tests run without external network calls.
 
 ---
 
@@ -244,8 +230,8 @@ These exercises are designed to be completed during the session with instructor 
    **Plan Mode:**
    Type:
    ```
-      Create end-to-end tests for the complete order processing workflow in
-      @ecommerce-modular from user login to order completion.
+      Create end-to-end tests for the complete user management workflow in
+      @ecommerce-modular/user-service: registration, retrieval, update, and deletion.
    ```
 
 ---
