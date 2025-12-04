@@ -174,7 +174,11 @@ These exercises are designed to be completed during the session with instructor 
    - Invalid data for validation testing
 
 3. **Apply to Tests**
-   Use generated test data in your existing tests
+   **Agent Mode:**
+   Type:
+   ```
+      Update my UserServiceTest to use this generated test data.
+   ```
 
 ---
 
