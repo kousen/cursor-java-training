@@ -34,15 +34,15 @@ These exercises are designed to be completed during the session with instructor 
 
 ### **Steps**
 
-1. **Open the E-commerce Application**
-   Navigate to `session4-testing/ecommerce-modular`.
+1. **Open the Session 4 Folder in Cursor**
+   Open `session4-testing` as your Cursor workspace. The e-commerce application is in the `ecommerce-modular` subfolder.
 
 2. **Test AI Testing Philosophy**
    **Extended Thinking Analysis:**
    Type:
    ```
-      Extended Thinking: "Analyze this e-commerce application and create a 
-      comprehensive testing strategy. Identify what types of tests are needed 
+      Extended Thinking: "Analyze the @ecommerce-modular application and create a
+      comprehensive testing strategy. Identify what types of tests are needed
       and prioritize them based on risk and business value."
    ```
 
@@ -50,13 +50,13 @@ These exercises are designed to be completed during the session with instructor 
    **Traditional Approach:**
    Type:
    ```
-      Chat Mode: "What unit tests should I write for UserService?"
+      Chat Mode: "What unit tests should I write for @user-service?"
    ```
 
    **AI-Assisted Approach:**
    Type:
    ```
-      Extended Thinking: "Generate comprehensive unit tests for UserService 
+      Extended Thinking: "Generate comprehensive unit tests for @user-service
       including edge cases, error conditions, and boundary value testing.
       Use JUnit 5, Mockito, and AssertJ."
    ```
@@ -78,8 +78,8 @@ The new annotation is in package `org.springframework.test.context.bean.override
    **Agent Mode:**
    Type:
    ```
-      Generate comprehensive unit tests for UserService using JUnit 5, Mockito, 
-      and AssertJ. Test all public methods.
+      Generate comprehensive unit tests for @ecommerce-modular/user-service UserService
+      using JUnit 5, Mockito, and AssertJ. Test all public methods.
       Use @ExtendWith(MockitoExtension.class).
       Use fluent assertions with AssertJ (e.g., assertThat(...).isNotNull()...).
    ```
@@ -126,14 +126,14 @@ The new annotation is in package `org.springframework.test.context.bean.override
    **Plan Mode:**
    Type:
    ```
-      Create unit tests for UserRepository using @DataJpaTest.
+      Create unit tests for @ecommerce-modular/user-service UserRepository using @DataJpaTest.
       Test all CRUD operations and custom query methods.
       Use AssertJ for assertions.
    ```
 
 2. **Run Tests**
    ```bash
-   ./mvnw test
+   cd ecommerce-modular && ./gradlew test
    ```
 
 ---
@@ -195,9 +195,9 @@ The new annotation is in package `org.springframework.test.context.bean.override
    **Extended Thinking:**
    Type:
    ```
-      Set up TestContainers for integration testing with PostgreSQL. 
-      Create tests that verify database operations, transactions, and data consistency 
-      for the User module. Ensure @ServiceConnection is used if available.
+      Set up TestContainers for integration testing with PostgreSQL in @ecommerce-modular/user-service.
+      Create tests that verify database operations, transactions, and data consistency.
+      Ensure @ServiceConnection is used if available.
    ```
 
 2. **Review Generated Setup**
@@ -211,7 +211,7 @@ The new annotation is in package `org.springframework.test.context.bean.override
    Type:
    ```
       Set up WireMock for mocking external services. Create integration tests
-      for payment processing in the Order module.
+      for payment processing in @ecommerce-modular/order-service.
    ```
 
 2. **Review Generated Tests**
@@ -232,7 +232,7 @@ The new annotation is in package `org.springframework.test.context.bean.override
    **Extended Thinking:**
    Type:
    ```
-      Create comprehensive API tests for the e-commerce application using MockMvc. 
+      Create comprehensive API tests for @ecommerce-modular using MockMvc.
       Include authentication, authorization, data validation, and error handling scenarios.
       Use AssertJ to verify the JSON responses.
    ```
@@ -247,8 +247,8 @@ The new annotation is in package `org.springframework.test.context.bean.override
    **Plan Mode:**
    Type:
    ```
-      Create end-to-end tests for the complete order processing workflow from 
-      user login to order completion.
+      Create end-to-end tests for the complete order processing workflow in
+      @ecommerce-modular from user login to order completion.
    ```
 
 ---
@@ -262,7 +262,7 @@ The new annotation is in package `org.springframework.test.context.bean.override
 ### Step 1: Test Failure Analysis
 
 1. **Introduce Test Failure**
-   Modify `UserService.java` to throw a `NullPointerException` when creating a user.
+   Modify `@ecommerce-modular/user-service/.../UserService.java` to throw a `NullPointerException` when creating a user.
 
 2. **AI Debugging Analysis**
    **Extended Thinking:**
@@ -295,7 +295,7 @@ The new annotation is in package `org.springframework.test.context.bean.override
    **Extended Thinking:**
    Type:
    ```
-      Extended Thinking: "Analyze this legacy Spring Boot 2.7 application.
+      Extended Thinking: "Analyze the @legacy-app Spring Boot 2.7 application.
       It uses field injection and older JUnit 4. Create a plan to migrate
       tests to JUnit 5 and add coverage for the OrderService."
    ```
@@ -315,21 +315,22 @@ Use Extended Thinking to explore the legacy codebase:
 1. **Testing Challenges:**
    Type:
    ```
-      Extended Thinking: "What are the main testing challenges in this
-      legacy codebase?"
+      Extended Thinking: "What are the main testing challenges in
+      @legacy-app?"
    ```
 
 2. **Prioritization:**
    Type:
    ```
-      Extended Thinking: "How would you prioritize testing improvements?"
+      Extended Thinking: "How would you prioritize testing improvements
+      for @legacy-app?"
    ```
 
 3. **Risk Assessment:**
    Type:
    ```
       Extended Thinking: "What risks should be considered when adding
-      tests to legacy code?"
+      tests to @legacy-app?"
    ```
 
 **Share Findings:** Discuss what you discovered with the group
