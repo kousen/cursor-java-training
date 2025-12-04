@@ -48,22 +48,14 @@ These exercises are designed to be completed during the session with instructor 
 
 3. **Compare Prompting Approaches**
 
-   Notice the difference between these two prompts (we'll use the second approach in Lab 1):
+   Notice how prompt specificity affects results:
 
-   **Basic Prompt:**
-   ```
-      "What unit tests should I write for UserService?"
-   ```
-   *Result: Generic advice, you do the work*
+   | Prompt Style | Example | Result |
+   |--------------|---------|--------|
+   | Basic | "What unit tests should I write?" | Generic advice, you do the work |
+   | Comprehensive | Specifies edge cases, technologies, patterns | AI generates actual tests |
 
-   **Comprehensive Prompt:**
-   ```
-      "Generate comprehensive unit tests for UserService including edge cases,
-      error conditions, and boundary value testing. Use JUnit 5, Mockito, and AssertJ."
-   ```
-   *Result: AI generates actual tests with specific coverage*
-
-   **Key Insight:** Specific, detailed prompts with technology choices yield better results.
+   **Key Insight:** Specific prompts with technology choices (JUnit 5, Mockito, AssertJ) yield better results. We'll apply this in Lab 1.
 
 ---
 
