@@ -188,6 +188,10 @@ These exercises are designed to be completed during the session with instructor 
 **Time:** 20 minutes  
 **Mode:** Code-along with instructor  
 
+**Prerequisites:**
+- **Docker Desktop must be running** - TestContainers uses Docker to spin up real database containers
+- For Docker Desktop 29.x+, use **TestContainers 2.x** (module names changed to `testcontainers-postgresql`, `testcontainers-junit-jupiter`)
+
 **Note:** Integration tests load the Spring context. When mocking beans, Spring Boot 3.4+ uses `@MockitoBean` instead of deprecated `@MockBean`. The new annotation is in package `org.springframework.test.context.bean.override.mockito`.
 
 ### Steps
@@ -202,8 +206,22 @@ These exercises are designed to be completed during the session with instructor 
    ```
 
 2. **Review Generated Setup**
-   - Verify `PostgreSQLContainer` usage.
-   - Check for `@Testcontainers` annotation.
+   - Verify `PostgreSQLContainer` usage
+   - Check for `@Testcontainers` annotation
+   - Confirm `@ServiceConnection` or `@DynamicPropertySource` for database configuration
+
+3. **TestContainers 2.x Dependencies** (if needed)
+   ```groovy
+   // In build.gradle - note the 'testcontainers-' prefix for 2.x modules
+   testImplementation 'org.testcontainers:testcontainers:2.0.2'
+   testImplementation 'org.testcontainers:testcontainers-junit-jupiter:2.0.2'
+   testImplementation 'org.testcontainers:testcontainers-postgresql:2.0.2'
+   testRuntimeOnly 'org.postgresql:postgresql'
+   ```
+
+4. **Troubleshooting**
+   - If tests fail with "Could not find valid Docker environment", ensure Docker Desktop is running
+   - For Docker Desktop 29.x compatibility issues, upgrade to TestContainers 2.x
 
 ---
 
@@ -364,7 +382,7 @@ After completing these labs, reflect on:
 - [JUnit 5 User Guide](https://junit.org/junit5/docs/current/user-guide/)
 - [Mockito Documentation](https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html)
 - [AssertJ Documentation](https://assertj.github.io/doc/)
-- [TestContainers Documentation](https://www.testcontainers.org/)
+- [TestContainers Documentation](https://java.testcontainers.org/) - Use 2.x for Docker Desktop 29+
 - [Spring Boot Testing](https://spring.io/guides/gs/testing-web/)
 - [WireMock Documentation](https://wiremock.org/docs/)
 
