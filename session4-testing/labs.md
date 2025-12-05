@@ -201,6 +201,7 @@ These exercises are designed to be completed during the session with instructor 
    Type:
    ```
       Set up TestContainers for integration testing with PostgreSQL in @ecommerce-modular/user-service.
+      Use TestContainers 2.x (modules: testcontainers-postgresql, testcontainers-junit-jupiter).
       Create tests that verify database operations, transactions, and data consistency.
       Ensure @ServiceConnection is used if available.
    ```
