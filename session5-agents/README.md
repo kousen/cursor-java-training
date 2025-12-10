@@ -7,8 +7,9 @@ This directory contains materials and project code for Session 5 lab exercises.
 ```
 session5-agents/
 ├── README.md                    # This file
-├── session5-outline-NEW.md      # Session timeline and structure
-├── slides.md                    # Slidev presentation
+├── session5-outline.md          # Session timeline and structure
+├── slides.md                    # Slidev presentation source
+├── slides.pdf                   # Exported presentation
 ├── labs.md                      # Lab exercises
 └── spring-ai-demo/              # Demo Spring AI application
 ```
@@ -27,8 +28,8 @@ This project demonstrates building intelligent Java applications using Spring AI
 ## Prerequisites
 
 - **Java 21** or higher
-- **Maven** or Gradle
-- **Spring Boot 3.5+**
+- **Gradle 9.2+** (project uses Gradle wrapper)
+- **Spring Boot 3.5.7**
 - **OpenAI API Key** (or Anthropic API Key)
 - **Cursor** with Claude support
 
@@ -56,12 +57,6 @@ cd spring-ai-demo
 
 ### 3. Build and Run
 
-**Using Maven:**
-```bash
-./mvnw spring-boot:run
-```
-
-**Using Gradle:**
 ```bash
 ./gradlew bootRun
 ```
@@ -90,7 +85,7 @@ curl "http://localhost:8080/api/tools/chat?message=What's the weather in San Fra
 - **Java 21** - Programming language with records, pattern matching
 - **OpenAI/Anthropic APIs** - Large Language Model providers
 - **Simple Vector Store** - In-memory vector storage for development
-- **Maven** - Build and dependency management
+- **Gradle 9.2+** - Build and dependency management
 
 ## Lab Exercises
 
@@ -135,41 +130,47 @@ public class ChatController {
 
 ### RAG Pipeline (Lab 2)
 
-**Chat with your documents using vector similarity search:**
-
-1. **Document Ingestion** - Load documents from classpath
-2. **Text Splitting** - Break into ~500 token chunks
-3. **Embeddings** - Convert text to vectors using OpenAI
-4. **Vector Storage** - Store in SimpleVectorStore
-5. **Similarity Search** - Find relevant context for queries
-6. **Context Injection** - Add retrieved docs to LLM prompt
-
-### Function Calling (Lab 3)
-
-**Give AI the ability to execute Java code:**
+**Chat with your documents using the QuestionAnswerAdvisor:**
 
 ```java
-@Bean
-@Description("Get current weather for a location")
-public Function<WeatherRequest, WeatherResponse> weatherFunction() {
-    return request -> new WeatherResponse(
-        request.location(),
-        "72°F",
-        "Sunny with light clouds"
-    );
+public RagController(ChatClient.Builder builder, VectorStore vectorStore) {
+    this.chatClient = builder
+        .defaultAdvisors(
+            QuestionAnswerAdvisor.builder(vectorStore)
+                .searchRequest(SearchRequest.builder().topK(5).build())
+                .build())
+        .build();
 }
 ```
 
-AI automatically calls this function when users ask about weather!
+The advisor handles similarity search, context injection, and prompt augmentation automatically!
+
+### Function Calling (Lab 3)
+
+**Give AI the ability to execute Java code using @Tool:**
+
+```java
+@Component
+public class WeatherTools {
+
+    @Tool(description = "Get current weather for a location")
+    public WeatherResponse getCurrentWeather(
+            @ToolParam(description = "City and state") String location) {
+        return new WeatherResponse(location, "72°F", "Sunny");
+    }
+}
+```
+
+AI automatically calls this method when users ask about weather!
 
 ### Model Context Protocol (Lab 4)
 
-**Enhanced context in Cursor:**
+**Enhanced context in Cursor with Context7:**
 
 - Configure MCP servers in Cursor settings
-- Provide real-time database schema to AI
-- Access live data for better suggestions
-- Reduce hallucinations with grounded context
+- Access live library documentation while coding
+- Get current Spring AI API details
+- Verify code matches latest patterns
 
 ## Resources
 

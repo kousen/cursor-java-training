@@ -154,21 +154,28 @@ layout: default
 layout: default
 ---
 
-# Spring AI Maven Dependencies
+# Spring AI Gradle Dependencies
 
-```xml
-<parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.5.7</version>
-</parent>
+```groovy
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.7'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
 
-<dependencies>
-    <dependency>
-        <groupId>org.springframework.ai</groupId>
-        <artifactId>spring-ai-starter-model-openai</artifactId>
-    </dependency>
-</dependencies>
+ext {
+    set('springAiVersion', "1.1.0")
+}
+
+dependencies {
+    implementation 'org.springframework.ai:spring-ai-starter-model-openai'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.ai:spring-ai-bom:${springAiVersion}"
+    }
+}
 ```
 
 ---
@@ -482,7 +489,7 @@ public class VectorStoreConfig {
 
     @Bean
     public VectorStore vectorStore(EmbeddingModel embeddingModel) {
-        return new SimpleVectorStore(embeddingModel);
+        return SimpleVectorStore.builder(embeddingModel).build();
     }
 }
 ```
@@ -513,7 +520,9 @@ public VectorStore vectorStore(JdbcTemplate jdbc, EmbeddingModel model) {
 layout: default
 ---
 
-# RAG Controller Setup
+# RAG with QuestionAnswerAdvisor
+
+Spring AI provides the `QuestionAnswerAdvisor` to handle RAG automatically:
 
 ```java
 @RestController
@@ -521,48 +530,46 @@ layout: default
 public class RagController {
 
     private final ChatClient chatClient;
-    private final VectorStore vectorStore;
 
     public RagController(ChatClient.Builder builder, VectorStore vectorStore) {
-        this.chatClient = builder.build();
-        this.vectorStore = vectorStore;
+        this.chatClient = builder
+            .defaultAdvisors(
+                QuestionAnswerAdvisor.builder(vectorStore)
+                    .searchRequest(SearchRequest.builder().topK(5).build())
+                    .build())
+            .build();
     }
 ```
 
 ---
 
-# RAG Query Implementation
+# RAG Query - Simple!
 
 ```java
     @GetMapping("/query")
     public String query(@RequestParam String question) {
-        // Search for similar documents
-        List<Document> similarDocs = vectorStore.similaritySearch(
-            SearchRequest.query(question).withTopK(5)
-        );
-
-        String context = similarDocs.stream()
-            .map(Document::getContent)
-            .collect(Collectors.joining("\n\n"));
-```
-
----
-
-# RAG Response Generation
-
-```java
         return chatClient.prompt()
-            .system("""
-                Answer the question based ONLY on the provided context.
-                If you cannot answer from the context, say so.
-                Context: {context}
-                """)
             .user(question)
             .call()
             .content();
     }
 }
 ```
+
+**The Advisor handles:** similarity search, context injection, prompt augmentation
+
+---
+
+# QuestionAnswerAdvisor Benefits
+
+<v-clicks>
+
+- **No manual search** - Advisor queries vector store automatically
+- **Context injection** - Retrieved documents added to prompt
+- **Configurable** - Set topK, similarity threshold, filters
+- **Clean code** - Controller stays simple
+
+</v-clicks>
 
 ---
 layout: default
@@ -712,44 +719,60 @@ graph LR
 layout: default
 ---
 
-# Weather Tool: Request/Response
+# Defining Tools with @Tool Annotation
 
 ```java
-record WeatherRequest(
-    @JsonProperty(required = true, value = "location") String location,
-    @JsonProperty(required = false, value = "unit") String unit
-) {}
+import org.springframework.ai.tool.annotation.Tool;
+import org.springframework.ai.tool.annotation.ToolParam;
 
-record WeatherResponse(
-    String location, String temperature, String description
-) {}
+@Component
+public class WeatherTools {
+
+    public record WeatherResponse(
+        String location, String temperature, String description) {}
 ```
+
+- Tools are Spring `@Component` beans
+- Define response types as records
+- Import `@Tool` and `@ToolParam` annotations
 
 ---
 
-# Weather Tool: Function Bean
+# @Tool Method Definition
 
 ```java
-@Configuration
-public class ToolConfig {
-
-    @Bean
-    @Description("Get current weather for a location")
-    public Function<WeatherRequest, WeatherResponse> weatherFunction() {
-        return request -> new WeatherResponse(
-            request.location(), "72°F", "Sunny with light clouds"
-        );
+    @Tool(description = "Get current weather for a location. "
+        + "Use when user asks about weather conditions.")
+    public WeatherResponse getCurrentWeather(
+            @ToolParam(description = "City and state, e.g. 'San Francisco, CA'")
+            String location,
+            @ToolParam(description = "Unit: 'celsius' or 'fahrenheit'",
+                       required = false)
+            String unit) {
+        String temp = "celsius".equalsIgnoreCase(unit) ? "22°C" : "72°F";
+        return new WeatherResponse(location, temp, "Sunny with light clouds");
     }
 }
 ```
 
-**Key:** `@Description` tells AI when to call this function
+---
+
+# @Tool Annotation Benefits
+
+<v-clicks>
+
+- **Declarative** - Mark methods directly with `@Tool`
+- **Type-safe** - Use primitives, records, lists, maps
+- **Self-documenting** - `@ToolParam` describes each parameter
+- **Spring integrated** - Tools are just `@Component` beans
+
+</v-clicks>
 
 ---
 layout: default
 ---
 
-# Register Functions with ChatClient
+# Register Tools with ChatClient
 
 ```java
 @RestController
@@ -758,10 +781,9 @@ public class ToolController {
 
     private final ChatClient chatClient;
 
-    public ToolController(ChatClient.Builder builder,
-        Function<WeatherRequest, WeatherResponse> weatherFunction) {
+    public ToolController(ChatClient.Builder builder, WeatherTools weatherTools) {
         this.chatClient = builder
-            .defaultFunctions(weatherFunction)
+            .defaultTools(weatherTools)  // Register all @Tool methods
             .build();
     }
 
@@ -792,38 +814,59 @@ public class ToolController {
 layout: default
 ---
 
-# Database Access Tool
+# Database Access with @Tool
 
 ```java
-@Entity
-public class User {
-    @Id private Long id;
-    private String email;
-    private String firstName, lastName;
-}
+@Component
+public class CustomerTools {
 
-public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByEmail(String email);
-}
+    public record Customer(Long id, String name, String email, String tier) {}
+
+    private final Map<String, Customer> customers = Map.of(
+        "alice@example.com", new Customer(1L, "Alice Smith", "alice@example.com", "Gold"),
+        "bob@example.com", new Customer(2L, "Bob Jones", "bob@example.com", "Silver")
+    );
 ```
+
+Tools can access any Spring-managed resource: repositories, services, APIs
 
 ---
 
-# User Lookup Function Bean
+# CustomerTools @Tool Method
 
 ```java
-@Bean
-@Description("Find user by email address")
-public Function<UserLookupRequest, UserLookupResponse>
-    userLookupFunction(UserRepository repo) {
-
-    return request -> repo.findByEmail(request.email())
-        .map(u -> new UserLookupResponse(
-            u.getFirstName() + " " + u.getLastName(), u.getEmail()
-        ))
-        .orElse(new UserLookupResponse("Unknown", request.email()));
+    @Tool(description = "Find a customer by email address")
+    public Customer findCustomerByEmail(
+            @ToolParam(description = "Customer's email address") String email) {
+        return customers.getOrDefault(email,
+            new Customer(null, "Unknown", email, "Not Found"));
+    }
 }
 ```
+
+**Key:** Description tells AI when to call this tool
+
+---
+
+# Multiple Tools in One Class
+
+```java
+@Component
+public class CustomerTools {
+    // ... findCustomerByEmail from above ...
+
+    @Tool(description = "List all customers in a membership tier. "
+        + "Valid tiers: Gold, Silver, Bronze")
+    public List<Customer> getCustomersByTier(
+            @ToolParam(description = "Membership tier") String tier) {
+        return customers.values().stream()
+            .filter(c -> c.tier().equalsIgnoreCase(tier))
+            .toList();
+    }
+}
+```
+
+**Register multiple tool classes:** `.defaultTools(weatherTools, customerTools)`
 
 ---
 layout: default
@@ -833,24 +876,28 @@ layout: default
 
 <v-clicks>
 
-- **Clear descriptions** - AI needs to understand purpose
-- **Strong typing** - Use records for parameters
-- **Validation** - Check inputs before executing
-- **Error handling** - Return meaningful errors
+- **Clear descriptions** - Tell AI *when* to use this tool
+- **Document parameters** - Use `@ToolParam` with format examples
+- **Handle errors gracefully** - Return error info, don't throw
+- **Keep tools focused** - One tool, one job
 
 </v-clicks>
 
 ---
 
-# Good Description Examples
+# Good @Tool Description Examples
 
 ```java
-@Description("Get user by email. Returns name and email if found.")
+@Tool(description = "Get customer by email. Returns name, email, tier if found.")
 
-@Description("Calculate order total including tax. Returns USD.")
+@Tool(description = "Calculate order total including tax. "
+    + "Use when user asks about pricing or totals.")
 
-@Description("Send email notification. Returns success status.")
+@Tool(description = "Send email notification to a user. "
+    + "Returns success/failure status. Use for confirmations.")
 ```
+
+**Key:** Describe *when* the AI should call the tool
 
 ---
 
@@ -861,18 +908,18 @@ layout: default
 - **Authentication** - Verify user context
 - **Authorization** - Check permissions
 - **Input validation** - Sanitize all inputs
-- **Audit logging** - Track function calls
+- **Audit logging** - Track tool calls
 
 </v-clicks>
 
 ```java
-@Bean
-public Function<OrderLookup, OrderResponse> orderFunction(
-    OrderService service, SecurityContext security) {
-    return request -> {
-        security.checkPermission("orders:read");
-        return service.getOrder(request.orderId());
-    };
+@Tool(description = "Get order details by ID")
+public OrderResponse getOrder(
+        @ToolParam(description = "Order ID") String orderId,
+        ToolContext toolContext) {
+    String userId = (String) toolContext.getContext().get("userId");
+    securityService.checkPermission(userId, "orders:read");
+    return orderService.getOrder(orderId);
 }
 ```
 
@@ -887,10 +934,10 @@ layout: default
 <v-clicks>
 
 1. **Choose** a domain (e-commerce, HR, etc.)
-2. **Create** request/response records
-3. **Implement** function bean with @Description
-4. **Register** with ChatClient
-5. **Test** with natural language queries
+2. **Create** a Tools class with `@Component`
+3. **Add** `@Tool` methods with clear descriptions
+4. **Use** `@ToolParam` for parameter documentation
+5. **Register** with `.defaultTools()` and test!
 
 </v-clicks>
 
@@ -900,14 +947,14 @@ layout: default
 
 <v-clicks>
 
-- **Calculator** - Math operations
-- **Time converter** - Timezones, formats
-- **Currency exchange** - Convert currencies
-- **Database query** - Look up records
+- **Calculator** - Math operations with unit conversion
+- **Time tools** - Timezone conversion, date formatting
+- **Currency exchange** - Convert between currencies
+- **Order management** - createOrder, getStatus, cancelOrder
 
 </v-clicks>
 
-**Bonus:** Create related functions (createOrder + getOrderStatus + cancelOrder)
+**Bonus:** Create multiple related `@Tool` methods in one class!
 
 ---
 layout: image-right
@@ -948,9 +995,9 @@ layout: default
 ```mermaid {scale: 0.8}
 graph LR
     A[Cursor AI] --> B[MCP Protocol]
-    B --> C[Database Server]
-    B --> D[File System]
-    B --> E[API Server]
+    B --> C[Context7 Docs]
+    B --> D[Playwright Browser]
+    B --> E[GitHub API]
 ```
 
 ---
@@ -972,15 +1019,14 @@ layout: default
 
 # MCP Setup in Cursor
 
-**Step 1:** Cursor → Settings → Features → MCP
+**Step 1:** Cursor → Settings → Features → MCP (or `Cmd+Shift+J`)
 
 ```json
 {
   "mcpServers": {
-    "database": {
+    "context7": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-postgres",
-               "postgresql://localhost/mydb"]
+      "args": ["-y", "@upstash/context7-mcp"]
     }
   }
 }
@@ -990,39 +1036,57 @@ layout: default
 
 ---
 
+# Why Context7?
+
+<v-clicks>
+
+- **Live documentation** - Always up-to-date library docs
+- **No API keys** - Works out of the box
+- **Perfect for learning** - Look up Spring AI docs as you code!
+
+</v-clicks>
+
+**Try:** "Using context7, look up Spring AI ChatClient documentation"
+
+---
+
 # Available MCP Servers
 
 <v-clicks>
 
-**Official:**
-- `server-postgres` - PostgreSQL
-- `server-filesystem` - File access
-- `server-github` - GitHub API
-
-**Community:**
-- Jira, Slack, Notion integrations
-- Cloud providers (AWS, GCP, Azure)
+- `@upstash/context7-mcp` - Live library documentation
+- `@anthropic/mcp-server-fetch` - Web page fetching
+- `@anthropic/mcp-server-playwright` - Browser automation
+- `@anthropic/mcp-server-github` - GitHub API integration
+- `@anthropic/mcp-server-filesystem` - Local file access
 
 </v-clicks>
+
+**Explore more:** [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers)
 
 ---
 layout: default
 ---
 
-# Spring AI + MCP
+# MCP + Spring AI Development
 
-**Current Approach:** Use Spring AI functions as MCP tool building blocks
+**Use Context7 while building Spring AI apps:**
 
-```java
-@Bean
-public Function<SchemaRequest, SchemaResponse>
-    getDatabaseSchema(DataSource dataSource) {
-    return request -> {
-        // Query information_schema
-        // Return table/column details
-    };
-}
 ```
+"Using context7, show me the latest QuestionAnswerAdvisor API"
+
+"What's the current syntax for @Tool annotations in Spring AI?"
+
+"How do I configure SimpleVectorStore in Spring AI 1.1.0?"
+```
+
+<v-clicks>
+
+- Get current API docs, not outdated training data
+- Verify your code matches latest patterns
+- Learn new features as you build
+
+</v-clicks>
 
 ---
 
@@ -1030,10 +1094,10 @@ public Function<SchemaRequest, SchemaResponse>
 
 <v-clicks>
 
-- **Database schema** - Generate accurate SQL, create JPA entities
-- **API documentation** - Correct endpoint usage, auth patterns
-- **Codebase navigation** - Find related code, understand structure
-- **Real-time data** - Status, metrics, analytics
+- **Documentation lookup** - Current API references while coding
+- **Code generation** - Accurate, up-to-date patterns
+- **Browser testing** - Interact with running apps (Playwright)
+- **Multi-library projects** - Get docs for any dependency
 
 </v-clicks>
 
@@ -1048,9 +1112,9 @@ layout: default
 <v-clicks>
 
 1. **Open** Cursor Settings → Features → MCP
-2. **Add** an MCP server (filesystem or database)
-3. **Test** by asking Cursor about your data
-4. **Observe** improved context in responses
+2. **Add** Context7 MCP server
+3. **Restart** Cursor
+4. **Test:** "Using context7, look up Spring AI RAG documentation"
 
 </v-clicks>
 
@@ -1060,14 +1124,14 @@ layout: default
 
 <v-clicks>
 
-- How does MCP affect Cursor's suggestions?
-- What queries work better with MCP?
-- Can you ask about database structure?
-- Does Cursor understand your project better?
+- How do answers differ with vs without Context7?
+- Can you get current Spring AI 1.1.0 API details?
+- Does Cursor generate more accurate code?
+- What other documentation would be useful?
 
 </v-clicks>
 
-**Try:** "What are the main entities in my database?"
+**Try:** "Using context7, what's new in Spring AI 1.1.0?"
 
 ---
 layout: image-left
@@ -1241,7 +1305,7 @@ layout: default
 
 `JpaRepository` → `VectorStore`
 
-`@Bean` → `@Bean Function`
+`@Service` → `@Component` with `@Tool` methods
 
 ---
 layout: default
