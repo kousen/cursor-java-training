@@ -435,7 +435,6 @@ layout: default
 ```java
 @Component
 public class DocumentLoader implements CommandLineRunner {
-
     private final VectorStore vectorStore;
 
     public DocumentLoader(VectorStore vectorStore) {
@@ -447,27 +446,14 @@ public class DocumentLoader implements CommandLineRunner {
         Resource resource = new ClassPathResource("documents/policy.txt");
         TextSplitter splitter = new TokenTextSplitter();
         List<Document> documents = splitter.split(new TextReader(resource).get());
-```
-
----
-
-# Document Ingestion (continued)
-
-```java
-        // Generate embeddings and store
-        vectorStore.add(documents);
-        log.info("Loaded {} documents", documents.size());
+        vectorStore.add(documents);  // Generate embeddings and store
     }
 }
 ```
 
 <v-clicks>
 
-**What Happens:**
-1. Load `policy.txt` from classpath
-2. Split into ~500 token chunks
-3. Generate embeddings (via OpenAI)
-4. Store vectors in SimpleVectorStore
+- Load document → Split into chunks → Embed → Store vectors
 
 </v-clicks>
 
@@ -683,15 +669,14 @@ layout: default
 
 # Function Calling Flow
 
-```mermaid {scale: 0.8}
+```mermaid {scale: 1.0}
 graph LR
-    A[User: What's weather in SF?] --> B[LLM]
-    B --> C{Need function?}
-    C -->|Yes| D[Call weatherFunction]
-    D --> E[Execute Java code]
-    E --> F[Return: 72°F, Sunny]
-    F --> B
-    B --> G[AI: It's 72° and sunny]
+    A[User Query] --> B[LLM]
+    B --> C{Tool?}
+    C -->|Yes| D[Java Method]
+    D --> E[Result]
+    E --> B
+    C -->|No| F[Response]
 ```
 
 ---
