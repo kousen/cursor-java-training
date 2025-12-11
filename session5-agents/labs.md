@@ -94,8 +94,8 @@ Open `src/main/resources/application.properties` and add:
 
 ```properties
 spring.ai.openai.api-key=${OPENAI_API_KEY}
-spring.ai.openai.chat.options.model=gpt-4o
-spring.ai.openai.chat.options.temperature=0.7
+spring.ai.openai.chat.options.model=gpt-5-nano
+spring.ai.openai.chat.options.temperature=1.0
 ```
 
 Ensure the environment variable is set in your terminal:
