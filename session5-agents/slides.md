@@ -407,16 +407,10 @@ layout: default
 # RAG Pipeline
 
 ```mermaid {scale: 0.8}
-graph TD
-    A[Documents] --> B[Text Splitter]
-    B --> C[Embeddings]
-    C --> D[Vector Store]
-    E[User Query] --> F[Embed Query]
-    F --> G[Similarity Search]
+graph LR
+    A[Docs] --> B[Split] --> C[Embed] --> D[(Store)]
+    E[Query] --> F[Embed] --> G[Search] --> H[LLM] --> I[Answer]
     D --> G
-    G --> H[Retrieved Context]
-    H --> I[LLM with Context]
-    I --> J[Grounded Answer]
 ```
 
 ---
